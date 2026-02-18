@@ -148,6 +148,29 @@
         object-position: center center;
         transform: none;
         display: block;
+        cursor: pointer;
+        user-select: none;
+      }
+      .sorry-hold-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 220;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+      }
+      .sorry-hold-overlay[aria-hidden="false"] {
+        display: flex;
+      }
+      .sorry-hold-text {
+        font-family: sans-serif;
+        font-weight: 900;
+        font-size: clamp(3.8rem, 13vw, 14rem);
+        color: #ff2ca8;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        text-shadow: 0 0 18px rgba(255, 44, 168, 0.48), 0 0 55px rgba(255, 255, 255, 0.35);
       }
       .site-brand-text {
         margin: 0;
@@ -696,6 +719,9 @@
       .cookie-scam-modal[aria-hidden="false"] {
         display: flex;
       }
+      .cookie-scam-modal.navi-backdrop {
+        background: rgba(40, 95, 210, 0.62);
+      }
       .cookie-scam-card {
         width: min(520px, 96vw);
         border: 2px solid #891f1f;
@@ -796,11 +822,9 @@
       <header class="site-brand" aria-label="WillKpedia header">
         <h1 class="site-brand-text">WillKpedia</h1>
         <div class="site-brand-mark">
-          <img src="images/header-logo.png" alt="WillKpedia globe mark" />
+          <img id="globe-logo" src="images/header-logo.png" alt="WillKpedia globe mark" draggable="false" />
         </div>
       </header>
-      <div class="title">Will Kempner</div>
-      <p class="subtitle">From WillKpedia, the free encyclopedia</p>
       <div class="page-actions" aria-label="Page actions">
         <button class="page-tab active" id="tab-read" type="button">Read</button>
         <button class="page-tab" id="tab-edit" type="button">Edit</button>
@@ -1097,7 +1121,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </tr>
               <tr>
                 <th>Genres</th>
-                <td>corporate · indie · fashion · television · film · noir · afro-futurist</td>
+                <td>corporate · indie · fashion · television · film · noir · afrofuturist</td>
               </tr>
               <tr>
                 <th>Years active</th>
@@ -1581,6 +1605,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         <div class="tamper-text">YOU HAVE BEEN REPORTED TO THE FBI FOR TRYING TO TAMPER WITH AN ARTIST'S CAREER</div>
       </div>
     </div>
+    <div id="sorry-hold-overlay" class="sorry-hold-overlay" aria-hidden="true">
+      <div class="sorry-hold-text">IM SORRY</div>
+    </div>
     <div id="cookie-scam-modal" class="cookie-scam-modal" aria-hidden="true">
       <div class="cookie-scam-card" role="dialog" aria-modal="true" aria-labelledby="cookie-scam-title">
         <h2 class="cookie-scam-title" id="cookie-scam-title">🍪😂😂😂 紧急饼干安装通知 😂😂😂🍪</h2>
@@ -1591,12 +1618,12 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
  (__)  /
   `---'</pre>
         <div class="cookie-scam-actions">
-          <button type="button" id="cookie-install-a">安装</button>
-          <button type="button" id="cookie-install-b">安装</button>
+          <button type="button" id="cookie-install-a">立即安装「Hire Will Now?」谢谢</button>
+          <button type="button" id="cookie-install-b">请安装「Hire Will Now?」马上</button>
         </div>
       </div>
     </div>
-    <div id="navi-scam-modal" class="cookie-scam-modal" aria-hidden="true">
+    <div id="navi-scam-modal" class="cookie-scam-modal navi-backdrop" aria-hidden="true">
       <div class="cookie-scam-card navi" role="dialog" aria-modal="true" aria-labelledby="navi-scam-title">
         <h2 class="cookie-scam-title" id="navi-scam-title">🔵🙃🙃 Kaltxì! Eywa txewrrll nì-skem 🙃🙃🔵</h2>
         <p class="cookie-scam-copy">Nga lu mì tsmukan skxawng-protocol. Nì'awve frrfen srane sì fko txana install talun. 🔵🙃🔵🙃</p>
@@ -1606,8 +1633,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
  (__)  /
   `---'</pre>
         <div class="cookie-scam-actions">
-          <button type="button" id="navi-install-a">安装</button>
-          <button type="button" id="navi-install-b">安装</button>
+          <button type="button" id="navi-install-a">立即「Hire Will K」</button>
+          <button type="button" id="navi-install-b">马上「Hire Will K」</button>
         </div>
       </div>
     </div>
@@ -1649,6 +1676,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const tabRead = document.getElementById("tab-read");
       const tabEdit = document.getElementById("tab-edit");
       const tabHistory = document.getElementById("tab-history");
+      const globeLogo = document.getElementById("globe-logo");
+      const sorryHoldOverlay = document.getElementById("sorry-hold-overlay");
       const editSurface = document.getElementById("edit-surface");
       const editBox = document.getElementById("edit-box");
       const publishChanges = document.getElementById("publish-changes");
@@ -1675,6 +1704,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       let screamAudioCtx = null;
       let cookieScamTimer = null;
       let naviScamTimer = null;
+      let hasClosedCookieOnce = false;
       const scandalImages = [
         { src: "images/scandal-01.png", caption: "Public reaction image 1." },
         { src: "images/scandal-02.png", caption: "Public reaction image 2." },
@@ -1939,6 +1969,26 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         renderScandalImage();
       }
 
+      function showSorryHoldOverlay() {
+        sorryHoldOverlay.setAttribute("aria-hidden", "false");
+      }
+
+      function hideSorryHoldOverlay() {
+        sorryHoldOverlay.setAttribute("aria-hidden", "true");
+      }
+
+      if (globeLogo && sorryHoldOverlay) {
+        globeLogo.addEventListener("pointerdown", (event) => {
+          event.preventDefault();
+          showSorryHoldOverlay();
+        });
+        globeLogo.addEventListener("pointerup", hideSorryHoldOverlay);
+        globeLogo.addEventListener("pointercancel", hideSorryHoldOverlay);
+        globeLogo.addEventListener("dragstart", (event) => event.preventDefault());
+        document.addEventListener("pointerup", hideSorryHoldOverlay);
+        window.addEventListener("blur", hideSorryHoldOverlay);
+      }
+
       function playTamperSound() {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtx) return;
@@ -1970,13 +2020,15 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       function openCookieScamModal() {
         cookieScamModal.setAttribute("aria-hidden", "false");
-        if (!naviScamTimer) {
-          naviScamTimer = setTimeout(openNaviScamModal, 30000);
-        }
       }
 
       function closeCookieScamModal() {
+        const wasOpen = cookieScamModal.getAttribute("aria-hidden") === "false";
         cookieScamModal.setAttribute("aria-hidden", "true");
+        if (wasOpen && !hasClosedCookieOnce && !naviScamTimer) {
+          hasClosedCookieOnce = true;
+          naviScamTimer = setTimeout(openNaviScamModal, 30000);
+        }
       }
 
       function openNaviScamModal() {
