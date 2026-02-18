@@ -33,19 +33,18 @@
         font-size: 0.82em;
       }
       .page {
-        max-width: 1240px;
+        max-width: 1680px;
         margin: 0 auto;
-        padding: 18px 270px 48px 20px;
+        padding: 18px 28px 48px;
       }
       .appearance-panel {
-        position: fixed;
-        right: max(14px, calc((100vw - 1240px) / 2 + 14px));
+        position: sticky;
         top: 18px;
-        width: 236px;
+        width: 100%;
         border: 1px solid #c8ccd1;
         background: #f8f9fa;
         font-family: sans-serif;
-        z-index: 80;
+        z-index: 10;
       }
       .appearance-head {
         display: flex;
@@ -136,20 +135,17 @@
         width: 100%;
       }
       .site-brand-mark {
-        width: 188px;
-        height: 188px;
-        flex: 0 0 188px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 1px solid #a2a9b1;
-        background: #fff;
+        width: 240px;
+        flex: 0 0 240px;
+        border: 0;
+        background: transparent;
       }
       .site-brand-mark img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 91%;
-        transform: scale(1.34);
+        height: auto;
+        object-fit: contain;
+        object-position: center center;
+        transform: none;
         display: block;
       }
       .site-brand-text {
@@ -339,12 +335,12 @@
       }
       .layout {
         display: grid;
-        grid-template-columns: 220px minmax(0, 1fr);
-        gap: 24px;
+        grid-template-columns: 220px minmax(0, 1fr) 236px;
+        gap: 28px;
       }
       .toc-wrap {
         position: sticky;
-        top: 16px;
+        top: 18px;
         align-self: start;
       }
       .toc {
@@ -372,6 +368,7 @@
       }
       .article {
         min-width: 0;
+        max-width: 1120px;
       }
       .lead {
         position: relative;
@@ -563,6 +560,38 @@
         font-size: 0.85rem;
         color: #54595d;
       }
+      .video-hover-preview {
+        position: fixed;
+        z-index: 140;
+        width: min(420px, calc(100vw - 30px));
+        background: #fff;
+        border: 1px solid #a2a9b1;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+        display: none;
+      }
+      .video-hover-preview.show {
+        display: block;
+      }
+      .video-hover-preview-media {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #000;
+      }
+      .video-hover-preview-media iframe,
+      .video-hover-preview-media video,
+      .video-hover-preview-media img {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        object-fit: cover;
+        display: block;
+      }
+      .video-hover-preview-caption {
+        font-family: sans-serif;
+        font-size: 0.82rem;
+        color: #54595d;
+        padding: 6px 8px;
+      }
       .modal {
         position: fixed;
         inset: 0;
@@ -620,9 +649,8 @@
           margin: 0 0 12px;
         }
         .site-brand-mark {
-          width: 84px;
-          height: 84px;
-          flex-basis: 84px;
+          width: 120px;
+          flex-basis: 120px;
         }
         .site-brand-text {
           font-size: clamp(2.2rem, 10vw, 3.4rem);
@@ -644,25 +672,6 @@
     </style>
   </head>
   <body>
-    <aside class="appearance-panel" id="appearance-panel" aria-label="Appearance">
-      <div class="appearance-head">
-        <span>Appearance</span>
-        <button class="appearance-hide" id="appearance-hide" type="button">hide</button>
-      </div>
-      <div class="appearance-body">
-        <h4>Text</h4>
-        <label class="appearance-choice"><input type="radio" name="text-size" value="small">Small</label>
-        <label class="appearance-choice"><input type="radio" name="text-size" value="standard" checked>Standard</label>
-        <label class="appearance-choice"><input type="radio" name="text-size" value="large">Large</label>
-        <h4>Width</h4>
-        <label class="appearance-choice"><input type="radio" name="page-width" value="standard" checked>Standard</label>
-        <label class="appearance-choice"><input type="radio" name="page-width" value="wide">Wide</label>
-        <h4>Color (beta)</h4>
-        <label class="appearance-choice"><input type="radio" name="color-mode" value="auto" checked>Automatic</label>
-        <label class="appearance-choice"><input type="radio" name="color-mode" value="light">Light</label>
-        <label class="appearance-choice"><input type="radio" name="color-mode" value="dark">Dark</label>
-      </div>
-    </aside>
     <div class="page">
       <header class="site-brand" aria-label="WillKpedia header">
         <h1 class="site-brand-text">WillKpedia</h1>
@@ -1196,6 +1205,25 @@
             </ol>
           </section>
         </main>
+        <aside class="appearance-panel" id="appearance-panel" aria-label="Appearance">
+          <div class="appearance-head">
+            <span>Appearance</span>
+            <button class="appearance-hide" id="appearance-hide" type="button">hide</button>
+          </div>
+          <div class="appearance-body">
+            <h4>Text</h4>
+            <label class="appearance-choice"><input type="radio" name="text-size" value="small">Small</label>
+            <label class="appearance-choice"><input type="radio" name="text-size" value="standard" checked>Standard</label>
+            <label class="appearance-choice"><input type="radio" name="text-size" value="large">Large</label>
+            <h4>Width</h4>
+            <label class="appearance-choice"><input type="radio" name="page-width" value="standard" checked>Standard</label>
+            <label class="appearance-choice"><input type="radio" name="page-width" value="wide">Wide</label>
+            <h4>Color (beta)</h4>
+            <label class="appearance-choice"><input type="radio" name="color-mode" value="auto" checked>Automatic</label>
+            <label class="appearance-choice"><input type="radio" name="color-mode" value="light">Light</label>
+            <label class="appearance-choice"><input type="radio" name="color-mode" value="dark">Dark</label>
+          </div>
+        </aside>
       </div>
     </div>
     <div id="wiki-preview" class="wiki-preview" aria-hidden="true"></div>
@@ -1209,6 +1237,10 @@
         <div class="modal-body" id="modal-body"></div>
       </div>
     </div>
+    <div id="video-hover-preview" class="video-hover-preview" aria-hidden="true">
+      <div class="video-hover-preview-media" id="video-hover-preview-media"></div>
+      <div class="video-hover-preview-caption">Preview (hover)</div>
+    </div>
     <div id="tamper-modal" class="tamper-modal" aria-hidden="true">
       <button type="button" class="tamper-close" id="tamper-close">X</button>
       <div class="tamper-content">
@@ -1221,6 +1253,8 @@
       const modalBody = document.getElementById("modal-body");
       const closeModal = document.getElementById("close-modal");
       const videoLinks = document.querySelectorAll(".video-link");
+      const videoHoverPreview = document.getElementById("video-hover-preview");
+      const videoHoverPreviewMedia = document.getElementById("video-hover-preview-media");
       const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
       const appearancePanel = document.getElementById("appearance-panel");
       const appearanceHide = document.getElementById("appearance-hide");
@@ -1240,6 +1274,7 @@
       const tamperClose = document.getElementById("tamper-close");
       const initialEditValue = editBox.value;
       let wikiHideTimer = null;
+      let videoHoverTimer = null;
       let alertAudioCtx = null;
 
       function openModal(url) {
@@ -1290,6 +1325,40 @@
         link.addEventListener("click", (event) => {
           event.preventDefault();
           openModal(link.dataset.video);
+        });
+        link.addEventListener("mouseenter", () => {
+          if (videoHoverTimer) {
+            clearTimeout(videoHoverTimer);
+            videoHoverTimer = null;
+          }
+          const url = link.dataset.video || "";
+          const rect = link.getBoundingClientRect();
+          const left = Math.min(window.innerWidth - 430, Math.max(10, rect.left));
+          const top = Math.min(window.innerHeight - 280, rect.bottom + 8);
+          videoHoverPreview.style.left = left + "px";
+          videoHoverPreview.style.top = top + "px";
+          const isYouTube = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
+          const isVimeo = url.includes("player.vimeo.com/video/");
+          const isMp4 = url.includes("video.squarespace-cdn.com/") || /\.mp4($|\\?)/i.test(url);
+          const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
+          if (isYouTube || isVimeo) {
+            videoHoverPreviewMedia.innerHTML = '<iframe src="' + url + '" allow="autoplay; encrypted-media; picture-in-picture" title="Hover preview"></iframe>';
+          } else if (isMp4) {
+            videoHoverPreviewMedia.innerHTML = '<video src="' + url + '" muted loop autoplay playsinline></video>';
+          } else if (isImage) {
+            videoHoverPreviewMedia.innerHTML = '<img src="' + url + '" alt="Preview">';
+          } else {
+            videoHoverPreviewMedia.innerHTML = '<div style="color:#fff;font-family:sans-serif;font-size:0.9rem;padding:16px;">No inline preview available</div>';
+          }
+          videoHoverPreview.classList.add("show");
+          videoHoverPreview.setAttribute("aria-hidden", "false");
+        });
+        link.addEventListener("mouseleave", () => {
+          videoHoverTimer = setTimeout(() => {
+            videoHoverPreview.classList.remove("show");
+            videoHoverPreview.setAttribute("aria-hidden", "true");
+            videoHoverPreviewMedia.innerHTML = "";
+          }, 40);
         });
       });
 
