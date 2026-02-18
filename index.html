@@ -28,20 +28,117 @@
       a:hover {
         text-decoration: underline;
       }
+      .video-link::before {
+        content: "▶ ";
+        font-size: 0.82em;
+      }
       .page {
         max-width: 1240px;
         margin: 0 auto;
         padding: 18px 20px 48px;
       }
+      .appearance-panel {
+        position: fixed;
+        right: 14px;
+        top: 18px;
+        width: 220px;
+        border: 1px solid #c8ccd1;
+        background: #f8f9fa;
+        font-family: sans-serif;
+        z-index: 80;
+      }
+      .appearance-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #c8ccd1;
+        padding: 8px 10px;
+        font-weight: 600;
+      }
+      .appearance-hide {
+        border: 1px solid #c8ccd1;
+        background: #eaecf0;
+        padding: 3px 8px;
+        cursor: pointer;
+      }
+      .appearance-body {
+        padding: 8px 10px 10px;
+      }
+      .appearance-body h4 {
+        margin: 9px 0 5px;
+        font-size: 1rem;
+        color: #54595d;
+      }
+      .appearance-choice {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 4px 0;
+      }
+      .appearance-panel[data-hidden="true"] .appearance-body {
+        display: none;
+      }
+      .page-width-wide .page {
+        max-width: 1500px;
+      }
+      .text-small body {
+        font-size: 0.92rem;
+      }
+      .text-large body {
+        font-size: 1.08rem;
+      }
+      body.dark-hellfire {
+        color: #ff6565;
+        font-family: "Creepster", "Papyrus", "Copperplate", "Times New Roman", serif;
+        background:
+          radial-gradient(circle at 10% 100%, rgba(255, 80, 0, 0.45), rgba(0, 0, 0, 0) 40%),
+          radial-gradient(circle at 90% 100%, rgba(255, 20, 0, 0.4), rgba(0, 0, 0, 0) 42%),
+          radial-gradient(circle at 50% 100%, rgba(255, 160, 0, 0.28), rgba(0, 0, 0, 0) 35%),
+          linear-gradient(180deg, #080808 0%, #170d0b 48%, #270a06 76%, #3a0904 100%);
+        background-size: 140% 140%;
+        animation: fireShift 10s ease-in-out infinite alternate;
+      }
+      @keyframes fireShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+      body.dark-hellfire a {
+        color: #ff8f8f;
+      }
+      body.dark-hellfire .infobox,
+      body.dark-hellfire .wikitable,
+      body.dark-hellfire .toc,
+      body.dark-hellfire .appearance-panel {
+        background: rgba(22, 8, 8, 0.92);
+        color: #ff6262;
+        border-color: #6a2424;
+      }
+      body.dark-hellfire .infobox-photo img {
+        filter: invert(1) hue-rotate(170deg) contrast(1.15);
+      }
+      body.dark-hellfire .title,
+      body.dark-hellfire .site-brand-text,
+      body.dark-hellfire h2,
+      body.dark-hellfire h3 {
+        color: #ff4e4e;
+        text-shadow: 0 0 12px rgba(255, 20, 20, 0.5);
+        border-color: #6a2424;
+      }
       .site-brand {
         display: flex;
         align-items: center;
-        gap: 14px;
-        margin: 0 0 6px;
+        gap: 20px;
+        margin: 0 0 10px;
+        width: 100%;
       }
       .site-brand-mark {
-        width: 46px;
-        height: 46px;
+        width: 132px;
+        height: 132px;
+        flex: 0 0 132px;
         border-radius: 50%;
         overflow: hidden;
         border: 1px solid #a2a9b1;
@@ -51,15 +148,18 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center 84%;
+        object-position: center 91%;
+        transform: scale(1.22);
         display: block;
       }
       .site-brand-text {
         margin: 0;
-        font-size: 2.7rem;
+        flex: 1;
+        font-size: clamp(3.6rem, 7.8vw, 7.2rem);
         font-weight: 400;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.3px;
         line-height: 1;
+        text-align: left;
       }
       .title {
         margin: 0 0 10px;
@@ -70,6 +170,104 @@
         margin: 0 0 16px;
         color: #54595d;
         font-size: 0.95rem;
+      }
+      .page-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 3px;
+        margin: 0 0 10px;
+        font-family: sans-serif;
+      }
+      .page-tab {
+        border: 1px solid #a2a9b1;
+        background: #f8f9fa;
+        color: #3366cc;
+        font-size: 0.87rem;
+        line-height: 1;
+        padding: 6px 10px;
+        cursor: pointer;
+      }
+      .page-tab.active {
+        background: #fff;
+        color: #202122;
+        border-bottom-color: #fff;
+        cursor: default;
+      }
+      .edit-surface {
+        display: none;
+        border: 1px solid #a2a9b1;
+        background: #fff;
+        margin: 0 0 14px;
+        font-family: sans-serif;
+      }
+      .edit-surface.show {
+        display: block;
+      }
+      .edit-head {
+        border-bottom: 1px solid #c8ccd1;
+        background: #f8f9fa;
+        padding: 8px 10px;
+        font-size: 0.9rem;
+      }
+      .edit-body {
+        padding: 10px;
+      }
+      .edit-body textarea {
+        width: 100%;
+        min-height: 250px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+        font-size: 0.82rem;
+        border: 1px solid #a2a9b1;
+        padding: 10px;
+        resize: vertical;
+      }
+      .edit-actions {
+        margin-top: 10px;
+      }
+      .publish-btn {
+        border: 1px solid #3366cc;
+        background: #3366cc;
+        color: #fff;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+      .tamper-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.96);
+        color: #ff2828;
+        z-index: 300;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: sans-serif;
+        padding: 24px;
+      }
+      .tamper-modal[aria-hidden="false"] {
+        display: flex;
+      }
+      .tamper-content {
+        max-width: 980px;
+        width: 100%;
+      }
+      .tamper-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        border: 1px solid #ff6767;
+        background: #2a0000;
+        color: #ffb0b0;
+        padding: 8px 11px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .tamper-text {
+        font-size: clamp(1.6rem, 3.4vw, 3.2rem);
+        font-weight: 800;
+        line-height: 1.2;
+        text-shadow: 0 0 18px rgba(255, 0, 0, 0.55);
+        letter-spacing: 0.6px;
       }
       .layout {
         display: grid;
@@ -189,6 +387,12 @@
         font-size: 0.78rem;
         vertical-align: super;
       }
+      .citation-needed {
+        font-family: sans-serif;
+        font-size: 0.76rem;
+        color: #54595d;
+        margin-left: 4px;
+      }
       .thumb {
         width: 290px;
         float: right;
@@ -206,6 +410,26 @@
       }
       .thumb figcaption {
         padding: 6px 4px 2px;
+      }
+      .awards-thumb {
+        width: 420px;
+        float: right;
+        border: 1px solid #c8ccd1;
+        background: #f8f9fa;
+        margin: 6px 0 14px 24px;
+        padding: 3px;
+        font-family: sans-serif;
+      }
+      .awards-thumb img {
+        width: 100%;
+        display: block;
+        border: 1px solid #c8ccd1;
+        background: #fff;
+      }
+      .awards-thumb figcaption {
+        padding: 6px 4px 3px;
+        font-size: 0.94rem;
+        line-height: 1.35;
       }
       #references li {
         scroll-margin-top: 18px;
@@ -302,6 +526,22 @@
         white-space: nowrap;
       }
       @media (max-width: 980px) {
+        .page-actions {
+          justify-content: flex-start;
+        }
+        .appearance-panel {
+          position: static;
+          width: 100%;
+          margin: 0 0 12px;
+        }
+        .site-brand-mark {
+          width: 84px;
+          height: 84px;
+          flex-basis: 84px;
+        }
+        .site-brand-text {
+          font-size: clamp(2.2rem, 10vw, 3.4rem);
+        }
         .layout {
           grid-template-columns: 1fr;
         }
@@ -309,7 +549,8 @@
           position: static;
         }
         .infobox,
-        .thumb {
+        .thumb,
+        .awards-thumb {
           width: 100%;
           float: none;
           margin: 8px 0 14px;
@@ -318,15 +559,59 @@
     </style>
   </head>
   <body>
+    <aside class="appearance-panel" id="appearance-panel" aria-label="Appearance">
+      <div class="appearance-head">
+        <span>Appearance</span>
+        <button class="appearance-hide" id="appearance-hide" type="button">hide</button>
+      </div>
+      <div class="appearance-body">
+        <h4>Text</h4>
+        <label class="appearance-choice"><input type="radio" name="text-size" value="small">Small</label>
+        <label class="appearance-choice"><input type="radio" name="text-size" value="standard" checked>Standard</label>
+        <label class="appearance-choice"><input type="radio" name="text-size" value="large">Large</label>
+        <h4>Width</h4>
+        <label class="appearance-choice"><input type="radio" name="page-width" value="standard" checked>Standard</label>
+        <label class="appearance-choice"><input type="radio" name="page-width" value="wide">Wide</label>
+        <h4>Color (beta)</h4>
+        <label class="appearance-choice"><input type="radio" name="color-mode" value="auto" checked>Automatic</label>
+        <label class="appearance-choice"><input type="radio" name="color-mode" value="light">Light</label>
+        <label class="appearance-choice"><input type="radio" name="color-mode" value="dark">Dark</label>
+      </div>
+    </aside>
     <div class="page">
       <header class="site-brand" aria-label="WillKpedia header">
+        <h1 class="site-brand-text">WillKpedia</h1>
         <div class="site-brand-mark">
           <img src="images/header-logo.png" alt="WillKpedia globe mark" />
         </div>
-        <h1 class="site-brand-text">WillKpedia</h1>
       </header>
       <div class="title">Will Kempner</div>
       <p class="subtitle">From WillKpedia, the free encyclopedia</p>
+      <div class="page-actions" aria-label="Page actions">
+        <button class="page-tab active" id="tab-read" type="button">Read</button>
+        <button class="page-tab" id="tab-edit" type="button">Edit</button>
+        <button class="page-tab" id="tab-history" type="button">View history</button>
+      </div>
+      <section class="edit-surface" id="edit-surface" aria-label="Edit source">
+        <div class="edit-head">Editing source code for page: <strong>Will Kempner</strong></div>
+        <div class="edit-body">
+          <textarea id="edit-box" spellcheck="false">&lt;section id="bio"&gt;
+  &lt;h2&gt;Biography&lt;/h2&gt;
+  &lt;p&gt;
+    Will K, as he is increasingly known, has worked across television, fashion
+    campaigns, corporate media, and independent film.
+  &lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section id="editing"&gt;
+  &lt;h2&gt;Editing Work&lt;/h2&gt;
+  &lt;!-- source excerpt from willk page --&gt;
+&lt;/section&gt;</textarea>
+          <div class="edit-actions">
+            <button class="publish-btn" id="publish-changes" type="button">Publish changes</button>
+          </div>
+        </div>
+      </section>
       <div class="layout">
         <aside class="toc-wrap">
           <nav class="toc" aria-label="Table of contents">
@@ -368,7 +653,7 @@
               </tr>
               <tr>
                 <th>Occupation</th>
-                <td>Reclusive iconoclast</td>
+                <td>Reclusive iconoclast <span class="citation-needed">[citation needed]</span></td>
               </tr>
               <tr>
                 <th>Years active</th>
@@ -393,7 +678,8 @@
               Kempner began working in post-production in the late 2000s and later built a cross-disciplinary practice
               spanning editing, assistant editing, producing, and copywriting. He has served as lead assistant editor
               and associate editor across both seasons of HBO's <i><a class="wiki-link" href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness</a></i> (2018; 2022)
-              and worked as an editor on Disney+'s <i>Growing Up</i> (2022).<sup class="ref" id="cite-1b"><a href="#ref-1">[1]</a></sup><sup class="ref" id="cite-2b"><a href="#ref-2">[2]</a></sup><sup class="ref" id="cite-3b"><a href="#ref-3">[3]</a></sup>
+              <sup class="ref" id="cite-1b"><a href="#ref-1">[1]</a></sup><sup class="ref" id="cite-2b"><a href="#ref-2">[2]</a></sup>
+              and worked as an editor on Disney+'s <i>Growing Up</i> (2022).<sup class="ref" id="cite-3b"><a href="#ref-3">[3]</a></sup>
             </p>
             <p>
               In advertising and fashion, Kempner has edited and produced work for Telfar, including <i>New Models</i>
@@ -418,19 +704,19 @@
               <tbody>
                 <tr>
                   <td>2018; 2022</td>
-                  <td><i><a class="wiki-link" href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness</a></i> (HBO, Seasons 1-2)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" class="video-link"><i>Random Acts of Flyness</i></a> (HBO, Seasons 1-2)</td>
                   <td>Lead Assistant Editor (S1); Associate Editor (S2)</td>
                   <td>6 episodes in each season</td>
                 </tr>
                 <tr>
                   <td>2022</td>
-                  <td><i>Growing Up</i> (Disney+)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tFMQs50V1g8" class="video-link"><i>Growing Up</i></a> (Disney+)</td>
                   <td>Editor</td>
                   <td>Docuseries, 5 episodes</td>
                 </tr>
                 <tr>
                   <td>2020</td>
-                  <td><i>Best Dance</i> (Topic)</td>
+                  <td><a href="#" data-video="https://video.squarespace-cdn.com/content/v1/642710859bf25503dd76cbf2/3cf59cee-7e2d-45bf-b0b6-5eec46afa48e/1920:1080" class="video-link"><i>Best Dance</i></a> (Topic)</td>
                   <td>Editor</td>
                   <td>Series, 5 episodes</td>
                 </tr>
@@ -456,7 +742,7 @@
                 </tr>
                 <tr>
                   <td>2021</td>
-                  <td><i>Ms. Lauryn Hill for S/S 2021</i> (Louis Vuitton)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)</td>
                   <td>Editor</td>
                   <td>Fashion campaign</td>
                 </tr>
@@ -494,19 +780,19 @@
                 </tr>
                 <tr>
                   <td>2020</td>
-                  <td><i>Beauty Secrets</i> (Vogue)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" class="video-link"><i>Beauty Secrets</i></a> (Vogue)</td>
                   <td>Editor</td>
                   <td>Conde Nast</td>
                 </tr>
                 <tr>
                   <td>2020</td>
-                  <td><i>Multiple Sclerosis: Can't Knock Me Down</i> (Glamour Magazine)</td>
+                  <td><a href="#" data-video="https://video.squarespace-cdn.com/content/v1/642710859bf25503dd76cbf2/883f6afd-9a64-46c0-85b7-0d7653cd225b/1920:1080" class="video-link"><i>Multiple Sclerosis: Can't Knock Me Down</i></a> (Glamour Magazine)</td>
                   <td>Editor</td>
                   <td>Conde Nast</td>
                 </tr>
                 <tr>
                   <td>2021</td>
-                  <td><i>Wondr Health Testimonials</i></td>
+                  <td><a href="#" data-video="https://video.squarespace-cdn.com/content/v1/642710859bf25503dd76cbf2/19527b0c-da15-491e-8ff9-be385a1aac5e/1920:1080" class="video-link"><i>Wondr Health Testimonials</i></a></td>
                   <td>Editor</td>
                   <td>Corporate campaign</td>
                 </tr>
@@ -526,19 +812,19 @@
               <tbody>
                 <tr>
                   <td>2023</td>
-                  <td><i>Andre 3000 - Listening To The Sun</i> (teaser)</td>
+                  <td><a href="#" data-video="https://video.squarespace-cdn.com/content/v1/642710859bf25503dd76cbf2/86eb29ff-efe7-4a8b-8c84-ddbca0aa23b4/1440:1080" class="video-link"><i>Andre 3000 - Listening To The Sun</i></a> (teaser)</td>
                   <td>Trailer Editor</td>
                   <td>Social announcement teaser</td>
                 </tr>
                 <tr>
                   <td>2020</td>
-                  <td><i>Inspector Ike</i> (Graham Mason)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" class="video-link"><i>Inspector Ike</i></a> (Graham Mason)</td>
                   <td>Trailer Editor</td>
                   <td>Trailer</td>
                 </tr>
                 <tr>
                   <td>2020</td>
-                  <td><i>Reveries: Going Deeper</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" class="video-link"><i>Reveries: Going Deeper</i></a></td>
                   <td>Trailer Editor</td>
                   <td>Trailer</td>
                 </tr>
@@ -560,7 +846,7 @@
               <tbody>
                 <tr>
                   <td>2018</td>
-                  <td><i><a class="wiki-link" href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness</a></i> (HBO, Season 1)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/kIzUwpfAl5k" class="video-link"><i>Random Acts of Flyness</i></a> (HBO, Season 1)</td>
                   <td>Lead Assistant Editor</td>
                   <td>Television</td>
                 </tr>
@@ -600,150 +886,148 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#" data-video="https://www.nobudge.com/videos/the-good-boy" class="video-link"><i>The Good Boy</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/WDuSxJ_eAGU" class="video-link"><i>The Good Boy</i></a></td>
                   <td>2018</td>
                   <td>Director, co-writer, editor</td>
                   <td>Popup</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" class="video-link"><i>A Flaw In The System</i></a></td>
+                  <td><a href="#" data-video="https://player.vimeo.com/video/409480281" class="video-link"><i>A Flaw In The System</i></a></td>
                   <td>2020</td>
                   <td>Director, editor</td>
                   <td>Popup</td>
                 </tr>
                 <tr>
-                  <td><i>Message from Mark / The Lord of the Ring</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/iyH1BgfcIX8" class="video-link"><i>Message from Mark / The Lord of the Ring</i></a></td>
                   <td>Unknown</td>
                   <td>Editor</td>
-                  <td>-</td>
+                  <td>Popup</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.nobudge.com/videos/serfs-up" class="video-link"><i>Serf's Up</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/pn7tYDdCfuQ" class="video-link"><i>Serf's Up</i></a></td>
                   <td>2016</td>
                   <td>Director, writer, editor</td>
                   <td>Popup</td>
                 </tr>
                 <tr>
-                  <td><i>Writer's Retreat</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ITKpzCnTJWQ" class="video-link"><i>Writer's Retreat</i></a></td>
                   <td>2019</td>
                   <td>Co-director, writer, editor</td>
-                  <td>-</td>
+                  <td>Popup</td>
                 </tr>
                 <tr>
-                  <td><i>Joker Stairs</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AuTQ0SZPoOI" class="video-link"><i>Joker Stairs</i></a></td>
                   <td>2019</td>
                   <td>Co-director, editor</td>
-                  <td>-</td>
+                  <td>Popup</td>
                 </tr>
                 <tr>
-                  <td><i>Happy Birthday, Mr. Hoffman</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/beMe8lM7-SI" class="video-link"><i>Happy Birthday, Mr. Hoffman</i></a></td>
                   <td>2010</td>
                   <td>Director, writer, editor</td>
-                  <td>-</td>
+                  <td>Popup</td>
                 </tr>
                 <tr>
-                  <td><i>Jay Kelly: An Artist At Work</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/moUKXMq04ho" class="video-link"><i>Jay Kelly: An Artist At Work</i></a></td>
                   <td>2013</td>
                   <td>Director, editor</td>
-                  <td>-</td>
+                  <td>Popup</td>
                 </tr>
               </tbody>
             </table>
-            <p class="notes">Sourced from <a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">willkempner.com/my-films</a>. Popup links are included where that page provides a destination URL.</p>
           </section>
 
           <section id="discography">
             <h2>Discography <span class="edit">[edit]</span></h2>
 
-            <h3>Digital Zoom</h3>
-            <p class="notes">Full catalog: <a href="https://digitalzoom.bandcamp.com/" target="_blank" rel="noreferrer">digitalzoom.bandcamp.com</a></p>
+            <h3>Digital Zoom<sup class="ref" id="cite-9a"><a href="#ref-9">[9]</a></sup></h3>
             <table class="wikitable">
               <thead>
                 <tr>
                   <th>Release</th>
                   <th>Year</th>
-                  <th>Link</th>
+                  <th>Role</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><i>The Good Boy OST</i> (Various Artists)</td>
                   <td>2018</td>
-                  <td><a href="https://digitalzoom.bandcamp.com/album/the-good-boy-ost" target="_blank" rel="noreferrer">Bandcamp</a></td>
+                  <td>Producer</td>
                 </tr>
               </tbody>
             </table>
 
-            <h3>ART DLR</h3>
-            <table class="wikitable">
-              <thead>
-                <tr>
-                  <th>Release</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>DLR.MAG</i></td><td><a href="https://artdealer.bandcamp.com/album/dlr-mag" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Endangered: On Ice (In Space)</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Ghoulsikal</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>SR20: ART DLR - Prove 2 U</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>WYA JOE - EP</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Work Flows</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>God's Revenge</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Pure Illusion</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>SR23: Kratom Rock</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>SR08: Sunday Night Jive</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>artdlr_8</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>SR04: Human World</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Cig Crown EP</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Karma (Karma)</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-                <tr><td><i>Think Outloud!</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
-              </tbody>
-            </table>
-
-            <h3>Lanlord Lance</h3>
-            <p class="notes">Full catalog: <a href="https://lanlordlance.bandcamp.com/" target="_blank" rel="noreferrer">lanlordlance.bandcamp.com</a></p>
+            <h3>ART DLR<sup class="ref" id="cite-8a"><a href="#ref-8">[8]</a></sup></h3>
             <table class="wikitable">
               <thead>
                 <tr>
                   <th>Release</th>
                   <th>Year</th>
-                  <th>Link</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>DLR.MAG</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Endangered: On Ice (In Space)</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Ghoulsikal</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>SR20: ART DLR - Prove 2 U</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>WYA JOE - EP</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Work Flows</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>God's Revenge</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Pure Illusion</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>SR23: Kratom Rock</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>SR08: Sunday Night Jive</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>artdlr_8</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>SR04: Human World</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Cig Crown EP</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Karma (Karma)</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>Think Outloud!</i></td><td>-</td><td>Producer</td></tr>
+              </tbody>
+            </table>
+
+            <h3>Lanlord Lance<sup class="ref" id="cite-10a"><a href="#ref-10">[10]</a></sup></h3>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Release</th>
+                  <th>Year</th>
+                  <th>Role</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><i>SR12: unsweet - Single</i></td>
                   <td>2017</td>
-                  <td><a href="https://lanlordlance.bandcamp.com/album/sr12-unsweet-single" target="_blank" rel="noreferrer">Bandcamp</a></td>
+                  <td>Producer</td>
                 </tr>
               </tbody>
             </table>
 
-            <h3>Triangle Lord</h3>
+            <h3>Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></h3>
             <table class="wikitable">
               <thead>
                 <tr>
                   <th>Release</th>
                   <th>Year</th>
-                  <th>Link</th>
+                  <th>Role</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><i>Shit - Rarities &amp; Tri-sides</i></td>
                   <td>TBD</td>
-                  <td><a href="https://trianglelord.bandcamp.com/album/shit-rarities-tri-sides" target="_blank" rel="noreferrer">Bandcamp</a></td>
+                  <td>Producer</td>
                 </tr>
                 <tr>
                   <td><i>Triangle Lord</i></td>
                   <td>TBD</td>
-                  <td><a href="https://trianglelord.bandcamp.com/album/triangle-lord" target="_blank" rel="noreferrer">Bandcamp</a></td>
+                  <td>Producer</td>
                 </tr>
               </tbody>
             </table>
@@ -751,7 +1035,7 @@
 
           <section id="awards">
             <h2>Awards and Screenings <span class="edit">[edit]</span></h2>
-            <figure class="thumb">
+            <figure class="awards-thumb">
               <img src="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" alt="NPCC Short Film Block 2021 still image" />
               <figcaption>Will Kempner during the NPCC Short Film Block (2021).</figcaption>
             </figure>
@@ -798,10 +1082,10 @@
               <li id="ref-5"><a href="https://www.willkempner.com/" target="_blank" rel="noreferrer">Will Kempner - Homepage</a></li>
               <li id="ref-6"><a href="https://nitehawkcinema.com/williamsburg/movies/nobudge-live-12/" target="_blank" rel="noreferrer">Nitehawk Cinema - NoBudge Live 12</a> <a href="#cite-6a">^</a></li>
               <li id="ref-7"><a href="https://variety.com/2016/digital/news/snapchat-tribeca-shorts-contest-2017-1201943137/" target="_blank" rel="noreferrer">Variety - Snapchat and Tribeca Storytelling Contest announcement</a> <a href="#cite-7a">^</a></li>
-              <li id="ref-8"><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">ART DLR - Bandcamp releases</a></li>
-              <li id="ref-9"><a href="https://digitalzoom.bandcamp.com/" target="_blank" rel="noreferrer">Digital Zoom - Bandcamp</a></li>
-              <li id="ref-10"><a href="https://lanlordlance.bandcamp.com/" target="_blank" rel="noreferrer">Lanlord Lance - Bandcamp</a></li>
-              <li id="ref-11"><a href="https://trianglelord.bandcamp.com/" target="_blank" rel="noreferrer">Triangle Lord - Bandcamp</a></li>
+              <li id="ref-8"><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">ART DLR - Bandcamp releases</a> <a href="#cite-8a">^</a></li>
+              <li id="ref-9"><a href="https://digitalzoom.bandcamp.com/" target="_blank" rel="noreferrer">Digital Zoom - Bandcamp</a> <a href="#cite-9a">^</a></li>
+              <li id="ref-10"><a href="https://lanlordlance.bandcamp.com/" target="_blank" rel="noreferrer">Lanlord Lance - Bandcamp</a> <a href="#cite-10a">^</a></li>
+              <li id="ref-11"><a href="https://trianglelord.bandcamp.com/" target="_blank" rel="noreferrer">Triangle Lord - Bandcamp</a> <a href="#cite-11a">^</a></li>
               <li id="ref-12">Todd Phillips Post Production Grant (subject-provided credit) <a href="#cite-12">^</a></li>
               <li id="ref-13"><a href="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" target="_blank" rel="noreferrer">NPCC Short Film Block image evidence</a> <a href="#cite-13">^</a></li>
               <li id="ref-14">Team attribution for the Snapchat contest (Colin Garland and Ben Townsend) provided by subject. <a href="#cite-14">^</a> <a href="#cite-14a">^</a></li>
@@ -821,6 +1105,12 @@
         <div class="modal-body" id="modal-body"></div>
       </div>
     </div>
+    <div id="tamper-modal" class="tamper-modal" aria-hidden="true">
+      <button type="button" class="tamper-close" id="tamper-close">X</button>
+      <div class="tamper-content">
+        <div class="tamper-text">YOU HAVE BEEN REPORTED TO THE FBI FOR TRYING TO TAMPER WITH AN ARTIST'S CAREER</div>
+      </div>
+    </div>
 
     <script>
       const modal = document.getElementById("video-modal");
@@ -828,22 +1118,43 @@
       const closeModal = document.getElementById("close-modal");
       const videoLinks = document.querySelectorAll(".video-link");
       const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+      const appearancePanel = document.getElementById("appearance-panel");
+      const appearanceHide = document.getElementById("appearance-hide");
       const wikiPreview = document.getElementById("wiki-preview");
       const wikiLinks = document.querySelectorAll("a.wiki-link");
       const wikiCache = new Map();
+      const tabRead = document.getElementById("tab-read");
+      const tabEdit = document.getElementById("tab-edit");
+      const tabHistory = document.getElementById("tab-history");
+      const editSurface = document.getElementById("edit-surface");
+      const editBox = document.getElementById("edit-box");
+      const publishChanges = document.getElementById("publish-changes");
+      const tamperModal = document.getElementById("tamper-modal");
+      const tamperClose = document.getElementById("tamper-close");
+      const initialEditValue = editBox.value;
       let wikiHideTimer = null;
+      let alertAudioCtx = null;
 
       function openModal(url) {
-        const isEmbeddable = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
-        if (isEmbeddable) {
+        const isYouTube = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
+        const isVimeo = url.includes("player.vimeo.com/video/");
+        const isMp4 = url.includes("video.squarespace-cdn.com/") || /\.mp4($|\\?)/i.test(url);
+        if (isYouTube || isVimeo) {
           const watchUrl = url
             .replace("https://www.youtube-nocookie.com/embed/", "https://www.youtube.com/watch?v=")
             .replace("https://www.youtube.com/embed/", "https://www.youtube.com/watch?v=");
+          const footer = isYouTube
+            ? '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on YouTube</a></div>'
+            : '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + url.replace("https://player.vimeo.com/video/", "https://vimeo.com/") + '" target="_blank" rel="noreferrer">Open on Vimeo</a></div>';
           modalBody.innerHTML =
             '<iframe src="' + url + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video preview"></iframe>' +
-            '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;">' +
-            '<a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on YouTube</a>' +
-            "</div>";
+            footer;
+        } else if (isMp4) {
+          modalBody.innerHTML =
+            '<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#000;">' +
+            '<video controls playsinline preload="metadata" style="width:100%;height:100%;object-fit:contain;background:#000;">' +
+            '<source src="' + url + '" type="video/mp4">' +
+            "</video></div>";
         } else {
           const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
           if (isImage) {
@@ -904,6 +1215,93 @@
       window.addEventListener("load", updateActiveFromScroll);
       updateActiveFromScroll();
 
+      appearanceHide.addEventListener("click", () => {
+        const hidden = appearancePanel.getAttribute("data-hidden") === "true";
+        appearancePanel.setAttribute("data-hidden", hidden ? "false" : "true");
+        appearanceHide.textContent = hidden ? "hide" : "show";
+      });
+
+      function applyTextSize(value) {
+        document.documentElement.classList.remove("text-small", "text-large");
+        if (value === "small") document.documentElement.classList.add("text-small");
+        if (value === "large") document.documentElement.classList.add("text-large");
+      }
+
+      function applyWidth(value) {
+        document.documentElement.classList.toggle("page-width-wide", value === "wide");
+      }
+
+      function applyColor(value) {
+        if (value === "dark") {
+          document.body.classList.add("dark-hellfire");
+          return;
+        }
+        document.body.classList.remove("dark-hellfire");
+      }
+
+      document.querySelectorAll('input[name="text-size"]').forEach((radio) => {
+        radio.addEventListener("change", () => applyTextSize(radio.value));
+      });
+      document.querySelectorAll('input[name="page-width"]').forEach((radio) => {
+        radio.addEventListener("change", () => applyWidth(radio.value));
+      });
+      document.querySelectorAll('input[name="color-mode"]').forEach((radio) => {
+        radio.addEventListener("change", () => applyColor(radio.value));
+      });
+
+      function setPageTab(mode) {
+        tabRead.classList.toggle("active", mode === "read");
+        tabEdit.classList.toggle("active", mode === "edit");
+        tabHistory.classList.toggle("active", mode === "history");
+        editSurface.classList.toggle("show", mode === "edit");
+      }
+
+      tabRead.addEventListener("click", () => setPageTab("read"));
+      tabEdit.addEventListener("click", () => setPageTab("edit"));
+      tabHistory.addEventListener("click", () => setPageTab("history"));
+
+      function playTamperSound() {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        if (!alertAudioCtx) alertAudioCtx = new AudioCtx();
+        const now = alertAudioCtx.currentTime;
+        const freqs = [880, 622, 440, 311];
+        freqs.forEach((freq, i) => {
+          const osc = alertAudioCtx.createOscillator();
+          const gain = alertAudioCtx.createGain();
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(freq, now + i * 0.11);
+          gain.gain.setValueAtTime(0.0001, now + i * 0.11);
+          gain.gain.linearRampToValueAtTime(0.12, now + i * 0.11 + 0.015);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.11 + 0.12);
+          osc.connect(gain).connect(alertAudioCtx.destination);
+          osc.start(now + i * 0.11);
+          osc.stop(now + i * 0.11 + 0.13);
+        });
+      }
+
+      function openTamperModal() {
+        tamperModal.setAttribute("aria-hidden", "false");
+        playTamperSound();
+      }
+
+      function closeTamperModal() {
+        tamperModal.setAttribute("aria-hidden", "true");
+      }
+
+      publishChanges.addEventListener("click", () => {
+        if (editBox.value !== initialEditValue) {
+          openTamperModal();
+        }
+      });
+
+      tamperClose.addEventListener("click", closeTamperModal);
+      tamperModal.addEventListener("click", (event) => {
+        if (event.target === tamperModal) {
+          closeTamperModal();
+        }
+      });
+
       closeModal.addEventListener("click", closeVideoModal);
       modal.addEventListener("click", (event) => {
         if (event.target === modal) {
@@ -913,6 +1311,9 @@
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
           closeVideoModal();
+        }
+        if (event.key === "Escape" && tamperModal.getAttribute("aria-hidden") === "false") {
+          closeTamperModal();
         }
       });
 
