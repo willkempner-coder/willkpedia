@@ -139,19 +139,32 @@
         color: #ff6565;
         font-family: "Creepster", "Papyrus", "Copperplate", "Times New Roman", serif;
         background:
-          radial-gradient(circle at 10% 100%, rgba(255, 80, 0, 0.45), rgba(0, 0, 0, 0) 40%),
-          radial-gradient(circle at 90% 100%, rgba(255, 20, 0, 0.4), rgba(0, 0, 0, 0) 42%),
-          radial-gradient(circle at 50% 100%, rgba(255, 160, 0, 0.28), rgba(0, 0, 0, 0) 35%),
-          linear-gradient(180deg, #080808 0%, #170d0b 48%, #270a06 76%, #3a0904 100%);
-        background-size: 140% 140%;
-        animation: fireShift 10s ease-in-out infinite alternate;
+          radial-gradient(circle at 12% 102%, rgba(255, 108, 10, 0.68), rgba(0, 0, 0, 0) 36%),
+          radial-gradient(circle at 88% 103%, rgba(255, 42, 0, 0.6), rgba(0, 0, 0, 0) 34%),
+          radial-gradient(circle at 52% 104%, rgba(255, 171, 0, 0.5), rgba(0, 0, 0, 0) 32%),
+          radial-gradient(circle at 32% 110%, rgba(255, 61, 0, 0.4), rgba(0, 0, 0, 0) 38%),
+          repeating-linear-gradient(115deg, rgba(255, 99, 0, 0.1) 0, rgba(255, 99, 0, 0.1) 18px, rgba(0, 0, 0, 0) 18px, rgba(0, 0, 0, 0) 34px),
+          linear-gradient(180deg, #060505 0%, #150804 44%, #2d0805 72%, #4e1008 100%);
+        background-size: 160% 170%, 160% 170%, 140% 150%, 180% 190%, 220% 220%, 100% 100%;
+        animation: fireShift 4s linear infinite, firePulse 1.35s ease-in-out infinite;
       }
       @keyframes fireShift {
         0% {
-          background-position: 0% 50%;
+          background-position: 0% 100%, 100% 100%, 50% 100%, 25% 100%, 0% 0%, 0% 0%;
         }
         100% {
-          background-position: 100% 50%;
+          background-position: 100% 96%, 0% 97%, 45% 95%, 75% 98%, 100% 100%, 0% 0%;
+        }
+      }
+      @keyframes firePulse {
+        0% {
+          filter: saturate(1) brightness(1);
+        }
+        50% {
+          filter: saturate(1.2) brightness(1.08);
+        }
+        100% {
+          filter: saturate(1) brightness(1);
         }
       }
       body.dark-hellfire a {
@@ -701,6 +714,51 @@
         display: inline-block;
         margin-top: 4px;
       }
+      .film-inline-image {
+        margin-top: 8px;
+        max-width: 230px;
+      }
+      .film-inline-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid #a2a9b1;
+        background: #fff;
+      }
+      .dark-audio-player {
+        position: fixed;
+        left: 12px;
+        bottom: 12px;
+        z-index: 20000;
+        display: none;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid #a2a9b1;
+        background: rgba(8, 8, 8, 0.94);
+        color: #ffe8e8;
+        font-family: "Papyrus", "Comic Sans MS", cursive;
+        padding: 7px 9px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+      }
+      .dark-audio-player.show {
+        display: inline-flex;
+      }
+      .dark-audio-player button {
+        border: 1px solid #8b0000;
+        background: #230707;
+        color: #ffd5d5;
+        padding: 4px 7px;
+        font-size: 0.95rem;
+        line-height: 1;
+        cursor: pointer;
+      }
+      .dark-audio-player button:hover {
+        background: #3a0b0b;
+      }
+      .dark-audio-label {
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+      }
       .wiki-preview {
         position: fixed;
         z-index: 120;
@@ -1248,6 +1306,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <li><a href="#discography">Discography</a></li>
               <li><a href="#awards">Awards and Screenings</a></li>
               <li><a href="#scandals">Scandals</a></li>
+              <li><a href="#other-stuff">Other Stuff</a></li>
               <li><a href="#references">References</a></li>
             </ol>
           </nav>
@@ -1297,7 +1356,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <b>Will Kempner</b> (born June 12, 1993) is an American editor, filmmaker, artist, and producer.
               "Will K", as he is increasingly known, has worked across <a href="#tv">television</a>, hollywood, <a href="#fashion">fashion campaigns</a>, branded and <a href="#corporate">corporate media</a>, and <a href="#filmography">independent film</a>.
               His <a href="#editing">editing</a> portfolio includes directing and editing narrative shorts and features, as well as post-production work
-              on series for HBO and Disney+.<sup class="ref" id="cite-1"><a href="#ref-1">[1]</a></sup><sup class="ref" id="cite-2"><a href="#ref-2">[2]</a></sup><sup class="ref" id="cite-3"><a href="#ref-3">[3]</a></sup><sup class="ref" id="cite-4"><a href="#ref-4">[4]</a></sup>
+              on series for HBO and Disney+.<sup class="ref" id="cite-1"><a href="#ref-1">[1]</a></sup><sup class="ref" id="cite-2"><a href="#ref-2">[2]</a></sup><sup class="ref" id="cite-3"><a href="#ref-3">[3]</a></sup>
             </p>
           </section>
 
@@ -1346,7 +1405,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <tbody>
                 <tr>
                   <td>2018</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" class="video-link"><i>Random Acts of Flyness</i></a> (Season 1)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/kIzUwpfAl5k" class="video-link"><i>Random Acts of Flyness</i></a> (Season 1)</td>
                   <td>Lead Assistant Editor</td>
                   <td>HBO</td>
                   <td>6 episodes</td>
@@ -1390,33 +1449,45 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
+                  <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><i>Good One</i> (dir. India Donaldson)</td>
+                  <td><i>Good One</i> (dir. India Donaldson)<div class="film-inline-image"><img src="images/GoodOne.jpg" alt="Good One still" /></div></td>
                   <td>2022</td>
                   <td>Assistant Editor; DIT</td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td><i>Cole Escola's Our Home Out West</i></td>
+                  <td><i>Cole Escola's Our Home Out West</i><div class="film-inline-image"><img src="images/OurHomeOutWest.png" alt="Our Home Out West still" /></div></td>
                   <td>2023</td>
                   <td>Assistant Editor; DIT</td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a></td>
+                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a><div class="film-inline-image"><img src="images/SeekingMavisBeacon.jpg" alt="Seeking Mavis Beacon still" /></div></td>
                   <td>2024</td>
                   <td>Assistant Editor</td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a></td>
                   <td>2024</td>
                   <td>Additional Editor</td>
+                  <td>Short film</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AuTQ0SZPoOI" class="video-link"><i>Joker Stairs</i></a></td>
+                  <td>2019</td>
+                  <td>Co-director, editor</td>
+                  <td>Short film</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link"><i>Straight Line</i> (dir. Jack Bensinger)</a></td>
                   <td>2025</td>
                   <td>Assistant Editor</td>
+                  <td>Short film</td>
                 </tr>
               </tbody>
             </table>
@@ -1440,7 +1511,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td>2023-present</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" class="video-link"><i>Telfar advertisements</i></a></td>
-                  <td>Editor, for Telfar TV.</td>
+                  <td>Editor, for Telfar TV. <a href="https://www.youtube.com/playlist?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" target="_blank" rel="noreferrer">View playlist</a>.</td>
                 </tr>
               </tbody>
             </table>
@@ -1576,11 +1647,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Co-director, writer, editor</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AuTQ0SZPoOI" class="video-link"><i>Joker Stairs</i></a></td>
-                  <td>2019</td>
-                  <td>Co-director, editor</td>
-                </tr>
-                <tr>
                   <td><a href="#" data-video="https://player.vimeo.com/video/409480281" class="video-link"><i>A Flaw In The System</i></a></td>
                   <td>2020</td>
                   <td>Director, editor</td>
@@ -1598,7 +1664,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <th>Release</th>
                   <th>Year</th>
-                  <th>Role</th>
                   <th>Player</th>
                 </tr>
               </thead>
@@ -1606,7 +1671,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td><i>Songs For Guitar</i></td>
                   <td>2018</td>
-                  <td>Producer</td>
                   <td>
                     <iframe
                       title="Songs For Guitar by Cranklin"
@@ -1619,97 +1683,120 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td><i>City Slicker</i></td>
                   <td>2018</td>
-                  <td>Producer</td>
-                  <td><div class="bandcamp-embed" data-url="https://cranklin.bandcamp.com/album/city-slicker"></div></td>
+                  <td>
+                    <iframe
+                      title="City Slicker by Cranklin"
+                      style="border: 0; width: 100%; height: 42px;"
+                      src="https://bandcamp.com/EmbeddedPlayer/album=3534177902/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/"
+                      seamless
+                    ><a href="https://digitalzoom.bandcamp.com/album/sr16-city-slicker">City Slicker by Cranklin | Tony G</a></iframe>
+                  </td>
                 </tr>
                 <tr>
                   <td><i>Random Song</i></td>
                   <td>2019</td>
-                  <td>Producer</td>
-                  <td><div class="bandcamp-embed" data-url="https://cranklin.bandcamp.com/track/random-song"></div></td>
+                  <td>
+                    <iframe
+                      title="Random Song by Cranklin"
+                      style="border: 0; width: 100%; height: 42px;"
+                      src="https://bandcamp.com/EmbeddedPlayer/track=3787192605/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/"
+                      seamless
+                    ><a href="https://digitalzoom.bandcamp.com/track/random-song">Random Song by Cranklin</a></iframe>
+                  </td>
                 </tr>
               </tbody>
             </table>
 
             <h3>ART DLR<sup class="ref" id="cite-8a"><a href="#ref-8">[8]</a></sup></h3>
+            <p class="notes">Band with Noah Engel</p>
             <table class="wikitable">
               <thead>
                 <tr>
                   <th>Release</th>
                   <th>Year</th>
-                  <th>Role</th>
+                  <th>Notes</th>
                   <th>Player</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td><i>Work Flows</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/work-flows"></div></td></tr>
-                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/the-ballad-of-veggie-dog-dress-rehearsal-audio"></div></td></tr>
-                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/half-step-down-live-at-giamattis"></div></td></tr>
-                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-04-28-20"></div></td></tr>
-                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-05-22-20"></div></td></tr>
-                <tr><td><i>Endangered: On Ice (In Space)</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/endangered-on-ice-in-space"></div></td></tr>
-                <tr><td><i>Ghoulsikal</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/ghoulsikal"></div></td></tr>
-                <tr><td><i>DLR.MAG</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/dlr-mag"></div></td></tr>
-                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/i-met-a-mummy-a-detective-reed-mystery"></div></td></tr>
+                <tr>
+                  <td><i>Work Flows</i></td>
+                  <td>2019</td>
+                  <td>LP</td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1927814615/size=small/bgcol=ffffff/linkcol=0687f5/track=1979981731/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/work-flows">Work Flows by ART DLR</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td>
+                  <td>2020</td>
+                  <td>Musical</td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1121540451/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/the-ballad-of-veggie-dog-dress-rehearsal-audio">The Ballad of Veggie Dog - Dress Rehearsal Audio by ART DLR</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>Half Step Down - Live at Giamatti's</i></td>
+                  <td>2020</td>
+                  <td></td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/track=788026948/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/track/half-step-down-live-at-giamattis">Half Step Down - Live at Giamatti&#39;s by ART DLR</a></iframe></td>
+                </tr>
+                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Live Album</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-04-28-20"></div></td></tr>
+                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Live Album</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-05-22-20"></div></td></tr>
+                <tr>
+                  <td><i>Endangered: On Ice (In Space)</i></td>
+                  <td>2021</td>
+                  <td>Musical</td>
+                  <td><iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=3911052177/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/endangered-on-ice-in-space">Endangered: On Ice (In Space) by ART DLR</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>Ghoulsikal</i></td>
+                  <td>2021</td>
+                  <td>Musical</td>
+                  <td><iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=374827418/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/track=1463963902/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/ghoulsikal">Ghoulsikal by ART DLR</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>DLR.MAG</i></td>
+                  <td>2022</td>
+                  <td>LP</td>
+                  <td><iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1671801552/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/track=914687706/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/dlr-mag">DLR.MAG by ART DLR</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>I Met A Mummy: A Detective Reed Mystery</i></td>
+                  <td>2022</td>
+                  <td>Musical</td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3309072255/size=small/bgcol=ffffff/linkcol=0687f5/track=1764572176/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/i-met-a-mummy-a-detective-reed-mystery">I Met A Mummy: A Detective Reed Mystery by ART DLR</a></iframe></td>
+                </tr>
               </tbody>
             </table>
 
             <h3>Lanlord Lance<sup class="ref" id="cite-10a"><a href="#ref-10">[10]</a></sup></h3>
+            <p class="notes">Band with Jeff Marks, selected works.</p>
             <table class="wikitable">
               <thead>
                 <tr>
                   <th>Release</th>
                   <th>Year</th>
-                  <th>Role</th>
                   <th>Player</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td><i>Don't Be A Shit Boy - Single</i></td><td>2015</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/dont-be-a-shit-boy-single"></div></td></tr>
-                <tr><td><i>unsweet - Single</i></td><td>2017</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/sr12-unsweet-single"></div></td></tr>
-                <tr><td><i>Night Sweats Box Set</i></td><td>2018</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/sr14-night-sweats-box-set"></div></td></tr>
-                <tr><td><i>Catskill Queen</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/catskill-queen"></div></td></tr>
-                <tr><td><i>The Streets Of Love Bug</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/the-streets-of-love-bug"></div></td></tr>
-                <tr><td><i>Here Come The Entrees</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/here-come-the-entrees"></div></td></tr>
-                <tr><td><i>Winter's Too Cold</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/winters-too-cold"></div></td></tr>
-                <tr><td><i>Playdate</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/playdate"></div></td></tr>
-                <tr><td><i>Calling On My Angels</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/calling-on-my-angels"></div></td></tr>
-                <tr><td><i>it's hard to be an angel when you're still alive</i></td><td>2023</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/its-hard-to-be-an-angel-when-youre-still-alive"></div></td></tr>
+                <tr><td><i>Night Sweats Box Set</i></td><td>2018</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3346191428/size=small/bgcol=ffffff/linkcol=0687f5/track=3957774942/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/sr14-night-sweats-box-set">Night Sweats Box Set by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>Here Come The Entrees</i></td><td>2020</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3979275951/size=small/bgcol=ffffff/linkcol=0687f5/track=2805871613/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/here-come-the-entrees">Here Come The Entrees by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>Winter's Too Cold</i></td><td>2020</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1899480135/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/winters-too-cold">Winter&#39;s Too Cold by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>Calling On My Angels</i><sup class="ref" id="cite-16a"><a href="#ref-16">[16]</a></sup></td><td>2022</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/track=2050412820/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/track/calling-on-my-angels">Calling On My Angels by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>it's hard to be an angel when you're still alive</i></td><td>2023</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3926722259/size=small/bgcol=ffffff/linkcol=0687f5/track=4108318433/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/its-hard-to-be-an-angel-when-youre-still-alive">it&#39;s hard to be an angel when you&#39;re still alive by Lanlord Lance</a></iframe></td></tr>
               </tbody>
             </table>
 
-            <h3>Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></h3>
-            <table class="wikitable">
-              <thead>
-                <tr>
-                  <th>Release</th>
-                  <th>Year</th>
-                  <th>Role</th>
-                  <th>Player</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><i>Shit</i></td>
-                  <td>2014</td>
-                  <td>Producer</td>
-                  <td><div class="bandcamp-embed" data-url="https://trianglelord.bandcamp.com/album/shit-rarities-tri-sides"></div></td>
-                </tr>
-                <tr>
-                  <td><i>Spaceman</i></td>
-                  <td>2011</td>
-                  <td>Producer</td>
-                  <td><div class="bandcamp-embed" data-url="https://trianglelord.bandcamp.com/album/spaceman"></div></td>
-                </tr>
-              </tbody>
-            </table>
           </section>
 
           <section id="awards">
             <h2>Awards and Screenings <span class="edit">[edit]</span></h2>
-            <figure class="awards-thumb">
-              <img src="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" alt="NPCC Short Film Block 2021 still image" />
-              <figcaption>Will Kempner during the NPCC Short Film Block (2021).</figcaption>
+            <figure class="awards-thumb" id="awards-carousel">
+              <img id="awards-image" src="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" alt="Awards and screenings image 1" />
+              <figcaption id="awards-caption">Will Kempner during the NPCC Short Film Block (2021).</figcaption>
+              <div class="scandal-controls">
+                <button id="awards-prev" type="button" aria-label="Previous awards image">Prev</button>
+                <span class="scandal-counter" id="awards-counter">1 / 2</span>
+                <button id="awards-next" type="button" aria-label="Next awards image">Next</button>
+              </div>
             </figure>
             <p>Kempner’s creative output has been recognized through several industry grants and festival screenings. In 2015, he was the winner of the Todd Phillips Post Production Grant. He later won the 2019 Tribeca Film Festival Snapchat Story Contest (w/ Colin Garland and Ben Townsend). His work has also been selected for official screenings, including the 2021 NPCC Short Film Block and a scheduled presentation at NoBudge Live 12.</p>
             <table class="wikitable">
@@ -1723,7 +1810,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <tbody>
                 <tr>
                   <td>2015</td>
-                  <td>Todd Phillips Post Production Grant<sup class="ref" id="cite-12"><a href="#ref-12">[12]</a></sup></td>
+                  <td>Todd Phillips Post Production Grant</td>
                   <td>Winner</td>
                 </tr>
                 <tr>
@@ -1759,24 +1846,52 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <p>While Kempner has been the subject of numerous alleged scandals, none have been formally verified or substantiated. In contrast to these unconfirmed reports, he is reportedly held in high regard by professional associates; the accompanying media gallery serves as a curated record of his documented talents and personality.</p>
           </section>
 
+          <section id="other-stuff">
+            <h2>Other Stuff <span class="edit">[edit]</span></h2>
+            <h3>Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></h3>
+            <p class="notes">Highschool band. Featuring Chris Fortunato, Jeff Marks, Kevin Welch, Zach Cimafonte and Steve Berkowitz. Occasional members include High Jacob.</p>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Release</th>
+                  <th>Year</th>
+                  <th>Notes</th>
+                  <th>Player</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i>Spaceman</i></td>
+                  <td>2011</td>
+                  <td></td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1583413270/size=small/bgcol=ffffff/linkcol=0687f5/track=229001564/transparent=true/" seamless><a href="https://trianglelord.bandcamp.com/album/triangle-lord">Triangle Lord by Triangle Lord</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>Shit</i></td>
+                  <td>2014</td>
+                  <td>rarities collection</td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3222078808/size=small/bgcol=ffffff/linkcol=0687f5/track=4184075124/transparent=true/" seamless><a href="https://trianglelord.bandcamp.com/album/shit-rarities-tri-sides">Shit - Rarities &amp; Tri-sides by Triangle Lord</a></iframe></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
           <section id="references">
             <h2>References <span class="edit">[edit]</span></h2>
             <ol>
               <li id="ref-1"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness (HBO) - seasons and release dates</a> <a href="#cite-1">^</a></li>
               <li id="ref-2"><a href="https://www.hbo.com/random-acts-of-flyness" target="_blank" rel="noreferrer">HBO - Random Acts of Flyness</a> <a href="#cite-2">^</a></li>
               <li id="ref-3"><a href="https://ondisneyplus.disney.com/show/growing-up" target="_blank" rel="noreferrer">Disney+ - Growing Up (release details)</a> <a href="#cite-3">^</a></li>
-              <li id="ref-4"><a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">Will Kempner - My Films</a> <a href="#cite-4">^</a></li>
-              <li id="ref-5"><a href="https://www.willkempner.com/" target="_blank" rel="noreferrer">Will Kempner - Homepage</a></li>
               <li id="ref-6"><a href="https://nitehawkcinema.com/williamsburg/movies/nobudge-live-12/" target="_blank" rel="noreferrer">Nitehawk Cinema - NoBudge Live 12</a> <a href="#cite-6a">^</a></li>
               <li id="ref-7"><a href="https://variety.com/2016/digital/news/snapchat-tribeca-shorts-contest-2017-1201943137/" target="_blank" rel="noreferrer">Variety - Snapchat and Tribeca Storytelling Contest announcement</a> <a href="#cite-7a">^</a></li>
               <li id="ref-8"><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">ART DLR - Bandcamp releases</a> <a href="#cite-8a">^</a></li>
               <li id="ref-9"><a href="https://cranklin.bandcamp.com/" target="_blank" rel="noreferrer">Cranklin - Bandcamp</a> <a href="#cite-9a">^</a></li>
               <li id="ref-10"><a href="https://lanlordlance.bandcamp.com/" target="_blank" rel="noreferrer">Lanlord Lance - Bandcamp</a> <a href="#cite-10a">^</a></li>
               <li id="ref-11"><a href="https://trianglelord.bandcamp.com/" target="_blank" rel="noreferrer">Triangle Lord - Bandcamp</a> <a href="#cite-11a">^</a></li>
-              <li id="ref-12">Todd Phillips Post Production Grant (subject-provided credit) <a href="#cite-12">^</a></li>
               <li id="ref-13"><a href="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" target="_blank" rel="noreferrer">NPCC Short Film Block image evidence</a> <a href="#cite-13">^</a></li>
-              <li id="ref-14">w Ben Townsend and Colin Garland. <a href="#cite-14">^</a> <a href="#cite-14a">^</a></li>
+              <li id="ref-14">w Ben Townsend and Colin Garland. <a href="#cite-14a">^</a></li>
               <li id="ref-15"><a href="https://www.amazon.com/Blink-Eye-Perspective-Film-Editing/dp/1879505622" target="_blank" rel="noreferrer">Blink of an Eye: A Perspective on Film Editing</a> <a href="#cite-15a">^</a></li>
+              <li id="ref-16">Released as L2: Angels Reb0rn. <a href="#cite-16a">^</a></li>
             </ol>
           </section>
         </main>
@@ -1855,6 +1970,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         </div>
       </div>
     </div>
+    <div id="dark-audio-player" class="dark-audio-player" aria-hidden="true">
+      <button type="button" id="dark-audio-play" aria-label="Pause dark mode track">⛧⏸</button>
+      <button type="button" id="dark-audio-mute" aria-label="Mute dark mode track">🔊</button>
+      <span class="dark-audio-label">Dark Mode</span>
+    </div>
 
     <script>
       if ("scrollRestoration" in history) {
@@ -1908,6 +2028,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const scandalCounter = document.getElementById("scandal-counter");
       const scandalPrev = document.getElementById("scandal-prev");
       const scandalNext = document.getElementById("scandal-next");
+      const awardsImage = document.getElementById("awards-image");
+      const awardsCaption = document.getElementById("awards-caption");
+      const awardsCounter = document.getElementById("awards-counter");
+      const awardsPrev = document.getElementById("awards-prev");
+      const awardsNext = document.getElementById("awards-next");
       const tamperModal = document.getElementById("tamper-modal");
       const tamperClose = document.getElementById("tamper-close");
       const cookieScamModal = document.getElementById("cookie-scam-modal");
@@ -1916,16 +2041,20 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const naviScamModal = document.getElementById("navi-scam-modal");
       const naviInstallA = document.getElementById("navi-install-a");
       const naviInstallB = document.getElementById("navi-install-b");
+      const darkAudioPlayer = document.getElementById("dark-audio-player");
+      const darkAudioPlayBtn = document.getElementById("dark-audio-play");
+      const darkAudioMuteBtn = document.getElementById("dark-audio-mute");
       const initialEditValue = editBox.value;
       let wikiHideTimer = null;
       let wikiShowTimer = null;
       let videoHoverShowTimer = null;
       let alertAudioCtx = null;
-      let screamAudioCtx = null;
       let popupErrorAudioCtx = null;
       let clickGateCount = 0;
       let deferredClick = null;
       let isReplayingDeferredClick = false;
+      let darkDigitObserver = null;
+      let darkDigitMutating = false;
       const regionExclusions = new Set(["AC", "CP", "DG", "EA", "EU", "EZ", "IC", "IL", "TA", "UN", "XA", "XB", "XK", "ZZ"]);
       const scandalImages = [
         { src: "images/scandal-01.png", caption: "Public reaction image 1." },
@@ -1937,16 +2066,31 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         { src: "images/scandal-07.png", caption: "Public reaction image 7." },
         { src: "images/scandal-08.png", caption: "Public reaction image 8." }
       ];
+      const awardsImages = [
+        {
+          src: "https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg",
+          caption: "Will Kempner during the NPCC Short Film Block (2021)."
+        },
+        {
+          src: "images/NoBudge12.jpg",
+          caption: "NoBudge Live 12 screening image."
+        }
+      ];
       let scandalIndex = 0;
+      let awardsIndex = 0;
 
       function openModal(url) {
         const isYouTube = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
         const isVimeo = url.includes("player.vimeo.com/video/");
         const isMp4 = url.includes("video.squarespace-cdn.com/") || /\.mp4($|\\?)/i.test(url);
         if (isYouTube || isVimeo) {
-          const watchUrl = url
+          let watchUrl = url
             .replace("https://www.youtube-nocookie.com/embed/", "https://www.youtube.com/watch?v=")
             .replace("https://www.youtube.com/embed/", "https://www.youtube.com/watch?v=");
+          const playlistMatch = url.match(/embed\/videoseries\?list=([^&]+)/i);
+          if (playlistMatch && playlistMatch[1]) {
+            watchUrl = "https://www.youtube.com/playlist?list=" + playlistMatch[1];
+          }
           const footer = isYouTube
             ? '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on YouTube</a></div>'
             : '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + url.replace("https://player.vimeo.com/video/", "https://vimeo.com/") + '" target="_blank" rel="noreferrer">Open on Vimeo</a></div>';
@@ -2204,70 +2348,137 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         document.documentElement.classList.toggle("page-width-wide", value === "wide");
       }
 
+      const darkModeAudio = new Audio("sounds/Dark Mode.mp3");
+      darkModeAudio.loop = true;
+      darkModeAudio.preload = "auto";
+
+      function updateDarkAudioUi() {
+        if (!darkAudioPlayBtn || !darkAudioMuteBtn) return;
+        darkAudioPlayBtn.textContent = darkModeAudio.paused ? "⛧▶" : "⛧⏸";
+        darkAudioPlayBtn.setAttribute("aria-label", darkModeAudio.paused ? "Play dark mode track" : "Pause dark mode track");
+        darkAudioMuteBtn.textContent = darkModeAudio.muted ? "🔇" : "🔊";
+        darkAudioMuteBtn.setAttribute("aria-label", darkModeAudio.muted ? "Unmute dark mode track" : "Mute dark mode track");
+      }
+
+      function startDarkModeAudio() {
+        if (darkAudioPlayer) {
+          darkAudioPlayer.classList.add("show");
+          darkAudioPlayer.setAttribute("aria-hidden", "false");
+        }
+        const playPromise = darkModeAudio.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {
+            // If autoplay is blocked, keep controls visible for manual play.
+            updateDarkAudioUi();
+          });
+        }
+        updateDarkAudioUi();
+      }
+
+      function stopDarkModeAudio() {
+        darkModeAudio.pause();
+        darkModeAudio.currentTime = 0;
+        if (darkAudioPlayer) {
+          darkAudioPlayer.classList.remove("show");
+          darkAudioPlayer.setAttribute("aria-hidden", "true");
+        }
+        updateDarkAudioUi();
+      }
+
+      function replaceDigitsWithSixes(text) {
+        return text.replace(/\d/g, "6");
+      }
+
+      function shouldSkipDigitTextNode(node) {
+        if (!node || !node.parentElement) return true;
+        const parent = node.parentElement;
+        if (parent.closest("script, style, textarea, input, select, option, noscript")) return true;
+        return false;
+      }
+
+      function applyDarkDigitToNode(node) {
+        if (!node || shouldSkipDigitTextNode(node)) return;
+        const current = node.nodeValue || "";
+        if (!/\d/.test(current)) return;
+        if (typeof node.__origText !== "string") node.__origText = current;
+        const replaced = replaceDigitsWithSixes(current);
+        if (replaced === current) return;
+        darkDigitMutating = true;
+        node.nodeValue = replaced;
+        darkDigitMutating = false;
+      }
+
+      function processAllDarkDigits() {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        let node = walker.nextNode();
+        while (node) {
+          applyDarkDigitToNode(node);
+          node = walker.nextNode();
+        }
+      }
+
+      function restoreAllDarkDigits() {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        let node = walker.nextNode();
+        while (node) {
+          if (typeof node.__origText === "string") {
+            node.nodeValue = node.__origText;
+            delete node.__origText;
+          }
+          node = walker.nextNode();
+        }
+      }
+
+      function startDarkDigitMode() {
+        processAllDarkDigits();
+        if (darkDigitObserver) return;
+        darkDigitObserver = new MutationObserver((mutations) => {
+          if (darkDigitMutating || !document.body.classList.contains("dark-hellfire")) return;
+          mutations.forEach((mutation) => {
+            if (mutation.type === "characterData") {
+              const textNode = mutation.target;
+              if (!(textNode instanceof Text) || shouldSkipDigitTextNode(textNode)) return;
+              textNode.__origText = textNode.nodeValue || "";
+              applyDarkDigitToNode(textNode);
+              return;
+            }
+            mutation.addedNodes.forEach((addedNode) => {
+              if (addedNode.nodeType === Node.TEXT_NODE) {
+                applyDarkDigitToNode(addedNode);
+                return;
+              }
+              if (addedNode.nodeType === Node.ELEMENT_NODE) {
+                const walker = document.createTreeWalker(addedNode, NodeFilter.SHOW_TEXT);
+                let child = walker.nextNode();
+                while (child) {
+                  applyDarkDigitToNode(child);
+                  child = walker.nextNode();
+                }
+              }
+            });
+          });
+        });
+        darkDigitObserver.observe(document.body, { childList: true, subtree: true, characterData: true });
+      }
+
+      function stopDarkDigitMode() {
+        if (darkDigitObserver) {
+          darkDigitObserver.disconnect();
+          darkDigitObserver = null;
+        }
+        restoreAllDarkDigits();
+      }
+
       function applyColor(value) {
         if (value === "dark") {
           document.body.classList.add("dark-hellfire");
+          startDarkModeAudio();
+          startDarkDigitMode();
           return;
         }
         document.body.classList.remove("dark-hellfire");
-      }
-
-      function playDarkModeScream() {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        if (!screamAudioCtx) screamAudioCtx = new AudioCtx();
-        const ctx = screamAudioCtx;
-        const now = ctx.currentTime;
-        const master = ctx.createGain();
-        master.gain.setValueAtTime(0.0001, now);
-        master.gain.linearRampToValueAtTime(1.0, now + 0.06);
-        master.gain.exponentialRampToValueAtTime(0.0001, now + 1.25);
-        master.connect(ctx.destination);
-
-        // Formant-like stack for a rough human scream timbre.
-        const partials = [
-          { f0: 165, f1: 700, f2: 1150, g: 0.34 },
-          { f0: 220, f1: 900, f2: 1400, g: 0.26 },
-          { f0: 300, f1: 1200, f2: 2400, g: 0.18 }
-        ];
-
-        partials.forEach((p, idx) => {
-          const osc = ctx.createOscillator();
-          osc.type = "sawtooth";
-          const band = ctx.createBiquadFilter();
-          band.type = "bandpass";
-          band.Q.value = 6 + idx;
-          const gain = ctx.createGain();
-          gain.gain.value = p.g;
-
-          osc.frequency.setValueAtTime(p.f0, now);
-          osc.frequency.exponentialRampToValueAtTime(p.f0 * 1.7, now + 0.22);
-          osc.frequency.exponentialRampToValueAtTime(p.f0 * 0.95, now + 1.18);
-          band.frequency.setValueAtTime(p.f1, now);
-          band.frequency.exponentialRampToValueAtTime(p.f2, now + 0.3);
-          band.frequency.exponentialRampToValueAtTime(p.f1 * 0.9, now + 1.2);
-
-          osc.connect(band).connect(gain).connect(master);
-          osc.start(now);
-          osc.stop(now + 1.25);
-        });
-
-        // Breath/noise component for harsher scream edge.
-        const noiseBuffer = ctx.createBuffer(1, ctx.sampleRate * 1.25, ctx.sampleRate);
-        const data = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.7;
-        const noise = ctx.createBufferSource();
-        noise.buffer = noiseBuffer;
-        const noiseFilter = ctx.createBiquadFilter();
-        noiseFilter.type = "highpass";
-        noiseFilter.frequency.setValueAtTime(1300, now);
-        const noiseGain = ctx.createGain();
-        noiseGain.gain.setValueAtTime(0.001, now);
-        noiseGain.gain.linearRampToValueAtTime(0.2, now + 0.08);
-        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 1.1);
-        noise.connect(noiseFilter).connect(noiseGain).connect(master);
-        noise.start(now);
-        noise.stop(now + 1.2);
+        stopDarkModeAudio();
+        stopDarkDigitMode();
       }
 
       document.querySelectorAll('input[name="text-size"]').forEach((radio) => {
@@ -2283,6 +2494,20 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       });
       const checkedColorMode = document.querySelector('input[name="color-mode"]:checked');
       applyColor(checkedColorMode ? checkedColorMode.value : "auto");
+      if (darkAudioPlayBtn && darkAudioMuteBtn) {
+        darkAudioPlayBtn.addEventListener("click", () => {
+          if (darkModeAudio.paused) {
+            darkModeAudio.play();
+          } else {
+            darkModeAudio.pause();
+          }
+          updateDarkAudioUi();
+        });
+        darkAudioMuteBtn.addEventListener("click", () => {
+          darkModeAudio.muted = !darkModeAudio.muted;
+          updateDarkAudioUi();
+        });
+      }
 
       function setPageTab(mode) {
         tabRead.classList.toggle("active", mode === "read");
@@ -2319,6 +2544,27 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           renderScandalImage();
         });
         renderScandalImage();
+      }
+
+      function renderAwardsImage() {
+        if (!awardsImage || !awardsCaption || !awardsCounter) return;
+        const item = awardsImages[awardsIndex];
+        awardsImage.src = item.src;
+        awardsImage.alt = "Awards and screenings image " + (awardsIndex + 1);
+        awardsCaption.textContent = item.caption;
+        awardsCounter.textContent = (awardsIndex + 1) + " / " + awardsImages.length;
+      }
+
+      if (awardsPrev && awardsNext) {
+        awardsPrev.addEventListener("click", () => {
+          awardsIndex = (awardsIndex - 1 + awardsImages.length) % awardsImages.length;
+          renderAwardsImage();
+        });
+        awardsNext.addEventListener("click", () => {
+          awardsIndex = (awardsIndex + 1) % awardsImages.length;
+          renderAwardsImage();
+        });
+        renderAwardsImage();
       }
 
       function showSorryHoldOverlay() {
