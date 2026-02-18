@@ -94,6 +94,21 @@
         font-weight: 700;
         padding: 8px;
       }
+      .infobox-photo {
+        padding: 6px;
+        text-align: center;
+        background: #fff;
+      }
+      .infobox-photo img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .infobox-photo figcaption {
+        margin-top: 6px;
+        font-size: 0.78rem;
+        line-height: 1.35;
+      }
       .infobox td,
       .infobox th {
         border: 1px solid var(--wiki-border);
@@ -160,6 +175,44 @@
         margin-top: 10px;
         font-family: sans-serif;
         font-size: 0.87rem;
+        color: #54595d;
+      }
+      .wiki-preview {
+        position: fixed;
+        z-index: 120;
+        width: 360px;
+        border: 1px solid #72777d;
+        background: #fff;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+        display: none;
+      }
+      .wiki-preview.show {
+        display: block;
+      }
+      .wiki-preview-inner {
+        display: grid;
+        grid-template-columns: 1fr 130px;
+      }
+      .wiki-preview-copy {
+        padding: 10px;
+        font-family: sans-serif;
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+      .wiki-preview-title {
+        margin: 0 0 6px;
+        font-size: 0.97rem;
+        font-weight: 700;
+      }
+      .wiki-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-left: 1px solid #c8ccd1;
+      }
+      .wiki-preview-loading {
+        font-family: sans-serif;
+        font-size: 0.85rem;
         color: #54595d;
       }
       .modal {
@@ -254,6 +307,14 @@
             <table class="infobox">
               <caption>Will Kempner</caption>
               <tr>
+                <td colspan="2" class="infobox-photo">
+                  <figure style="margin:0;">
+                    <img src="bio-photo.jpg" alt="Will Kempner" />
+                    <figcaption>Will Kempner</figcaption>
+                  </figure>
+                </td>
+              </tr>
+              <tr>
                 <th>Born</th>
                 <td>June 12, 1993</td>
               </tr>
@@ -272,9 +333,9 @@
             </table>
             <p>
               <b>Will Kempner</b> (born June 12, 1993) is an American editor, filmmaker, artist, and producer.
-              Kempner has worked across television, fashion campaigns, branded and corporate media, and independent film.
-              His portfolio includes directing and editing narrative shorts and features, as well as post-production work
-              on series for HBO and Disney+.<sup class="ref">[1][2][3][4]</sup>
+              Will K, as he is increasingly known, has worked across <a href="#tv">television</a>, <a href="#fashion">fashion campaigns</a>, branded and <a href="#corporate">corporate media</a>, and <a href="#filmography">independent film</a>.
+              His <a href="#editing">editing</a> portfolio includes directing and editing narrative shorts and features, as well as post-production work
+              on series for HBO and Disney+.<sup class="ref" id="cite-1"><a href="#ref-1">[1]</a></sup><sup class="ref" id="cite-2"><a href="#ref-2">[2]</a></sup><sup class="ref" id="cite-3"><a href="#ref-3">[3]</a></sup><sup class="ref" id="cite-4"><a href="#ref-4">[4]</a></sup>
             </p>
           </section>
 
@@ -283,13 +344,13 @@
             <p>
               Kempner began working in post-production in the late 2000s and later built a cross-disciplinary practice
               spanning editing, assistant editing, producing, and copywriting. He has served as lead assistant editor
-              and associate editor across both seasons of HBO's <i>Random Acts of Flyness</i> (2018; 2022)
-              and worked as an editor on Disney+'s <i>Growing Up</i> (2022).<sup class="ref">[1][2][3]</sup>
+              and associate editor across both seasons of HBO's <i><a class="wiki-link" href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness</a></i> (2018; 2022)
+              and worked as an editor on Disney+'s <i>Growing Up</i> (2022).<sup class="ref" id="cite-1b"><a href="#ref-1">[1]</a></sup><sup class="ref" id="cite-2b"><a href="#ref-2">[2]</a></sup><sup class="ref" id="cite-3b"><a href="#ref-3">[3]</a></sup>
             </p>
             <p>
               In advertising and fashion, Kempner has edited and produced work for Telfar, including <i>New Models</i>
               (Season 0 and Season 1, 2023-present?). He was also part of the team (with Colin Garland and Ben Townsend)
-              that won the 2019 Tribeca Film Festival Snapchat Story Contest.<sup class="ref">[5][6][7]</sup>
+              that won the 2019 Tribeca Film Festival Snapchat Story Contest.<sup class="ref" id="cite-5"><a href="#ref-5">[5]</a></sup><sup class="ref" id="cite-6"><a href="#ref-6">[6]</a></sup><sup class="ref" id="cite-7"><a href="#ref-7">[7]</a></sup>
             </p>
           </section>
 
@@ -309,7 +370,7 @@
               <tbody>
                 <tr>
                   <td>2018; 2022</td>
-                  <td><i>Random Acts of Flyness</i> (HBO, Seasons 1-2)</td>
+                  <td><i><a class="wiki-link" href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness</a></i> (HBO, Seasons 1-2)</td>
                   <td>Lead Assistant Editor (S1); Associate Editor (S2)</td>
                   <td>6 episodes in each season</td>
                 </tr>
@@ -343,11 +404,11 @@
                   <td>2023-present?</td>
                   <td>Telfar advertisements</td>
                   <td>Editor; Producer; Copywriter (occasional)</td>
-                  <td>Includes <i>New Models</i> Season 0 and Season 1</td>
+                  <td>Includes <a href="#" data-video="https://www.youtube.com/embed/videoseries?list=PLh-uDRIvQHP2aErYektn7CFR7tYbeo15a" class="video-link"><i>New Models</i> Season 0</a> and <a href="#" data-video="https://www.youtube.com/embed/-Io182z4xrw" class="video-link">Season 1</a></td>
                 </tr>
                 <tr>
                   <td>2021</td>
-                  <td><i>Ms. <a href="https://en.wikipedia.org/wiki/Lauryn_Hill" target="_blank" rel="noreferrer">Lauryn Hill</a> for S/S 2021</i> (Louis Vuitton)</td>
+                  <td><i>Ms. <a class="wiki-link" href="https://en.wikipedia.org/wiki/Lauryn_Hill" target="_blank" rel="noreferrer">Lauryn Hill</a> for S/S 2021</i> (Louis Vuitton)</td>
                   <td>Editor</td>
                   <td>Fashion campaign</td>
                 </tr>
@@ -373,7 +434,7 @@
               <tbody>
                 <tr>
                   <td>2024</td>
-                  <td><i>Q&amp;A with Juvederm</i></td>
+                  <td><a href="#" data-video="https://www.youtube.com/embed/nYkDGvT4tJk" class="video-link"><i>Q&amp;A with Juvederm</i></a></td>
                   <td>Editor</td>
                   <td>Corporate/brand campaign</td>
                 </tr>
@@ -381,7 +442,7 @@
                   <td>2019</td>
                   <td><a href="#" data-video="https://www.youtube.com/embed/tsk9c7KF76E" class="video-link"><i>Doja Cat</i></a></td>
                   <td>Editor</td>
-                  <td>Music video/social campaign (popup); artist: <a href="https://en.wikipedia.org/wiki/Doja_Cat" target="_blank" rel="noreferrer">Doja Cat</a></td>
+                  <td>Music video/social campaign (popup); artist: <a class="wiki-link" href="https://en.wikipedia.org/wiki/Doja_Cat" target="_blank" rel="noreferrer">Doja Cat</a></td>
                 </tr>
                 <tr>
                   <td>2020</td>
@@ -417,7 +478,7 @@
               <tbody>
                 <tr>
                   <td>2023</td>
-                  <td><i><a href="https://en.wikipedia.org/wiki/Andr%C3%A9_3000" target="_blank" rel="noreferrer">Andre 3000</a> - Listening To The Sun</i> (teaser)</td>
+                  <td><i><a class="wiki-link" href="https://en.wikipedia.org/wiki/Andr%C3%A9_3000" target="_blank" rel="noreferrer">Andre 3000</a> - Listening To The Sun</i> (teaser)</td>
                   <td>Trailer Editor</td>
                   <td>Social announcement teaser</td>
                 </tr>
@@ -451,7 +512,7 @@
               <tbody>
                 <tr>
                   <td>2018</td>
-                  <td><i>Random Acts of Flyness</i> (HBO, Season 1)</td>
+                  <td><i><a class="wiki-link" href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness</a></i> (HBO, Season 1)</td>
                   <td>Lead Assistant Editor</td>
                   <td>Television</td>
                 </tr>
@@ -463,7 +524,7 @@
                 </tr>
                 <tr>
                   <td>2023</td>
-                  <td><i>Our Home Out West</i> (<a href="https://en.wikipedia.org/wiki/Cole_Escola" target="_blank" rel="noreferrer">Cole Escola</a>)</td>
+                  <td><i>Our Home Out West</i> (<a class="wiki-link" href="https://en.wikipedia.org/wiki/Cole_Escola" target="_blank" rel="noreferrer">Cole Escola</a>)</td>
                   <td>Assistant Editor; DIT</td>
                   <td>TV special</td>
                 </tr>
@@ -491,38 +552,56 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#" data-video="https://www.nobudge.com/the-layover" class="video-link"><i>The Layover</i></a></td>
-                  <td>22 min; streaming</td>
+                  <td><i>The Good Boy</i></td>
+                  <td>Short film (2018), 15:33</td>
                   <td>NoBudge</td>
-                  <td>Popup</td>
+                  <td><a href="https://www.nobudge.com/videos/the-good-boy" target="_blank" rel="noreferrer">Premiere page</a></td>
                 </tr>
                 <tr>
-                  <td><i>Your Mailbox Is Full</i></td>
-                  <td>Feature length; in post-production</td>
+                  <td><i>A Flaw In The System</i></td>
+                  <td>Short film (2020), 05:24</td>
+                  <td>-</td>
+                  <td><a href="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" target="_blank" rel="noreferrer">NPCC screening image</a></td>
+                </tr>
+                <tr>
+                  <td><i>Message from Mark / The Lord of the Ring</i></td>
+                  <td>Short film, 04:23</td>
                   <td>-</td>
                   <td>-</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube.com/embed/Ww2h3zmp82M" class="video-link"><i>Larry's Big Adventure</i></a></td>
-                  <td>Short film; streaming</td>
-                  <td>YouTube</td>
-                  <td>Popup</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://www.nobudge.com/nude-descending-a-staircase" class="video-link"><i>Nude Descending a Staircase</i></a></td>
-                  <td>Short film; streaming</td>
+                  <td><i>Serf's Up</i></td>
+                  <td>Short film (2016), 11:11</td>
                   <td>NoBudge</td>
-                  <td>Popup</td>
+                  <td><a href="https://www.nobudge.com/videos/serfs-up" target="_blank" rel="noreferrer">Premiere page</a></td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube.com/embed/nYkDGevfImU" class="video-link"><i>Homepage featured video</i></a></td>
-                  <td>Video work</td>
-                  <td>YouTube</td>
-                  <td>Popup</td>
+                  <td><i>Writer's Retreat</i></td>
+                  <td>Short film (2019), 03:57</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><i>Joker Stairs</i></td>
+                  <td>Short film (2019), 02:00</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><i>Happy Birthday, Mr. Hoffman</i></td>
+                  <td>Short film (2010), 07:39</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><i>Jay Kelly: An Artist At Work</i></td>
+                  <td>Short film (2013), 03:50</td>
+                  <td>-</td>
+                  <td>-</td>
                 </tr>
               </tbody>
             </table>
-            <p class="notes">Filmography entries are sourced from the current <a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">My Films page</a>.</p>
+            <p class="notes">Filmography entries are sourced from <a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">your current My Films page</a>. Popup embeds are included only where direct player URLs were verifiably recoverable.</p>
           </section>
 
           <section id="discography">
@@ -638,7 +717,7 @@
               <tbody>
                 <tr>
                   <td>2015</td>
-                  <td><a href="https://en.wikipedia.org/wiki/Todd_Phillips" target="_blank" rel="noreferrer">Todd Phillips</a> Post Production Grant</td>
+                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Todd_Phillips" target="_blank" rel="noreferrer">Todd Phillips</a> Post Production Grant</td>
                   <td>Winner</td>
                   <td>-</td>
                 </tr>
@@ -667,22 +746,23 @@
           <section id="references">
             <h2>References <span class="edit">[edit]</span></h2>
             <ol>
-              <li><a href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness (HBO) - seasons and release dates</a></li>
-              <li><a href="https://www.hbo.com/random-acts-of-flyness" target="_blank" rel="noreferrer">HBO - Random Acts of Flyness</a></li>
-              <li><a href="https://ondisneyplus.disney.com/show/growing-up" target="_blank" rel="noreferrer">Disney+ - Growing Up (release details)</a></li>
-              <li><a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">Will Kempner - My Films</a></li>
-              <li><a href="https://www.willkempner.com/" target="_blank" rel="noreferrer">Will Kempner - Homepage</a></li>
-              <li><a href="https://nitehawkcinema.com/williamsburg/movies/nobudge-live-12/" target="_blank" rel="noreferrer">Nitehawk Cinema - NoBudge Live 12</a></li>
-              <li><a href="https://variety.com/2016/digital/news/snapchat-tribeca-shorts-contest-2017-1201943137/" target="_blank" rel="noreferrer">Variety - Snapchat and Tribeca Storytelling Contest announcement</a></li>
-              <li><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">ART DLR - Bandcamp releases</a></li>
-              <li><a href="https://digitalzoom.bandcamp.com/" target="_blank" rel="noreferrer">Digital Zoom - Bandcamp</a></li>
-              <li><a href="https://lanlordlance.bandcamp.com/" target="_blank" rel="noreferrer">Lanlord Lance - Bandcamp</a></li>
-              <li><a href="https://trianglelord.bandcamp.com/" target="_blank" rel="noreferrer">Triangle Lord - Bandcamp</a></li>
+              <li id="ref-1"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness (HBO) - seasons and release dates</a> <a href="#cite-1">^</a></li>
+              <li id="ref-2"><a href="https://www.hbo.com/random-acts-of-flyness" target="_blank" rel="noreferrer">HBO - Random Acts of Flyness</a> <a href="#cite-2">^</a></li>
+              <li id="ref-3"><a href="https://ondisneyplus.disney.com/show/growing-up" target="_blank" rel="noreferrer">Disney+ - Growing Up (release details)</a> <a href="#cite-3">^</a></li>
+              <li id="ref-4"><a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">Will Kempner - My Films</a> <a href="#cite-4">^</a></li>
+              <li id="ref-5"><a href="https://www.willkempner.com/" target="_blank" rel="noreferrer">Will Kempner - Homepage</a> <a href="#cite-5">^</a></li>
+              <li id="ref-6"><a href="https://nitehawkcinema.com/williamsburg/movies/nobudge-live-12/" target="_blank" rel="noreferrer">Nitehawk Cinema - NoBudge Live 12</a> <a href="#cite-6">^</a></li>
+              <li id="ref-7"><a href="https://variety.com/2016/digital/news/snapchat-tribeca-shorts-contest-2017-1201943137/" target="_blank" rel="noreferrer">Variety - Snapchat and Tribeca Storytelling Contest announcement</a> <a href="#cite-7">^</a></li>
+              <li id="ref-8"><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">ART DLR - Bandcamp releases</a></li>
+              <li id="ref-9"><a href="https://digitalzoom.bandcamp.com/" target="_blank" rel="noreferrer">Digital Zoom - Bandcamp</a></li>
+              <li id="ref-10"><a href="https://lanlordlance.bandcamp.com/" target="_blank" rel="noreferrer">Lanlord Lance - Bandcamp</a></li>
+              <li id="ref-11"><a href="https://trianglelord.bandcamp.com/" target="_blank" rel="noreferrer">Triangle Lord - Bandcamp</a></li>
             </ol>
           </section>
         </main>
       </div>
     </div>
+    <div id="wiki-preview" class="wiki-preview" aria-hidden="true"></div>
 
     <div id="video-modal" class="modal" aria-hidden="true">
       <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -699,6 +779,10 @@
       const modalBody = document.getElementById("modal-body");
       const closeModal = document.getElementById("close-modal");
       const videoLinks = document.querySelectorAll(".video-link");
+      const wikiPreview = document.getElementById("wiki-preview");
+      const wikiLinks = document.querySelectorAll("a.wiki-link");
+      const wikiCache = new Map();
+      let wikiHideTimer = null;
 
       function openModal(url) {
         const isEmbeddable = url.includes("youtube.com/embed");
@@ -737,6 +821,80 @@
           closeVideoModal();
         }
       });
+
+      async function fetchWikiPreview(link) {
+        const url = new URL(link.href);
+        const title = decodeURIComponent(url.pathname.replace("/wiki/", ""));
+        if (!title) return null;
+        if (wikiCache.has(title)) return wikiCache.get(title);
+        try {
+          const res = await fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(title));
+          if (!res.ok) return null;
+          const data = await res.json();
+          wikiCache.set(title, data);
+          return data;
+        } catch (_error) {
+          return null;
+        }
+      }
+
+      function placePreview(link) {
+        const rect = link.getBoundingClientRect();
+        const left = Math.min(window.innerWidth - 380, rect.right + 10);
+        const top = Math.min(window.innerHeight - 220, Math.max(10, rect.top - 8));
+        wikiPreview.style.left = left + "px";
+        wikiPreview.style.top = top + "px";
+      }
+
+      function hideWikiPreview() {
+        if (wikiHideTimer) {
+          clearTimeout(wikiHideTimer);
+          wikiHideTimer = null;
+        }
+        wikiPreview.classList.remove("show");
+        wikiPreview.setAttribute("aria-hidden", "true");
+      }
+
+      wikiLinks.forEach((link) => {
+        link.addEventListener("mouseenter", async () => {
+          if (wikiHideTimer) {
+            clearTimeout(wikiHideTimer);
+            wikiHideTimer = null;
+          }
+          placePreview(link);
+          wikiPreview.innerHTML = '<div class="wiki-preview-copy wiki-preview-loading">Loading preview...</div>';
+          wikiPreview.classList.add("show");
+          wikiPreview.setAttribute("aria-hidden", "false");
+          const data = await fetchWikiPreview(link);
+          if (!data) {
+            wikiPreview.innerHTML = '<div class="wiki-preview-copy">No preview available.</div>';
+            return;
+          }
+          const img = data.thumbnail && data.thumbnail.source ? '<img src="' + data.thumbnail.source + '" alt="' + data.title + '">' : "";
+          wikiPreview.innerHTML =
+            '<div class="wiki-preview-inner">' +
+            '<div class="wiki-preview-copy">' +
+            '<p class="wiki-preview-title">' + data.title + '</p>' +
+            "<p>" + (data.extract || "No summary available.") + "</p>" +
+            "</div>" +
+            img +
+            "</div>";
+          placePreview(link);
+        });
+        link.addEventListener("mouseleave", () => {
+          wikiHideTimer = setTimeout(hideWikiPreview, 150);
+        });
+      });
+
+      wikiPreview.addEventListener("mouseenter", () => {
+        if (wikiHideTimer) {
+          clearTimeout(wikiHideTimer);
+          wikiHideTimer = null;
+        }
+      });
+      wikiPreview.addEventListener("mouseleave", hideWikiPreview);
+
+      document.addEventListener("scroll", hideWikiPreview, true);
     </script>
   </body>
 </html>
