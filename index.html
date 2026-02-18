@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/header-logo-transparent.png" />
+    <link rel="apple-touch-icon" href="images/header-logo-transparent.png" />
     <title>WillKpedia - Will Kempner</title>
     <style>
       :root {
@@ -666,26 +668,38 @@
         font-size: 0.78rem;
         color: #54595d;
       }
-      #discography .wikitable th:nth-child(4),
-      #discography .wikitable td:nth-child(4) {
-        display: none;
+      .inline-table-video {
+        margin-top: 8px;
+        width: min(100%, 360px);
+        border: 1px solid #a2a9b1;
+        background: #fff;
       }
-      .bandcamp-artist-player {
-        border: 1px solid #c8ccd1;
-        background: #f8f9fa;
-        padding: 8px 10px;
-        margin: 6px 0 10px;
+      .inline-table-video-stack {
+        margin-top: 8px;
       }
-      .bandcamp-artist-player-title {
-        margin: 0 0 6px;
+      .inline-table-video-media {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #000;
+      }
+      .inline-table-video iframe,
+      .inline-table-video video {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+      }
+      .inline-table-video-fallback {
+        padding: 8px 9px;
         font-family: sans-serif;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         color: #54595d;
-        letter-spacing: 0.02em;
-        text-transform: uppercase;
+        line-height: 1.35;
+        background: #f8f9fa;
       }
-      .bandcamp-artist-player .bandcamp-embed {
-        min-width: 0;
+      .inline-table-video-fallback a {
+        display: inline-block;
+        margin-top: 4px;
       }
       .wiki-preview {
         position: fixed;
@@ -1053,7 +1067,7 @@ Colleagues have described his process as fast, iterative, and reference-heavy.
 * Andre 3000 — ''Listening To The Sun'' teaser — Editor
 
 ==Assistant editing==
-* ''Our Home Out West'' (TV special) — Assistant Editor / DIT
+* ''Cole Escola's Our Home Out West'' (TV special) — Assistant Editor / DIT
 * ''Good One'' — Assistant Editor / DIT
 * ''Two Dope Queens'' Season 1 — Assistant Editor
 
@@ -1361,8 +1375,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td>TBD</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/Svual-PcOxE" class="video-link"><i>Conner O'Malley's Stand Up Solutions</i></a></td>
-                  <td>Assistant Editor</td>
-                  <td>TBD</td>
+                  <td>Assistant Editor / DIT</td>
+                  <td>Self-released</td>
                   <td>Special</td>
                 </tr>
               </tbody>
@@ -1532,7 +1546,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Assistant Editor; DIT</td>
                 </tr>
                 <tr>
-                  <td><i>Our Home Out West</i> (Cole Escola)</td>
+                  <td><i>Cole Escola's Our Home Out West</i></td>
                   <td>2023</td>
                   <td>Assistant Editor; DIT</td>
                 </tr>
@@ -1547,7 +1561,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Additional Editor</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" class="video-link"><i>Short film (dir. Jack Bensinger)</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" class="video-link"><i>Straight Line</i> (dir. Jack Bensinger)</a></td>
                   <td>TBD</td>
                   <td>Assistant Editor</td>
                 </tr>
@@ -1564,10 +1578,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <h2>Discography <span class="edit">[edit]</span></h2>
 
             <h3>Digital Zoom<sup class="ref" id="cite-9a"><a href="#ref-9">[9]</a></sup></h3>
-            <div class="bandcamp-artist-player">
-              <p class="bandcamp-artist-player-title">Bandcamp player</p>
-              <div class="bandcamp-embed bandcamp-artist-embed" data-url="https://digitalzoom.bandcamp.com/"></div>
-            </div>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1582,16 +1592,12 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><i>The Good Boy OST</i> (Various Artists)</td>
                   <td>2018</td>
                   <td>Producer</td>
-                  <td><div class="bandcamp-embed" data-url="https://digitalzoom.bandcamp.com/"></div></td>
+                  <td><div class="bandcamp-embed" data-url="https://digitalzoom.bandcamp.com/album/the-good-boy-ost"></div></td>
                 </tr>
               </tbody>
             </table>
 
             <h3>ART DLR<sup class="ref" id="cite-8a"><a href="#ref-8">[8]</a></sup></h3>
-            <div class="bandcamp-artist-player">
-              <p class="bandcamp-artist-player-title">Bandcamp player</p>
-              <div class="bandcamp-embed bandcamp-artist-embed" data-url="https://artdealer.bandcamp.com/"></div>
-            </div>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1615,10 +1621,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h3>Lanlord Lance<sup class="ref" id="cite-10a"><a href="#ref-10">[10]</a></sup></h3>
-            <div class="bandcamp-artist-player">
-              <p class="bandcamp-artist-player-title">Bandcamp player</p>
-              <div class="bandcamp-embed bandcamp-artist-embed" data-url="https://lanlordlance.bandcamp.com/"></div>
-            </div>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1643,10 +1645,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h3>Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></h3>
-            <div class="bandcamp-artist-player">
-              <p class="bandcamp-artist-player-title">Bandcamp player</p>
-              <div class="bandcamp-embed bandcamp-artist-embed" data-url="https://trianglelord.bandcamp.com/"></div>
-            </div>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1981,7 +1979,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       initFlagBanner();
 
       function bandcampFallbackHtml(url) {
-        return '<div class="bandcamp-fallback"><a href="' + url + '" target="_blank" rel="noreferrer">Open on Bandcamp</a></div>';
+        return '<div class="bandcamp-fallback"><a href="' + url + '" target="_blank" rel="noreferrer">Open release on Bandcamp</a></div>';
       }
 
       function normalizeBandcampEmbedSrc(src) {
@@ -1991,8 +1989,55 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           .replace(/artwork=(small|none|large)/g, "artwork=small");
       }
 
+      function buildInlineTableVideo(url) {
+        if (!url) return "";
+        const isYouTube = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
+        const isVimeo = url.includes("player.vimeo.com/video/");
+        const isMp4 = url.includes("video.squarespace-cdn.com/") || /\.mp4($|\?)/i.test(url);
+        if (isYouTube || isVimeo) {
+          const src = url + (url.includes("?") ? "&" : "?") + "rel=0&modestbranding=1";
+          return (
+            '<div class="inline-table-video">' +
+            '<div class="inline-table-video-media">' +
+            '<iframe src="' + src + '" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Inline video preview"></iframe>' +
+            "</div></div>"
+          );
+        }
+        if (isMp4) {
+          return (
+            '<div class="inline-table-video">' +
+            '<div class="inline-table-video-media">' +
+            '<video controls preload="metadata" playsinline>' +
+            '<source src="' + url + '" type="video/mp4">' +
+            "</video></div></div>"
+          );
+        }
+        return (
+          '<div class="inline-table-video">' +
+          '<div class="inline-table-video-fallback">Inline player unavailable for this host.<br><a href="' + url + '" target="_blank" rel="noreferrer">Open video</a></div>' +
+          "</div>"
+        );
+      }
+
+      function initInlineTableEmbeds() {
+        const cells = document.querySelectorAll(".wikitable td");
+        cells.forEach((cell) => {
+          const links = cell.querySelectorAll(".video-link[data-video]");
+          if (!links.length) return;
+          if (cell.querySelector(".inline-table-video-stack")) return;
+          const stack = document.createElement("div");
+          stack.className = "inline-table-video-stack";
+          links.forEach((link) => {
+            const url = link.getAttribute("data-video");
+            if (!url) return;
+            stack.insertAdjacentHTML("beforeend", buildInlineTableVideo(url));
+          });
+          cell.appendChild(stack);
+        });
+      }
+
       async function initBandcampEmbeds() {
-        const nodes = document.querySelectorAll(".bandcamp-artist-embed[data-url]");
+        const nodes = document.querySelectorAll(".bandcamp-embed[data-url]");
         for (const node of nodes) {
           const url = node.getAttribute("data-url");
           if (!url) continue;
@@ -2016,6 +2061,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       }
 
       initBandcampEmbeds();
+      initInlineTableEmbeds();
 
       function closeVideoModal() {
         modal.setAttribute("aria-hidden", "true");
@@ -2242,6 +2288,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       function bindSorryHoldTrigger(element) {
         if (!element || !sorryHoldOverlay) return;
         const start = (event) => {
+          if (document.body.classList.contains("edit-mode")) {
+            hideSorryHoldOverlay();
+            setPageTab("read");
+            return;
+          }
           event.preventDefault();
           showSorryHoldOverlay();
         };
