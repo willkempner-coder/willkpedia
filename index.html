@@ -130,9 +130,10 @@
       .site-brand {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 14px;
         margin: 0 0 10px;
         width: 100%;
+        justify-content: flex-start;
       }
       .site-brand-mark {
         width: 240px;
@@ -150,12 +151,13 @@
       }
       .site-brand-text {
         margin: 0;
-        flex: 1;
-        font-size: clamp(3.6rem, 7.8vw, 7.2rem);
+        flex: 0 1 auto;
+        font-size: clamp(2.8rem, 6.2vw, 5.8rem);
         font-weight: 400;
         letter-spacing: 0.3px;
         line-height: 1;
         text-align: left;
+        white-space: nowrap;
       }
       .title {
         margin: 0 0 10px;
@@ -477,11 +479,12 @@
         padding: 6px 4px 2px;
       }
       .awards-thumb {
-        width: 420px;
+        width: 360px;
         float: right;
+        clear: right;
         border: 1px solid #c8ccd1;
         background: #f8f9fa;
-        margin: 6px 0 14px 24px;
+        margin: 2px 0 16px 24px;
         padding: 3px;
         font-family: sans-serif;
       }
@@ -492,9 +495,53 @@
         background: #fff;
       }
       .awards-thumb figcaption {
-        padding: 6px 4px 3px;
-        font-size: 0.94rem;
+        padding: 6px 4px 2px;
+        font-size: 0.86rem;
         line-height: 1.35;
+        color: #202122;
+      }
+      .scandal-thumb {
+        width: 360px;
+        float: left;
+        clear: left;
+        border: 1px solid #c8ccd1;
+        background: #f8f9fa;
+        margin: 2px 24px 16px 0;
+        padding: 3px;
+        font-family: sans-serif;
+      }
+      .scandal-thumb img {
+        width: 100%;
+        display: block;
+        border: 1px solid #c8ccd1;
+        background: #fff;
+      }
+      .scandal-thumb figcaption {
+        padding: 6px 4px 2px;
+        font-size: 0.86rem;
+        line-height: 1.35;
+        color: #202122;
+      }
+      .scandal-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 6px 2px 2px;
+      }
+      .scandal-controls button {
+        border: 1px solid #a2a9b1;
+        background: #f8f9fa;
+        color: #202122;
+        font-family: sans-serif;
+        font-size: 0.85rem;
+        padding: 3px 8px;
+        cursor: pointer;
+      }
+      .scandal-counter {
+        font-family: sans-serif;
+        font-size: 0.8rem;
+        color: #54595d;
       }
       #references li {
         scroll-margin-top: 18px;
@@ -663,7 +710,8 @@
         }
         .infobox,
         .thumb,
-        .awards-thumb {
+        .awards-thumb,
+        .scandal-thumb {
           width: 100%;
           float: none;
           margin: 8px 0 14px;
@@ -744,6 +792,7 @@
               <li><a href="#filmography">Filmography</a></li>
               <li><a href="#discography">Discography</a></li>
               <li><a href="#awards">Awards and Screenings</a></li>
+              <li><a href="#scandals">Scandals</a></li>
               <li><a href="#references">References</a></li>
             </ol>
           </nav>
@@ -767,6 +816,18 @@
               <tr>
                 <th>Occupation</th>
                 <td>Reclusive iconoclast <span class="citation-needed">[citation needed]</span></td>
+              </tr>
+              <tr>
+                <th>Aliases</th>
+                <td>Will K</td>
+              </tr>
+              <tr>
+                <th>Origin</th>
+                <td>New York, New York</td>
+              </tr>
+              <tr>
+                <th>Genres</th>
+                <td>corporate · indie · fashion · television · film · noir · afro-futurist</td>
               </tr>
               <tr>
                 <th>Years active</th>
@@ -1081,26 +1142,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>DLR.MAG</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Endangered: On Ice (In Space)</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Ghoulsikal</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>SR20: ART DLR - Prove 2 U</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>WYA JOE - EP</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Work Flows</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>God's Revenge</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Pure Illusion</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>SR23: Kratom Rock</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>SR08: Sunday Night Jive</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>artdlr_8</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>SR04: Human World</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Cig Crown EP</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Karma (Karma)</i></td><td>-</td><td>Producer</td></tr>
-                <tr><td><i>Think Outloud!</i></td><td>-</td><td>Producer</td></tr>
+                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td>2022</td><td>Producer</td></tr>
+                <tr><td><i>DLR.MAG</i></td><td>2022</td><td>Producer</td></tr>
+                <tr><td><i>Endangered: On Ice (In Space)</i></td><td>2021</td><td>Producer</td></tr>
+                <tr><td><i>Ghoulsikal</i></td><td>2021</td><td>Producer</td></tr>
+                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td>2020</td><td>Producer</td></tr>
+                <tr><td><i>Work Flows</i></td><td>2020</td><td>Producer</td></tr>
+                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td>2020</td><td>Producer</td></tr>
+                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Producer</td></tr>
+                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Producer</td></tr>
               </tbody>
             </table>
 
@@ -1185,6 +1235,20 @@
             </table>
           </section>
 
+          <section id="scandals">
+            <h2>Scandals <span class="edit">[edit]</span></h2>
+            <figure class="scandal-thumb" id="scandal-carousel">
+              <img id="scandal-image" src="images/scandal-01.png" alt="Scandals image 1" />
+              <figcaption id="scandal-caption">Public reaction image 1.</figcaption>
+              <div class="scandal-controls">
+                <button id="scandal-prev" type="button" aria-label="Previous scandals image">Prev</button>
+                <span class="scandal-counter" id="scandal-counter">1 / 8</span>
+                <button id="scandal-next" type="button" aria-label="Next scandals image">Next</button>
+              </div>
+            </figure>
+            <p>Will is universally beloved by collegeaus.</p>
+          </section>
+
           <section id="references">
             <h2>References <span class="edit">[edit]</span></h2>
             <ol>
@@ -1249,6 +1313,13 @@
     </div>
 
     <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.addEventListener("load", () => {
+        window.scrollTo(0, 0);
+      });
+
       const modal = document.getElementById("video-modal");
       const modalBody = document.getElementById("modal-body");
       const closeModal = document.getElementById("close-modal");
@@ -1270,12 +1341,28 @@
       const showPreview = document.getElementById("show-preview");
       const showChanges = document.getElementById("show-changes");
       const editCancel = document.getElementById("edit-cancel");
+      const scandalImage = document.getElementById("scandal-image");
+      const scandalCaption = document.getElementById("scandal-caption");
+      const scandalCounter = document.getElementById("scandal-counter");
+      const scandalPrev = document.getElementById("scandal-prev");
+      const scandalNext = document.getElementById("scandal-next");
       const tamperModal = document.getElementById("tamper-modal");
       const tamperClose = document.getElementById("tamper-close");
       const initialEditValue = editBox.value;
       let wikiHideTimer = null;
-      let videoHoverTimer = null;
+      let videoHoverShowTimer = null;
       let alertAudioCtx = null;
+      const scandalImages = [
+        { src: "images/scandal-01.png", caption: "Public reaction image 1." },
+        { src: "images/scandal-02.png", caption: "Public reaction image 2." },
+        { src: "images/scandal-03.png", caption: "Public reaction image 3." },
+        { src: "images/scandal-04.png", caption: "Public reaction image 4." },
+        { src: "images/scandal-05.png", caption: "Public reaction image 5." },
+        { src: "images/scandal-06.png", caption: "Public reaction image 6." },
+        { src: "images/scandal-07.png", caption: "Public reaction image 7." },
+        { src: "images/scandal-08.png", caption: "Public reaction image 8." }
+      ];
+      let scandalIndex = 0;
 
       function openModal(url) {
         const isYouTube = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
@@ -1321,44 +1408,50 @@
         modalBody.innerHTML = "";
       }
 
+      const videoHoverDelayMs = 1000;
       videoLinks.forEach((link) => {
         link.addEventListener("click", (event) => {
           event.preventDefault();
           openModal(link.dataset.video);
         });
         link.addEventListener("mouseenter", () => {
-          if (videoHoverTimer) {
-            clearTimeout(videoHoverTimer);
-            videoHoverTimer = null;
+          if (videoHoverShowTimer) {
+            clearTimeout(videoHoverShowTimer);
+            videoHoverShowTimer = null;
           }
-          const url = link.dataset.video || "";
-          const rect = link.getBoundingClientRect();
-          const left = Math.min(window.innerWidth - 430, Math.max(10, rect.left));
-          const top = Math.min(window.innerHeight - 280, rect.bottom + 8);
-          videoHoverPreview.style.left = left + "px";
-          videoHoverPreview.style.top = top + "px";
-          const isYouTube = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
-          const isVimeo = url.includes("player.vimeo.com/video/");
-          const isMp4 = url.includes("video.squarespace-cdn.com/") || /\.mp4($|\\?)/i.test(url);
-          const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
-          if (isYouTube || isVimeo) {
-            videoHoverPreviewMedia.innerHTML = '<iframe src="' + url + '" allow="autoplay; encrypted-media; picture-in-picture" title="Hover preview"></iframe>';
-          } else if (isMp4) {
-            videoHoverPreviewMedia.innerHTML = '<video src="' + url + '" muted loop autoplay playsinline></video>';
-          } else if (isImage) {
-            videoHoverPreviewMedia.innerHTML = '<img src="' + url + '" alt="Preview">';
-          } else {
-            videoHoverPreviewMedia.innerHTML = '<div style="color:#fff;font-family:sans-serif;font-size:0.9rem;padding:16px;">No inline preview available</div>';
-          }
-          videoHoverPreview.classList.add("show");
-          videoHoverPreview.setAttribute("aria-hidden", "false");
+          videoHoverShowTimer = setTimeout(() => {
+            videoHoverShowTimer = null;
+            const url = link.dataset.video || "";
+            const rect = link.getBoundingClientRect();
+            const left = Math.min(window.innerWidth - 430, Math.max(10, rect.left));
+            const top = Math.min(window.innerHeight - 280, rect.bottom + 8);
+            videoHoverPreview.style.left = left + "px";
+            videoHoverPreview.style.top = top + "px";
+            const isYouTube = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
+            const isVimeo = url.includes("player.vimeo.com/video/");
+            const isMp4 = url.includes("video.squarespace-cdn.com/") || /\.mp4($|\\?)/i.test(url);
+            const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
+            if (isYouTube || isVimeo) {
+              videoHoverPreviewMedia.innerHTML = '<iframe src="' + url + '" allow="autoplay; encrypted-media; picture-in-picture" title="Hover preview"></iframe>';
+            } else if (isMp4) {
+              videoHoverPreviewMedia.innerHTML = '<video src="' + url + '" muted loop autoplay playsinline></video>';
+            } else if (isImage) {
+              videoHoverPreviewMedia.innerHTML = '<img src="' + url + '" alt="Preview">';
+            } else {
+              videoHoverPreviewMedia.innerHTML = '<div style="color:#fff;font-family:sans-serif;font-size:0.9rem;padding:16px;">No inline preview available</div>';
+            }
+            videoHoverPreview.classList.add("show");
+            videoHoverPreview.setAttribute("aria-hidden", "false");
+          }, videoHoverDelayMs);
         });
         link.addEventListener("mouseleave", () => {
-          videoHoverTimer = setTimeout(() => {
-            videoHoverPreview.classList.remove("show");
-            videoHoverPreview.setAttribute("aria-hidden", "true");
-            videoHoverPreviewMedia.innerHTML = "";
-          }, 40);
+          if (videoHoverShowTimer) {
+            clearTimeout(videoHoverShowTimer);
+            videoHoverShowTimer = null;
+          }
+          videoHoverPreview.classList.remove("show");
+          videoHoverPreview.setAttribute("aria-hidden", "true");
+          videoHoverPreviewMedia.innerHTML = "";
         });
       });
 
@@ -1439,6 +1532,27 @@
       showPreview.addEventListener("click", () => alert("Preview mode is disabled for protected pages."));
       showChanges.addEventListener("click", () => alert("Diff view unavailable."));
       editCancel.addEventListener("click", () => setPageTab("read"));
+
+      function renderScandalImage() {
+        if (!scandalImage || !scandalCaption || !scandalCounter) return;
+        const item = scandalImages[scandalIndex];
+        scandalImage.src = item.src;
+        scandalImage.alt = "Scandals image " + (scandalIndex + 1);
+        scandalCaption.textContent = item.caption;
+        scandalCounter.textContent = (scandalIndex + 1) + " / " + scandalImages.length;
+      }
+
+      if (scandalPrev && scandalNext) {
+        scandalPrev.addEventListener("click", () => {
+          scandalIndex = (scandalIndex - 1 + scandalImages.length) % scandalImages.length;
+          renderScandalImage();
+        });
+        scandalNext.addEventListener("click", () => {
+          scandalIndex = (scandalIndex + 1) % scandalImages.length;
+          renderScandalImage();
+        });
+        renderScandalImage();
+      }
 
       function playTamperSound() {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
