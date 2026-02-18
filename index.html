@@ -43,17 +43,18 @@
         left: 0;
         right: 0;
         top: 0;
-        height: 148px;
+        height: 246px;
         overflow: hidden;
         pointer-events: none;
         user-select: none;
         z-index: 0;
-        opacity: 0.95;
+        opacity: 0.9;
       }
       .flag-banner-inner {
         position: absolute;
         left: 0;
-        top: 12px;
+        top: 50%;
+        transform: translateY(-50%);
         display: flex;
         width: max-content;
         animation: flagScroll 140s linear infinite;
@@ -68,7 +69,7 @@
       }
       .flag-item {
         font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-        font-size: 1.68rem;
+        font-size: 2.95rem;
         line-height: 1;
         display: inline-block;
         filter: saturate(1.12) contrast(1.08);
@@ -76,10 +77,10 @@
       }
       @keyframes flagScroll {
         from {
-          transform: translateX(0);
+          transform: translate(0, -50%);
         }
         to {
-          transform: translateX(-50%);
+          transform: translate(-50%, -50%);
         }
       }
       .appearance-panel {
@@ -178,6 +179,7 @@
         align-items: center;
         gap: 14px;
         margin: 0 0 10px;
+        min-height: 246px;
         width: 100%;
         justify-content: flex-start;
         position: relative;
@@ -854,14 +856,15 @@
           padding: 18px 20px 48px;
         }
         .flag-banner {
-          height: 126px;
+          height: 174px;
         }
         .flag-banner-inner {
-          top: 10px;
+          top: 50%;
+          transform: translateY(-50%);
           animation-duration: 120s;
         }
         .flag-item {
-          font-size: 1.42rem;
+          font-size: 2.1rem;
         }
         .page-actions {
           justify-content: flex-start;
@@ -877,6 +880,9 @@
         }
         .site-brand-text {
           font-size: clamp(2.2rem, 10vw, 3.4rem);
+        }
+        .site-brand {
+          min-height: 174px;
         }
         .layout {
           grid-template-columns: 1fr;
@@ -906,7 +912,7 @@
       <header class="site-brand" aria-label="WillKpedia header">
         <h1 class="site-brand-text" id="site-brand-text">WillKpedia</h1>
         <div class="site-brand-mark">
-          <img id="globe-logo" src="images/header-logo.png" alt="WillKpedia globe mark" draggable="false" />
+          <img id="globe-logo" src="images/header-logo-transparent.png" alt="WillKpedia globe mark" draggable="false" />
         </div>
       </header>
       <div class="page-actions" aria-label="Page actions">
