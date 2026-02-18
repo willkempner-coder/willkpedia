@@ -181,6 +181,8 @@
         line-height: 1;
         text-align: left;
         white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
       }
       .title {
         margin: 0 0 10px;
@@ -820,7 +822,7 @@
   <body>
     <div class="page">
       <header class="site-brand" aria-label="WillKpedia header">
-        <h1 class="site-brand-text">WillKpedia</h1>
+        <h1 class="site-brand-text" id="site-brand-text">WillKpedia</h1>
         <div class="site-brand-mark">
           <img id="globe-logo" src="images/header-logo.png" alt="WillKpedia globe mark" draggable="false" />
         </div>
@@ -1087,6 +1089,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <li><a href="#discography">Discography</a></li>
               <li><a href="#awards">Awards and Screenings</a></li>
               <li><a href="#scandals">Scandals</a></li>
+              <li><a href="#personal-info">Personal Info</a></li>
               <li><a href="#references">References</a></li>
             </ol>
           </nav>
@@ -1539,7 +1542,27 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <button id="scandal-next" type="button" aria-label="Next scandals image">Next</button>
               </div>
             </figure>
-            <p>Will is universally beloved by collegeaus.</p>
+            <p>Will is universally beloved by colleagues.</p>
+          </section>
+
+          <section id="personal-info">
+            <h2>Personal Info <span class="edit">[edit]</span></h2>
+            <table class="wikitable">
+              <tbody>
+                <tr>
+                  <th>Cell</th>
+                  <td>908-456-1839</td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td><a href="mailto:willkempner@gmail.com">willkempner@gmail.com</a></td>
+                </tr>
+                <tr>
+                  <th>Insta</th>
+                  <td><a href="https://instagram.com/willl__k" target="_blank" rel="noreferrer">@willl__k</a></td>
+                </tr>
+              </tbody>
+            </table>
           </section>
 
           <section id="references">
@@ -1675,6 +1698,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const tabRead = document.getElementById("tab-read");
       const tabEdit = document.getElementById("tab-edit");
       const tabHistory = document.getElementById("tab-history");
+      const siteBrandText = document.getElementById("site-brand-text");
       const globeLogo = document.getElementById("globe-logo");
       const sorryHoldOverlay = document.getElementById("sorry-hold-overlay");
       const editSurface = document.getElementById("edit-surface");
@@ -1701,6 +1725,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       let videoHoverShowTimer = null;
       let alertAudioCtx = null;
       let screamAudioCtx = null;
+      let popupErrorAudioCtx = null;
       let cookieScamTimer = null;
       let naviScamTimer = null;
       let hasClosedCookieOnce = false;
@@ -1976,14 +2001,20 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         sorryHoldOverlay.setAttribute("aria-hidden", "true");
       }
 
-      if (globeLogo && sorryHoldOverlay) {
-        globeLogo.addEventListener("pointerdown", (event) => {
+      function bindSorryHoldTrigger(element) {
+        if (!element || !sorryHoldOverlay) return;
+        element.addEventListener("pointerdown", (event) => {
           event.preventDefault();
           showSorryHoldOverlay();
         });
-        globeLogo.addEventListener("pointerup", hideSorryHoldOverlay);
-        globeLogo.addEventListener("pointercancel", hideSorryHoldOverlay);
-        globeLogo.addEventListener("dragstart", (event) => event.preventDefault());
+        element.addEventListener("pointerup", hideSorryHoldOverlay);
+        element.addEventListener("pointercancel", hideSorryHoldOverlay);
+        element.addEventListener("dragstart", (event) => event.preventDefault());
+      }
+
+      if (sorryHoldOverlay) {
+        bindSorryHoldTrigger(globeLogo);
+        bindSorryHoldTrigger(siteBrandText);
         document.addEventListener("pointerup", hideSorryHoldOverlay);
         window.addEventListener("blur", hideSorryHoldOverlay);
       }
@@ -2038,34 +2069,80 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         naviScamModal.setAttribute("aria-hidden", "true");
       }
 
+      function playPopupErrorSound() {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        if (!popupErrorAudioCtx) popupErrorAudioCtx = new AudioCtx();
+        const ctx = popupErrorAudioCtx;
+        const now = ctx.currentTime;
+        const master = ctx.createGain();
+        master.gain.setValueAtTime(0.0001, now);
+        master.gain.linearRampToValueAtTime(0.24, now + 0.01);
+        master.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+        master.connect(ctx.destination);
+
+        const oscA = ctx.createOscillator();
+        const oscB = ctx.createOscillator();
+        oscA.type = "square";
+        oscB.type = "triangle";
+        oscA.frequency.setValueAtTime(980, now);
+        oscA.frequency.exponentialRampToValueAtTime(280, now + 0.2);
+        oscB.frequency.setValueAtTime(1240, now);
+        oscB.frequency.exponentialRampToValueAtTime(360, now + 0.2);
+        oscA.connect(master);
+        oscB.connect(master);
+        oscA.start(now);
+        oscB.start(now);
+        oscA.stop(now + 0.21);
+        oscB.stop(now + 0.21);
+      }
+
       publishChanges.addEventListener("click", () => {
         if (editBox.value !== initialEditValue) {
           openTamperModal();
         }
       });
 
-      tamperClose.addEventListener("click", closeTamperModal);
+      tamperClose.addEventListener("click", () => {
+        playPopupErrorSound();
+        closeTamperModal();
+      });
       tamperModal.addEventListener("click", (event) => {
         if (event.target === tamperModal) {
           closeTamperModal();
         }
       });
-      cookieInstallA.addEventListener("click", closeCookieScamModal);
-      cookieInstallB.addEventListener("click", closeCookieScamModal);
+      cookieInstallA.addEventListener("click", () => {
+        playPopupErrorSound();
+        closeCookieScamModal();
+      });
+      cookieInstallB.addEventListener("click", () => {
+        playPopupErrorSound();
+        closeCookieScamModal();
+      });
       cookieScamModal.addEventListener("click", (event) => {
         if (event.target === cookieScamModal) {
           closeCookieScamModal();
         }
       });
-      naviInstallA.addEventListener("click", closeNaviScamModal);
-      naviInstallB.addEventListener("click", closeNaviScamModal);
+      naviInstallA.addEventListener("click", () => {
+        playPopupErrorSound();
+        closeNaviScamModal();
+      });
+      naviInstallB.addEventListener("click", () => {
+        playPopupErrorSound();
+        closeNaviScamModal();
+      });
       naviScamModal.addEventListener("click", (event) => {
         if (event.target === naviScamModal) {
           closeNaviScamModal();
         }
       });
 
-      closeModal.addEventListener("click", closeVideoModal);
+      closeModal.addEventListener("click", () => {
+        playPopupErrorSound();
+        closeVideoModal();
+      });
       modal.addEventListener("click", (event) => {
         if (event.target === modal) {
           closeVideoModal();
