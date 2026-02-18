@@ -43,7 +43,7 @@
         left: 0;
         right: 0;
         top: 0;
-        height: 246px;
+        height: 292px;
         overflow: hidden;
         pointer-events: none;
         user-select: none;
@@ -69,7 +69,7 @@
       }
       .flag-item {
         font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-        font-size: 2.95rem;
+        font-size: 3.7rem;
         line-height: 1;
         display: inline-block;
         filter: saturate(1.12) contrast(1.08);
@@ -179,7 +179,7 @@
         align-items: center;
         gap: 14px;
         margin: 0 0 10px;
-        min-height: 246px;
+        min-height: 292px;
         width: 100%;
         justify-content: flex-start;
         position: relative;
@@ -856,7 +856,7 @@
           padding: 18px 20px 48px;
         }
         .flag-banner {
-          height: 174px;
+          height: 220px;
         }
         .flag-banner-inner {
           top: 50%;
@@ -864,7 +864,7 @@
           animation-duration: 120s;
         }
         .flag-item {
-          font-size: 2.1rem;
+          font-size: 2.8rem;
         }
         .page-actions {
           justify-content: flex-start;
@@ -882,7 +882,7 @@
           font-size: clamp(2.2rem, 10vw, 3.4rem);
         }
         .site-brand {
-          min-height: 174px;
+          min-height: 220px;
         }
         .layout {
           grid-template-columns: 1fr;
@@ -912,7 +912,7 @@
       <header class="site-brand" aria-label="WillKpedia header">
         <h1 class="site-brand-text" id="site-brand-text">WillKpedia</h1>
         <div class="site-brand-mark">
-          <img id="globe-logo" src="images/header-logo-transparent.png" alt="WillKpedia globe mark" draggable="false" />
+          <img id="globe-logo" src="images/header-logo-transparent.png" onerror="this.onerror=null;this.src='images/header-logo.png';" alt="WillKpedia globe mark" draggable="false" />
         </div>
       </header>
       <div class="page-actions" aria-label="Page actions">
@@ -2306,7 +2306,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       naviScamModal.addEventListener("click", closeNaviScamModal);
 
       closeModal.addEventListener("click", closeVideoModal);
-      modal.addEventListener("click", closeVideoModal);
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeVideoModal();
+        }
+      });
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
           closeVideoModal();
