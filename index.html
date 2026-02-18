@@ -2054,12 +2054,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       }
 
       function applyColor(value) {
-        const wasDark = document.body.classList.contains("dark-hellfire");
         if (value === "dark") {
           document.body.classList.add("dark-hellfire");
-          if (!wasDark) {
-            playDarkModeScream();
-          }
           return;
         }
         document.body.classList.remove("dark-hellfire");
@@ -2132,14 +2128,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const colorModeRadios = document.querySelectorAll('input[name="color-mode"]');
       colorModeRadios.forEach((radio) => {
         radio.addEventListener("change", () => applyColor(radio.value));
-        radio.addEventListener("click", () => {
-          if (radio.value === "dark") {
-            document.body.classList.add("dark-hellfire");
-            playDarkModeScream();
-          } else {
-            applyColor(radio.value);
-          }
-        });
+        radio.addEventListener("click", () => applyColor(radio.value));
       });
       const checkedColorMode = document.querySelector('input[name="color-mode"]:checked');
       applyColor(checkedColorMode ? checkedColorMode.value : "auto");
@@ -2238,7 +2227,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       function openTamperModal() {
         tamperModal.setAttribute("aria-hidden", "false");
-        playTamperSound();
       }
 
       function closeTamperModal() {
@@ -2300,41 +2288,25 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         }
       });
 
-      tamperClose.addEventListener("click", () => {
-        playPopupErrorSound();
-        closeTamperModal();
-      });
-      tamperModal.addEventListener("click", (event) => {
-        if (event.target === tamperModal) {
-          closeTamperModal();
-        }
-      });
+      tamperClose.addEventListener("click", closeTamperModal);
+      tamperModal.addEventListener("click", closeTamperModal);
       cookieInstallA.addEventListener("click", () => {
-        playPopupErrorSound();
         closeCookieScamModal();
       });
       cookieInstallB.addEventListener("click", () => {
-        playPopupErrorSound();
         closeCookieScamModal();
       });
+      cookieScamModal.addEventListener("click", closeCookieScamModal);
       naviInstallA.addEventListener("click", () => {
-        playPopupErrorSound();
         closeNaviScamModal();
       });
       naviInstallB.addEventListener("click", () => {
-        playPopupErrorSound();
         closeNaviScamModal();
       });
+      naviScamModal.addEventListener("click", closeNaviScamModal);
 
-      closeModal.addEventListener("click", () => {
-        playPopupErrorSound();
-        closeVideoModal();
-      });
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          closeVideoModal();
-        }
-      });
+      closeModal.addEventListener("click", closeVideoModal);
+      modal.addEventListener("click", closeVideoModal);
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
           closeVideoModal();
