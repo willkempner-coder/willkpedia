@@ -35,13 +35,13 @@
       .page {
         max-width: 1240px;
         margin: 0 auto;
-        padding: 18px 20px 48px;
+        padding: 18px 270px 48px 20px;
       }
       .appearance-panel {
         position: fixed;
-        right: 14px;
+        right: max(14px, calc((100vw - 1240px) / 2 + 14px));
         top: 18px;
-        width: 220px;
+        width: 236px;
         border: 1px solid #c8ccd1;
         background: #f8f9fa;
         font-family: sans-serif;
@@ -136,9 +136,9 @@
         width: 100%;
       }
       .site-brand-mark {
-        width: 132px;
-        height: 132px;
-        flex: 0 0 132px;
+        width: 188px;
+        height: 188px;
+        flex: 0 0 188px;
         border-radius: 50%;
         overflow: hidden;
         border: 1px solid #a2a9b1;
@@ -149,7 +149,7 @@
         height: 100%;
         object-fit: cover;
         object-position: center 91%;
-        transform: scale(1.22);
+        transform: scale(1.34);
         display: block;
       }
       .site-brand-text {
@@ -203,32 +203,100 @@
       .edit-surface.show {
         display: block;
       }
-      .edit-head {
+      body.edit-mode .layout {
+        display: none;
+      }
+      .edit-warning {
+        margin: 0;
+        padding: 9px 11px;
+        border-bottom: 1px solid #c8ccd1;
+        font-size: 0.88rem;
+      }
+      .edit-warning.red {
+        background: #fff4f4;
+        border-left: 3px solid #d33;
+      }
+      .edit-warning.yellow {
+        background: #fff8df;
+        border-left: 3px solid #f0ad00;
+      }
+      .edit-tools {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         border-bottom: 1px solid #c8ccd1;
         background: #f8f9fa;
+        padding: 6px 10px;
+        font-size: 0.86rem;
+      }
+      .edit-tools .tool {
+        color: #202122;
+        font-weight: 700;
+      }
+      .edit-head {
+        border-bottom: 1px solid #c8ccd1;
+        background: #fff;
         padding: 8px 10px;
-        font-size: 0.9rem;
+        font-size: 0.92rem;
       }
       .edit-body {
-        padding: 10px;
+        padding: 0;
       }
       .edit-body textarea {
         width: 100%;
-        min-height: 250px;
+        min-height: 430px;
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
         font-size: 0.82rem;
-        border: 1px solid #a2a9b1;
-        padding: 10px;
+        border: 0;
+        border-top: 1px solid #c8ccd1;
+        border-bottom: 1px solid #c8ccd1;
+        padding: 10px 12px;
         resize: vertical;
       }
       .edit-actions {
-        margin-top: 10px;
+        padding: 9px 10px 12px;
+        background: #f8f9fa;
+      }
+      .edit-summary {
+        margin: 0 0 10px;
+      }
+      .edit-summary label {
+        display: block;
+        font-size: 0.82rem;
+        margin: 0 0 4px;
+      }
+      .edit-summary input {
+        width: 100%;
+        border: 1px solid #a2a9b1;
+        padding: 7px 8px;
+        font-size: 0.88rem;
+      }
+      .edit-buttons {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
       }
       .publish-btn {
         border: 1px solid #3366cc;
         background: #3366cc;
         color: #fff;
         padding: 8px 12px;
+        cursor: pointer;
+      }
+      .secondary-btn {
+        border: 1px solid #a2a9b1;
+        background: #fff;
+        color: #202122;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+      .cancel-btn {
+        border: 0;
+        background: transparent;
+        color: #d33;
+        font-weight: 700;
+        padding: 8px 4px;
         cursor: pointer;
       }
       .tamper-modal {
@@ -446,29 +514,43 @@
       .wiki-preview {
         position: fixed;
         z-index: 120;
-        width: 360px;
-        border: 1px solid #72777d;
+        width: min(900px, calc(100vw - 40px));
+        border: 1px solid #a2a9b1;
         background: #fff;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+        border-radius: 6px;
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.3);
         display: none;
+      }
+      .wiki-preview::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 38px;
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        border-left: 1px solid #a2a9b1;
+        border-top: 1px solid #a2a9b1;
+        transform: rotate(45deg);
       }
       .wiki-preview.show {
         display: block;
       }
       .wiki-preview-inner {
         display: grid;
-        grid-template-columns: 1fr 130px;
+        grid-template-columns: 58% 42%;
       }
       .wiki-preview-copy {
-        padding: 10px;
+        padding: 18px 20px;
         font-family: sans-serif;
-        font-size: 0.88rem;
-        line-height: 1.45;
+        font-size: 0.95rem;
+        line-height: 1.5;
       }
       .wiki-preview-title {
-        margin: 0 0 6px;
-        font-size: 0.97rem;
+        margin: 0 0 8px;
+        font-size: 2rem;
         font-weight: 700;
+        line-height: 1.05;
       }
       .wiki-preview img {
         width: 100%;
@@ -526,6 +608,9 @@
         white-space: nowrap;
       }
       @media (max-width: 980px) {
+        .page {
+          padding: 18px 20px 48px;
+        }
         .page-actions {
           justify-content: flex-start;
         }
@@ -593,6 +678,16 @@
         <button class="page-tab" id="tab-history" type="button">View history</button>
       </div>
       <section class="edit-surface" id="edit-surface" aria-label="Edit source">
+        <p class="edit-warning red"><strong>Warning:</strong> Any attempt to alter this page may trigger security reporting.</p>
+        <p class="edit-warning yellow"><strong>Note:</strong> This source editor is monitored. Proceed with care.</p>
+        <div class="edit-tools">
+          <span class="tool">B</span>
+          <span class="tool">I</span>
+          <span class="tool">⛓</span>
+          <span class="tool">⧉</span>
+          <span class="tool">☰</span>
+          <span style="margin-left:auto;">Preview ▾</span>
+        </div>
         <div class="edit-head">Editing source code for page: <strong>Will Kempner</strong></div>
         <div class="edit-body">
           <textarea id="edit-box" spellcheck="false">&lt;section id="bio"&gt;
@@ -608,7 +703,16 @@
   &lt;!-- source excerpt from willk page --&gt;
 &lt;/section&gt;</textarea>
           <div class="edit-actions">
-            <button class="publish-btn" id="publish-changes" type="button">Publish changes</button>
+            <div class="edit-summary">
+              <label for="edit-summary">Edit summary (briefly describe your changes)</label>
+              <input id="edit-summary" type="text" value="" />
+            </div>
+            <div class="edit-buttons">
+              <button class="publish-btn" id="publish-changes" type="button">Publish changes</button>
+              <button class="secondary-btn" id="show-preview" type="button">Show preview</button>
+              <button class="secondary-btn" id="show-changes" type="button">Show changes</button>
+              <button class="cancel-btn" id="edit-cancel" type="button">Cancel</button>
+            </div>
           </div>
         </div>
       </section>
@@ -1129,6 +1233,9 @@
       const editSurface = document.getElementById("edit-surface");
       const editBox = document.getElementById("edit-box");
       const publishChanges = document.getElementById("publish-changes");
+      const showPreview = document.getElementById("show-preview");
+      const showChanges = document.getElementById("show-changes");
+      const editCancel = document.getElementById("edit-cancel");
       const tamperModal = document.getElementById("tamper-modal");
       const tamperClose = document.getElementById("tamper-close");
       const initialEditValue = editBox.value;
@@ -1254,11 +1361,15 @@
         tabEdit.classList.toggle("active", mode === "edit");
         tabHistory.classList.toggle("active", mode === "history");
         editSurface.classList.toggle("show", mode === "edit");
+        document.body.classList.toggle("edit-mode", mode === "edit");
       }
 
       tabRead.addEventListener("click", () => setPageTab("read"));
       tabEdit.addEventListener("click", () => setPageTab("edit"));
-      tabHistory.addEventListener("click", () => setPageTab("history"));
+      tabHistory.addEventListener("click", () => setPageTab("read"));
+      showPreview.addEventListener("click", () => alert("Preview mode is disabled for protected pages."));
+      showChanges.addEventListener("click", () => alert("Diff view unavailable."));
+      editCancel.addEventListener("click", () => setPageTab("read"));
 
       function playTamperSound() {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
