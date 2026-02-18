@@ -737,6 +737,21 @@
         padding: 8px 10px;
         cursor: pointer;
       }
+      .cookie-scam-card.navi {
+        border-color: #1c53b8;
+        background: linear-gradient(160deg, #d8ecff, #c0d9ff);
+        font-family: Papyrus, fantasy;
+      }
+      .cookie-scam-card.navi .cookie-scam-title {
+        color: #0f3f93;
+      }
+      .cookie-scam-card.navi .cookie-scam-chicken {
+        border-color: #5a8bd8;
+      }
+      .cookie-scam-card.navi .cookie-scam-actions button {
+        border-color: #1f4ea3;
+        background: #1f66d1;
+      }
       .nowrap {
         white-space: nowrap;
       }
@@ -1581,14 +1596,43 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         </div>
       </div>
     </div>
+    <div id="navi-scam-modal" class="cookie-scam-modal" aria-hidden="true">
+      <div class="cookie-scam-card navi" role="dialog" aria-modal="true" aria-labelledby="navi-scam-title">
+        <h2 class="cookie-scam-title" id="navi-scam-title">🔵🙃🙃 Kaltxì! Eywa txewrrll nì-skem 🙃🙃🔵</h2>
+        <p class="cookie-scam-copy">Nga lu mì tsmukan skxawng-protocol. Nì'awve frrfen srane sì fko txana install talun. 🔵🙃🔵🙃</p>
+        <p class="cookie-scam-copy">Mawey! Fìu pxan nìprrte' install-ìlä, ke lu hì'i. 🙃🔵🙃🔵</p>
+        <pre class="cookie-scam-chicken" aria-label="tiny headless chicken ascii">  __
+&lt;(xx)___
+ (__)  /
+  `---'</pre>
+        <div class="cookie-scam-actions">
+          <button type="button" id="navi-install-a">安装</button>
+          <button type="button" id="navi-install-b">安装</button>
+        </div>
+      </div>
+    </div>
 
     <script>
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
       }
-      window.addEventListener("load", () => {
+
+      function forceTopOnEntry() {
+        if (window.location.hash) {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
         window.scrollTo(0, 0);
-      });
+        requestAnimationFrame(() => {
+          window.scrollTo(0, 0);
+        });
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 80);
+      }
+
+      window.addEventListener("DOMContentLoaded", forceTopOnEntry);
+      window.addEventListener("load", forceTopOnEntry);
+      window.addEventListener("pageshow", forceTopOnEntry);
 
       const modal = document.getElementById("video-modal");
       const modalBody = document.getElementById("modal-body");
@@ -1621,11 +1665,16 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const cookieScamModal = document.getElementById("cookie-scam-modal");
       const cookieInstallA = document.getElementById("cookie-install-a");
       const cookieInstallB = document.getElementById("cookie-install-b");
+      const naviScamModal = document.getElementById("navi-scam-modal");
+      const naviInstallA = document.getElementById("navi-install-a");
+      const naviInstallB = document.getElementById("navi-install-b");
       const initialEditValue = editBox.value;
       let wikiHideTimer = null;
       let videoHoverShowTimer = null;
       let alertAudioCtx = null;
+      let screamAudioCtx = null;
       let cookieScamTimer = null;
+      let naviScamTimer = null;
       const scandalImages = [
         { src: "images/scandal-01.png", caption: "Public reaction image 1." },
         { src: "images/scandal-02.png", caption: "Public reaction image 2." },
@@ -1775,11 +1824,73 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       }
 
       function applyColor(value) {
+        const wasDark = document.body.classList.contains("dark-hellfire");
         if (value === "dark") {
           document.body.classList.add("dark-hellfire");
+          if (!wasDark) {
+            playDarkModeScream();
+          }
           return;
         }
         document.body.classList.remove("dark-hellfire");
+      }
+
+      function playDarkModeScream() {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        if (!screamAudioCtx) screamAudioCtx = new AudioCtx();
+        const ctx = screamAudioCtx;
+        const now = ctx.currentTime;
+        const master = ctx.createGain();
+        master.gain.setValueAtTime(0.0001, now);
+        master.gain.linearRampToValueAtTime(1.0, now + 0.06);
+        master.gain.exponentialRampToValueAtTime(0.0001, now + 1.25);
+        master.connect(ctx.destination);
+
+        // Formant-like stack for a rough human scream timbre.
+        const partials = [
+          { f0: 165, f1: 700, f2: 1150, g: 0.34 },
+          { f0: 220, f1: 900, f2: 1400, g: 0.26 },
+          { f0: 300, f1: 1200, f2: 2400, g: 0.18 }
+        ];
+
+        partials.forEach((p, idx) => {
+          const osc = ctx.createOscillator();
+          osc.type = "sawtooth";
+          const band = ctx.createBiquadFilter();
+          band.type = "bandpass";
+          band.Q.value = 6 + idx;
+          const gain = ctx.createGain();
+          gain.gain.value = p.g;
+
+          osc.frequency.setValueAtTime(p.f0, now);
+          osc.frequency.exponentialRampToValueAtTime(p.f0 * 1.7, now + 0.22);
+          osc.frequency.exponentialRampToValueAtTime(p.f0 * 0.95, now + 1.18);
+          band.frequency.setValueAtTime(p.f1, now);
+          band.frequency.exponentialRampToValueAtTime(p.f2, now + 0.3);
+          band.frequency.exponentialRampToValueAtTime(p.f1 * 0.9, now + 1.2);
+
+          osc.connect(band).connect(gain).connect(master);
+          osc.start(now);
+          osc.stop(now + 1.25);
+        });
+
+        // Breath/noise component for harsher scream edge.
+        const noiseBuffer = ctx.createBuffer(1, ctx.sampleRate * 1.25, ctx.sampleRate);
+        const data = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.7;
+        const noise = ctx.createBufferSource();
+        noise.buffer = noiseBuffer;
+        const noiseFilter = ctx.createBiquadFilter();
+        noiseFilter.type = "highpass";
+        noiseFilter.frequency.setValueAtTime(1300, now);
+        const noiseGain = ctx.createGain();
+        noiseGain.gain.setValueAtTime(0.001, now);
+        noiseGain.gain.linearRampToValueAtTime(0.2, now + 0.08);
+        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 1.1);
+        noise.connect(noiseFilter).connect(noiseGain).connect(master);
+        noise.start(now);
+        noise.stop(now + 1.2);
       }
 
       document.querySelectorAll('input[name="text-size"]').forEach((radio) => {
@@ -1859,10 +1970,21 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       function openCookieScamModal() {
         cookieScamModal.setAttribute("aria-hidden", "false");
+        if (!naviScamTimer) {
+          naviScamTimer = setTimeout(openNaviScamModal, 30000);
+        }
       }
 
       function closeCookieScamModal() {
         cookieScamModal.setAttribute("aria-hidden", "true");
+      }
+
+      function openNaviScamModal() {
+        naviScamModal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeNaviScamModal() {
+        naviScamModal.setAttribute("aria-hidden", "true");
       }
 
       publishChanges.addEventListener("click", () => {
@@ -1884,6 +2006,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           closeCookieScamModal();
         }
       });
+      naviInstallA.addEventListener("click", closeNaviScamModal);
+      naviInstallB.addEventListener("click", closeNaviScamModal);
+      naviScamModal.addEventListener("click", (event) => {
+        if (event.target === naviScamModal) {
+          closeNaviScamModal();
+        }
+      });
 
       closeModal.addEventListener("click", closeVideoModal);
       modal.addEventListener("click", (event) => {
@@ -1900,6 +2029,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         }
         if (event.key === "Escape" && cookieScamModal.getAttribute("aria-hidden") === "false") {
           closeCookieScamModal();
+        }
+        if (event.key === "Escape" && naviScamModal.getAttribute("aria-hidden") === "false") {
+          closeNaviScamModal();
         }
       });
       cookieScamTimer = setTimeout(openCookieScamModal, 20000);
