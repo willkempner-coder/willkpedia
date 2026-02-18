@@ -511,6 +511,11 @@
         font-family: sans-serif;
         font-size: 0.84rem;
         margin-left: 10px;
+        color: var(--wiki-blue);
+        cursor: pointer;
+      }
+      .edit:hover {
+        text-decoration: underline;
       }
       .wikitable {
         width: 100%;
@@ -518,6 +523,12 @@
         font-family: sans-serif;
         font-size: 0.9rem;
         margin: 10px 0 14px;
+      }
+      #personal-info .wikitable {
+        width: auto;
+        min-width: 340px;
+        max-width: calc(100% - 330px);
+        display: inline-table;
       }
       .wikitable th,
       .wikitable td {
@@ -629,6 +640,9 @@
       #references li {
         scroll-margin-top: 18px;
       }
+      #references {
+        clear: both;
+      }
       #references li:target {
         background: #fff1a8;
       }
@@ -651,6 +665,27 @@
         font-family: sans-serif;
         font-size: 0.78rem;
         color: #54595d;
+      }
+      #discography .wikitable th:nth-child(4),
+      #discography .wikitable td:nth-child(4) {
+        display: none;
+      }
+      .bandcamp-artist-player {
+        border: 1px solid #c8ccd1;
+        background: #f8f9fa;
+        padding: 8px 10px;
+        margin: 6px 0 10px;
+      }
+      .bandcamp-artist-player-title {
+        margin: 0 0 6px;
+        font-family: sans-serif;
+        font-size: 0.82rem;
+        color: #54595d;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .bandcamp-artist-player .bandcamp-embed {
+        min-width: 0;
       }
       .wiki-preview {
         position: fixed;
@@ -900,6 +935,22 @@
           float: none;
           margin: 8px 0 14px;
         }
+        #personal-info .wikitable {
+          width: 100%;
+          max-width: 100%;
+          min-width: 0;
+          display: table;
+        }
+        .wikitable {
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+        #discography .bandcamp-embed {
+          min-width: 160px;
+        }
       }
     </style>
   </head>
@@ -920,7 +971,6 @@
       <div class="page-actions" aria-label="Page actions">
         <button class="page-tab active" id="tab-read" type="button">Read</button>
         <button class="page-tab" id="tab-edit" type="button">Edit</button>
-        <button class="page-tab" id="tab-history" type="button">View history</button>
       </div>
       <section class="edit-surface" id="edit-surface" aria-label="Edit source">
         <p class="edit-warning red"><strong>Warning:</strong> Any attempt to alter this page may trigger security reporting.</p>
@@ -1234,7 +1284,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
           <section id="personal-info">
             <h2>Personal Info <span class="edit">[edit]</span></h2>
-            <table class="wikitable">
+            <table class="wikitable personal-info-table">
               <tbody>
                 <tr>
                   <th>Cell</th>
@@ -1275,6 +1325,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Year</th>
                   <th>Title</th>
                   <th>Role</th>
+                  <th>Network</th>
                   <th>Notes</th>
                 </tr>
               </thead>
@@ -1283,25 +1334,36 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>2018; 2022</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" class="video-link"><i>Random Acts of Flyness</i></a> (HBO, Seasons 1-2)</td>
                   <td>Lead Assistant Editor (S1); Associate Editor (S2)</td>
+                  <td>HBO</td>
                   <td>6 episodes in each season</td>
-                </tr>
-                <tr>
-                  <td>2022</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tFMQs50V1g8" class="video-link"><i>Growing Up</i></a> (Disney+)</td>
-                  <td>Editor</td>
-                  <td>Docuseries, 5 episodes</td>
-                </tr>
-                <tr>
-                  <td>2020</td>
-                  <td><a href="#" data-video="https://video.squarespace-cdn.com/content/v1/642710859bf25503dd76cbf2/3cf59cee-7e2d-45bf-b0b6-5eec46afa48e/1920:1080" class="video-link"><i>Best Dance</i></a> (Topic)</td>
-                  <td>Editor</td>
-                  <td>Series, 5 episodes</td>
                 </tr>
                 <tr>
                   <td>2018</td>
                   <td><i>Two Dope Queens</i> (HBO, Season 1)</td>
                   <td>Assistant Editor</td>
+                  <td>HBO</td>
                   <td>4 episodes</td>
+                </tr>
+                <tr>
+                  <td>2020</td>
+                  <td><a href="#" data-video="https://video.squarespace-cdn.com/content/v1/642710859bf25503dd76cbf2/3cf59cee-7e2d-45bf-b0b6-5eec46afa48e/1920:1080" class="video-link"><i>Best Dance</i></a> (Topic)</td>
+                  <td>Editor</td>
+                  <td>Topic</td>
+                  <td>Series, 5 episodes</td>
+                </tr>
+                <tr>
+                  <td>2022</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tFMQs50V1g8" class="video-link"><i>Growing Up</i></a> (Disney+)</td>
+                  <td>Editor</td>
+                  <td>Disney+</td>
+                  <td>Docuseries, 5 episodes</td>
+                </tr>
+                <tr>
+                  <td>TBD</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/Svual-PcOxE" class="video-link"><i>Conner O'Malley's Stand Up Solutions</i></a></td>
+                  <td>Assistant Editor</td>
+                  <td>TBD</td>
+                  <td>Special</td>
                 </tr>
               </tbody>
             </table>
@@ -1318,16 +1380,16 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td>2023-present?</td>
-                  <td>Telfar advertisements</td>
-                  <td>Editor; Producer; Copywriter (occasional)</td>
-                  <td>Includes <a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLh-uDRIvQHP2aErYektn7CFR7tYbeo15a" class="video-link"><i>New Models</i> Season 0</a> and <a href="#" data-video="https://www.youtube-nocookie.com/embed/-Io182z4xrw" class="video-link">Season 1</a></td>
-                </tr>
-                <tr>
                   <td>2021</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)</td>
                   <td>Editor</td>
                   <td>Fashion campaign</td>
+                </tr>
+                <tr>
+                  <td>2023-present?</td>
+                  <td>Telfar advertisements</td>
+                  <td>Editor; Producer; Copywriter (occasional)</td>
+                  <td>Includes <a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLh-uDRIvQHP2aErYektn7CFR7tYbeo15a" class="video-link"><i>New Models</i> Season 0</a> and <a href="#" data-video="https://www.youtube-nocookie.com/embed/-Io182z4xrw" class="video-link">Season 1</a></td>
                 </tr>
               </tbody>
             </table>
@@ -1347,22 +1409,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td>2024</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" class="video-link"><i>Q&amp;A with Juvederm</i></a></td>
-                  <td>Editor</td>
-                  <td>Corporate/brand campaign</td>
-                </tr>
-                <tr>
                   <td>2019</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" class="video-link"><i>Doja Cat's Guide to E-Girl Beauty | Beauty Secrets | Vogue</i></a></td>
                   <td>Editor</td>
                   <td>Conde Nast / Vogue video feature</td>
-                </tr>
-                <tr>
-                  <td>2020</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" class="video-link"><i>Beauty Secrets</i></a> (Vogue)</td>
-                  <td>Editor</td>
-                  <td>Conde Nast</td>
                 </tr>
                 <tr>
                   <td>2020</td>
@@ -1375,6 +1425,18 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><a href="#" data-video="https://video.squarespace-cdn.com/content/v1/642710859bf25503dd76cbf2/19527b0c-da15-491e-8ff9-be385a1aac5e/1920:1080" class="video-link"><i>Wondr Health Testimonials</i></a></td>
                   <td>Editor</td>
                   <td>Corporate campaign</td>
+                </tr>
+                <tr>
+                  <td>2024</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" class="video-link"><i>Q&amp;A with Juvederm</i></a></td>
+                  <td>Editor</td>
+                  <td>Corporate/brand campaign</td>
+                </tr>
+                <tr>
+                  <td>TBD</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/YIFbLdPDGzo" class="video-link"><i>MoMA</i></a></td>
+                  <td>Editor</td>
+                  <td>Corporate/brand campaign</td>
                 </tr>
               </tbody>
             </table>
@@ -1391,12 +1453,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td>2023</td>
-                  <td><a href="#" data-video="https://video.squarespace-cdn.com/content/v1/642710859bf25503dd76cbf2/86eb29ff-efe7-4a8b-8c84-ddbca0aa23b4/1440:1080" class="video-link"><i>Andre 3000 - Listening To The Sun</i></a> (teaser)</td>
-                  <td>Trailer Editor</td>
-                  <td>Social announcement teaser</td>
-                </tr>
-                <tr>
                   <td>2020</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" class="video-link"><i>Inspector Ike</i></a> (Graham Mason)</td>
                   <td>Trailer Editor</td>
@@ -1407,6 +1463,18 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" class="video-link"><i>Reveries: Going Deeper</i></a></td>
                   <td>Trailer Editor</td>
                   <td>Trailer</td>
+                </tr>
+                <tr>
+                  <td>2023</td>
+                  <td><a href="#" data-video="https://video.squarespace-cdn.com/content/v1/642710859bf25503dd76cbf2/86eb29ff-efe7-4a8b-8c84-ddbca0aa23b4/1440:1080" class="video-link"><i>Andre 3000 - Listening To The Sun</i></a> (teaser)</td>
+                  <td>Trailer Editor</td>
+                  <td>Social announcement teaser</td>
+                </tr>
+                <tr>
+                  <td>TBD</td>
+                  <td><a href="#" data-video="https://www.instagram.com/reel/DSIQWQPkSTx/?hl=en" class="video-link"><i>Seek No Favor</i></a></td>
+                  <td>Trailer Editor</td>
+                  <td>Instagram reel trailer</td>
                 </tr>
               </tbody>
             </table>
@@ -1420,69 +1488,73 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
-                  <th class="nowrap">Link</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/WDuSxJ_eAGU" class="video-link"><i>The Good Boy</i></a></td>
-                  <td>2018</td>
-                  <td>Director, co-writer, editor</td>
-                  <td>Popup</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://player.vimeo.com/video/409480281" class="video-link"><i>A Flaw In The System</i></a></td>
-                  <td>2020</td>
-                  <td>Director, editor</td>
-                  <td>Popup</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/iyH1BgfcIX8" class="video-link"><i>Message from Mark / The Lord of the Ring</i></a></td>
-                  <td>Unknown</td>
-                  <td>Editor</td>
-                  <td>Popup</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/pn7tYDdCfuQ" class="video-link"><i>Serf's Up</i></a></td>
-                  <td>2016</td>
-                  <td>Director, writer, editor</td>
-                  <td>Popup</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ITKpzCnTJWQ" class="video-link"><i>Writer's Retreat</i></a></td>
-                  <td>2019</td>
-                  <td>Co-director, writer, editor</td>
-                  <td>Popup</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AuTQ0SZPoOI" class="video-link"><i>Joker Stairs</i></a></td>
-                  <td>2019</td>
-                  <td>Co-director, editor</td>
-                  <td>Popup</td>
-                </tr>
-                <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/beMe8lM7-SI" class="video-link"><i>Happy Birthday, Mr. Hoffman</i></a></td>
                   <td>2010</td>
                   <td>Director, writer, editor</td>
-                  <td>Popup</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/moUKXMq04ho" class="video-link"><i>Jay Kelly: An Artist At Work</i></a></td>
                   <td>2013</td>
                   <td>Director, editor</td>
-                  <td>Popup</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/pn7tYDdCfuQ" class="video-link"><i>Serf's Up</i></a></td>
+                  <td>2016</td>
+                  <td>Director, writer, editor</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/WDuSxJ_eAGU" class="video-link"><i>The Good Boy</i></a></td>
+                  <td>2018</td>
+                  <td>Director, co-writer, editor</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ITKpzCnTJWQ" class="video-link"><i>Writer's Retreat</i></a></td>
+                  <td>2019</td>
+                  <td>Co-director, writer, editor</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AuTQ0SZPoOI" class="video-link"><i>Joker Stairs</i></a></td>
+                  <td>2019</td>
+                  <td>Co-director, editor</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://player.vimeo.com/video/409480281" class="video-link"><i>A Flaw In The System</i></a></td>
+                  <td>2020</td>
+                  <td>Director, editor</td>
                 </tr>
                 <tr>
                   <td><i>Good One</i> (dir. India Donaldson)</td>
                   <td>2022</td>
                   <td>Assistant Editor; DIT</td>
-                  <td>Feature film (Sundance 2024)</td>
                 </tr>
                 <tr>
                   <td><i>Our Home Out West</i> (Cole Escola)</td>
                   <td>2023</td>
                   <td>Assistant Editor; DIT</td>
-                  <td>TV special</td>
+                </tr>
+                <tr>
+                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a></td>
+                  <td>2024</td>
+                  <td>Assistant Editor</td>
+                </tr>
+                <tr>
+                  <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a></td>
+                  <td>2024</td>
+                  <td>Additional Editor</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" class="video-link"><i>Short film (dir. Jack Bensinger)</i></a></td>
+                  <td>TBD</td>
+                  <td>Assistant Editor</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/iyH1BgfcIX8" class="video-link"><i>Message from Mark / The Lord of the Ring</i></a></td>
+                  <td>Unknown</td>
+                  <td>Editor</td>
                 </tr>
               </tbody>
             </table>
@@ -1492,6 +1564,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <h2>Discography <span class="edit">[edit]</span></h2>
 
             <h3>Digital Zoom<sup class="ref" id="cite-9a"><a href="#ref-9">[9]</a></sup></h3>
+            <div class="bandcamp-artist-player">
+              <p class="bandcamp-artist-player-title">Bandcamp player</p>
+              <div class="bandcamp-embed bandcamp-artist-embed" data-url="https://digitalzoom.bandcamp.com/"></div>
+            </div>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1512,6 +1588,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h3>ART DLR<sup class="ref" id="cite-8a"><a href="#ref-8">[8]</a></sup></h3>
+            <div class="bandcamp-artist-player">
+              <p class="bandcamp-artist-player-title">Bandcamp player</p>
+              <div class="bandcamp-embed bandcamp-artist-embed" data-url="https://artdealer.bandcamp.com/"></div>
+            </div>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1522,19 +1602,23 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 </tr>
               </thead>
               <tbody>
-                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/i-met-a-mummy-a-detective-reed-mystery"></div></td></tr>
-                <tr><td><i>DLR.MAG</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/dlr-mag"></div></td></tr>
+                <tr><td><i>Work Flows</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/work-flows"></div></td></tr>
+                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/the-ballad-of-veggie-dog-dress-rehearsal-audio"></div></td></tr>
+                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/half-step-down-live-at-giamattis"></div></td></tr>
+                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-04-28-20"></div></td></tr>
+                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-05-22-20"></div></td></tr>
                 <tr><td><i>Endangered: On Ice (In Space)</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/endangered-on-ice-in-space"></div></td></tr>
                 <tr><td><i>Ghoulsikal</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/ghoulsikal"></div></td></tr>
-                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/the-ballad-of-veggie-dog-dress-rehearsal-audio"></div></td></tr>
-                <tr><td><i>Work Flows</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/work-flows"></div></td></tr>
-                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/half-step-down-live-at-giamattis"></div></td></tr>
-                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-05-22-20"></div></td></tr>
-                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-04-28-20"></div></td></tr>
+                <tr><td><i>DLR.MAG</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/dlr-mag"></div></td></tr>
+                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/i-met-a-mummy-a-detective-reed-mystery"></div></td></tr>
               </tbody>
             </table>
 
             <h3>Lanlord Lance<sup class="ref" id="cite-10a"><a href="#ref-10">[10]</a></sup></h3>
+            <div class="bandcamp-artist-player">
+              <p class="bandcamp-artist-player-title">Bandcamp player</p>
+              <div class="bandcamp-embed bandcamp-artist-embed" data-url="https://lanlordlance.bandcamp.com/"></div>
+            </div>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1545,20 +1629,24 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 </tr>
               </thead>
               <tbody>
-                <tr><td><i>it's hard to be an angel when you're still alive</i></td><td>2023</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/its-hard-to-be-an-angel-when-youre-still-alive"></div></td></tr>
-                <tr><td><i>Calling On My Angels</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/calling-on-my-angels"></div></td></tr>
-                <tr><td><i>Playdate</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/playdate"></div></td></tr>
+                <tr><td><i>Don't Be A Shit Boy - Single</i></td><td>2015</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/dont-be-a-shit-boy-single"></div></td></tr>
+                <tr><td><i>SR12: unsweet - Single</i></td><td>2017</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/sr12-unsweet-single"></div></td></tr>
+                <tr><td><i>SR14: Night Sweats Box Set</i></td><td>2018</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/sr14-night-sweats-box-set"></div></td></tr>
+                <tr><td><i>Catskill Queen</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/catskill-queen"></div></td></tr>
+                <tr><td><i>The Streets Of Love Bug</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/the-streets-of-love-bug"></div></td></tr>
                 <tr><td><i>Here Come The Entrees</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/here-come-the-entrees"></div></td></tr>
                 <tr><td><i>Winter's Too Cold</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/winters-too-cold"></div></td></tr>
-                <tr><td><i>The Streets Of Love Bug</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/the-streets-of-love-bug"></div></td></tr>
-                <tr><td><i>Catskill Queen</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/catskill-queen"></div></td></tr>
-                <tr><td><i>SR14: Night Sweats Box Set</i></td><td>2018</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/sr14-night-sweats-box-set"></div></td></tr>
-                <tr><td><i>SR12: unsweet - Single</i></td><td>2017</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/sr12-unsweet-single"></div></td></tr>
-                <tr><td><i>Don't Be A Shit Boy - Single</i></td><td>2015</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/dont-be-a-shit-boy-single"></div></td></tr>
+                <tr><td><i>Playdate</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/playdate"></div></td></tr>
+                <tr><td><i>Calling On My Angels</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/calling-on-my-angels"></div></td></tr>
+                <tr><td><i>it's hard to be an angel when you're still alive</i></td><td>2023</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/its-hard-to-be-an-angel-when-youre-still-alive"></div></td></tr>
               </tbody>
             </table>
 
             <h3>Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></h3>
+            <div class="bandcamp-artist-player">
+              <p class="bandcamp-artist-player-title">Bandcamp player</p>
+              <div class="bandcamp-embed bandcamp-artist-embed" data-url="https://trianglelord.bandcamp.com/"></div>
+            </div>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1591,6 +1679,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <img src="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" alt="NPCC Short Film Block 2021 still image" />
               <figcaption>Will Kempner during the NPCC Short Film Block (2021).</figcaption>
             </figure>
+            <p>Kempner’s creative output has been recognized through several industry grants and festival screenings. In 2015, he was the winner of the Todd Phillips Post Production Grant. He later won the 2019 Tribeca Film Festival Snapchat Story Contest, a result documented with subject-provided team attribution. His work has also been selected for official screenings, including the 2021 NPCC Short Film Block and a scheduled presentation at NoBudge Live 12.</p>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1770,7 +1859,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const wikiCache = new Map();
       const tabRead = document.getElementById("tab-read");
       const tabEdit = document.getElementById("tab-edit");
-      const tabHistory = document.getElementById("tab-history");
       const flagTrackA = document.getElementById("flag-track-a");
       const flagTrackB = document.getElementById("flag-track-b");
       const siteBrandText = document.getElementById("site-brand-text");
@@ -1904,7 +1992,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       }
 
       async function initBandcampEmbeds() {
-        const nodes = document.querySelectorAll(".bandcamp-embed[data-url]");
+        const nodes = document.querySelectorAll(".bandcamp-artist-embed[data-url]");
         for (const node of nodes) {
           const url = node.getAttribute("data-url");
           if (!url) continue;
@@ -2109,17 +2197,18 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       function setPageTab(mode) {
         tabRead.classList.toggle("active", mode === "read");
         tabEdit.classList.toggle("active", mode === "edit");
-        tabHistory.classList.toggle("active", mode === "history");
         editSurface.classList.toggle("show", mode === "edit");
         document.body.classList.toggle("edit-mode", mode === "edit");
       }
 
       tabRead.addEventListener("click", () => setPageTab("read"));
       tabEdit.addEventListener("click", () => setPageTab("edit"));
-      tabHistory.addEventListener("click", () => setPageTab("read"));
       showPreview.addEventListener("click", () => alert("Preview mode is disabled for protected pages."));
       showChanges.addEventListener("click", () => alert("Diff view unavailable."));
       editCancel.addEventListener("click", () => setPageTab("read"));
+      document.querySelectorAll(".edit").forEach((node) => {
+        node.addEventListener("click", () => setPageTab("edit"));
+      });
 
       function renderScandalImage() {
         if (!scandalImage || !scandalCaption || !scandalCounter) return;
