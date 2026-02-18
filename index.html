@@ -33,6 +33,34 @@
         margin: 0 auto;
         padding: 18px 20px 48px;
       }
+      .site-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 0 0 6px;
+      }
+      .site-brand-mark {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid #a2a9b1;
+        background: #fff;
+      }
+      .site-brand-mark img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 84%;
+        display: block;
+      }
+      .site-brand-text {
+        margin: 0;
+        font-size: 2.7rem;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+        line-height: 1;
+      }
       .title {
         margin: 0 0 10px;
         font-size: 2rem;
@@ -72,6 +100,10 @@
       .toc li {
         margin: 3px 0;
       }
+      .toc a.active {
+        color: #202122;
+        font-weight: 700;
+      }
       .article {
         min-width: 0;
       }
@@ -101,8 +133,11 @@
       }
       .infobox-photo img {
         width: 100%;
-        height: auto;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        object-position: center 34%;
         display: block;
+        border: 1px solid #c8ccd1;
       }
       .infobox-photo figcaption {
         margin-top: 6px;
@@ -160,16 +195,23 @@
         border: 1px solid #c8ccd1;
         background: #f8f9fa;
         margin: 6px 0 14px 22px;
-        padding: 4px;
+        padding: 3px;
         font-family: sans-serif;
         font-size: 0.82rem;
       }
       .thumb img {
         width: 100%;
         display: block;
+        border: 1px solid #c8ccd1;
       }
       .thumb figcaption {
-        padding: 6px 3px 2px;
+        padding: 6px 4px 2px;
+      }
+      #references li {
+        scroll-margin-top: 18px;
+      }
+      #references li:target {
+        background: #fff1a8;
       }
       .notes {
         margin-top: 10px;
@@ -277,7 +319,13 @@
   </head>
   <body>
     <div class="page">
-      <h1 class="title">Will Kempner</h1>
+      <header class="site-brand" aria-label="WillKpedia header">
+        <div class="site-brand-mark">
+          <img src="images/header-logo.png" alt="WillKpedia globe mark" />
+        </div>
+        <h1 class="site-brand-text">WillKpedia</h1>
+      </header>
+      <div class="title">Will Kempner</div>
       <p class="subtitle">From WillKpedia, the free encyclopedia</p>
       <div class="layout">
         <aside class="toc-wrap">
@@ -309,7 +357,7 @@
               <tr>
                 <td colspan="2" class="infobox-photo">
                   <figure style="margin:0;">
-                    <img src="bio-photo.jpg" alt="Will Kempner" />
+                    <img src="images/bio-photo.jpg" alt="Will Kempner" />
                     <figcaption>Will Kempner</figcaption>
                   </figure>
                 </td>
@@ -349,8 +397,8 @@
             </p>
             <p>
               In advertising and fashion, Kempner has edited and produced work for Telfar, including <i>New Models</i>
-              (Season 0 and Season 1, 2023-present?). He was also part of the team (with Colin Garland and Ben Townsend)
-              that won the 2019 Tribeca Film Festival Snapchat Story Contest.<sup class="ref" id="cite-5"><a href="#ref-5">[5]</a></sup><sup class="ref" id="cite-6"><a href="#ref-6">[6]</a></sup><sup class="ref" id="cite-7"><a href="#ref-7">[7]</a></sup>
+              (Season 0 and Season 1, 2023-present?). He was also part of a team with Colin Garland and Ben Townsend
+              associated with the Tribeca Film Festival Snapchat Story Contest.<sup class="ref" id="cite-14"><a href="#ref-14">[14]</a></sup>
             </p>
           </section>
 
@@ -404,11 +452,11 @@
                   <td>2023-present?</td>
                   <td>Telfar advertisements</td>
                   <td>Editor; Producer; Copywriter (occasional)</td>
-                  <td>Includes <a href="#" data-video="https://www.youtube.com/embed/videoseries?list=PLh-uDRIvQHP2aErYektn7CFR7tYbeo15a" class="video-link"><i>New Models</i> Season 0</a> and <a href="#" data-video="https://www.youtube.com/embed/-Io182z4xrw" class="video-link">Season 1</a></td>
+                  <td>Includes <a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLh-uDRIvQHP2aErYektn7CFR7tYbeo15a" class="video-link"><i>New Models</i> Season 0</a> and <a href="#" data-video="https://www.youtube-nocookie.com/embed/-Io182z4xrw" class="video-link">Season 1</a></td>
                 </tr>
                 <tr>
                   <td>2021</td>
-                  <td><i>Ms. <a class="wiki-link" href="https://en.wikipedia.org/wiki/Lauryn_Hill" target="_blank" rel="noreferrer">Lauryn Hill</a> for S/S 2021</i> (Louis Vuitton)</td>
+                  <td><i>Ms. Lauryn Hill for S/S 2021</i> (Louis Vuitton)</td>
                   <td>Editor</td>
                   <td>Fashion campaign</td>
                 </tr>
@@ -434,15 +482,15 @@
               <tbody>
                 <tr>
                   <td>2024</td>
-                  <td><a href="#" data-video="https://www.youtube.com/embed/nYkDGvT4tJk" class="video-link"><i>Q&amp;A with Juvederm</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" class="video-link"><i>Q&amp;A with Juvederm</i></a></td>
                   <td>Editor</td>
                   <td>Corporate/brand campaign</td>
                 </tr>
                 <tr>
                   <td>2019</td>
-                  <td><a href="#" data-video="https://www.youtube.com/embed/tsk9c7KF76E" class="video-link"><i>Doja Cat</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" class="video-link"><i>Doja Cat's Guide to E-Girl Beauty | Beauty Secrets | Vogue</i></a></td>
                   <td>Editor</td>
-                  <td>Music video/social campaign (popup); artist: <a class="wiki-link" href="https://en.wikipedia.org/wiki/Doja_Cat" target="_blank" rel="noreferrer">Doja Cat</a></td>
+                  <td>Conde Nast / Vogue video feature</td>
                 </tr>
                 <tr>
                   <td>2020</td>
@@ -478,7 +526,7 @@
               <tbody>
                 <tr>
                   <td>2023</td>
-                  <td><i><a class="wiki-link" href="https://en.wikipedia.org/wiki/Andr%C3%A9_3000" target="_blank" rel="noreferrer">Andre 3000</a> - Listening To The Sun</i> (teaser)</td>
+                  <td><i>Andre 3000 - Listening To The Sun</i> (teaser)</td>
                   <td>Trailer Editor</td>
                   <td>Social announcement teaser</td>
                 </tr>
@@ -524,7 +572,7 @@
                 </tr>
                 <tr>
                   <td>2023</td>
-                  <td><i>Our Home Out West</i> (<a class="wiki-link" href="https://en.wikipedia.org/wiki/Cole_Escola" target="_blank" rel="noreferrer">Cole Escola</a>)</td>
+                  <td><i>Our Home Out West</i> (Cole Escola)</td>
                   <td>Assistant Editor; DIT</td>
                   <td>TV special</td>
                 </tr>
@@ -545,69 +593,70 @@
               <thead>
                 <tr>
                   <th>Title</th>
-                  <th>Format / Status</th>
-                  <th>Platform</th>
-                  <th class="nowrap">Video</th>
+                  <th>Year</th>
+                  <th>Role</th>
+                  <th class="nowrap">Link</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><i>The Good Boy</i></td>
-                  <td>Short film (2018), 15:33</td>
-                  <td>NoBudge</td>
-                  <td><a href="https://www.nobudge.com/videos/the-good-boy" target="_blank" rel="noreferrer">Premiere page</a></td>
+                  <td><a href="#" data-video="https://www.nobudge.com/videos/the-good-boy" class="video-link"><i>The Good Boy</i></a></td>
+                  <td>2018</td>
+                  <td>Director, co-writer, editor</td>
+                  <td>Popup</td>
                 </tr>
                 <tr>
-                  <td><i>A Flaw In The System</i></td>
-                  <td>Short film (2020), 05:24</td>
-                  <td>-</td>
-                  <td><a href="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" target="_blank" rel="noreferrer">NPCC screening image</a></td>
+                  <td><a href="#" data-video="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" class="video-link"><i>A Flaw In The System</i></a></td>
+                  <td>2020</td>
+                  <td>Director, editor</td>
+                  <td>Popup</td>
                 </tr>
                 <tr>
                   <td><i>Message from Mark / The Lord of the Ring</i></td>
-                  <td>Short film, 04:23</td>
-                  <td>-</td>
+                  <td>Unknown</td>
+                  <td>Editor</td>
                   <td>-</td>
                 </tr>
                 <tr>
-                  <td><i>Serf's Up</i></td>
-                  <td>Short film (2016), 11:11</td>
-                  <td>NoBudge</td>
-                  <td><a href="https://www.nobudge.com/videos/serfs-up" target="_blank" rel="noreferrer">Premiere page</a></td>
+                  <td><a href="#" data-video="https://www.nobudge.com/videos/serfs-up" class="video-link"><i>Serf's Up</i></a></td>
+                  <td>2016</td>
+                  <td>Director, writer, editor</td>
+                  <td>Popup</td>
                 </tr>
                 <tr>
                   <td><i>Writer's Retreat</i></td>
-                  <td>Short film (2019), 03:57</td>
-                  <td>-</td>
+                  <td>2019</td>
+                  <td>Co-director, writer, editor</td>
                   <td>-</td>
                 </tr>
                 <tr>
                   <td><i>Joker Stairs</i></td>
-                  <td>Short film (2019), 02:00</td>
-                  <td>-</td>
+                  <td>2019</td>
+                  <td>Co-director, editor</td>
                   <td>-</td>
                 </tr>
                 <tr>
                   <td><i>Happy Birthday, Mr. Hoffman</i></td>
-                  <td>Short film (2010), 07:39</td>
-                  <td>-</td>
+                  <td>2010</td>
+                  <td>Director, writer, editor</td>
                   <td>-</td>
                 </tr>
                 <tr>
                   <td><i>Jay Kelly: An Artist At Work</i></td>
-                  <td>Short film (2013), 03:50</td>
-                  <td>-</td>
+                  <td>2013</td>
+                  <td>Director, editor</td>
                   <td>-</td>
                 </tr>
               </tbody>
             </table>
-            <p class="notes">Filmography entries are sourced from <a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">your current My Films page</a>. Popup embeds are included only where direct player URLs were verifiably recoverable.</p>
+            <p class="notes">Sourced from <a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">willkempner.com/my-films</a>. Popup links are included where that page provides a destination URL.</p>
           </section>
 
           <section id="discography">
             <h2>Discography <span class="edit">[edit]</span></h2>
 
             <h3>Digital Zoom</h3>
+            <p class="notes">Full catalog: <a href="https://digitalzoom.bandcamp.com/" target="_blank" rel="noreferrer">digitalzoom.bandcamp.com</a></p>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -658,6 +707,7 @@
             </table>
 
             <h3>Lanlord Lance</h3>
+            <p class="notes">Full catalog: <a href="https://lanlordlance.bandcamp.com/" target="_blank" rel="noreferrer">lanlordlance.bandcamp.com</a></p>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -703,7 +753,7 @@
             <h2>Awards and Screenings <span class="edit">[edit]</span></h2>
             <figure class="thumb">
               <img src="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" alt="NPCC Short Film Block 2021 still image" />
-              <figcaption>Promotional still associated with NPCC Short Film Block 2021.</figcaption>
+              <figcaption>Will Kempner during the NPCC Short Film Block (2021).</figcaption>
             </figure>
             <table class="wikitable">
               <thead>
@@ -711,33 +761,28 @@
                   <th>Year</th>
                   <th>Award / Screening</th>
                   <th>Result / Notes</th>
-                  <th>Reference</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>2015</td>
-                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Todd_Phillips" target="_blank" rel="noreferrer">Todd Phillips</a> Post Production Grant</td>
+                  <td>Todd Phillips Post Production Grant<sup class="ref" id="cite-12"><a href="#ref-12">[12]</a></sup></td>
                   <td>Winner</td>
-                  <td>-</td>
                 </tr>
                 <tr>
                   <td>2019</td>
-                  <td>Tribeca Film Festival Snapchat Story Contest</td>
-                  <td>Winner (with Colin Garland and Ben Townsend)</td>
-                  <td><a href="https://variety.com/2016/digital/news/snapchat-tribeca-shorts-contest-2017-1201943137/" target="_blank" rel="noreferrer">Variety announcement</a></td>
+                  <td>Tribeca Film Festival Snapchat Story Contest<sup class="ref" id="cite-7a"><a href="#ref-7">[7]</a></sup><sup class="ref" id="cite-14a"><a href="#ref-14">[14]</a></sup></td>
+                  <td>Winner (subject-provided team attribution)</td>
                 </tr>
                 <tr>
                   <td>2021</td>
-                  <td>NPCC Short Film Block</td>
+                  <td>NPCC Short Film Block<sup class="ref" id="cite-13"><a href="#ref-13">[13]</a></sup></td>
                   <td>Official screening</td>
-                  <td><a href="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" target="_blank" rel="noreferrer">Image</a></td>
                 </tr>
                 <tr>
                   <td>TBD</td>
-                  <td>NoBudge Live 12</td>
+                  <td>NoBudge Live 12<sup class="ref" id="cite-6a"><a href="#ref-6">[6]</a></sup></td>
                   <td>Screening</td>
-                  <td><a href="https://nitehawkcinema.com/williamsburg/movies/nobudge-live-12/" target="_blank" rel="noreferrer">Nitehawk listing</a></td>
                 </tr>
               </tbody>
             </table>
@@ -750,13 +795,16 @@
               <li id="ref-2"><a href="https://www.hbo.com/random-acts-of-flyness" target="_blank" rel="noreferrer">HBO - Random Acts of Flyness</a> <a href="#cite-2">^</a></li>
               <li id="ref-3"><a href="https://ondisneyplus.disney.com/show/growing-up" target="_blank" rel="noreferrer">Disney+ - Growing Up (release details)</a> <a href="#cite-3">^</a></li>
               <li id="ref-4"><a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">Will Kempner - My Films</a> <a href="#cite-4">^</a></li>
-              <li id="ref-5"><a href="https://www.willkempner.com/" target="_blank" rel="noreferrer">Will Kempner - Homepage</a> <a href="#cite-5">^</a></li>
-              <li id="ref-6"><a href="https://nitehawkcinema.com/williamsburg/movies/nobudge-live-12/" target="_blank" rel="noreferrer">Nitehawk Cinema - NoBudge Live 12</a> <a href="#cite-6">^</a></li>
-              <li id="ref-7"><a href="https://variety.com/2016/digital/news/snapchat-tribeca-shorts-contest-2017-1201943137/" target="_blank" rel="noreferrer">Variety - Snapchat and Tribeca Storytelling Contest announcement</a> <a href="#cite-7">^</a></li>
+              <li id="ref-5"><a href="https://www.willkempner.com/" target="_blank" rel="noreferrer">Will Kempner - Homepage</a></li>
+              <li id="ref-6"><a href="https://nitehawkcinema.com/williamsburg/movies/nobudge-live-12/" target="_blank" rel="noreferrer">Nitehawk Cinema - NoBudge Live 12</a> <a href="#cite-6a">^</a></li>
+              <li id="ref-7"><a href="https://variety.com/2016/digital/news/snapchat-tribeca-shorts-contest-2017-1201943137/" target="_blank" rel="noreferrer">Variety - Snapchat and Tribeca Storytelling Contest announcement</a> <a href="#cite-7a">^</a></li>
               <li id="ref-8"><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">ART DLR - Bandcamp releases</a></li>
               <li id="ref-9"><a href="https://digitalzoom.bandcamp.com/" target="_blank" rel="noreferrer">Digital Zoom - Bandcamp</a></li>
               <li id="ref-10"><a href="https://lanlordlance.bandcamp.com/" target="_blank" rel="noreferrer">Lanlord Lance - Bandcamp</a></li>
               <li id="ref-11"><a href="https://trianglelord.bandcamp.com/" target="_blank" rel="noreferrer">Triangle Lord - Bandcamp</a></li>
+              <li id="ref-12">Todd Phillips Post Production Grant (subject-provided credit) <a href="#cite-12">^</a></li>
+              <li id="ref-13"><a href="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" target="_blank" rel="noreferrer">NPCC Short Film Block image evidence</a> <a href="#cite-13">^</a></li>
+              <li id="ref-14">Team attribution for the Snapchat contest (Colin Garland and Ben Townsend) provided by subject. <a href="#cite-14">^</a> <a href="#cite-14a">^</a></li>
             </ol>
           </section>
         </main>
@@ -779,16 +827,33 @@
       const modalBody = document.getElementById("modal-body");
       const closeModal = document.getElementById("close-modal");
       const videoLinks = document.querySelectorAll(".video-link");
+      const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
       const wikiPreview = document.getElementById("wiki-preview");
       const wikiLinks = document.querySelectorAll("a.wiki-link");
       const wikiCache = new Map();
       let wikiHideTimer = null;
 
       function openModal(url) {
-        const isEmbeddable = url.includes("youtube.com/embed");
+        const isEmbeddable = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
         if (isEmbeddable) {
-          modalBody.innerHTML = '<iframe src="' + url + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video preview"></iframe>';
+          const watchUrl = url
+            .replace("https://www.youtube-nocookie.com/embed/", "https://www.youtube.com/watch?v=")
+            .replace("https://www.youtube.com/embed/", "https://www.youtube.com/watch?v=");
+          modalBody.innerHTML =
+            '<iframe src="' + url + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video preview"></iframe>' +
+            '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;">' +
+            '<a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on YouTube</a>' +
+            "</div>";
         } else {
+          const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(url);
+          if (isImage) {
+            modalBody.innerHTML =
+              '<div style="padding:12px;background:#f8f9fa;display:flex;align-items:center;justify-content:center;height:100%;">' +
+              '<img src="' + url + '" alt="Linked media" style="max-width:100%;max-height:100%;object-fit:contain;">' +
+              "</div>";
+            modal.setAttribute("aria-hidden", "false");
+            return;
+          }
           modalBody.innerHTML =
             '<div style="padding:20px;font-family:sans-serif;">' +
             "<p>This link does not provide a guaranteed embeddable player.</p>" +
@@ -809,6 +874,35 @@
           openModal(link.dataset.video);
         });
       });
+
+      function setActiveTocLink(hash) {
+        tocLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === hash);
+        });
+      }
+
+      function updateActiveFromScroll() {
+        let currentHash = "#bio";
+        for (const link of tocLinks) {
+          const hash = link.getAttribute("href");
+          const target = document.querySelector(hash);
+          if (!target) continue;
+          if (target.getBoundingClientRect().top <= 120) {
+            currentHash = hash;
+          }
+        }
+        setActiveTocLink(currentHash);
+      }
+
+      tocLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          setActiveTocLink(link.getAttribute("href"));
+        });
+      });
+
+      window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+      window.addEventListener("load", updateActiveFromScroll);
+      updateActiveFromScroll();
 
       closeModal.addEventListener("click", closeVideoModal);
       modal.addEventListener("click", (event) => {
