@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WillKpedia - Will Kempner</title>
+    <style>
+      :root {
+        --wiki-blue: #3366cc;
+        --wiki-border: #a2a9b1;
+        --wiki-bg: #f8f9fa;
+        --wiki-text: #202122;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: var(--wiki-text);
+        background: #ffffff;
+        font-family: "Linux Libertine", "Georgia", "Times New Roman", serif;
+        line-height: 1.6;
+      }
+      a {
+        color: var(--wiki-blue);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .page {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 18px 20px 48px;
+      }
+      .title {
+        margin: 0 0 10px;
+        font-size: 2rem;
+        font-weight: 400;
+      }
+      .subtitle {
+        margin: 0 0 16px;
+        color: #54595d;
+        font-size: 0.95rem;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 24px;
+      }
+      .toc-wrap {
+        position: sticky;
+        top: 16px;
+        align-self: start;
+      }
+      .toc {
+        border: 1px solid var(--wiki-border);
+        background: var(--wiki-bg);
+        font-family: sans-serif;
+        font-size: 0.9rem;
+        padding: 10px 12px;
+      }
+      .toc h2 {
+        margin: 0 0 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+      .toc ol {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .toc li {
+        margin: 3px 0;
+      }
+      .article {
+        min-width: 0;
+      }
+      .lead {
+        position: relative;
+      }
+      .infobox {
+        width: 300px;
+        float: right;
+        margin: 0 0 16px 24px;
+        border: 1px solid var(--wiki-border);
+        background: var(--wiki-bg);
+        border-collapse: collapse;
+        font-family: sans-serif;
+        font-size: 0.88rem;
+      }
+      .infobox caption {
+        background: #eaecf0;
+        border-bottom: 1px solid var(--wiki-border);
+        font-weight: 700;
+        padding: 8px;
+      }
+      .infobox td,
+      .infobox th {
+        border: 1px solid var(--wiki-border);
+        padding: 6px 8px;
+        text-align: left;
+        vertical-align: top;
+      }
+      h2 {
+        margin: 28px 0 8px;
+        font-size: 1.55rem;
+        font-weight: 400;
+        border-bottom: 1px solid #a2a9b1;
+      }
+      h3 {
+        margin: 18px 0 6px;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+      .edit {
+        font-family: sans-serif;
+        font-size: 0.84rem;
+        margin-left: 10px;
+      }
+      .wikitable {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: sans-serif;
+        font-size: 0.9rem;
+        margin: 10px 0 14px;
+      }
+      .wikitable th,
+      .wikitable td {
+        border: 1px solid var(--wiki-border);
+        padding: 7px 9px;
+        vertical-align: top;
+      }
+      .wikitable th {
+        background: #eaecf0;
+        text-align: left;
+      }
+      .ref {
+        font-family: sans-serif;
+        font-size: 0.78rem;
+        vertical-align: super;
+      }
+      .thumb {
+        width: 290px;
+        float: right;
+        border: 1px solid #c8ccd1;
+        background: #f8f9fa;
+        margin: 6px 0 14px 22px;
+        padding: 4px;
+        font-family: sans-serif;
+        font-size: 0.82rem;
+      }
+      .thumb img {
+        width: 100%;
+        display: block;
+      }
+      .thumb figcaption {
+        padding: 6px 3px 2px;
+      }
+      .notes {
+        margin-top: 10px;
+        font-family: sans-serif;
+        font-size: 0.87rem;
+        color: #54595d;
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.56);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        z-index: 99;
+      }
+      .modal[aria-hidden="false"] {
+        display: flex;
+      }
+      .modal-card {
+        width: min(980px, 100%);
+        border: 1px solid #72777d;
+        background: #fff;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      }
+      .modal-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #c8ccd1;
+        padding: 8px 10px;
+        font-family: sans-serif;
+      }
+      .modal-body {
+        aspect-ratio: 16 / 9;
+      }
+      .modal-body iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      .modal-close {
+        border: 1px solid #a2a9b1;
+        background: #f8f9fa;
+        cursor: pointer;
+        font-family: sans-serif;
+      }
+      .nowrap {
+        white-space: nowrap;
+      }
+      @media (max-width: 980px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .toc-wrap {
+          position: static;
+        }
+        .infobox,
+        .thumb {
+          width: 100%;
+          float: none;
+          margin: 8px 0 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title">Will Kempner</h1>
+      <p class="subtitle">From WillKpedia, the free encyclopedia</p>
+      <div class="layout">
+        <aside class="toc-wrap">
+          <nav class="toc" aria-label="Table of contents">
+            <h2>Contents</h2>
+            <ol>
+              <li><a href="#bio">Biography</a></li>
+              <li>
+                <a href="#editing">Editing Work</a>
+                <ol>
+                  <li><a href="#tv">Television</a></li>
+                  <li><a href="#fashion">Fashion</a></li>
+                  <li><a href="#corporate">Corporate</a></li>
+                  <li><a href="#trailers">Trailer Editing</a></li>
+                </ol>
+              </li>
+              <li><a href="#assistant">Assistant Editing</a></li>
+              <li><a href="#filmography">Filmography</a></li>
+              <li><a href="#discography">Discography</a></li>
+              <li><a href="#awards">Awards and Screenings</a></li>
+              <li><a href="#references">References</a></li>
+            </ol>
+          </nav>
+        </aside>
+        <main class="article">
+          <section class="lead">
+            <table class="infobox">
+              <caption>Will Kempner</caption>
+              <tr>
+                <th>Born</th>
+                <td>June 12, 1993</td>
+              </tr>
+              <tr>
+                <th>Occupation</th>
+                <td>Reclusive iconoclast</td>
+              </tr>
+              <tr>
+                <th>Years active</th>
+                <td>2007-present?</td>
+              </tr>
+              <tr>
+                <th>Website</th>
+                <td><a href="https://www.willkempner.com/" target="_blank" rel="noreferrer">willkempner.com</a></td>
+              </tr>
+            </table>
+            <p>
+              <b>Will Kempner</b> (born June 12, 1993) is an American editor, filmmaker, artist, and producer.
+              Kempner has worked across television, fashion campaigns, branded and corporate media, and independent film.
+              His portfolio includes directing and editing narrative shorts and features, as well as post-production work
+              on series for HBO and Disney+.<sup class="ref">[1][2][3][4]</sup>
+            </p>
+          </section>
+
+          <section id="bio">
+            <h2>Biography <span class="edit">[edit]</span></h2>
+            <p>
+              Kempner began working in post-production in the late 2000s and later built a cross-disciplinary practice
+              spanning editing, assistant editing, producing, and copywriting. He has served as lead assistant editor
+              and associate editor across both seasons of HBO's <i>Random Acts of Flyness</i> (2018; 2022)
+              and worked as an editor on Disney+'s <i>Growing Up</i> (2022).<sup class="ref">[1][2][3]</sup>
+            </p>
+            <p>
+              In advertising and fashion, Kempner has edited and produced work for Telfar, including <i>New Models</i>
+              (Season 0 and Season 1, 2023-present?). He was also part of the team (with Colin Garland and Ben Townsend)
+              that won the 2019 Tribeca Film Festival Snapchat Story Contest.<sup class="ref">[5][6][7]</sup>
+            </p>
+          </section>
+
+          <section id="editing">
+            <h2>Editing Work <span class="edit">[edit]</span></h2>
+
+            <h3 id="tv">Television</h3>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Title</th>
+                  <th>Role</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2018; 2022</td>
+                  <td><i>Random Acts of Flyness</i> (HBO, Seasons 1-2)</td>
+                  <td>Lead Assistant Editor (S1); Associate Editor (S2)</td>
+                  <td>6 episodes in each season</td>
+                </tr>
+                <tr>
+                  <td>2022</td>
+                  <td><i>Growing Up</i> (Disney+)</td>
+                  <td>Editor</td>
+                  <td>Docuseries, 5 episodes</td>
+                </tr>
+                <tr>
+                  <td>2020</td>
+                  <td><i>Best Dance</i> (Topic)</td>
+                  <td>Editor</td>
+                  <td>Series, 5 episodes</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 id="fashion">Fashion</h3>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Project</th>
+                  <th>Role</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2023-present?</td>
+                  <td>Telfar advertisements</td>
+                  <td>Editor; Producer; Copywriter (occasional)</td>
+                  <td>Includes <i>New Models</i> Season 0 and Season 1</td>
+                </tr>
+                <tr>
+                  <td>2021</td>
+                  <td><i>Ms. <a href="https://en.wikipedia.org/wiki/Lauryn_Hill" target="_blank" rel="noreferrer">Lauryn Hill</a> for S/S 2021</i> (Louis Vuitton)</td>
+                  <td>Editor</td>
+                  <td>Fashion campaign</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 id="corporate">Corporate</h3>
+            <p class="notes">
+              Corporate and branded editing includes years of work with Conde Nast brands, including <i>Vogue</i>,
+              <i>Glamour</i>, and Teen Vogue Prom, as well as work for healthcare and consumer campaigns.
+              Additional brand collaborators shown in portfolio materials include Spotify, HBO, Disney+, Topic Studios,
+              and Twitch.
+            </p>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Project</th>
+                  <th>Role</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2024</td>
+                  <td><i>Q&amp;A with Juvederm</i></td>
+                  <td>Editor</td>
+                  <td>Corporate/brand campaign</td>
+                </tr>
+                <tr>
+                  <td>2019</td>
+                  <td><a href="#" data-video="https://www.youtube.com/embed/tsk9c7KF76E" class="video-link"><i>Doja Cat</i></a></td>
+                  <td>Editor</td>
+                  <td>Music video/social campaign (popup); artist: <a href="https://en.wikipedia.org/wiki/Doja_Cat" target="_blank" rel="noreferrer">Doja Cat</a></td>
+                </tr>
+                <tr>
+                  <td>2020</td>
+                  <td><i>Beauty Secrets</i> (Vogue)</td>
+                  <td>Editor</td>
+                  <td>Conde Nast</td>
+                </tr>
+                <tr>
+                  <td>2020</td>
+                  <td><i>Multiple Sclerosis: Can't Knock Me Down</i> (Glamour Magazine)</td>
+                  <td>Editor</td>
+                  <td>Conde Nast</td>
+                </tr>
+                <tr>
+                  <td>2021</td>
+                  <td><i>Wondr Health Testimonials</i></td>
+                  <td>Editor</td>
+                  <td>Corporate campaign</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 id="trailers">Trailer Editing</h3>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Title</th>
+                  <th>Role</th>
+                  <th>Preview</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2023</td>
+                  <td><i><a href="https://en.wikipedia.org/wiki/Andr%C3%A9_3000" target="_blank" rel="noreferrer">Andre 3000</a> - Listening To The Sun</i> (teaser)</td>
+                  <td>Trailer Editor</td>
+                  <td>Social announcement teaser</td>
+                </tr>
+                <tr>
+                  <td>2020</td>
+                  <td><i>Inspector Ike</i> (Graham Mason)</td>
+                  <td>Trailer Editor</td>
+                  <td>Trailer</td>
+                </tr>
+                <tr>
+                  <td>2020</td>
+                  <td><i>Reveries: Going Deeper</i></td>
+                  <td>Trailer Editor</td>
+                  <td>Trailer</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="assistant">
+            <h2>Assistant Editing <span class="edit">[edit]</span></h2>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Project</th>
+                  <th>Role</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2018</td>
+                  <td><i>Random Acts of Flyness</i> (HBO, Season 1)</td>
+                  <td>Lead Assistant Editor</td>
+                  <td>Television</td>
+                </tr>
+                <tr>
+                  <td>2022</td>
+                  <td><i>Good One</i> (dir. India Donaldson)</td>
+                  <td>Assistant Editor; DIT</td>
+                  <td>Feature film (Sundance 2024)</td>
+                </tr>
+                <tr>
+                  <td>2023</td>
+                  <td><i>Our Home Out West</i> (<a href="https://en.wikipedia.org/wiki/Cole_Escola" target="_blank" rel="noreferrer">Cole Escola</a>)</td>
+                  <td>Assistant Editor; DIT</td>
+                  <td>TV special</td>
+                </tr>
+                <tr>
+                  <td>2018</td>
+                  <td><i>Two Dope Queens</i> (HBO, Season 1)</td>
+                  <td>Assistant Editor</td>
+                  <td>4 episodes</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="notes">This section currently reflects credits provided in your screenshots and notes.</p>
+          </section>
+
+          <section id="filmography">
+            <h2>Filmography <span class="edit">[edit]</span></h2>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Format / Status</th>
+                  <th>Platform</th>
+                  <th class="nowrap">Video</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="#" data-video="https://www.nobudge.com/the-layover" class="video-link"><i>The Layover</i></a></td>
+                  <td>22 min; streaming</td>
+                  <td>NoBudge</td>
+                  <td>Popup</td>
+                </tr>
+                <tr>
+                  <td><i>Your Mailbox Is Full</i></td>
+                  <td>Feature length; in post-production</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube.com/embed/Ww2h3zmp82M" class="video-link"><i>Larry's Big Adventure</i></a></td>
+                  <td>Short film; streaming</td>
+                  <td>YouTube</td>
+                  <td>Popup</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.nobudge.com/nude-descending-a-staircase" class="video-link"><i>Nude Descending a Staircase</i></a></td>
+                  <td>Short film; streaming</td>
+                  <td>NoBudge</td>
+                  <td>Popup</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube.com/embed/nYkDGevfImU" class="video-link"><i>Homepage featured video</i></a></td>
+                  <td>Video work</td>
+                  <td>YouTube</td>
+                  <td>Popup</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="notes">Filmography entries are sourced from the current <a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">My Films page</a>.</p>
+          </section>
+
+          <section id="discography">
+            <h2>Discography <span class="edit">[edit]</span></h2>
+
+            <h3>Digital Zoom</h3>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Release</th>
+                  <th>Year</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i>The Good Boy OST</i> (Various Artists)</td>
+                  <td>2018</td>
+                  <td><a href="https://digitalzoom.bandcamp.com/album/the-good-boy-ost" target="_blank" rel="noreferrer">Bandcamp</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>ART DLR</h3>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Release</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>DLR.MAG</i></td><td><a href="https://artdealer.bandcamp.com/album/dlr-mag" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Endangered: On Ice (In Space)</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Ghoulsikal</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>SR20: ART DLR - Prove 2 U</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>WYA JOE - EP</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Work Flows</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>God's Revenge</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Pure Illusion</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>SR23: Kratom Rock</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>SR08: Sunday Night Jive</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>artdlr_8</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>SR04: Human World</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Cig Crown EP</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Karma (Karma)</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+                <tr><td><i>Think Outloud!</i></td><td><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">Bandcamp</a></td></tr>
+              </tbody>
+            </table>
+
+            <h3>Lanlord Lance</h3>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Release</th>
+                  <th>Year</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i>SR12: unsweet - Single</i></td>
+                  <td>2017</td>
+                  <td><a href="https://lanlordlance.bandcamp.com/album/sr12-unsweet-single" target="_blank" rel="noreferrer">Bandcamp</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Triangle Lord</h3>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Release</th>
+                  <th>Year</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i>Shit - Rarities &amp; Tri-sides</i></td>
+                  <td>TBD</td>
+                  <td><a href="https://trianglelord.bandcamp.com/album/shit-rarities-tri-sides" target="_blank" rel="noreferrer">Bandcamp</a></td>
+                </tr>
+                <tr>
+                  <td><i>Triangle Lord</i></td>
+                  <td>TBD</td>
+                  <td><a href="https://trianglelord.bandcamp.com/album/triangle-lord" target="_blank" rel="noreferrer">Bandcamp</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="awards">
+            <h2>Awards and Screenings <span class="edit">[edit]</span></h2>
+            <figure class="thumb">
+              <img src="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" alt="NPCC Short Film Block 2021 still image" />
+              <figcaption>Promotional still associated with NPCC Short Film Block 2021.</figcaption>
+            </figure>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Award / Screening</th>
+                  <th>Result / Notes</th>
+                  <th>Reference</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2015</td>
+                  <td><a href="https://en.wikipedia.org/wiki/Todd_Phillips" target="_blank" rel="noreferrer">Todd Phillips</a> Post Production Grant</td>
+                  <td>Winner</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>2019</td>
+                  <td>Tribeca Film Festival Snapchat Story Contest</td>
+                  <td>Winner (with Colin Garland and Ben Townsend)</td>
+                  <td><a href="https://variety.com/2016/digital/news/snapchat-tribeca-shorts-contest-2017-1201943137/" target="_blank" rel="noreferrer">Variety announcement</a></td>
+                </tr>
+                <tr>
+                  <td>2021</td>
+                  <td>NPCC Short Film Block</td>
+                  <td>Official screening</td>
+                  <td><a href="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" target="_blank" rel="noreferrer">Image</a></td>
+                </tr>
+                <tr>
+                  <td>TBD</td>
+                  <td>NoBudge Live 12</td>
+                  <td>Screening</td>
+                  <td><a href="https://nitehawkcinema.com/williamsburg/movies/nobudge-live-12/" target="_blank" rel="noreferrer">Nitehawk listing</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="references">
+            <h2>References <span class="edit">[edit]</span></h2>
+            <ol>
+              <li><a href="https://en.wikipedia.org/wiki/Random_Acts_of_Flyness" target="_blank" rel="noreferrer">Random Acts of Flyness (HBO) - seasons and release dates</a></li>
+              <li><a href="https://www.hbo.com/random-acts-of-flyness" target="_blank" rel="noreferrer">HBO - Random Acts of Flyness</a></li>
+              <li><a href="https://ondisneyplus.disney.com/show/growing-up" target="_blank" rel="noreferrer">Disney+ - Growing Up (release details)</a></li>
+              <li><a href="https://www.willkempner.com/my-films" target="_blank" rel="noreferrer">Will Kempner - My Films</a></li>
+              <li><a href="https://www.willkempner.com/" target="_blank" rel="noreferrer">Will Kempner - Homepage</a></li>
+              <li><a href="https://nitehawkcinema.com/williamsburg/movies/nobudge-live-12/" target="_blank" rel="noreferrer">Nitehawk Cinema - NoBudge Live 12</a></li>
+              <li><a href="https://variety.com/2016/digital/news/snapchat-tribeca-shorts-contest-2017-1201943137/" target="_blank" rel="noreferrer">Variety - Snapchat and Tribeca Storytelling Contest announcement</a></li>
+              <li><a href="https://artdealer.bandcamp.com/" target="_blank" rel="noreferrer">ART DLR - Bandcamp releases</a></li>
+              <li><a href="https://digitalzoom.bandcamp.com/" target="_blank" rel="noreferrer">Digital Zoom - Bandcamp</a></li>
+              <li><a href="https://lanlordlance.bandcamp.com/" target="_blank" rel="noreferrer">Lanlord Lance - Bandcamp</a></li>
+              <li><a href="https://trianglelord.bandcamp.com/" target="_blank" rel="noreferrer">Triangle Lord - Bandcamp</a></li>
+            </ol>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="video-modal" class="modal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-head">
+          <strong id="modal-title">Video preview</strong>
+          <button type="button" class="modal-close" id="close-modal">Close</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById("video-modal");
+      const modalBody = document.getElementById("modal-body");
+      const closeModal = document.getElementById("close-modal");
+      const videoLinks = document.querySelectorAll(".video-link");
+
+      function openModal(url) {
+        const isEmbeddable = url.includes("youtube.com/embed");
+        if (isEmbeddable) {
+          modalBody.innerHTML = '<iframe src="' + url + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video preview"></iframe>';
+        } else {
+          modalBody.innerHTML =
+            '<div style="padding:20px;font-family:sans-serif;">' +
+            "<p>This link does not provide a guaranteed embeddable player.</p>" +
+            '<p><a href="' + url + '" target="_blank" rel="noreferrer">Open video in new tab</a></p>' +
+            "</div>";
+        }
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeVideoModal() {
+        modal.setAttribute("aria-hidden", "true");
+        modalBody.innerHTML = "";
+      }
+
+      videoLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          openModal(link.dataset.video);
+        });
+      });
+
+      closeModal.addEventListener("click", closeVideoModal);
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeVideoModal();
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
+          closeVideoModal();
+        }
+      });
+    </script>
+  </body>
+</html>
