@@ -43,33 +43,36 @@
         left: 0;
         right: 0;
         top: 0;
-        height: 132px;
+        height: 148px;
         overflow: hidden;
         pointer-events: none;
         user-select: none;
         z-index: 0;
-        opacity: 0.72;
+        opacity: 0.95;
       }
       .flag-banner-inner {
         position: absolute;
         left: 0;
-        top: 18px;
+        top: 12px;
         display: flex;
         width: max-content;
-        animation: flagScroll 260s linear infinite;
+        animation: flagScroll 140s linear infinite;
+        will-change: transform;
       }
       .flag-track {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 14px;
         white-space: nowrap;
-        padding-right: 12px;
+        padding-right: 14px;
       }
       .flag-item {
-        font-size: 1.55rem;
+        font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+        font-size: 1.68rem;
         line-height: 1;
         display: inline-block;
-        filter: saturate(1.05);
+        filter: saturate(1.12) contrast(1.08);
+        text-shadow: 0 0 0.2px rgba(0, 0, 0, 0.22);
       }
       @keyframes flagScroll {
         from {
@@ -195,6 +198,7 @@
         display: block;
         cursor: pointer;
         user-select: none;
+        touch-action: manipulation;
       }
       .sorry-hold-overlay {
         position: fixed;
@@ -228,6 +232,7 @@
         white-space: nowrap;
         cursor: pointer;
         user-select: none;
+        touch-action: manipulation;
       }
       .title {
         margin: 0 0 10px;
@@ -630,6 +635,20 @@
         font-size: 0.87rem;
         color: #54595d;
       }
+      .bandcamp-embed {
+        min-width: 260px;
+      }
+      .bandcamp-embed iframe {
+        width: 100%;
+        height: 120px;
+        border: 0;
+        display: block;
+      }
+      .bandcamp-fallback {
+        font-family: sans-serif;
+        font-size: 0.78rem;
+        color: #54595d;
+      }
       .wiki-preview {
         position: fixed;
         z-index: 120;
@@ -835,21 +854,20 @@
           padding: 18px 20px 48px;
         }
         .flag-banner {
-          height: 114px;
+          height: 126px;
         }
         .flag-banner-inner {
-          top: 14px;
-          animation-duration: 220s;
+          top: 10px;
+          animation-duration: 120s;
         }
         .flag-item {
-          font-size: 1.3rem;
+          font-size: 1.42rem;
         }
         .page-actions {
           justify-content: flex-start;
         }
         .appearance-panel {
-          position: sticky;
-          top: 12px;
+          position: static;
           width: 100%;
           margin: 0 0 12px;
         }
@@ -864,8 +882,7 @@
           grid-template-columns: 1fr;
         }
         .toc-wrap {
-          position: sticky;
-          top: 12px;
+          position: static;
         }
         .infobox,
         .thumb,
@@ -1482,6 +1499,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Release</th>
                   <th>Year</th>
                   <th>Role</th>
+                  <th>Player</th>
                 </tr>
               </thead>
               <tbody>
@@ -1489,6 +1507,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><i>The Good Boy OST</i> (Various Artists)</td>
                   <td>2018</td>
                   <td>Producer</td>
+                  <td><div class="bandcamp-embed" data-url="https://digitalzoom.bandcamp.com/"></div></td>
                 </tr>
               </tbody>
             </table>
@@ -1500,18 +1519,19 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Release</th>
                   <th>Year</th>
                   <th>Role</th>
+                  <th>Player</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td>2022</td><td>Producer</td></tr>
-                <tr><td><i>DLR.MAG</i></td><td>2022</td><td>Producer</td></tr>
-                <tr><td><i>Endangered: On Ice (In Space)</i></td><td>2021</td><td>Producer</td></tr>
-                <tr><td><i>Ghoulsikal</i></td><td>2021</td><td>Producer</td></tr>
-                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td>2020</td><td>Producer</td></tr>
-                <tr><td><i>Work Flows</i></td><td>2020</td><td>Producer</td></tr>
-                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td>2020</td><td>Producer</td></tr>
-                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Producer</td></tr>
-                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Producer</td></tr>
+                <tr><td><i>I Met A Mummy: A Detective Reed Mystery</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/i-met-a-mummy-a-detective-reed-mystery"></div></td></tr>
+                <tr><td><i>DLR.MAG</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/dlr-mag"></div></td></tr>
+                <tr><td><i>Endangered: On Ice (In Space)</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/endangered-on-ice-in-space"></div></td></tr>
+                <tr><td><i>Ghoulsikal</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/ghoulsikal"></div></td></tr>
+                <tr><td><i>The Ballad of Veggie Dog - Dress Rehearsal Audio</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/the-ballad-of-veggie-dog-dress-rehearsal-audio"></div></td></tr>
+                <tr><td><i>Work Flows</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/album/work-flows"></div></td></tr>
+                <tr><td><i>Half Step Down - Live at Giamatti's</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/half-step-down-live-at-giamattis"></div></td></tr>
+                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-05-22-20"></div></td></tr>
+                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-04-28-20"></div></td></tr>
               </tbody>
             </table>
 
@@ -1522,14 +1542,20 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Release</th>
                   <th>Year</th>
                   <th>Role</th>
+                  <th>Player</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><i>SR12: unsweet - Single</i></td>
-                  <td>2017</td>
-                  <td>Producer</td>
-                </tr>
+                <tr><td><i>it's hard to be an angel when you're still alive</i></td><td>2023</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/its-hard-to-be-an-angel-when-youre-still-alive"></div></td></tr>
+                <tr><td><i>Calling On My Angels</i></td><td>2022</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/calling-on-my-angels"></div></td></tr>
+                <tr><td><i>Playdate</i></td><td>2021</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/playdate"></div></td></tr>
+                <tr><td><i>Here Come The Entrees</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/here-come-the-entrees"></div></td></tr>
+                <tr><td><i>Winter's Too Cold</i></td><td>2020</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/winters-too-cold"></div></td></tr>
+                <tr><td><i>The Streets Of Love Bug</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/the-streets-of-love-bug"></div></td></tr>
+                <tr><td><i>Catskill Queen</i></td><td>2019</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/catskill-queen"></div></td></tr>
+                <tr><td><i>SR14: Night Sweats Box Set</i></td><td>2018</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/sr14-night-sweats-box-set"></div></td></tr>
+                <tr><td><i>SR12: unsweet - Single</i></td><td>2017</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/album/sr12-unsweet-single"></div></td></tr>
+                <tr><td><i>Don't Be A Shit Boy - Single</i></td><td>2015</td><td>Producer</td><td><div class="bandcamp-embed" data-url="https://lanlordlance.bandcamp.com/track/dont-be-a-shit-boy-single"></div></td></tr>
               </tbody>
             </table>
 
@@ -1540,6 +1566,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Release</th>
                   <th>Year</th>
                   <th>Role</th>
+                  <th>Player</th>
                 </tr>
               </thead>
               <tbody>
@@ -1547,11 +1574,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><i>Shit - Rarities &amp; Tri-sides</i></td>
                   <td>TBD</td>
                   <td>Producer</td>
+                  <td><div class="bandcamp-embed" data-url="https://trianglelord.bandcamp.com/album/shit-rarities-tri-sides"></div></td>
                 </tr>
                 <tr>
                   <td><i>Triangle Lord</i></td>
                   <td>TBD</td>
                   <td>Producer</td>
+                  <td><div class="bandcamp-embed" data-url="https://trianglelord.bandcamp.com/album/triangle-lord"></div></td>
                 </tr>
               </tbody>
             </table>
@@ -1861,7 +1890,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         if (!flagTrackA || !flagTrackB) return;
         let regions = [];
         if (typeof Intl.supportedValuesOf === "function") {
-          regions = Intl.supportedValuesOf("region");
+          try {
+            regions = Intl.supportedValuesOf("region");
+          } catch (_err) {
+            regions = [];
+          }
         }
         regions = regions.filter((code) => /^[A-Z]{2}$/.test(code) && !regionExclusions.has(code));
         if (!regions.length) {
@@ -1879,6 +1912,43 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       }
 
       initFlagBanner();
+
+      function bandcampFallbackHtml(url) {
+        return '<div class="bandcamp-fallback"><a href="' + url + '" target="_blank" rel="noreferrer">Open on Bandcamp</a></div>';
+      }
+
+      function normalizeBandcampEmbedSrc(src) {
+        return src
+          .replace(/size=[^/]+/g, "size=small")
+          .replace(/tracklist=(true|false)/g, "tracklist=false")
+          .replace(/artwork=(small|none|large)/g, "artwork=small");
+      }
+
+      async function initBandcampEmbeds() {
+        const nodes = document.querySelectorAll(".bandcamp-embed[data-url]");
+        for (const node of nodes) {
+          const url = node.getAttribute("data-url");
+          if (!url) continue;
+          node.innerHTML = bandcampFallbackHtml(url);
+          try {
+            const endpoint = "https://bandcamp.com/oembed?format=json&url=" + encodeURIComponent(url);
+            const response = await fetch(endpoint);
+            if (!response.ok) continue;
+            const payload = await response.json();
+            if (!payload || !payload.html) continue;
+            const match = payload.html.match(/src="([^"]+)"/i);
+            if (!match || !match[1]) continue;
+            const embedSrc = normalizeBandcampEmbedSrc(match[1]);
+            node.innerHTML =
+              '<iframe title="Bandcamp player" src="' + embedSrc + '" loading="lazy" seamless></iframe>' +
+              bandcampFallbackHtml(url);
+          } catch (_err) {
+            // Keep fallback link when oEmbed fetch is blocked or unavailable.
+          }
+        }
+      }
+
+      initBandcampEmbeds();
 
       function closeVideoModal() {
         modal.setAttribute("aria-hidden", "true");
@@ -2053,9 +2123,20 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       document.querySelectorAll('input[name="page-width"]').forEach((radio) => {
         radio.addEventListener("change", () => applyWidth(radio.value));
       });
-      document.querySelectorAll('input[name="color-mode"]').forEach((radio) => {
+      const colorModeRadios = document.querySelectorAll('input[name="color-mode"]');
+      colorModeRadios.forEach((radio) => {
         radio.addEventListener("change", () => applyColor(radio.value));
+        radio.addEventListener("click", () => {
+          if (radio.value === "dark") {
+            document.body.classList.add("dark-hellfire");
+            playDarkModeScream();
+          } else {
+            applyColor(radio.value);
+          }
+        });
       });
+      const checkedColorMode = document.querySelector('input[name="color-mode"]:checked');
+      applyColor(checkedColorMode ? checkedColorMode.value : "auto");
 
       function setPageTab(mode) {
         tabRead.classList.toggle("active", mode === "read");
@@ -2103,12 +2184,19 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       function bindSorryHoldTrigger(element) {
         if (!element || !sorryHoldOverlay) return;
-        element.addEventListener("pointerdown", (event) => {
+        const start = (event) => {
           event.preventDefault();
           showSorryHoldOverlay();
-        });
-        element.addEventListener("pointerup", hideSorryHoldOverlay);
-        element.addEventListener("pointercancel", hideSorryHoldOverlay);
+        };
+        const end = () => hideSorryHoldOverlay();
+        element.addEventListener("pointerdown", start);
+        element.addEventListener("mousedown", start);
+        element.addEventListener("touchstart", start, { passive: false });
+        element.addEventListener("pointerup", end);
+        element.addEventListener("mouseup", end);
+        element.addEventListener("touchend", end);
+        element.addEventListener("touchcancel", end);
+        element.addEventListener("pointercancel", end);
         element.addEventListener("dragstart", (event) => event.preventDefault());
       }
 
@@ -2116,6 +2204,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         bindSorryHoldTrigger(globeLogo);
         bindSorryHoldTrigger(siteBrandText);
         document.addEventListener("pointerup", hideSorryHoldOverlay);
+        document.addEventListener("mouseup", hideSorryHoldOverlay);
+        document.addEventListener("touchend", hideSorryHoldOverlay);
+        document.addEventListener("touchcancel", hideSorryHoldOverlay);
         window.addEventListener("blur", hideSorryHoldOverlay);
       }
 
