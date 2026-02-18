@@ -36,9 +36,52 @@
         max-width: 1680px;
         margin: 0 auto;
         padding: 18px 28px 48px;
+        position: relative;
+      }
+      .flag-banner {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 132px;
+        overflow: hidden;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+        opacity: 0.72;
+      }
+      .flag-banner-inner {
+        position: absolute;
+        left: 0;
+        top: 18px;
+        display: flex;
+        width: max-content;
+        animation: flagScroll 260s linear infinite;
+      }
+      .flag-track {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        white-space: nowrap;
+        padding-right: 12px;
+      }
+      .flag-item {
+        font-size: 1.55rem;
+        line-height: 1;
+        display: inline-block;
+        filter: saturate(1.05);
+      }
+      @keyframes flagScroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
       }
       .appearance-panel {
         position: sticky;
+        align-self: start;
         top: 18px;
         width: 100%;
         border: 1px solid #c8ccd1;
@@ -134,6 +177,8 @@
         margin: 0 0 10px;
         width: 100%;
         justify-content: flex-start;
+        position: relative;
+        z-index: 1;
       }
       .site-brand-mark {
         width: 240px;
@@ -200,6 +245,8 @@
         gap: 3px;
         margin: 0 0 10px;
         font-family: sans-serif;
+        position: relative;
+        z-index: 1;
       }
       .page-tab {
         border: 1px solid #a2a9b1;
@@ -586,11 +633,11 @@
       .wiki-preview {
         position: fixed;
         z-index: 120;
-        width: min(900px, calc(100vw - 40px));
+        width: min(420px, calc(100vw - 24px));
         border: 1px solid #a2a9b1;
         background: #fff;
-        border-radius: 6px;
-        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
         display: none;
       }
       .wiki-preview::before {
@@ -610,25 +657,25 @@
       }
       .wiki-preview-inner {
         display: grid;
-        grid-template-columns: 58% 42%;
+        grid-template-columns: 1fr;
       }
       .wiki-preview-copy {
-        padding: 18px 20px;
+        padding: 10px 12px;
         font-family: sans-serif;
-        font-size: 0.95rem;
-        line-height: 1.5;
+        font-size: 0.84rem;
+        line-height: 1.35;
       }
       .wiki-preview-title {
-        margin: 0 0 8px;
-        font-size: 2rem;
+        margin: 0 0 5px;
+        font-size: 1rem;
         font-weight: 700;
-        line-height: 1.05;
+        line-height: 1.2;
       }
       .wiki-preview img {
         width: 100%;
-        height: 100%;
+        max-height: 132px;
         object-fit: cover;
-        border-left: 1px solid #c8ccd1;
+        border-top: 1px solid #c8ccd1;
       }
       .wiki-preview-loading {
         font-family: sans-serif;
@@ -787,11 +834,22 @@
         .page {
           padding: 18px 20px 48px;
         }
+        .flag-banner {
+          height: 114px;
+        }
+        .flag-banner-inner {
+          top: 14px;
+          animation-duration: 220s;
+        }
+        .flag-item {
+          font-size: 1.3rem;
+        }
         .page-actions {
           justify-content: flex-start;
         }
         .appearance-panel {
-          position: static;
+          position: sticky;
+          top: 12px;
           width: 100%;
           margin: 0 0 12px;
         }
@@ -806,7 +864,8 @@
           grid-template-columns: 1fr;
         }
         .toc-wrap {
-          position: static;
+          position: sticky;
+          top: 12px;
         }
         .infobox,
         .thumb,
@@ -821,6 +880,12 @@
   </head>
   <body>
     <div class="page">
+      <div class="flag-banner" aria-hidden="true">
+        <div class="flag-banner-inner">
+          <div class="flag-track" id="flag-track-a"></div>
+          <div class="flag-track" id="flag-track-b"></div>
+        </div>
+      </div>
       <header class="site-brand" aria-label="WillKpedia header">
         <h1 class="site-brand-text" id="site-brand-text">WillKpedia</h1>
         <div class="site-brand-mark">
@@ -1698,6 +1763,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const tabRead = document.getElementById("tab-read");
       const tabEdit = document.getElementById("tab-edit");
       const tabHistory = document.getElementById("tab-history");
+      const flagTrackA = document.getElementById("flag-track-a");
+      const flagTrackB = document.getElementById("flag-track-b");
       const siteBrandText = document.getElementById("site-brand-text");
       const globeLogo = document.getElementById("globe-logo");
       const sorryHoldOverlay = document.getElementById("sorry-hold-overlay");
@@ -1722,6 +1789,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const naviInstallB = document.getElementById("navi-install-b");
       const initialEditValue = editBox.value;
       let wikiHideTimer = null;
+      let wikiShowTimer = null;
       let videoHoverShowTimer = null;
       let alertAudioCtx = null;
       let screamAudioCtx = null;
@@ -1729,6 +1797,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       let cookieScamTimer = null;
       let naviScamTimer = null;
       let hasClosedCookieOnce = false;
+      const regionExclusions = new Set(["AC", "CP", "DG", "EA", "EU", "EZ", "IC", "TA", "UN", "XA", "XB", "XK", "ZZ"]);
       const scandalImages = [
         { src: "images/scandal-01.png", caption: "Public reaction image 1." },
         { src: "images/scandal-02.png", caption: "Public reaction image 2." },
@@ -1779,6 +1848,37 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         }
         modal.setAttribute("aria-hidden", "false");
       }
+
+      function toFlagEmoji(regionCode) {
+        return regionCode
+          .toUpperCase()
+          .split("")
+          .map((char) => String.fromCodePoint(127397 + char.charCodeAt(0)))
+          .join("");
+      }
+
+      function initFlagBanner() {
+        if (!flagTrackA || !flagTrackB) return;
+        let regions = [];
+        if (typeof Intl.supportedValuesOf === "function") {
+          regions = Intl.supportedValuesOf("region");
+        }
+        regions = regions.filter((code) => /^[A-Z]{2}$/.test(code) && !regionExclusions.has(code));
+        if (!regions.length) {
+          regions = [
+            "US", "CA", "MX", "BR", "AR", "CL", "CO", "PE", "GB", "IE", "FR", "DE", "ES", "IT",
+            "PT", "NL", "BE", "CH", "SE", "NO", "DK", "PL", "CZ", "AT", "GR", "TR", "UA", "RO",
+            "HU", "BG", "RU", "MA", "DZ", "EG", "NG", "GH", "KE", "ET", "TZ", "ZA", "SA", "AE",
+            "IL", "IN", "PK", "BD", "CN", "JP", "KR", "TH", "VN", "PH", "ID", "MY", "SG", "AU",
+            "NZ"
+          ];
+        }
+        const html = regions.map((code) => '<span class="flag-item">' + toFlagEmoji(code) + "</span>").join("");
+        flagTrackA.innerHTML = html;
+        flagTrackB.innerHTML = html;
+      }
+
+      initFlagBanner();
 
       function closeVideoModal() {
         modal.setAttribute("aria-hidden", "true");
@@ -2120,11 +2220,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         playPopupErrorSound();
         closeCookieScamModal();
       });
-      cookieScamModal.addEventListener("click", (event) => {
-        if (event.target === cookieScamModal) {
-          closeCookieScamModal();
-        }
-      });
       naviInstallA.addEventListener("click", () => {
         playPopupErrorSound();
         closeNaviScamModal();
@@ -2132,11 +2227,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       naviInstallB.addEventListener("click", () => {
         playPopupErrorSound();
         closeNaviScamModal();
-      });
-      naviScamModal.addEventListener("click", (event) => {
-        if (event.target === naviScamModal) {
-          closeNaviScamModal();
-        }
       });
 
       closeModal.addEventListener("click", () => {
@@ -2154,12 +2244,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         }
         if (event.key === "Escape" && tamperModal.getAttribute("aria-hidden") === "false") {
           closeTamperModal();
-        }
-        if (event.key === "Escape" && cookieScamModal.getAttribute("aria-hidden") === "false") {
-          closeCookieScamModal();
-        }
-        if (event.key === "Escape" && naviScamModal.getAttribute("aria-hidden") === "false") {
-          closeNaviScamModal();
         }
       });
       cookieScamTimer = setTimeout(openCookieScamModal, 20000);
@@ -2182,13 +2266,17 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       function placePreview(link) {
         const rect = link.getBoundingClientRect();
-        const left = Math.min(window.innerWidth - 380, rect.right + 10);
-        const top = Math.min(window.innerHeight - 220, Math.max(10, rect.top - 8));
+        const left = Math.min(window.innerWidth - 430, rect.right + 8);
+        const top = Math.min(window.innerHeight - 200, Math.max(10, rect.top - 6));
         wikiPreview.style.left = left + "px";
         wikiPreview.style.top = top + "px";
       }
 
       function hideWikiPreview() {
+        if (wikiShowTimer) {
+          clearTimeout(wikiShowTimer);
+          wikiShowTimer = null;
+        }
         if (wikiHideTimer) {
           clearTimeout(wikiHideTimer);
           wikiHideTimer = null;
@@ -2199,31 +2287,47 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       wikiLinks.forEach((link) => {
         link.addEventListener("mouseenter", async () => {
+          if (wikiShowTimer) {
+            clearTimeout(wikiShowTimer);
+            wikiShowTimer = null;
+          }
           if (wikiHideTimer) {
             clearTimeout(wikiHideTimer);
             wikiHideTimer = null;
           }
-          placePreview(link);
-          wikiPreview.innerHTML = '<div class="wiki-preview-copy wiki-preview-loading">Loading preview...</div>';
-          wikiPreview.classList.add("show");
-          wikiPreview.setAttribute("aria-hidden", "false");
-          const data = await fetchWikiPreview(link);
-          if (!data) {
-            wikiPreview.innerHTML = '<div class="wiki-preview-copy">No preview available.</div>';
-            return;
-          }
-          const img = data.thumbnail && data.thumbnail.source ? '<img src="' + data.thumbnail.source + '" alt="' + data.title + '">' : "";
-          wikiPreview.innerHTML =
-            '<div class="wiki-preview-inner">' +
-            '<div class="wiki-preview-copy">' +
-            '<p class="wiki-preview-title">' + data.title + '</p>' +
-            "<p>" + (data.extract || "No summary available.") + "</p>" +
-            "</div>" +
-            img +
-            "</div>";
-          placePreview(link);
+          wikiShowTimer = setTimeout(async () => {
+            wikiShowTimer = null;
+            if (!link.matches(":hover")) return;
+            placePreview(link);
+            wikiPreview.innerHTML = '<div class="wiki-preview-copy wiki-preview-loading">Loading preview...</div>';
+            wikiPreview.classList.add("show");
+            wikiPreview.setAttribute("aria-hidden", "false");
+            const data = await fetchWikiPreview(link);
+            if (!link.matches(":hover")) {
+              hideWikiPreview();
+              return;
+            }
+            if (!data) {
+              wikiPreview.innerHTML = '<div class="wiki-preview-copy">No preview available.</div>';
+              return;
+            }
+            const img = data.thumbnail && data.thumbnail.source ? '<img src="' + data.thumbnail.source + '" alt="' + data.title + '">' : "";
+            wikiPreview.innerHTML =
+              '<div class="wiki-preview-inner">' +
+              '<div class="wiki-preview-copy">' +
+              '<p class="wiki-preview-title">' + data.title + '</p>' +
+              "<p>" + (data.extract || "No summary available.") + "</p>" +
+              "</div>" +
+              img +
+              "</div>";
+            placePreview(link);
+          }, 1000);
         });
         link.addEventListener("mouseleave", () => {
+          if (wikiShowTimer) {
+            clearTimeout(wikiShowTimer);
+            wikiShowTimer = null;
+          }
           wikiHideTimer = setTimeout(hideWikiPreview, 150);
         });
       });
