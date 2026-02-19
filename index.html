@@ -521,6 +521,8 @@
         display: block;
         border: 1px solid #c8ccd1;
         cursor: pointer;
+        clip-path: inset(0);
+        contain: paint;
         filter: blur(calc(var(--photo-blur-percent) * 0.2px));
         transition: filter 160ms ease;
       }
@@ -2175,7 +2177,12 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td>2021</td>
                   <td>NPCC Short Film Block<sup class="ref" id="cite-13"><a href="#ref-13">[13]</a></sup></td>
-                  <td>Official screening</td>
+                  <td>Screening</td>
+                </tr>
+                <tr>
+                  <td>2024</td>
+                  <td>8 Ball TV: Everything but the Kitchen Sink</td>
+                  <td>Screening</td>
                 </tr>
                 <tr>
                   <td>2025</td>
@@ -2394,7 +2401,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     <div id="tamper-modal" class="tamper-modal" aria-hidden="true">
       <button type="button" class="tamper-close" id="tamper-close">X</button>
       <div class="tamper-content">
-        <img class="tamper-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/7d/FBI_seal.svg" alt="FBI seal" />
+        <img class="tamper-logo" src="images/FBILogo.png" alt="FBI seal" />
         <div class="tamper-text">YOU HAVE BEEN REPORTED TO THE FBI FOR TRYING TO TAMPER WITH AN ARTIST'S CAREER</div>
       </div>
     </div>
@@ -3285,6 +3292,57 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const darkModeAudio = new Audio("sounds/Dark Mode.mp3");
       darkModeAudio.loop = true;
       darkModeAudio.preload = "auto";
+      const chinesePopupAudio = new Audio("sounds/ChinesePopUp.mp3");
+      chinesePopupAudio.preload = "auto";
+      const naviPopupAudio = new Audio("sounds/navisong.mp3");
+      naviPopupAudio.preload = "auto";
+      naviPopupAudio.loop = true;
+      let popupAudioPrimed = false;
+
+      function playPopupAudioNow(audio) {
+        if (!audio) return;
+        try {
+          audio.currentTime = 0;
+          const playPromise = audio.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(() => {});
+          }
+        } catch (_err) {}
+      }
+
+      function primePopupAudio() {
+        if (popupAudioPrimed) return;
+        popupAudioPrimed = true;
+        [chinesePopupAudio, naviPopupAudio].forEach((audio) => {
+          if (!audio) return;
+          const previousMuted = audio.muted;
+          const previousVolume = audio.volume;
+          audio.muted = true;
+          audio.volume = 0;
+          try {
+            const p = audio.play();
+            if (p && typeof p.then === "function") {
+              p.then(() => {
+                audio.pause();
+                audio.currentTime = 0;
+                audio.muted = previousMuted;
+                audio.volume = previousVolume;
+              }).catch(() => {
+                audio.muted = previousMuted;
+                audio.volume = previousVolume;
+              });
+            } else {
+              audio.pause();
+              audio.currentTime = 0;
+              audio.muted = previousMuted;
+              audio.volume = previousVolume;
+            }
+          } catch (_err) {
+            audio.muted = previousMuted;
+            audio.volume = previousVolume;
+          }
+        });
+      }
 
       function updateDarkAudioUi() {
         if (!darkAudioPlayBtn || !darkAudioMuteBtn) return;
@@ -3602,6 +3660,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       function openCookieScamModal() {
         cookieScamModal.setAttribute("aria-hidden", "false");
+        playPopupAudioNow(chinesePopupAudio);
       }
 
       function closeCookieScamModal() {
@@ -3611,10 +3670,15 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       function openNaviScamModal() {
         naviScamModal.setAttribute("aria-hidden", "false");
+        playPopupAudioNow(naviPopupAudio);
       }
 
       function closeNaviScamModal() {
         naviScamModal.setAttribute("aria-hidden", "true");
+        try {
+          naviPopupAudio.pause();
+          naviPopupAudio.currentTime = 0;
+        } catch (_err) {}
         replayDeferredClick();
       }
 
@@ -3721,16 +3785,17 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         if (event.defaultPrevented || event.button !== 0) return;
         if (!(event.target instanceof Element)) return;
         if (event.target.closest("#video-modal, #tamper-modal")) return;
+        primePopupAudio();
         const actionableTarget = getActionableTarget(event.target);
         clickGateCount += 1;
-        if (clickGateCount === 3) {
+        if (clickGateCount === 13) {
           queueDeferredClick(actionableTarget || event.target, event);
           event.preventDefault();
           event.stopImmediatePropagation();
           openCookieScamModal();
           return;
         }
-        if (clickGateCount === 12) {
+        if (clickGateCount === 24) {
           queueDeferredClick(actionableTarget || event.target, event);
           event.preventDefault();
           event.stopImmediatePropagation();
