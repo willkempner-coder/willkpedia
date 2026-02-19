@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WillKpedia Admin</title>
+    <style>
+      :root {
+        --border: #a2a9b1;
+        --bg: #f8f9fa;
+        --text: #202122;
+        --blue: #3366cc;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        color: var(--text);
+        background: #fff;
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 18px;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 1.6rem;
+      }
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0 0 14px;
+      }
+      button,
+      select,
+      input,
+      textarea {
+        font: inherit;
+      }
+      button {
+        border: 1px solid var(--border);
+        background: #fff;
+        padding: 7px 10px;
+        cursor: pointer;
+      }
+      .primary {
+        border-color: var(--blue);
+        background: var(--blue);
+        color: #fff;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .card {
+        border: 1px solid var(--border);
+        background: var(--bg);
+        padding: 12px;
+      }
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 1.1rem;
+      }
+      .field {
+        margin: 0 0 10px;
+      }
+      .field label {
+        display: block;
+        font-size: 0.86rem;
+        font-weight: 700;
+        margin: 0 0 4px;
+      }
+      .field textarea,
+      .field input,
+      .field select {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid var(--border);
+        background: #fff;
+        padding: 8px;
+      }
+      .field textarea {
+        min-height: 90px;
+      }
+      .table-meta {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 8px 0;
+      }
+      .sheet-wrap {
+        overflow: auto;
+        border: 1px solid var(--border);
+        background: #fff;
+      }
+      table.sheet {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 680px;
+      }
+      table.sheet th,
+      table.sheet td {
+        border: 1px solid var(--border);
+        vertical-align: top;
+      }
+      table.sheet input,
+      table.sheet textarea {
+        width: 100%;
+        box-sizing: border-box;
+        border: 0;
+        padding: 8px;
+        background: transparent;
+      }
+      table.sheet textarea {
+        min-height: 62px;
+        resize: vertical;
+      }
+      .muted {
+        color: #54595d;
+        font-size: 0.86rem;
+      }
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>WillKpedia Admin</h1>
+      <div class="topbar">
+        <a href="./index.html"><button type="button">Open Site</button></a>
+        <button id="save-all" class="primary" type="button">Save All Changes</button>
+        <button id="clear-all" type="button">Reset to Default</button>
+        <button id="export-json" type="button">Export JSON</button>
+        <input id="import-file" type="file" accept=".json,application/json" />
+      </div>
+      <p class="muted">This editor saves to your browser for this domain. `index.html` reads these overrides and applies them to desktop and mobile.</p>
+      <div class="grid">
+        <section class="card">
+          <h2>Text Blocks</h2>
+          <div class="field">
+            <label for="text-key">Select Text Block</label>
+            <select id="text-key"></select>
+          </div>
+          <div class="field">
+            <label for="text-html">HTML Content</label>
+            <textarea id="text-html"></textarea>
+          </div>
+          <button id="save-text" type="button">Save Text Block</button>
+        </section>
+
+        <section class="card">
+          <h2>Table Builder</h2>
+          <div class="field">
+            <label for="table-key">Select Table</label>
+            <select id="table-key"></select>
+          </div>
+          <div class="table-meta">
+            <button id="add-col" type="button">Add Column</button>
+            <button id="add-row" type="button">Add Row</button>
+            <button id="save-table" class="primary" type="button">Save Table</button>
+          </div>
+          <div class="sheet-wrap">
+            <table class="sheet" id="table-sheet"></table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const ADMIN_STORAGE_KEY = "willkpediaAdminData";
+      const textConfig = [
+        { key: "lead-intro", label: "Lead intro" },
+        { key: "biography", label: "Biography" },
+        { key: "editing-intro", label: "Editing intro" },
+        { key: "tv-intro", label: "Television intro" },
+        { key: "film-intro", label: "Film intro" },
+        { key: "fashion-intro", label: "Fashion intro" },
+        { key: "branded-intro", label: "Branded intro" },
+        { key: "trailers-intro", label: "Trailers intro" },
+        { key: "filmography-intro", label: "Filmography intro" },
+        { key: "awards-intro", label: "Awards intro" },
+        { key: "scandals-intro", label: "Scandals intro" },
+        { key: "other-intro", label: "Other Stuff intro" },
+        { key: "other-sounds-intro", label: "Other Sounds intro" }
+      ];
+
+      const tableConfig = [
+        { key: "personal-info", label: "Personal Info" },
+        { key: "tv", label: "Television" },
+        { key: "film-main", label: "Film (Main)" },
+        { key: "film-short", label: "Film (Short)" },
+        { key: "fashion", label: "Fashion" },
+        { key: "branded", label: "Branded" },
+        { key: "trailers", label: "Trailers" },
+        { key: "filmography", label: "Filmography" },
+        { key: "discography-cranklin", label: "Discography: Cranklin" },
+        { key: "discography-artdlr", label: "Discography: ART DLR" },
+        { key: "discography-lanlord", label: "Discography: Lanlord Lance" },
+        { key: "awards", label: "Awards" },
+        { key: "other-video", label: "Other Video" },
+        { key: "other-sounds", label: "Other Sounds" }
+      ];
+
+      const textKeyEl = document.getElementById("text-key");
+      const textHtmlEl = document.getElementById("text-html");
+      const tableKeyEl = document.getElementById("table-key");
+      const sheetEl = document.getElementById("table-sheet");
+
+      function loadState() {
+        try {
+          return JSON.parse(localStorage.getItem(ADMIN_STORAGE_KEY) || "{}");
+        } catch (_err) {
+          return {};
+        }
+      }
+
+      function saveState(state) {
+        localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function option(label, value) {
+        const o = document.createElement("option");
+        o.value = value;
+        o.textContent = label;
+        return o;
+      }
+
+      function ensureSchema(state) {
+        if (!state || typeof state !== "object") state = {};
+        if (!state.texts || typeof state.texts !== "object") state.texts = {};
+        if (!state.tables || typeof state.tables !== "object") state.tables = {};
+        return state;
+      }
+
+      function readTableFromDoc(doc, key) {
+        const table = doc.querySelector('table[data-admin-table="' + key + '"]');
+        if (!table) return { headers: [], rows: [] };
+        const headers = Array.from(table.querySelectorAll("thead th")).map((th) => th.innerHTML.trim());
+        const rows = Array.from(table.querySelectorAll("tbody tr")).map((tr) =>
+          Array.from(tr.children).filter((td) => td.matches("td,th")).map((td) => td.innerHTML.trim())
+        );
+        return { headers, rows };
+      }
+
+      async function loadDefaultsFromIndex() {
+        const res = await fetch("./index.html", { cache: "no-store" });
+        const html = await res.text();
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const defaults = { texts: {}, tables: {} };
+        textConfig.forEach((t) => {
+          const node = doc.querySelector('[data-admin-text="' + t.key + '"]');
+          defaults.texts[t.key] = node ? node.innerHTML.trim() : "";
+        });
+        tableConfig.forEach((t) => {
+          defaults.tables[t.key] = readTableFromDoc(doc, t.key);
+        });
+        return defaults;
+      }
+
+      let defaults = null;
+
+      function renderTextEditor() {
+        const state = ensureSchema(loadState());
+        const key = textKeyEl.value;
+        const value = key in state.texts ? state.texts[key] : defaults.texts[key] || "";
+        textHtmlEl.value = value;
+      }
+
+      function buildCellInput(value, isHeader) {
+        if (isHeader) {
+          return '<input type="text" value="' + (value || "").replace(/"/g, "&quot;") + '" />';
+        }
+        return '<textarea>' + (value || "") + "</textarea>";
+      }
+
+      function renderTableEditor() {
+        const state = ensureSchema(loadState());
+        const key = tableKeyEl.value;
+        const active = state.tables[key] || defaults.tables[key] || { headers: [], rows: [] };
+        const headers = Array.isArray(active.headers) ? active.headers.slice() : [];
+        const rows = Array.isArray(active.rows) ? active.rows.map((r) => (Array.isArray(r) ? r.slice() : [])) : [];
+        sheetEl.innerHTML = "";
+
+        const thead = document.createElement("thead");
+        const trh = document.createElement("tr");
+        headers.forEach((h) => {
+          const th = document.createElement("th");
+          th.innerHTML = buildCellInput(h, true);
+          trh.appendChild(th);
+        });
+        thead.appendChild(trh);
+        sheetEl.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+        rows.forEach((row) => {
+          const tr = document.createElement("tr");
+          for (let i = 0; i < headers.length; i += 1) {
+            const td = document.createElement("td");
+            td.innerHTML = buildCellInput(row[i] || "", false);
+            tr.appendChild(td);
+          }
+          tbody.appendChild(tr);
+        });
+        sheetEl.appendChild(tbody);
+      }
+
+      function collectTableFromEditor() {
+        const headers = Array.from(sheetEl.querySelectorAll("thead input")).map((el) => el.value);
+        const rows = Array.from(sheetEl.querySelectorAll("tbody tr")).map((tr) =>
+          Array.from(tr.querySelectorAll("textarea")).map((el) => el.value)
+        );
+        return { headers, rows };
+      }
+
+      function addColumn() {
+        const headRow = sheetEl.querySelector("thead tr");
+        if (!headRow) return;
+        const th = document.createElement("th");
+        th.innerHTML = buildCellInput("New column", true);
+        headRow.appendChild(th);
+        const bodyRows = sheetEl.querySelectorAll("tbody tr");
+        bodyRows.forEach((tr) => {
+          const td = document.createElement("td");
+          td.innerHTML = buildCellInput("", false);
+          tr.appendChild(td);
+        });
+      }
+
+      function addRow() {
+        const cols = sheetEl.querySelectorAll("thead input").length;
+        if (!cols) return;
+        const tr = document.createElement("tr");
+        for (let i = 0; i < cols; i += 1) {
+          const td = document.createElement("td");
+          td.innerHTML = buildCellInput("", false);
+          tr.appendChild(td);
+        }
+        const tbody = sheetEl.querySelector("tbody");
+        tbody.appendChild(tr);
+      }
+
+      function populateSelectors() {
+        textConfig.forEach((t) => textKeyEl.appendChild(option(t.label, t.key)));
+        tableConfig.forEach((t) => tableKeyEl.appendChild(option(t.label, t.key)));
+      }
+
+      function exportJson() {
+        const state = ensureSchema(loadState());
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "willkpedia-admin-data.json";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      async function init() {
+        defaults = await loadDefaultsFromIndex();
+        populateSelectors();
+        renderTextEditor();
+        renderTableEditor();
+      }
+
+      document.getElementById("save-text").addEventListener("click", () => {
+        const state = ensureSchema(loadState());
+        state.texts[textKeyEl.value] = textHtmlEl.value;
+        saveState(state);
+      });
+
+      document.getElementById("save-table").addEventListener("click", () => {
+        const state = ensureSchema(loadState());
+        state.tables[tableKeyEl.value] = collectTableFromEditor();
+        saveState(state);
+      });
+
+      document.getElementById("save-all").addEventListener("click", () => {
+        const state = ensureSchema(loadState());
+        state.texts[textKeyEl.value] = textHtmlEl.value;
+        state.tables[tableKeyEl.value] = collectTableFromEditor();
+        saveState(state);
+      });
+
+      document.getElementById("clear-all").addEventListener("click", () => {
+        localStorage.removeItem(ADMIN_STORAGE_KEY);
+        renderTextEditor();
+        renderTableEditor();
+      });
+
+      document.getElementById("export-json").addEventListener("click", exportJson);
+      document.getElementById("add-col").addEventListener("click", addColumn);
+      document.getElementById("add-row").addEventListener("click", addRow);
+      textKeyEl.addEventListener("change", renderTextEditor);
+      tableKeyEl.addEventListener("change", renderTableEditor);
+
+      document.getElementById("import-file").addEventListener("change", async (event) => {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+        const content = await file.text();
+        let parsed = null;
+        try {
+          parsed = JSON.parse(content);
+        } catch (_err) {
+          return;
+        }
+        saveState(ensureSchema(parsed));
+        renderTextEditor();
+        renderTableEditor();
+      });
+
+      init();
+    </script>
+  </body>
+</html>

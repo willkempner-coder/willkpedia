@@ -193,7 +193,7 @@
         border-color: #6a2424;
       }
       body.dark-hellfire .infobox-photo img {
-        filter: invert(1) hue-rotate(170deg) contrast(1.15);
+        filter: invert(1) hue-rotate(170deg) contrast(1.15) blur(calc(var(--photo-blur-percent) * 0.2px));
       }
       body.dark-hellfire .title,
       body.dark-hellfire .site-brand-text,
@@ -426,6 +426,13 @@
         max-width: 980px;
         width: 100%;
       }
+      .tamper-logo {
+        width: min(180px, 30vw);
+        height: auto;
+        display: block;
+        margin: 0 auto 16px;
+        filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.28));
+      }
       .tamper-close {
         position: absolute;
         top: 14px;
@@ -506,12 +513,16 @@
         background: #fff;
       }
       .infobox-photo img {
+        --photo-blur-percent: 0;
         width: 100%;
         aspect-ratio: 3 / 4;
         object-fit: cover;
         object-position: center 34%;
         display: block;
         border: 1px solid #c8ccd1;
+        cursor: pointer;
+        filter: blur(calc(var(--photo-blur-percent) * 0.2px));
+        transition: filter 160ms ease;
       }
       .infobox-photo figcaption {
         margin-top: 6px;
@@ -1657,7 +1668,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <td><a href="https://www.willkempner.com/" target="_blank" rel="noreferrer">willkempner.com</a></td>
               </tr>
             </table>
-            <p>
+            <p data-admin-text="lead-intro">
               <b>Will Kempner</b> (born June 12, 1993) is an American editor, filmmaker, artist, and producer.
               "Will K", as he is increasingly known, has worked across <a href="#tv">television</a>, Hollywood, <a href="#fashion">fashion campaigns</a>, branded and <a href="#corporate">branded media</a>, and <a href="#filmography">independent film</a>.
               His <a href="#editing">editing</a> portfolio includes directing and editing narrative shorts and features, as well as post-production work
@@ -1667,7 +1678,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
           <section id="personal-info">
             <h2>Personal Info <span class="edit">[edit]</span></h2>
-            <table class="wikitable personal-info-table">
+            <table class="wikitable personal-info-table" data-admin-table="personal-info">
               <tbody>
                 <tr>
                   <th>Cell</th>
@@ -1692,18 +1703,18 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
           <section id="bio">
             <h2>Biography <span class="edit">[edit]</span></h2>
-            <p>
+            <p data-admin-text="biography">
               Born in New York, Kempner also spent time in New Jersey. He was last seen in Ridgewood, Queens, though these reports have been contested. At present, the only empirical evidence of Kempner’s existence is tied to a specific portfolio of creative projects, primarily editorial credits.
             </p>
           </section>
 
           <section id="editing">
             <h2>Editing Work <span class="edit">[edit]</span></h2>
-            <p>Editing is the craft Will Kempner is often called to perform. He handles the blade with grace and certainty.</p>
+            <p data-admin-text="editing-intro">Editing is the craft Will Kempner is often called to perform. He handles the blade with grace and certainty.</p>
 
             <h3 id="tv">Television</h3>
-            <p class="notes">Mr. Will has worked for networks like HBO, self-released YouTube, and Disney+.</p>
-            <table class="wikitable table-video-col-2">
+            <p class="notes" data-admin-text="tv-intro">TV is a constant presence in most Americans' lives. With its fast-moving, visually interesting, highly entertaining style, it commands many people's attention for several hours each day. Studies have shown that television competes with other sources of human interaction-such as family, friends, church, and school-in helping young people develop values and form ideas about the world around them. It also influences viewers' attitudes and beliefs about themselves, as well as about people from other social, ethnic, and cultural backgrounds.<sup class="ref" id="cite-17a"><a href="#ref-17">[17]</a></sup> Will has worked for networks like HBO, self-released YouTube, and Disney+.</p>
+            <table class="wikitable table-video-col-2" data-admin-table="tv">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -1767,8 +1778,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h3 id="films-editing">Film</h3>
-            <p class="notes">Twenty-four frames per second is a standard measure of motion picture projection, a span in which a remarkable number of images pass by, and Kempner is often employed organizing, editing, and assisting with them.</p>
-            <table class="wikitable table-video-col-1">
+            <p class="notes" data-admin-text="film-intro">Twenty-four frames per second is a standard measure of motion picture projection, a span in which a remarkable number of images pass by, and Kempner is often employed organizing, editing, and assisting with them.</p>
+            <table class="wikitable table-video-col-1" data-admin-table="film-main">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -1780,21 +1791,21 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td><i>Good One</i><div class="film-inline-image"><img src="images/GoodOne.jpg" alt="Good One still" /></div></td>
+                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Good_One_(film)" target="_blank" rel="noreferrer"><i>Good One</i></a></td>
                   <td>2022</td>
                   <td>Assistant Editor; DIT</td>
                   <td>Metrograph Pictures</td>
                   <td>Director: India Donaldson.</td>
                 </tr>
                 <tr>
-                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a><div class="film-inline-image"><img src="images/SeekingMavisBeacon.jpg" alt="Seeking Mavis Beacon still" /></div></td>
+                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a></td>
                   <td>2024</td>
                   <td>Assistant Editor</td>
                   <td>NEON</td>
                   <td>Director: Jazmin Jones.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/7Dkp41QdFgw?list=PLh-uDRIvQHP0o2Aj1Ti9oTUFzvCRP5Uu3" class="video-link"><i>Telfar New Models Season One</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/7Dkp41QdFgw?list=PLh-uDRIvQHP0o2Aj1Ti9oTUFzvCRP5Uu3" data-inline-off="true" class="video-link"><i>Telfar New Models Season One</i></a></td>
                   <td>2025</td>
                   <td>Editor alongside Telfar TV team<br />Conducted confessional interviews</td>
                   <td>TELFAR TV</td>
@@ -1804,7 +1815,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h4>Short Films</h4>
-            <table class="wikitable table-video-col-1">
+            <table class="wikitable table-video-col-1" data-admin-table="film-short">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -1814,6 +1825,12 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/3U9xgN3GsZc" data-inline-off="true" class="video-link"><i>Close The Gap</i></a></td>
+                  <td>2023</td>
+                  <td>Assistant Editor</td>
+                  <td>Director: Alex Bliss.</td>
+                </tr>
                 <tr>
                   <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a></td>
                   <td>2024</td>
@@ -1830,8 +1847,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h3 id="fashion">Fashion</h3>
-            <p class="notes">When Kempner enters a room, his outfits are often described as conversation starters and statement pieces. His attention to detail, from his initial-embroidered socks to his signature fedora, “helps explain why his editing is so precise it cuts like a Wagyu knife.”<sup class="ref" id="cite-15a"><a href="#ref-15">[15]</a></sup> Before film, fashion was Will K’s first love, and long after he has forgotten how to care for himself, not to mention how to use a personal computer, that fedora will undoubtedly remain snug upon his cap.</p>
-            <table class="wikitable table-video-col-2">
+            <p class="notes" data-admin-text="fashion-intro">When Kempner enters a room, his outfits are always conversation starters and statement pieces. His attention to detail, from his initial-embroidered socks to his signature fedora, “helps explain why his editing is so precise it cuts like a Wagyu knife.”<sup class="ref" id="cite-15a"><a href="#ref-15">[15]</a></sup> Before film, fashion was Will K’s first love, and long after he has forgotten how to care for himself, not to mention how to use a personal computer, that fedora will undoubtedly remain snug upon his cap.</p>
+            <table class="wikitable table-video-col-2" data-admin-table="fashion">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -1846,8 +1863,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Editor, alongside Kristan Sprague. Directed by Naima Ramos-Chapman</td>
                 </tr>
                 <tr>
-                  <td>2023-present</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/MfqoJ9jEbHM?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" class="video-link"><i>Telfar advertisements</i></a></td>
+                  <td>2023-2026</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/8gajKue9RpQ?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" class="video-link"><i>Telfar advertisements</i></a></td>
                   <td>Editor, for Telfar TV. Occasional Producer and Writer. <a href="https://www.youtube.com/playlist?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" target="_blank" rel="noreferrer">View playlist</a>.</td>
                 </tr>
                 <tr>
@@ -1859,10 +1876,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h3 id="corporate">Branded</h3>
-            <p class="notes">
-              Corporate and branded editing includes years of work with various <b>Conde</b> brands, including <i>Vogue</i>, <i>Glamour</i>, and Teen Vogue Prom, as well as work for healthcare and consumer campaigns. Additional brand collaborators shown in portfolio materials include <b>Spotify</b>, <b>HBO</b>, <b>Disney+</b>, <b>Topic Studios</b>, and <b>Twitch</b>.
+            <p class="notes" data-admin-text="branded-intro">
+              The economic incentives of the corporations for which Kempner has worked have been associated with environmental and psychological decline, even as those firms report record breaking profit margins. The content he produces for these companies is said to foster a sense of contentment among all stakeholders, from customers to chief executives, though some critics suggest the prevailing mood more closely resembles ennui. In addition to his years working with various Condé Nast brands, he has also edited for Spotify, Twitch, Adidas, and other major platforms.
             </p>
-            <table class="wikitable table-video-col-2">
+            <table class="wikitable table-video-col-2" data-admin-table="branded">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -1906,8 +1923,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h3 id="trailers">Trailers</h3>
-            <p class="notes">The trailers of “Will K” are well known and often imitated. In local pubs, drunkards have reportedly been heard asking, “How can he cram this much life, pure essence, into an object of such brevity?” <span class="citation-needed">[citation needed]</span></p>
-            <table class="wikitable table-video-col-2">
+            <p class="notes" data-admin-text="trailers-intro">The trailers of “Will K” are well known and often imitated. In local pubs, drunkards have reportedly been heard asking, “How can he cram this much life, pure essence, into an object of such brevity?” <span class="citation-needed">[citation needed]</span></p>
+            <table class="wikitable table-video-col-2" data-admin-table="trailers">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -1953,8 +1970,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
           <section id="filmography">
             <h2>Filmography <span class="edit">[edit]</span></h2>
-            <p>From places in New Jersey to private family Zoom chats, these films showcase a deep understanding of mise-en-scène and dramatic irony.</p>
-            <table class="wikitable table-video-col-1">
+            <p data-admin-text="filmography-intro">From places in New Jersey to private family Zoom chats, these films showcase a deep understanding of mise-en-scène and dramatic irony.</p>
+            <table class="wikitable table-video-col-1" data-admin-table="filmography">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -1991,7 +2008,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <h2>Discography <span class="edit">[edit]</span></h2>
 
             <h3 id="discography-cranklin">Cranklin<sup class="ref" id="cite-9a"><a href="#ref-9">[9]</a></sup></h3>
-            <table class="wikitable table-player-last">
+            <table class="wikitable table-player-last" data-admin-table="discography-cranklin">
               <thead>
                 <tr>
                   <th>Release</th>
@@ -2041,7 +2058,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
             <h3 id="discography-artdlr">ART DLR<sup class="ref" id="cite-8a"><a href="#ref-8">[8]</a></sup></h3>
             <p class="notes">Band with Noah Engel, selected works.</p>
-            <table class="wikitable table-player-last">
+            <table class="wikitable table-player-last" data-admin-table="discography-artdlr">
               <thead>
                 <tr>
                   <th>Release</th>
@@ -2100,7 +2117,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
             <h3 id="discography-lanlord">Lanlord Lance<sup class="ref" id="cite-10a"><a href="#ref-10">[10]</a></sup></h3>
             <p class="notes">Band with Jeff Marks, selected works.</p>
-            <table class="wikitable table-player-last">
+            <table class="wikitable table-player-last" data-admin-table="discography-lanlord">
               <thead>
                 <tr>
                   <th>Release</th>
@@ -2130,8 +2147,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <button id="awards-next" type="button" aria-label="Next awards image">Next</button>
               </div>
             </figure>
-            <p>Kempner’s creative output has been recognized through several industry grants and festival screenings. In 2015, he was the winner of the Todd Phillips Post Production Grant. He later won the 2019 Tribeca Film Festival Snapchat Story Contest (w/ Colin Garland and Ben Townsend). His work has also been selected for official screenings, including the 2021 NPCC Short Film Block and a scheduled presentation at NoBudge Live 12.</p>
-            <table class="wikitable table-video-col-1">
+            <p data-admin-text="awards-intro">Though he reportedly does not pursue his work for fame, Kempner’s creative output has nonetheless been recognized through several industry grants and screenings at mid-tier and regional film festivals.<br /><br />His film <i>The Good Boy</i> was noted for eliciting consistent audience laughter during its NoBudge presentation. Meanwhile, <i>A Flaw in the System</i> appeared as part of a short film block that reportedly drew protest from Antifa and received a modest degree of critical acclaim.<br /><br />The sustained attention surrounding these projects has been cited as one reason Kempner departed Los Angeles after a six month stint in Hollywood. “Sometimes,” he noted, “it’s OK to live as a normal person.”</p>
+            <table class="wikitable table-video-col-1" data-admin-table="awards">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -2180,14 +2197,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <button id="scandal-next" type="button" aria-label="Next scandals image">Next</button>
               </div>
             </figure>
-            <p>While Kempner has been the subject of numerous alleged scandals, none have been formally verified or substantiated. In contrast to these unconfirmed reports, he is reportedly held in high regard by professional associates; the accompanying media gallery serves as a curated record of his documented talents and personality.</p>
+            <p data-admin-text="scandals-intro">While Kempner has been the subject of numerous alleged scandals, none have been formally verified or substantiated. He has, however, reportedly threatened legal action for slander on multiple occasions. In contrast to these unconfirmed claims, he is said to be held in high regard by professional associates.</p>
           </section>
 
           <section id="other-stuff">
             <h2>Other Stuff <span class="edit">[edit]</span></h2>
-            <p>Here lies the bonus work, the uncategorizable, the links I assume no one will click. Yet they are Kempner’s children, and he loves them as dearly as the higher placed ones. <span class="citation-needed">[citation needed]</span></p>
+            <p data-admin-text="other-intro">Here lies the bonus work, the uncategorizable, the links I assume no one will click. Yet they are Kempner’s children, and he loves them as dearly as the higher placed ones. <span class="citation-needed">[citation needed]</span></p>
             <h3 id="other-video">Other Video</h3>
-            <table class="wikitable table-player-last">
+            <table class="wikitable table-player-last" data-admin-table="other-video">
               <thead>
                 <tr>
                   <th>Project</th>
@@ -2225,6 +2242,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/bDT9M6-oSgE" data-inline-off="true" class="video-link"><i>Rats</i></a></td>
                   <td>2013</td>
                   <td>Webseries made with college roommates. Never finished.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://player.vimeo.com/video/227838700?h=0a8a57d957" data-inline-off="true" class="video-link"><i>Zoo: A Theater of War</i></a></td>
+                  <td>2013</td>
+                  <td>Made with Chris Gilman.</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/_ruyXpuaSV4?start=10" data-inline-off="true" class="video-link"><i>Ticket Out Of Town</i></a></td>
@@ -2274,8 +2296,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </tbody>
             </table>
             <h3 id="other-music">Other Sounds</h3>
-            <p class="notes">Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup>: High school band. Featuring Chris Fortunato, Jeff Marks, Kevin Welch, Zach Cimafonte, and Steve Berkowitz. Occasional members include High Jacob.</p>
-            <table class="wikitable">
+            <p class="notes" data-admin-text="other-sounds-intro">Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup>: High school band. Featuring Chris Fortunato, Jeff Marks, Kevin Welch, Zach Cimafonte, and Steve Berkowitz. Occasional members include High Jacob.</p>
+            <table class="wikitable" data-admin-table="other-sounds">
               <thead>
                 <tr>
                   <th>Release</th>
@@ -2329,6 +2351,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <li id="ref-14">w Ben Townsend and Colin Garland. <a href="#cite-14a">^</a></li>
               <li id="ref-15"><a href="https://www.amazon.com/Blink-Eye-Perspective-Film-Editing/dp/1879505622" target="_blank" rel="noreferrer">Blink of an Eye: A Perspective on Film Editing</a> <a href="#cite-15a">^</a></li>
               <li id="ref-16">Released as L2: Angels Reb0rn. <a href="#cite-16a">^</a></li>
+              <li id="ref-17"><a href="https://www.encyclopedia.com/arts/news-wires-white-papers-and-books/televisions-impact-american-society-and-culture#:~:text=10,American%20culture%20around%20the%20world." target="_blank" rel="noreferrer">Television's Impact on American Society and Culture</a> <a href="#cite-17a">^</a></li>
             </ol>
           </section>
         </main>
@@ -2371,6 +2394,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     <div id="tamper-modal" class="tamper-modal" aria-hidden="true">
       <button type="button" class="tamper-close" id="tamper-close">X</button>
       <div class="tamper-content">
+        <img class="tamper-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/7d/FBI_seal.svg" alt="FBI seal" />
         <div class="tamper-text">YOU HAVE BEEN REPORTED TO THE FBI FOR TRYING TO TAMPER WITH AN ARTIST'S CAREER</div>
       </div>
     </div>
@@ -2451,6 +2475,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const flagTrackB = document.getElementById("flag-track-b");
       const siteBrandText = document.getElementById("site-brand-text");
       const globeLogo = document.getElementById("globe-logo");
+      const infoboxMainPhoto = document.querySelector(".infobox-photo img");
       const sorryHoldOverlay = document.getElementById("sorry-hold-overlay");
       const editSurface = document.getElementById("edit-surface");
       const editBox = document.getElementById("edit-box");
@@ -2492,6 +2517,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       let isReplayingDeferredClick = false;
       let darkDigitObserver = null;
       let darkDigitMutating = false;
+      let infoboxPhotoBlurPercent = 0;
       const regionExclusions = new Set(["AC", "CP", "DG", "EA", "EU", "EZ", "IC", "IL", "TA", "UN", "XA", "XB", "XK", "ZZ"]);
       const scandalImages = [
         { src: "images/scandal-01.png", caption: "Public reaction image 1." },
@@ -2519,6 +2545,75 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       ];
       let scandalIndex = 0;
       let awardsIndex = 0;
+      const ADMIN_STORAGE_KEY = "willkpediaAdminData";
+
+      function applyAdminOverridesFromStorage() {
+        const raw = localStorage.getItem(ADMIN_STORAGE_KEY);
+        if (!raw) return;
+        let payload = null;
+        try {
+          payload = JSON.parse(raw);
+        } catch (_err) {
+          return;
+        }
+        if (!payload || typeof payload !== "object") return;
+
+        const textBlocks = payload.texts && typeof payload.texts === "object" ? payload.texts : {};
+        Object.keys(textBlocks).forEach((key) => {
+          const node = document.querySelector('[data-admin-text="' + key + '"]');
+          if (!node) return;
+          const html = textBlocks[key];
+          if (typeof html !== "string") return;
+          node.innerHTML = html;
+        });
+
+        const tables = payload.tables && typeof payload.tables === "object" ? payload.tables : {};
+        Object.keys(tables).forEach((tableKey) => {
+          const tableNode = document.querySelector('table[data-admin-table="' + tableKey + '"]');
+          if (!tableNode) return;
+          const tableData = tables[tableKey];
+          if (!tableData || typeof tableData !== "object") return;
+          const headers = Array.isArray(tableData.headers) ? tableData.headers : null;
+          const rows = Array.isArray(tableData.rows) ? tableData.rows : null;
+          if (!headers || !rows) return;
+
+          let thead = tableNode.querySelector("thead");
+          if (!thead) {
+            thead = document.createElement("thead");
+            tableNode.insertBefore(thead, tableNode.firstChild);
+          }
+          let headRow = thead.querySelector("tr");
+          if (!headRow) {
+            headRow = document.createElement("tr");
+            thead.appendChild(headRow);
+          }
+          headRow.innerHTML = "";
+          headers.forEach((label) => {
+            const th = document.createElement("th");
+            th.innerHTML = String(label || "");
+            headRow.appendChild(th);
+          });
+
+          let tbody = tableNode.querySelector("tbody");
+          if (!tbody) {
+            tbody = document.createElement("tbody");
+            tableNode.appendChild(tbody);
+          }
+          tbody.innerHTML = "";
+          rows.forEach((rowCells) => {
+            const tr = document.createElement("tr");
+            const normalized = Array.isArray(rowCells) ? rowCells : [];
+            headers.forEach((_, idx) => {
+              const td = document.createElement("td");
+              td.innerHTML = String(normalized[idx] || "");
+              tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+          });
+        });
+      }
+
+      applyAdminOverridesFromStorage();
 
       function openModal(url) {
         const isYouTube = url.includes("youtube.com/embed") || url.includes("youtube-nocookie.com/embed");
@@ -3034,6 +3129,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         const rows = document.querySelectorAll("main.article .wikitable tbody tr");
         rows.forEach((row) => {
           if (row.classList.contains("mobile-row-compact")) return;
+          const inDiscography = !!row.closest("#discography");
           const cells = Array.from(row.children).filter((cell) => cell.matches("td,th"));
           if (!cells.length) return;
           const byLabel = new Map();
@@ -3058,7 +3154,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             const summary = document.createElement("div");
             summary.className = "mobile-row-summary";
             parts.forEach((part) => {
-              part.cell.classList.add("mobile-compact-field");
+              if (!(inDiscography && part.label === "player")) {
+                part.cell.classList.add("mobile-compact-field");
+              }
               const item = document.createElement("span");
               item.className = "kv";
               const key = document.createElement("span");
@@ -3096,6 +3194,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         const rows = document.querySelectorAll("main.article .wikitable tbody tr");
         rows.forEach((row) => {
           if (row.dataset.mobileMediaBuilt === "true") return;
+          if (row.closest("#discography")) {
+            row.dataset.mobileMediaBuilt = "true";
+            return;
+          }
           const cells = Array.from(row.children).filter((cell) => cell.matches("td,th"));
           if (!cells.length) return;
           const mediaHolder = document.createElement("div");
@@ -3456,6 +3558,20 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         window.addEventListener("blur", hideSorryHoldOverlay);
       }
 
+      function applyInfoboxPhotoBlur() {
+        if (!infoboxMainPhoto) return;
+        infoboxMainPhoto.style.setProperty("--photo-blur-percent", String(infoboxPhotoBlurPercent));
+      }
+
+      if (infoboxMainPhoto) {
+        infoboxMainPhoto.addEventListener("click", () => {
+          infoboxPhotoBlurPercent += 5;
+          if (infoboxPhotoBlurPercent > 100) infoboxPhotoBlurPercent = 0;
+          applyInfoboxPhotoBlur();
+        });
+        applyInfoboxPhotoBlur();
+      }
+
       function playTamperSound() {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtx) return;
@@ -3607,14 +3723,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         if (event.target.closest("#video-modal, #tamper-modal")) return;
         const actionableTarget = getActionableTarget(event.target);
         clickGateCount += 1;
-        if (clickGateCount === 1) {
+        if (clickGateCount === 3) {
           queueDeferredClick(actionableTarget || event.target, event);
           event.preventDefault();
           event.stopImmediatePropagation();
           openCookieScamModal();
           return;
         }
-        if (clickGateCount === 7) {
+        if (clickGateCount === 12) {
           queueDeferredClick(actionableTarget || event.target, event);
           event.preventDefault();
           event.stopImmediatePropagation();
