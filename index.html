@@ -581,6 +581,13 @@
         background: #eaecf0;
         text-align: left;
       }
+      .wikitable.has-year-col th:first-child,
+      .wikitable.has-year-col td:first-child {
+        width: 1%;
+        min-width: 74px;
+        max-width: 92px;
+        white-space: nowrap;
+      }
       .table-video-col-1 th:nth-child(1),
       .table-video-col-1 td:nth-child(1) {
         width: 46%;
@@ -1065,24 +1072,62 @@
         .personal-info-plain {
           max-width: 100%;
         }
-        .wikitable {
-          display: block;
+        .wikitable,
+        #personal-info .wikitable {
+          display: table;
           width: 100%;
           max-width: 100%;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
+          min-width: 0;
+          table-layout: fixed;
+          overflow: visible;
         }
-        .table-video-col-1 td:nth-child(1),
-        .table-video-col-1 th:nth-child(1) {
-          min-width: 300px;
+        .wikitable thead {
+          display: none;
         }
-        .table-video-col-2 td:nth-child(2),
-        .table-video-col-2 th:nth-child(2) {
-          min-width: 300px;
+        .wikitable tbody {
+          display: block;
         }
-        .table-player-last td:last-child,
-        .table-player-last th:last-child {
-          min-width: 280px;
+        .wikitable tbody tr {
+          display: flex;
+          flex-direction: column;
+          border: 1px solid var(--wiki-border);
+          margin: 0 0 12px;
+          background: #fff;
+        }
+        .wikitable tbody td,
+        .wikitable tbody th {
+          display: block;
+          width: 100%;
+          box-sizing: border-box;
+          border: 0;
+          border-top: 1px solid #eaecf0;
+          padding: 8px 10px;
+          white-space: normal;
+          min-width: 0 !important;
+        }
+        .wikitable tbody tr > *:first-child {
+          border-top: 0;
+        }
+        .wikitable tbody td::before,
+        .wikitable tbody th::before {
+          content: attr(data-label);
+          display: block;
+          font-family: sans-serif;
+          font-size: 0.78rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.02em;
+          color: #54595d;
+          margin-bottom: 2px;
+        }
+        .wikitable tbody td.mobile-media-cell,
+        .wikitable tbody th.mobile-media-cell {
+          order: 99;
+        }
+        .wikitable iframe,
+        .wikitable video,
+        .wikitable img {
+          max-width: 100%;
         }
         .inline-table-video {
           width: 100%;
@@ -1125,37 +1170,33 @@
         body.mobile-collapsible-enabled .mobile-section-body[hidden] {
           display: none;
         }
-        #discography .wikitable {
-          display: table;
-          overflow: visible;
-        }
-        #discography .wikitable thead {
-          display: none;
-        }
-        #discography .wikitable tbody {
-          display: block;
-        }
-        #discography .wikitable tbody tr {
-          display: block;
-          border: 1px solid #a2a9b1;
-          margin: 0 0 10px;
-          background: #fff;
-        }
-        #discography .wikitable tbody td {
-          display: block;
-          width: 100%;
-          box-sizing: border-box;
-          border: 0;
+        body.mobile-collapsible-enabled .mobile-subsection {
           border-top: 1px solid #eaecf0;
-          padding: 8px 10px;
-          white-space: normal;
+          margin-top: 4px;
+          padding-top: 4px;
         }
-        #discography .wikitable tbody tr td:first-child {
-          border-top: 0;
-          font-weight: 600;
+        body.mobile-collapsible-enabled .mobile-subsection-head {
+          margin: 0;
+          padding: 8px 0 10px 30px;
+          position: relative;
+          cursor: pointer;
+          user-select: none;
         }
-        #discography .wikitable tbody td:last-child {
-          padding-top: 10px;
+        body.mobile-collapsible-enabled .mobile-subsection-head::before {
+          content: "⌄";
+          position: absolute;
+          left: 1px;
+          top: 50%;
+          transform: translateY(-50%) rotate(-90deg);
+          font-size: 1.35rem;
+          line-height: 1;
+          color: #54595d;
+        }
+        body.mobile-collapsible-enabled .mobile-subsection:not(.is-collapsed) > .mobile-subsection-head::before {
+          transform: translateY(-50%) rotate(0deg);
+        }
+        body.mobile-collapsible-enabled .mobile-subsection-body[hidden] {
+          display: none;
         }
         #discography .wikitable iframe {
           width: 100%;
@@ -1171,6 +1212,14 @@
         }
         #personal-info .personal-info-plain {
           display: block;
+        }
+      }
+      @media (min-width: 981px) and (max-width: 1380px) {
+        .layout {
+          grid-template-columns: 220px minmax(0, 1fr);
+        }
+        .appearance-panel {
+          display: none;
         }
       }
     </style>
@@ -1482,9 +1531,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <figure style="margin:0;">
                     <img
                       src="images/bio-photo-optimized.jpg"
+                      onerror="this.onerror=null;this.src='images/bio-photo.jpg';"
                       alt="Will Kempner"
-                      width="1400"
-                      height="1050"
+                      width="300"
+                      height="400"
                       loading="eager"
                       fetchpriority="high"
                       decoding="async"
@@ -2220,25 +2270,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
     <script>
       if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
+        history.scrollRestoration = "auto";
       }
-
-      function forceTopOnEntry() {
-        if (window.location.hash) {
-          history.replaceState(null, "", window.location.pathname + window.location.search);
-        }
-        window.scrollTo(0, 0);
-        requestAnimationFrame(() => {
-          window.scrollTo(0, 0);
-        });
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-        }, 80);
-      }
-
-      window.addEventListener("DOMContentLoaded", forceTopOnEntry);
-      window.addEventListener("load", forceTopOnEntry);
-      window.addEventListener("pageshow", forceTopOnEntry);
 
       const modal = document.getElementById("video-modal");
       const modalBody = document.getElementById("modal-body");
@@ -2605,6 +2638,88 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       }
 
       let mobileCollapsibleEnabled = false;
+      let mobileSubsectionCollapsibleEnabled = false;
+
+      function setSubsectionCollapsed(wrapper, collapsed) {
+        if (!wrapper) return;
+        wrapper.classList.toggle("is-collapsed", collapsed);
+        const head = wrapper.querySelector(":scope > .mobile-subsection-head");
+        const body = wrapper.querySelector(":scope > .mobile-subsection-body");
+        if (head) head.setAttribute("aria-expanded", collapsed ? "false" : "true");
+        if (body) body.hidden = !!collapsed;
+      }
+
+      function ensureSubsectionBodies() {
+        const subsectionHeads = document.querySelectorAll("main.article > section h3");
+        subsectionHeads.forEach((head) => {
+          if (head.closest(".mobile-subsection")) return;
+          const wrapper = document.createElement("div");
+          wrapper.className = "mobile-subsection";
+          const body = document.createElement("div");
+          body.className = "mobile-subsection-body";
+          head.parentElement.insertBefore(wrapper, head);
+          wrapper.appendChild(head);
+          let next = wrapper.nextElementSibling;
+          while (next && next.tagName !== "H3" && next.tagName !== "H2") {
+            const move = next;
+            next = next.nextElementSibling;
+            body.appendChild(move);
+          }
+          wrapper.appendChild(body);
+        });
+      }
+
+      function enableMobileSubsectionCollapsibles() {
+        if (mobileSubsectionCollapsibleEnabled) return;
+        ensureSubsectionBodies();
+        const firstBySection = new Set();
+        const wrappers = document.querySelectorAll("main.article > section .mobile-subsection");
+        wrappers.forEach((wrapper) => {
+          const head = wrapper.querySelector(":scope > h3");
+          const body = wrapper.querySelector(":scope > .mobile-subsection-body");
+          if (!head || !body) return;
+          head.classList.add("mobile-subsection-head");
+          head.setAttribute("role", "button");
+          head.setAttribute("tabindex", "0");
+          if (!head.dataset.mobileSubBound) {
+            head.addEventListener("click", () => {
+              if (!mobileSubsectionCollapsibleEnabled) return;
+              setSubsectionCollapsed(wrapper, !wrapper.classList.contains("is-collapsed"));
+            });
+            head.addEventListener("keydown", (event) => {
+              if (!mobileSubsectionCollapsibleEnabled) return;
+              if (event.key !== "Enter" && event.key !== " ") return;
+              event.preventDefault();
+              setSubsectionCollapsed(wrapper, !wrapper.classList.contains("is-collapsed"));
+            });
+            head.dataset.mobileSubBound = "true";
+          }
+          const parentSection = wrapper.closest("main.article > section");
+          const key = parentSection ? parentSection.id : "global";
+          const isFirst = !firstBySection.has(key);
+          if (isFirst) firstBySection.add(key);
+          setSubsectionCollapsed(wrapper, !isFirst);
+        });
+        mobileSubsectionCollapsibleEnabled = true;
+      }
+
+      function disableMobileSubsectionCollapsibles() {
+        if (!mobileSubsectionCollapsibleEnabled) return;
+        const wrappers = document.querySelectorAll("main.article > section .mobile-subsection");
+        wrappers.forEach((wrapper) => {
+          wrapper.classList.remove("is-collapsed");
+          const head = wrapper.querySelector(":scope > .mobile-subsection-head");
+          const body = wrapper.querySelector(":scope > .mobile-subsection-body");
+          if (head) {
+            head.classList.remove("mobile-subsection-head");
+            head.removeAttribute("role");
+            head.removeAttribute("tabindex");
+            head.removeAttribute("aria-expanded");
+          }
+          if (body) body.hidden = false;
+        });
+        mobileSubsectionCollapsibleEnabled = false;
+      }
 
       function enableMobileCollapsibles() {
         if (mobileCollapsibleEnabled) return;
@@ -2667,12 +2782,20 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             leadSection.insertAdjacentElement("afterend", tocWrap);
           }
           enableMobileCollapsibles();
+          enableMobileSubsectionCollapsibles();
         } else {
           if (tocWrap && layoutRoot && tocWrap.parentElement !== layoutRoot) {
             layoutRoot.insertBefore(tocWrap, mainArticle);
           }
           disableMobileCollapsibles();
+          disableMobileSubsectionCollapsibles();
         }
+      }
+
+      function expandSubsectionForTarget(target) {
+        if (!target) return;
+        const wrapper = target.closest(".mobile-subsection");
+        if (wrapper) setSubsectionCollapsed(wrapper, false);
       }
 
       function updateActiveFromScroll() {
@@ -2696,6 +2819,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           const target = document.querySelector(hash);
           const targetSection = target && target.closest("main.article > section");
           if (targetSection) setSectionCollapsed(targetSection, false);
+          expandSubsectionForTarget(target);
         });
       });
 
@@ -2705,8 +2829,59 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         const target = document.querySelector(window.location.hash);
         const targetSection = target && target.closest("main.article > section");
         if (targetSection) setSectionCollapsed(targetSection, false);
+        expandSubsectionForTarget(target);
       });
       syncMobileCollapsibles();
+
+      function initResponsiveTableCards() {
+        const tables = document.querySelectorAll("main.article .wikitable");
+        tables.forEach((table) => {
+          const headers = Array.from(table.querySelectorAll("thead th")).map((th) =>
+            (th.textContent || "").replace(/\s+/g, " ").trim()
+          );
+          const rows = table.querySelectorAll("tbody tr");
+          rows.forEach((row) => {
+            const cells = Array.from(row.children).filter((cell) => cell.matches("td,th"));
+            cells.forEach((cell, idx) => {
+              if (!cell.getAttribute("data-label")) {
+                cell.setAttribute("data-label", headers[idx] || "Item");
+              }
+              const hasMedia = !!cell.querySelector("iframe,video,.inline-table-video,.bandcamp-embed");
+              if (hasMedia) {
+                cell.classList.add("mobile-media-cell");
+              }
+            });
+          });
+        });
+      }
+
+      function normalizeYearColumns() {
+        const tables = document.querySelectorAll("main.article .wikitable");
+        tables.forEach((table) => {
+          const headRow = table.querySelector("thead tr");
+          if (!headRow) return;
+          const headers = Array.from(headRow.children).filter((cell) => cell.matches("th,td"));
+          if (!headers.length) return;
+          const yearIdx = headers.findIndex((cell) => {
+            const text = (cell.textContent || "").trim().toLowerCase();
+            return text === "year";
+          });
+          if (yearIdx < 0) return;
+          table.classList.add("has-year-col");
+          if (yearIdx === 0) return;
+          const yearHead = headers[yearIdx];
+          headRow.insertBefore(yearHead, headers[0]);
+          const rows = table.querySelectorAll("tbody tr");
+          rows.forEach((row) => {
+            const cells = Array.from(row.children).filter((cell) => cell.matches("th,td"));
+            if (cells.length <= yearIdx) return;
+            row.insertBefore(cells[yearIdx], cells[0]);
+          });
+        });
+      }
+
+      normalizeYearColumns();
+      initResponsiveTableCards();
 
       window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
       window.addEventListener("load", updateActiveFromScroll);
