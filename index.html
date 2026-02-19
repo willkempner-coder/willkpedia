@@ -1024,6 +1024,76 @@
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
         }
+        body.mobile-collapsible-enabled main.content > section {
+          border-top: 1px solid #c8ccd1;
+          padding-top: 8px;
+          margin-top: 6px;
+        }
+        body.mobile-collapsible-enabled main.content > section:first-of-type {
+          border-top: 0;
+          margin-top: 0;
+          padding-top: 0;
+        }
+        body.mobile-collapsible-enabled .mobile-section-head {
+          margin: 0;
+          padding: 10px 0 12px 34px;
+          position: relative;
+          cursor: pointer;
+          user-select: none;
+          border-bottom: 1px solid #eaecf0;
+        }
+        body.mobile-collapsible-enabled .mobile-section-head::before {
+          content: "⌄";
+          position: absolute;
+          left: 2px;
+          top: 50%;
+          transform: translateY(-50%) rotate(-90deg);
+          font-size: 1.6rem;
+          line-height: 1;
+          color: #54595d;
+        }
+        body.mobile-collapsible-enabled main.content > section.mobile-collapsible:not(.is-collapsed) > .mobile-section-head::before {
+          transform: translateY(-50%) rotate(0deg);
+        }
+        body.mobile-collapsible-enabled main.content > section.mobile-collapsible.is-collapsed > :not(.mobile-section-head) {
+          display: none;
+        }
+        #discography .wikitable {
+          display: table;
+          overflow: visible;
+        }
+        #discography .wikitable thead {
+          display: none;
+        }
+        #discography .wikitable tbody {
+          display: block;
+        }
+        #discography .wikitable tbody tr {
+          display: block;
+          border: 1px solid #a2a9b1;
+          margin: 0 0 10px;
+          background: #fff;
+        }
+        #discography .wikitable tbody td {
+          display: block;
+          width: 100%;
+          box-sizing: border-box;
+          border: 0;
+          border-top: 1px solid #eaecf0;
+          padding: 8px 10px;
+          white-space: normal;
+        }
+        #discography .wikitable tbody tr td:first-child {
+          border-top: 0;
+          font-weight: 600;
+        }
+        #discography .wikitable tbody td:last-child {
+          padding-top: 10px;
+        }
+        #discography .wikitable iframe {
+          width: 100%;
+          max-width: 100%;
+        }
         #discography .bandcamp-embed {
           min-width: 160px;
         }
@@ -1302,7 +1372,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <li><a href="#tv">Television</a></li>
                   <li><a href="#films-editing">Films</a></li>
                   <li><a href="#fashion">Fashion</a></li>
-                  <li><a href="#corporate">Corporate</a></li>
+                  <li><a href="#corporate">Branded</a></li>
                   <li><a href="#trailers">Trailer Editing</a></li>
                 </ol>
               </li>
@@ -1358,7 +1428,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
             <p>
               <b>Will Kempner</b> (born June 12, 1993) is an American editor, filmmaker, artist, and producer.
-              "Will K", as he is increasingly known, has worked across <a href="#tv">television</a>, hollywood, <a href="#fashion">fashion campaigns</a>, branded and <a href="#corporate">corporate media</a>, and <a href="#filmography">independent film</a>.
+              "Will K", as he is increasingly known, has worked across <a href="#tv">television</a>, hollywood, <a href="#fashion">fashion campaigns</a>, branded and <a href="#corporate">branded media</a>, and <a href="#filmography">independent film</a>.
               His <a href="#editing">editing</a> portfolio includes directing and editing narrative shorts and features, as well as post-production work
               on series for HBO and Disney+.<sup class="ref" id="cite-1"><a href="#ref-1">[1]</a></sup><sup class="ref" id="cite-2"><a href="#ref-2">[2]</a></sup><sup class="ref" id="cite-3"><a href="#ref-3">[3]</a></sup>
             </p>
@@ -1460,7 +1530,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
-                  <th>Distributor company</th>
+                  <th>Distributor</th>
                   <th>Notes</th>
                 </tr>
               </thead>
@@ -1483,20 +1553,20 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/7Dkp41QdFgw?list=PLh-uDRIvQHP0o2Aj1Ti9oTUFzvCRP5Uu3" class="video-link"><i>Telfar New Models Season One</i></a></td>
                   <td>2025</td>
                   <td>Editor alongside Telfar TV team. Conducted confessional interviews.</td>
-                  <td></td>
+                  <td>TELFAR TV</td>
                   <td>Full Length Art Film and Competition Show.</td>
                 </tr>
               </tbody>
             </table>
 
-            <h4>Additional short films</h4>
+            <h4>Short Films</h4>
             <table class="wikitable">
               <thead>
                 <tr>
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
-                  <th>Distributor company</th>
+                  <th>Distributor</th>
                   <th>Notes</th>
                 </tr>
               </thead>
@@ -1504,7 +1574,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a></td>
                   <td>2024</td>
-                  <td>Additional Editor</td>
+                  <td>Additional Editor, Trailer Editor</td>
                   <td></td>
                   <td>Short film</td>
                 </tr>
@@ -1547,7 +1617,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </tbody>
             </table>
 
-            <h3 id="corporate">Corporate</h3>
+            <h3 id="corporate">Branded</h3>
             <p class="notes">
               Corporate and branded editing includes years of work with various <b>Conde</b> brands, including <i>Vogue</i>, <i>Glamour</i>, and Teen Vogue Prom, as well as work for healthcare and consumer campaigns. Additional brand collaborators shown in portfolio materials include <b>Spotify</b>, <b>HBO</b>, <b>Disney+</b>, <b>Topic Studios</b>, and <b>Twitch</b>.
             </p>
@@ -1875,6 +1945,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           <section id="other-stuff">
             <h2>Other Stuff <span class="edit">[edit]</span></h2>
             <p>Here lies the bonus work, the uncategorizable, the links I assume no one will click. Yet they are Kempner’s children, and he loves them as dearly as the higher placed ones. <span class="citation-needed">[citation needed]</span></p>
+            <h3>Other Video</h3>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1906,8 +1977,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 </tr>
               </tbody>
             </table>
-            <h3>Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></h3>
-            <p class="notes">Highschool band. Featuring Chris Fortunato, Jeff Marks, Kevin Welch, Zach Cimafonte and Steve Berkowitz. Occasional members include High Jacob.</p>
+            <h3>Other Music</h3>
+            <p class="notes">Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup>: Highschool band. Featuring Chris Fortunato, Jeff Marks, Kevin Welch, Zach Cimafonte and Steve Berkowitz. Occasional members include High Jacob.</p>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1929,6 +2000,12 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>2014</td>
                   <td>rarities collection</td>
                   <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3222078808/size=small/bgcol=ffffff/linkcol=0687f5/track=4184075124/transparent=true/" seamless><a href="https://trianglelord.bandcamp.com/album/shit-rarities-tri-sides">Shit - Rarities &amp; Tri-sides by Triangle Lord</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>Shared Assets</i> (ART DLR)</td>
+                  <td>2019</td>
+                  <td>Dublab mix with interactive voice other. Made with Noah Engel</td>
+                  <td><iframe width="100%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&amp;mini=1&amp;feed=%2Fdublab%2Fart-dlrs-shared-assets-guest-session-08-14-19%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"></iframe></td>
                 </tr>
               </tbody>
             </table>
@@ -2063,6 +2140,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const videoHoverPreview = document.getElementById("video-hover-preview");
       const videoHoverPreviewMedia = document.getElementById("video-hover-preview-media");
       const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+      const topLevelSections = document.querySelectorAll("main.content > section");
       const appearancePanel = document.getElementById("appearance-panel");
       const appearanceHide = document.getElementById("appearance-hide");
       const wikiPreview = document.getElementById("wiki-preview");
@@ -2086,11 +2164,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const scandalCounter = document.getElementById("scandal-counter");
       const scandalPrev = document.getElementById("scandal-prev");
       const scandalNext = document.getElementById("scandal-next");
+      const scandalCarousel = document.getElementById("scandal-carousel");
       const awardsImage = document.getElementById("awards-image");
       const awardsCaption = document.getElementById("awards-caption");
       const awardsCounter = document.getElementById("awards-counter");
       const awardsPrev = document.getElementById("awards-prev");
       const awardsNext = document.getElementById("awards-next");
+      const awardsCarousel = document.getElementById("awards-carousel");
       const tamperModal = document.getElementById("tamper-modal");
       const tamperClose = document.getElementById("tamper-close");
       const cookieScamModal = document.getElementById("cookie-scam-modal");
@@ -2134,7 +2214,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           caption: "NoBudge Live 12 screening image."
         },
         {
-          src: "images/ParadigmShift.avif",
+          src: "images/ParadigmShift.png",
           caption: "Paradigm Shift @ 180 Studios, London (2025)."
         }
       ];
@@ -2371,6 +2451,77 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         });
       }
 
+      function setSectionCollapsed(section, collapsed) {
+        if (!section) return;
+        section.classList.toggle("is-collapsed", collapsed);
+        const head = section.querySelector(":scope > h2");
+        if (head) {
+          head.setAttribute("aria-expanded", collapsed ? "false" : "true");
+        }
+      }
+
+      let mobileCollapsibleEnabled = false;
+
+      function enableMobileCollapsibles() {
+        if (mobileCollapsibleEnabled) return;
+        document.body.classList.add("mobile-collapsible-enabled");
+        topLevelSections.forEach((section) => {
+          const head = section.querySelector(":scope > h2");
+          if (!head) return;
+          section.classList.add("mobile-collapsible");
+          head.classList.add("mobile-section-head");
+          head.setAttribute("role", "button");
+          head.setAttribute("tabindex", "0");
+          if (!head.dataset.mobileAccordionBound) {
+            head.addEventListener("click", (event) => {
+              if (!mobileCollapsibleEnabled) return;
+              if (event.target.closest(".edit")) return;
+              const isCollapsed = section.classList.contains("is-collapsed");
+              setSectionCollapsed(section, !isCollapsed);
+            });
+            head.addEventListener("keydown", (event) => {
+              if (!mobileCollapsibleEnabled) return;
+              if (event.key !== "Enter" && event.key !== " ") return;
+              event.preventDefault();
+              const isCollapsed = section.classList.contains("is-collapsed");
+              setSectionCollapsed(section, !isCollapsed);
+            });
+            head.dataset.mobileAccordionBound = "true";
+          }
+          setSectionCollapsed(section, true);
+        });
+        if (window.location.hash) {
+          const target = document.querySelector(window.location.hash);
+          const targetSection = target && target.closest("main.content > section");
+          if (targetSection) setSectionCollapsed(targetSection, false);
+        }
+        mobileCollapsibleEnabled = true;
+      }
+
+      function disableMobileCollapsibles() {
+        if (!mobileCollapsibleEnabled) return;
+        document.body.classList.remove("mobile-collapsible-enabled");
+        topLevelSections.forEach((section) => {
+          const head = section.querySelector(":scope > h2");
+          section.classList.remove("mobile-collapsible", "is-collapsed");
+          if (head) {
+            head.classList.remove("mobile-section-head");
+            head.removeAttribute("role");
+            head.removeAttribute("tabindex");
+            head.removeAttribute("aria-expanded");
+          }
+        });
+        mobileCollapsibleEnabled = false;
+      }
+
+      function syncMobileCollapsibles() {
+        if (window.innerWidth <= 980) {
+          enableMobileCollapsibles();
+        } else {
+          disableMobileCollapsibles();
+        }
+      }
+
       function updateActiveFromScroll() {
         let currentHash = "#bio";
         for (const link of tocLinks) {
@@ -2386,9 +2537,23 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       tocLinks.forEach((link) => {
         link.addEventListener("click", () => {
-          setActiveTocLink(link.getAttribute("href"));
+          const hash = link.getAttribute("href");
+          setActiveTocLink(hash);
+          if (!mobileCollapsibleEnabled) return;
+          const target = document.querySelector(hash);
+          const targetSection = target && target.closest("main.content > section");
+          if (targetSection) setSectionCollapsed(targetSection, false);
         });
       });
+
+      window.addEventListener("resize", syncMobileCollapsibles);
+      window.addEventListener("hashchange", () => {
+        if (!mobileCollapsibleEnabled || !window.location.hash) return;
+        const target = document.querySelector(window.location.hash);
+        const targetSection = target && target.closest("main.content > section");
+        if (targetSection) setSectionCollapsed(targetSection, false);
+      });
+      syncMobileCollapsibles();
 
       window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
       window.addEventListener("load", updateActiveFromScroll);
@@ -2607,6 +2772,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         });
         renderScandalImage();
       }
+      if (scandalCarousel) {
+        scandalCarousel.addEventListener("click", (event) => {
+          if (window.innerWidth > 980) return;
+          if (event.target.closest("button")) return;
+          scandalIndex = (scandalIndex + 1) % scandalImages.length;
+          renderScandalImage();
+        });
+      }
 
       function renderAwardsImage() {
         if (!awardsImage || !awardsCaption || !awardsCounter) return;
@@ -2627,6 +2800,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           renderAwardsImage();
         });
         renderAwardsImage();
+      }
+      if (awardsCarousel) {
+        awardsCarousel.addEventListener("click", (event) => {
+          if (window.innerWidth > 980) return;
+          if (event.target.closest("button")) return;
+          awardsIndex = (awardsIndex + 1) % awardsImages.length;
+          renderAwardsImage();
+        });
       }
 
       function showSorryHoldOverlay() {
