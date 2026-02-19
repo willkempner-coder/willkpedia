@@ -596,6 +596,9 @@
       }
       .awards-thumb img {
         width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        object-position: center;
         display: block;
         border: 1px solid #c8ccd1;
         background: #fff;
@@ -663,9 +666,9 @@
       }
       .notes {
         margin-top: 10px;
-        font-family: sans-serif;
-        font-size: 0.87rem;
-        color: #54595d;
+        font-family: inherit;
+        font-size: 1em;
+        color: inherit;
       }
       .bandcamp-embed {
         min-width: 260px;
@@ -732,13 +735,14 @@
         z-index: 20000;
         display: none;
         align-items: center;
-        gap: 8px;
+        gap: 12px;
         border: 1px solid #a2a9b1;
         background: rgba(8, 8, 8, 0.94);
         color: #ffe8e8;
         font-family: "Papyrus", "Comic Sans MS", cursive;
-        padding: 7px 9px;
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+        padding: 12px 14px;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.52);
+        border-radius: 6px;
       }
       .dark-audio-player.show {
         display: inline-flex;
@@ -747,8 +751,8 @@
         border: 1px solid #8b0000;
         background: #230707;
         color: #ffd5d5;
-        padding: 4px 7px;
-        font-size: 0.95rem;
+        padding: 8px 12px;
+        font-size: 1.2rem;
         line-height: 1;
         cursor: pointer;
       }
@@ -756,8 +760,8 @@
         background: #3a0b0b;
       }
       .dark-audio-label {
-        font-size: 0.85rem;
-        letter-spacing: 0.02em;
+        font-size: 1.45rem;
+        line-height: 1;
       }
       .wiki-preview {
         position: fixed;
@@ -1438,10 +1442,17 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Self-released</td>
                   <td>Special</td>
                 </tr>
+                <tr>
+                  <td>2023</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" class="video-link"><i>Cole Escola's Our Home Out West</i></a></td>
+                  <td>Assistant Editor; DIT</td>
+                  <td>Self-released</td>
+                  <td>TV special</td>
+                </tr>
               </tbody>
             </table>
 
-            <h3 id="films-editing">Films</h3>
+            <h3 id="films-editing">Film</h3>
             <p class="notes">Twenty-four frames per second is a standard measure of motion picture projection, a span in which a remarkable number of images pass by, and Kempner is often employed organizing, editing, and assisting with them.</p>
             <table class="wikitable">
               <thead>
@@ -1449,6 +1460,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
+                  <th>Distributor company</th>
                   <th>Notes</th>
                 </tr>
               </thead>
@@ -1457,36 +1469,50 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><i>Good One</i> (dir. India Donaldson)<div class="film-inline-image"><img src="images/GoodOne.jpg" alt="Good One still" /></div></td>
                   <td>2022</td>
                   <td>Assistant Editor; DIT</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><i>Cole Escola's Our Home Out West</i><div class="film-inline-image"><img src="images/OurHomeOutWest.png" alt="Our Home Out West still" /></div></td>
-                  <td>2023</td>
-                  <td>Assistant Editor; DIT</td>
+                  <td>Metrograph Pictures</td>
                   <td></td>
                 </tr>
                 <tr>
                   <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a><div class="film-inline-image"><img src="images/SeekingMavisBeacon.jpg" alt="Seeking Mavis Beacon still" /></div></td>
                   <td>2024</td>
                   <td>Assistant Editor</td>
+                  <td>NEON</td>
                   <td></td>
                 </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/7Dkp41QdFgw?list=PLh-uDRIvQHP0o2Aj1Ti9oTUFzvCRP5Uu3" class="video-link"><i>Telfar New Models Season One</i></a></td>
+                  <td>2025</td>
+                  <td>Editor alongside Telfar TV team. Conducted confessional interviews.</td>
+                  <td></td>
+                  <td>Full Length Art Film and Competition Show.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Additional short films</h4>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Year</th>
+                  <th>Role</th>
+                  <th>Distributor company</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
                 <tr>
                   <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a></td>
                   <td>2024</td>
                   <td>Additional Editor</td>
-                  <td>Short film</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AuTQ0SZPoOI" class="video-link"><i>Joker Stairs</i></a></td>
-                  <td>2019</td>
-                  <td>Co-director, editor</td>
+                  <td></td>
                   <td>Short film</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link"><i>Straight Line</i> (dir. Jack Bensinger)</a></td>
                   <td>2025</td>
                   <td>Assistant Editor</td>
+                  <td></td>
                   <td>Short film</td>
                 </tr>
               </tbody>
@@ -1510,8 +1536,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 </tr>
                 <tr>
                   <td>2023-present</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" class="video-link"><i>Telfar advertisements</i></a></td>
-                  <td>Editor, for Telfar TV. <a href="https://www.youtube.com/playlist?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" target="_blank" rel="noreferrer">View playlist</a>.</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/MfqoJ9jEbHM?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" class="video-link"><i>Telfar advertisements</i></a></td>
+                  <td>Editor, for Telfar TV. Occasional Producer and Writer. <a href="https://www.youtube.com/playlist?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" target="_blank" rel="noreferrer">View playlist</a>.</td>
+                </tr>
+                <tr>
+                  <td>2025</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/6A7EYnKNiVk" class="video-link"><i>TELFAR 20th Anniversary Show | SS25 Runway</i></a></td>
+                  <td>Editor</td>
                 </tr>
               </tbody>
             </table>
@@ -1601,9 +1632,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 </tr>
                 <tr>
                   <td>2025</td>
-                  <td><i>Telfar New Models Season 1 Trailer</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ielzTKrADrw" class="video-link"><i>Telfar New Models Season 1 Trailer</i></a></td>
                   <td>Trailer Editor</td>
-                  <td>Unlisted trailer link pending</td>
+                  <td>Trailer</td>
                 </tr>
               </tbody>
             </table>
@@ -1622,16 +1653,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/beMe8lM7-SI" class="video-link"><i>Happy Birthday, Mr. Hoffman</i></a></td>
-                  <td>2010</td>
-                  <td>Director, writer, editor</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/moUKXMq04ho" class="video-link"><i>Jay Kelly: An Artist At Work</i></a></td>
-                  <td>2013</td>
-                  <td>Director, editor</td>
-                </tr>
-                <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/pn7tYDdCfuQ" class="video-link"><i>Serf's Up</i></a></td>
                   <td>2016</td>
                   <td>Director, writer, editor</td>
@@ -1644,7 +1665,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ITKpzCnTJWQ" class="video-link"><i>Writer's Retreat</i></a></td>
                   <td>2019</td>
-                  <td>Co-director, writer, editor</td>
+                  <td>Co-director/writer, camera, editor</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://player.vimeo.com/video/409480281" class="video-link"><i>A Flaw In The System</i></a></td>
@@ -1737,25 +1758,25 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td></td>
                   <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/track=788026948/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/track/half-step-down-live-at-giamattis">Half Step Down - Live at Giamatti&#39;s by ART DLR</a></iframe></td>
                 </tr>
-                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Live Album</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-04-28-20"></div></td></tr>
-                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Live Album</td><td><div class="bandcamp-embed" data-url="https://artdealer.bandcamp.com/track/live-stream-slx-05-22-20"></div></td></tr>
+                <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Live Album</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=562369201/size=small/bgcol=ffffff/linkcol=0687f5/track=3606749663/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/live-stream-slx-042820">Live Stream SLX - 04.28.20 by ART DLR</a></iframe></td></tr>
+                <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Live Album</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3016501130/size=small/bgcol=ffffff/linkcol=0687f5/track=2548174888/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/live-stream-slx-052220">Live Stream SLX - 05.22.20 by ART DLR</a></iframe></td></tr>
                 <tr>
                   <td><i>Endangered: On Ice (In Space)</i></td>
                   <td>2021</td>
                   <td>Musical</td>
-                  <td><iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=3911052177/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/endangered-on-ice-in-space">Endangered: On Ice (In Space) by ART DLR</a></iframe></td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3911052177/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/endangered-on-ice-in-space">Endangered: On Ice (In Space) by ART DLR</a></iframe></td>
                 </tr>
                 <tr>
                   <td><i>Ghoulsikal</i></td>
                   <td>2021</td>
                   <td>Musical</td>
-                  <td><iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=374827418/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/track=1463963902/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/ghoulsikal">Ghoulsikal by ART DLR</a></iframe></td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=374827418/size=small/bgcol=ffffff/linkcol=0687f5/track=1463963902/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/ghoulsikal">Ghoulsikal by ART DLR</a></iframe></td>
                 </tr>
                 <tr>
                   <td><i>DLR.MAG</i></td>
                   <td>2022</td>
                   <td>LP</td>
-                  <td><iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1671801552/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/track=914687706/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/dlr-mag">DLR.MAG by ART DLR</a></iframe></td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1671801552/size=small/bgcol=ffffff/linkcol=0687f5/track=914687706/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/dlr-mag">DLR.MAG by ART DLR</a></iframe></td>
                 </tr>
                 <tr>
                   <td><i>I Met A Mummy: A Detective Reed Mystery</i></td>
@@ -1794,7 +1815,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <figcaption id="awards-caption">Will Kempner during the NPCC Short Film Block (2021).</figcaption>
               <div class="scandal-controls">
                 <button id="awards-prev" type="button" aria-label="Previous awards image">Prev</button>
-                <span class="scandal-counter" id="awards-counter">1 / 2</span>
+                <span class="scandal-counter" id="awards-counter">1 / 3</span>
                 <button id="awards-next" type="button" aria-label="Next awards image">Next</button>
               </div>
             </figure>
@@ -1824,9 +1845,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Official screening</td>
                 </tr>
                 <tr>
-                  <td>TBD</td>
+                  <td>2018</td>
                   <td>NoBudge Live 12<sup class="ref" id="cite-6a"><a href="#ref-6">[6]</a></sup></td>
                   <td>Screening</td>
+                </tr>
+                <tr>
+                  <td>2025</td>
+                  <td>Paradigm Shift @ 180 Studios, London</td>
+                  <td><a href="https://www.theguardian.com/artanddesign/2025/oct/14/paradigm-shift-review-video-art-180-studios-london" target="_blank" rel="noreferrer">Exhibition screening of Telfar's New Models alongside work by Arthur Jafa, Ryan Trecartin and more.</a></td>
                 </tr>
               </tbody>
             </table>
@@ -1848,6 +1874,38 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
           <section id="other-stuff">
             <h2>Other Stuff <span class="edit">[edit]</span></h2>
+            <p>Here lies the bonus work, the uncategorizable, the links I assume no one will click. Yet they are Kempner’s children, and he loves them as dearly as the higher placed ones. <span class="citation-needed">[citation needed]</span></p>
+            <table class="wikitable">
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Year</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/beMe8lM7-SI" class="video-link"><i>Happy Birthday, Mr. Hoffman</i></a></td>
+                  <td>2010</td>
+                  <td>Highschool Summer Project.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/moUKXMq04ho" class="video-link"><i>Jay Kelly: An Artist At Work</i></a></td>
+                  <td>2013</td>
+                  <td>College Assignment</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLqpJjoFzG1_b_-haYhgTtnsIRVWQtkDNM" class="video-link"><i>Silvery Snake</i></a></td>
+                  <td>2015-2016</td>
+                  <td>Webseries, Co-creator with Colin Garland and Ben Townsend.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AuTQ0SZPoOI" class="video-link"><i>Joker Stairs</i></a></td>
+                  <td>2019</td>
+                  <td>Man on the street comedy short</td>
+                </tr>
+              </tbody>
+            </table>
             <h3>Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></h3>
             <p class="notes">Highschool band. Featuring Chris Fortunato, Jeff Marks, Kevin Welch, Zach Cimafonte and Steve Berkowitz. Occasional members include High Jacob.</p>
             <table class="wikitable">
@@ -1973,7 +2031,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     <div id="dark-audio-player" class="dark-audio-player" aria-hidden="true">
       <button type="button" id="dark-audio-play" aria-label="Pause dark mode track">⛧⏸</button>
       <button type="button" id="dark-audio-mute" aria-label="Mute dark mode track">🔊</button>
-      <span class="dark-audio-label">Dark Mode</span>
+      <span class="dark-audio-label">😈</span>
     </div>
 
     <script>
@@ -2074,6 +2132,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         {
           src: "images/NoBudge12.jpg",
           caption: "NoBudge Live 12 screening image."
+        },
+        {
+          src: "images/ParadigmShift.avif",
+          caption: "Paradigm Shift @ 180 Studios, London (2025)."
         }
       ];
       let scandalIndex = 0;
