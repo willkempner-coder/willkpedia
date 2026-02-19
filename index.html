@@ -1380,7 +1380,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 </ol>
               </li>
               <li><a href="#filmography">Filmography</a></li>
-              <li><a href="#discography">Discography</a></li>
+              <li>
+                <a href="#discography">Discography</a>
+                <ol>
+                  <li><a href="#discography-cranklin">Cranklin</a></li>
+                  <li><a href="#discography-artdlr">ART DLR</a></li>
+                  <li><a href="#discography-lanlord">Lanlord Lance</a></li>
+                </ol>
+              </li>
               <li><a href="#awards">Awards and Screenings</a></li>
               <li><a href="#scandals">Scandals</a></li>
               <li>
@@ -1758,7 +1765,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           <section id="discography">
             <h2>Discography <span class="edit">[edit]</span></h2>
 
-            <h3>Cranklin<sup class="ref" id="cite-9a"><a href="#ref-9">[9]</a></sup></h3>
+            <h3 id="discography-cranklin">Cranklin<sup class="ref" id="cite-9a"><a href="#ref-9">[9]</a></sup></h3>
             <table class="wikitable">
               <thead>
                 <tr>
@@ -1807,7 +1814,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </tbody>
             </table>
 
-            <h3>ART DLR<sup class="ref" id="cite-8a"><a href="#ref-8">[8]</a></sup></h3>
+            <h3 id="discography-artdlr">ART DLR<sup class="ref" id="cite-8a"><a href="#ref-8">[8]</a></sup></h3>
             <p class="notes">Band with Noah Engel</p>
             <table class="wikitable">
               <thead>
@@ -1866,7 +1873,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </tbody>
             </table>
 
-            <h3>Lanlord Lance<sup class="ref" id="cite-10a"><a href="#ref-10">[10]</a></sup></h3>
+            <h3 id="discography-lanlord">Lanlord Lance<sup class="ref" id="cite-10a"><a href="#ref-10">[10]</a></sup></h3>
             <p class="notes">Band with Jeff Marks, selected works.</p>
             <table class="wikitable">
               <thead>
@@ -2155,6 +2162,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const videoHoverPreviewMedia = document.getElementById("video-hover-preview-media");
       const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
       const topLevelSections = document.querySelectorAll("main.article > section");
+      const tocWrap = document.querySelector(".toc-wrap");
+      const layoutRoot = document.querySelector(".layout");
+      const mainArticle = document.querySelector("main.article");
+      const leadSection = document.querySelector("main.article > section.lead");
       const appearancePanel = document.getElementById("appearance-panel");
       const appearanceHide = document.getElementById("appearance-hide");
       const wikiPreview = document.getElementById("wiki-preview");
@@ -2502,7 +2513,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             });
             head.dataset.mobileAccordionBound = "true";
           }
-          setSectionCollapsed(section, true);
+          setSectionCollapsed(section, section.id !== "personal-info");
         });
         if (window.location.hash) {
           const target = document.querySelector(window.location.hash);
@@ -2530,8 +2541,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       function syncMobileCollapsibles() {
         if (window.innerWidth <= 980) {
+          if (tocWrap && mainArticle && leadSection && tocWrap.parentElement !== mainArticle) {
+            leadSection.insertAdjacentElement("afterend", tocWrap);
+          }
           enableMobileCollapsibles();
         } else {
+          if (tocWrap && layoutRoot && tocWrap.parentElement !== layoutRoot) {
+            layoutRoot.insertBefore(tocWrap, mainArticle);
+          }
           disableMobileCollapsibles();
         }
       }
