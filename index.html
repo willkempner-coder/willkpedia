@@ -1027,12 +1027,12 @@
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
         }
-        body.mobile-collapsible-enabled main.content > section {
+        body.mobile-collapsible-enabled main.article > section {
           border-top: 1px solid #c8ccd1;
           padding-top: 8px;
           margin-top: 6px;
         }
-        body.mobile-collapsible-enabled main.content > section:first-of-type {
+        body.mobile-collapsible-enabled main.article > section:first-of-type {
           border-top: 0;
           margin-top: 0;
           padding-top: 0;
@@ -1055,10 +1055,10 @@
           line-height: 1;
           color: #54595d;
         }
-        body.mobile-collapsible-enabled main.content > section.mobile-collapsible:not(.is-collapsed) > .mobile-section-head::before {
+        body.mobile-collapsible-enabled main.article > section.mobile-collapsible:not(.is-collapsed) > .mobile-section-head::before {
           transform: translateY(-50%) rotate(0deg);
         }
-        body.mobile-collapsible-enabled main.content > section.mobile-collapsible.is-collapsed > :not(.mobile-section-head) {
+        body.mobile-collapsible-enabled main.article > section.mobile-collapsible.is-collapsed > :not(.mobile-section-head) {
           display: none;
         }
         #discography .wikitable {
@@ -2154,7 +2154,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const videoHoverPreview = document.getElementById("video-hover-preview");
       const videoHoverPreviewMedia = document.getElementById("video-hover-preview-media");
       const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
-      const topLevelSections = document.querySelectorAll("main.content > section");
+      const topLevelSections = document.querySelectorAll("main.article > section");
       const appearancePanel = document.getElementById("appearance-panel");
       const appearanceHide = document.getElementById("appearance-hide");
       const wikiPreview = document.getElementById("wiki-preview");
@@ -2506,7 +2506,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         });
         if (window.location.hash) {
           const target = document.querySelector(window.location.hash);
-          const targetSection = target && target.closest("main.content > section");
+          const targetSection = target && target.closest("main.article > section");
           if (targetSection) setSectionCollapsed(targetSection, false);
         }
         mobileCollapsibleEnabled = true;
@@ -2555,7 +2555,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           setActiveTocLink(hash);
           if (!mobileCollapsibleEnabled) return;
           const target = document.querySelector(hash);
-          const targetSection = target && target.closest("main.content > section");
+          const targetSection = target && target.closest("main.article > section");
           if (targetSection) setSectionCollapsed(targetSection, false);
         });
       });
@@ -2564,7 +2564,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       window.addEventListener("hashchange", () => {
         if (!mobileCollapsibleEnabled || !window.location.hash) return;
         const target = document.querySelector(window.location.hash);
-        const targetSection = target && target.closest("main.content > section");
+        const targetSection = target && target.closest("main.article > section");
         if (targetSection) setSectionCollapsed(targetSection, false);
       });
       syncMobileCollapsibles();
