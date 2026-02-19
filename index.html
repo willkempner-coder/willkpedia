@@ -10,9 +10,15 @@
     <meta property="og:title" content="WillKpedia - Will Kempner" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://willkempner-coder.github.io/" />
-    <meta property="og:image" content="https://willkempner-coder.github.io/images/header-logo.png" />
+    <meta property="og:image" content="https://willkempner-coder.github.io/images/header-logo.png?v=2" />
+    <meta property="og:image:secure_url" content="https://willkempner-coder.github.io/images/header-logo.png?v=2" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="WillKpedia logo" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://willkempner-coder.github.io/images/header-logo.png" />
+    <meta name="twitter:image" content="https://willkempner-coder.github.io/images/header-logo.png?v=2" />
+    <meta name="twitter:image:alt" content="WillKpedia logo" />
     <style>
       :root {
         --wiki-blue: #3366cc;
@@ -2409,8 +2415,19 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
     <script>
       if ("scrollRestoration" in history) {
-        history.scrollRestoration = "auto";
+        history.scrollRestoration = "manual";
       }
+
+      function resetToTopOnLoad() {
+        if (window.location.hash) {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
+        window.scrollTo(0, 0);
+      }
+
+      window.addEventListener("DOMContentLoaded", resetToTopOnLoad);
+      window.addEventListener("load", resetToTopOnLoad);
+      window.addEventListener("pageshow", resetToTopOnLoad);
 
       const modal = document.getElementById("video-modal");
       const modalBody = document.getElementById("modal-body");
