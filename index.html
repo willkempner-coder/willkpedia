@@ -583,10 +583,26 @@
       }
       .wikitable.has-year-col th:first-child,
       .wikitable.has-year-col td:first-child {
-        width: 1%;
-        min-width: 74px;
-        max-width: 92px;
-        white-space: nowrap;
+        width: 56px !important;
+        min-width: 56px !important;
+        max-width: 56px !important;
+        white-space: normal;
+        overflow-wrap: normal;
+        word-break: normal;
+        line-height: 1.2;
+      }
+      #trailers .wikitable {
+        table-layout: fixed;
+      }
+      #trailers .wikitable th:first-child,
+      #trailers .wikitable td:first-child {
+        width: 54px !important;
+        min-width: 54px !important;
+        max-width: 54px !important;
+        white-space: normal;
+        overflow-wrap: normal;
+        word-break: normal;
+        line-height: 1.2;
       }
       .table-video-col-1 th:nth-child(1),
       .table-video-col-1 td:nth-child(1) {
@@ -767,6 +783,12 @@
       .inline-table-video-fallback a {
         display: inline-block;
         margin-top: 4px;
+      }
+      .mobile-row-summary {
+        display: none;
+      }
+      .mobile-row-media {
+        display: none;
       }
       .film-inline-image {
         margin-top: 8px;
@@ -1104,6 +1126,9 @@
           padding: 8px 10px;
           white-space: normal;
           min-width: 0 !important;
+          font-family: sans-serif;
+          font-size: 1rem;
+          line-height: 1.42;
         }
         .wikitable tbody tr > *:first-child {
           border-top: 0;
@@ -1120,14 +1145,69 @@
           color: #54595d;
           margin-bottom: 2px;
         }
+        #personal-info .wikitable tbody td::before,
+        #personal-info .wikitable tbody th::before {
+          content: none;
+          display: none;
+        }
         .wikitable tbody td.mobile-media-cell,
         .wikitable tbody th.mobile-media-cell {
           order: 99;
+        }
+        .mobile-row-summary {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px 14px;
+          padding: 8px 10px;
+          border-top: 1px solid #eaecf0;
+          background: #fff;
+        }
+        .mobile-row-summary:first-child {
+          border-top: 0;
+        }
+        .mobile-row-summary .kv {
+          display: inline-flex;
+          align-items: baseline;
+          gap: 6px;
+        }
+        .mobile-row-summary .k {
+          font-family: sans-serif;
+          font-size: 0.72rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.02em;
+          color: #54595d;
+        }
+        .mobile-row-summary .v {
+          font-family: sans-serif;
+          font-size: 1rem;
+          font-weight: 500;
+          color: #202122;
+        }
+        .wikitable tbody tr.mobile-row-compact > td.mobile-compact-field,
+        .wikitable tbody tr.mobile-row-compact > th.mobile-compact-field {
+          display: none;
         }
         .wikitable iframe,
         .wikitable video,
         .wikitable img {
           max-width: 100%;
+        }
+        .mobile-row-media {
+          display: block;
+          order: 100;
+          padding: 8px 10px 10px;
+          border-top: 1px solid #eaecf0;
+        }
+        .mobile-row-media .inline-table-video,
+        .mobile-row-media .film-inline-image,
+        .mobile-row-media .bandcamp-embed {
+          width: 100%;
+          max-width: none;
+          margin-top: 0;
+        }
+        .mobile-original-media {
+          display: none !important;
         }
         .inline-table-video {
           width: 100%;
@@ -1318,7 +1398,7 @@ Colleagues have described his process as fast, iterative, and reference-heavy.
 ===Trailer editing===
 * Graham Mason's ''Inspector Ike'' trailer — Editor
 * ''Reveries: Going Deeper'' trailer — Trailer Editor
-* Andre 3000 — ''Listening To The Sun'' teaser — Trailer Editor (unlisted link pending)
+* Andre 3000 — ''Listening To The Sun'' teaser — Trailer Editor. Director Terence Nance.
 * ''Seek No Favor'' — Trailer Editor (unlisted link pending). Director Leilah Weintraub.
 * ''Telfar New Models Season 1 Trailer'' — Trailer Editor (2025)
 
@@ -1345,7 +1425,7 @@ Additional assistant editorial entries may be appended as the source list is fin
 |-
 | 2023 || New Models Season One || Editor, Producer || Telfar series
 |-
-| 2023 || Andre 3000 - Listening To The Sun (Teaser) || Trailer Editor || Unlisted trailer link pending. Director Terence Nance.
+| 2023 || Andre 3000 - Listening To The Sun (Teaser) || Trailer Editor || Director Terence Nance.
 |-
 | 2022 || Growing Up || Editor || Disney+ series
 |-
@@ -1515,7 +1595,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <a href="#other-stuff">Other Stuff</a>
                 <ol>
                   <li><a href="#other-video">Other Video</a></li>
-                  <li><a href="#other-music">Other Music</a></li>
+                  <li><a href="#other-music">Other Sounds</a></li>
                 </ol>
               </li>
               <li><a href="#references">References</a></li>
@@ -1630,35 +1710,42 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <tbody>
                 <tr>
                   <td>2018</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/kIzUwpfAl5k" class="video-link"><i>Random Acts of Flyness</i></a> (Season 1)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/kIzUwpfAl5k" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (Season 1)</td>
                   <td>Lead Assistant Editor</td>
                   <td>HBO</td>
                   <td>6 episodes</td>
                 </tr>
                 <tr>
                   <td>2018</td>
-                  <td><i>Two Dope Queens</i> (HBO, Season 1)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/KlnZyaIyZdw" data-inline-off="true" class="video-link"><i>Two Dope Queens</i></a> (HBO, Season 1)</td>
                   <td>Assistant Editor</td>
                   <td>HBO</td>
                   <td>4 episodes</td>
                 </tr>
                 <tr>
+                  <td>2020</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/NHdI_sgXdZU" data-inline-off="true" class="video-link"><i>Best Walk</i></a> (Topic)</td>
+                  <td>Editor</td>
+                  <td>Topic</td>
+                  <td>Series, 5 episodes</td>
+                </tr>
+                <tr>
                   <td>2022</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" class="video-link"><i>Random Acts of Flyness</i></a> (Season 2)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (Season 2)</td>
                   <td>Associate Editor</td>
                   <td>HBO</td>
                   <td>6 episodes</td>
                 </tr>
                 <tr>
                   <td>2022</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tFMQs50V1g8" class="video-link"><i>Growing Up</i></a> (Disney+)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tFMQs50V1g8" data-inline-off="true" class="video-link"><i>Growing Up</i></a> (Disney+)</td>
                   <td>Editor</td>
                   <td>Disney+</td>
                   <td>Series, 5 episodes</td>
                 </tr>
                 <tr>
                   <td>2023</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" class="video-link"><i>Cole Escola's Our Home Out West</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" data-inline-off="true" class="video-link"><i>Cole Escola's Our Home Out West</i></a></td>
                   <td>Assistant Editor; DIT</td>
                   <td>Self-released</td>
                   <td>TV special</td>
@@ -1687,23 +1774,23 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td><i>Good One</i> (dir. India Donaldson)<div class="film-inline-image"><img src="images/GoodOne.jpg" alt="Good One still" /></div></td>
+                  <td><i>Good One</i><div class="film-inline-image"><img src="images/GoodOne.jpg" alt="Good One still" /></div></td>
                   <td>2022</td>
                   <td>Assistant Editor; DIT</td>
                   <td>Metrograph Pictures</td>
-                  <td></td>
+                  <td>Director: India Donaldson.</td>
                 </tr>
                 <tr>
                   <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a><div class="film-inline-image"><img src="images/SeekingMavisBeacon.jpg" alt="Seeking Mavis Beacon still" /></div></td>
                   <td>2024</td>
                   <td>Assistant Editor</td>
                   <td>NEON</td>
-                  <td></td>
+                  <td>Director: Jazmin Jones.</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/7Dkp41QdFgw?list=PLh-uDRIvQHP0o2Aj1Ti9oTUFzvCRP5Uu3" class="video-link"><i>Telfar New Models Season One</i></a></td>
                   <td>2025</td>
-                  <td>Editor alongside Telfar TV team. Conducted confessional interviews.</td>
+                  <td>Editor alongside Telfar TV team<br />Conducted confessional interviews</td>
                   <td>TELFAR TV</td>
                   <td>Full-length art film and competition show.</td>
                 </tr>
@@ -1717,7 +1804,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
-                  <th>Distributor</th>
                   <th>Notes</th>
                 </tr>
               </thead>
@@ -1726,15 +1812,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a></td>
                   <td>2024</td>
                   <td>Additional Editor, Trailer Editor</td>
-                  <td></td>
-                  <td>Short film. Director Leilah Weintraub.</td>
+                  <td>Director: Leilah Weintraub.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link"><i>Straight Line</i> (dir. Jack Bensinger)</a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link"><i>Straight Line</i></a></td>
                   <td>2025</td>
                   <td>Assistant Editor</td>
-                  <td></td>
-                  <td>Short film</td>
+                  <td>Director: Jack Bensinger.</td>
                 </tr>
               </tbody>
             </table>
@@ -1784,31 +1868,31 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <tbody>
                 <tr>
                   <td>2019</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" class="video-link"><i>Doja Cat's Guide to E-Girl Beauty | Beauty Secrets | Vogue</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" data-inline-off="true" class="video-link"><i>Doja Cat's Guide to E-Girl Beauty | Beauty Secrets | Vogue</i></a></td>
                   <td>Editor</td>
                   <td>Edited for numerous Vogue series.</td>
                 </tr>
                 <tr>
                   <td>2020</td>
-                  <td><i>Multiple Sclerosis: Can't Knock Me Down</i> (Glamour Magazine)</td>
+                  <td><a href="#" data-video="https://www.glamour.com/video/watch/multiple-sclerosis-cant-knock-me-down" data-inline-off="true" class="video-link"><i>Multiple Sclerosis: Can't Knock Me Down</i></a> (Glamour Magazine)</td>
                   <td>Editor</td>
                   <td>Unlisted YouTube link pending</td>
                 </tr>
                 <tr>
                   <td>2021</td>
-                  <td><i>Wondr Health Testimonials</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tZJgl4kclGw" data-inline-off="true" class="video-link"><i>Wondr Health Testimonials</i></a></td>
                   <td>Editor</td>
                   <td>Unlisted YouTube link pending</td>
                 </tr>
                 <tr>
                   <td>2023</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/YIFbLdPDGzo" class="video-link"><i>MoMA</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/YIFbLdPDGzo" data-inline-off="true" class="video-link"><i>MoMA</i></a></td>
                   <td>Editor</td>
                   <td>Ghost Edited</td>
                 </tr>
                 <tr>
                   <td>2024</td>
-                  <td><i>Q&amp;A with Juvederm</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/18FpvGcl_DA" data-inline-off="true" class="video-link"><i>Q&amp;A with Juvederm</i></a></td>
                   <td>Editor</td>
                   <td>Unlisted YouTube link pending</td>
                 </tr>
@@ -1843,11 +1927,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>2023</td>
                   <td><i>Andre 3000 - Listening To The Sun</i> (teaser)</td>
                   <td>Trailer Editor</td>
-                  <td>Unlisted trailer link pending. Director Terence Nance.</td>
+                  <td>Director Terence Nance.</td>
                 </tr>
                 <tr>
                   <td>2024</td>
-                  <td><i>Seek No Favor</i></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/GUCNIpIwnPc" class="video-link"><i>Seek No Favor</i></a></td>
                   <td>Trailer Editor</td>
                   <td>Unlisted trailer link pending. Director Leilah Weintraub.</td>
                 </tr>
@@ -1950,7 +2034,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h3 id="discography-artdlr">ART DLR<sup class="ref" id="cite-8a"><a href="#ref-8">[8]</a></sup></h3>
-            <p class="notes">Band with Noah Engel</p>
+            <p class="notes">Band with Noah Engel, selected works.</p>
             <table class="wikitable table-player-last">
               <thead>
                 <tr>
@@ -1976,7 +2060,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td><i>Half Step Down - Live at Giamatti's</i></td>
                   <td>2020</td>
-                  <td></td>
+                  <td>Single</td>
                   <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/track=788026948/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/track/half-step-down-live-at-giamattis">Half Step Down - Live at Giamatti&#39;s by ART DLR</a></iframe></td>
                 </tr>
                 <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Live Album</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=562369201/size=small/bgcol=ffffff/linkcol=0687f5/track=3606749663/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/live-stream-slx-042820">Live Stream SLX - 04.28.20 by ART DLR</a></iframe></td></tr>
@@ -2107,33 +2191,83 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/beMe8lM7-SI" class="video-link"><i>Happy Birthday, Mr. Hoffman</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/beMe8lM7-SI" data-inline-off="true" class="video-link"><i>Happy Birthday, Mr. Hoffman</i></a></td>
                   <td>2010</td>
                   <td>High school summer project.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/moUKXMq04ho" class="video-link"><i>Jay Kelly: An Artist At Work</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/3NyDxDqaOIs" data-inline-off="true" class="video-link"><i>What is Art? A Portrait of an Artist.</i></a></td>
+                  <td>2011</td>
+                  <td>Made for senior project at SPFHS with SPTV.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/EaKwj1ZqvHo" data-inline-off="true" class="video-link"><i>My Town Magicians</i></a></td>
+                  <td>2011</td>
+                  <td>Made with Chris Gilman for senior project at SPFHS with SPTV.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/1IFWfJli_Ok" data-inline-off="true" class="video-link"><i>The Boy Also Rises</i></a></td>
+                  <td>2012</td>
+                  <td>Short Film. Written and Directed with Chris Gilman. Lost Media.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/moUKXMq04ho" data-inline-off="true" class="video-link"><i>Jay Kelly: An Artist At Work</i></a></td>
                   <td>2013</td>
                   <td>College assignment.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLqpJjoFzG1_b_-haYhgTtnsIRVWQtkDNM" class="video-link"><i>Silvery Snake</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/bDT9M6-oSgE" data-inline-off="true" class="video-link"><i>Rats</i></a></td>
+                  <td>2013</td>
+                  <td>Webseries made with college roommates. Never finished.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/_ruyXpuaSV4?start=10" data-inline-off="true" class="video-link"><i>Ticket Out Of Town</i></a></td>
+                  <td>2015</td>
+                  <td>Short film.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/e6XXU7da70M" data-inline-off="true" class="video-link"><i>Wet Brownies</i></a></td>
+                  <td>2015</td>
+                  <td>Feature film. Written and Directed with Chris Gilman and Jeff Marks. Editor.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PL17NtDihC7z9RfWjM7Dv01jCTmDIAqhCJ" data-inline-off="true" class="video-link"><i>Triangle Lord Live @ Help for Haiti Telethon</i></a></td>
+                  <td>2015</td>
+                  <td>Filmed by SPTV.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLqpJjoFzG1_b_-haYhgTtnsIRVWQtkDNM" data-inline-off="true" class="video-link"><i>Silvery Snake</i></a></td>
                   <td>2015-2016</td>
                   <td>Web series, co-creator with Colin Garland and Ben Townsend.</td>
                 </tr>
                 <tr>
-                  <td><a href="https://www.youtube.com/watch?v=AdT44qXOu4I&list=RDAdT44qXOu4I&start_radio=1" target="_blank" rel="noreferrer" data-direct-url="https://www.youtube.com/watch?v=AdT44qXOu4I&list=RDAdT44qXOu4I&start_radio=1" data-inline-off="true" class="video-link"><i>Fuck New York - Trash Boy</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AdT44qXOu4I" data-inline-off="true" class="video-link"><i>Fuck New York - Trash Boy</i></a></td>
                   <td>2018</td>
-                  <td>Music Video. Directed and edited by ART DLR</td>
+                  <td>Music Video. Directed and edited by ART DLR.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AuTQ0SZPoOI" class="video-link"><i>Joker Stairs</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AuTQ0SZPoOI" data-inline-off="true" class="video-link"><i>Joker Stairs</i></a></td>
                   <td>2019</td>
-                  <td>Man on the street comedy short</td>
+                  <td>Man on the street comedy short.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/x7tyL7CTTcU" data-inline-off="true" class="video-link"><i>Lost It: A Snap Story</i></a></td>
+                  <td>2019</td>
+                  <td>Made with Colin Garland and Ben Townsend. Selected for Tribeca Film Festival Snapchat Stories.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/DnPUObfPxqw" data-inline-off="true" class="video-link"><i>Mouse Sucks &amp; Cranklin - Eugene</i> (Music Video)</a></td>
+                  <td>2020</td>
+                  <td>Song Production, Video Editing.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://player.vimeo.com/video/953743073?h=e52cebbd6c" data-inline-off="true" class="video-link"><i>Two Days In Dallas</i></a></td>
+                  <td>2024</td>
+                  <td>20min film made with Father and Brother.</td>
                 </tr>
               </tbody>
             </table>
-            <h3 id="other-music">Other Music</h3>
+            <h3 id="other-music">Other Sounds</h3>
             <p class="notes">Triangle Lord<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup>: High school band. Featuring Chris Fortunato, Jeff Marks, Kevin Welch, Zach Cimafonte, and Steve Berkowitz. Occasional members include High Jacob.</p>
             <table class="wikitable">
               <thead>
@@ -2146,13 +2280,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td><i>Spaceman</i></td>
+                  <td><i>Spaceman - Triangle Lord</i></td>
                   <td>2011</td>
-                  <td></td>
+                  <td>LP, High school band</td>
                   <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1583413270/size=small/bgcol=ffffff/linkcol=0687f5/track=229001564/transparent=true/" seamless><a href="https://trianglelord.bandcamp.com/album/triangle-lord">Triangle Lord by Triangle Lord</a></iframe></td>
                 </tr>
                 <tr>
-                  <td><i>Shit</i></td>
+                  <td><i>Shit - Triangle Lord</i></td>
                   <td>2014</td>
                   <td>rarities collection</td>
                   <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3222078808/size=small/bgcol=ffffff/linkcol=0687f5/track=4184075124/transparent=true/" seamless><a href="https://trianglelord.bandcamp.com/album/shit-rarities-tri-sides">Shit - Rarities &amp; Tri-sides by Triangle Lord</a></iframe></td>
@@ -2162,6 +2296,12 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>2019</td>
                   <td><a href="https://www.dublab.com/archive/art-dlrs-shared-assets-guest-session-08-14-19" target="_blank" rel="noreferrer">Dublab mix with interactive voice over.</a> Made with Noah Engel</td>
                   <td><iframe width="100%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&amp;mini=1&amp;feed=%2Fdublab%2Fart-dlrs-shared-assets-guest-session-08-14-19%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>The Heartsick Boys</i></td>
+                  <td>2024</td>
+                  <td>Audio Narrative Comedy Podcast by Matt Schultz. Sound design, mix, engineering, production.</td>
+                  <td><a href="https://podcasts.apple.com/us/podcast/the-heartsick-boys/id1765400973" target="_blank" rel="noreferrer">Open on Apple Podcasts</a></td>
                 </tr>
               </tbody>
             </table>
@@ -2843,7 +2983,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             const cells = Array.from(row.children).filter((cell) => cell.matches("td,th"));
             cells.forEach((cell, idx) => {
               if (!cell.getAttribute("data-label")) {
-                cell.setAttribute("data-label", headers[idx] || "Item");
+                cell.setAttribute("data-label", headers[idx] || "");
               }
               const hasMedia = !!cell.querySelector("iframe,video,.inline-table-video,.bandcamp-embed");
               if (hasMedia) {
@@ -2851,6 +2991,106 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               }
             });
           });
+        });
+      }
+
+      function extractCellTextWithoutMedia(cell) {
+        if (!cell) return "";
+        const clone = cell.cloneNode(true);
+        clone.querySelectorAll("iframe,video,img,.inline-table-video,.inline-table-video-stack,.bandcamp-embed,.film-inline-image").forEach((node) => node.remove());
+        return (clone.textContent || "").replace(/\s+/g, " ").trim();
+      }
+
+      function buildMobileRowSummaries() {
+        const rows = document.querySelectorAll("main.article .wikitable tbody tr");
+        rows.forEach((row) => {
+          if (row.classList.contains("mobile-row-compact")) return;
+          const cells = Array.from(row.children).filter((cell) => cell.matches("td,th"));
+          if (!cells.length) return;
+          const byLabel = new Map();
+          cells.forEach((cell) => {
+            const label = (cell.getAttribute("data-label") || "").trim().toLowerCase();
+            if (label) byLabel.set(label, cell);
+          });
+
+          const primaryLabels = ["year", "role"];
+          const secondaryLabels = ["network", "distributor", "notes"];
+
+          function makeSummary(labels) {
+            const parts = [];
+            labels.forEach((label) => {
+              const cell = byLabel.get(label);
+              if (!cell) return;
+              const value = extractCellTextWithoutMedia(cell);
+              if (!value) return;
+              parts.push({ label, value, cell });
+            });
+            if (!parts.length) return null;
+            const summary = document.createElement("div");
+            summary.className = "mobile-row-summary";
+            parts.forEach((part) => {
+              part.cell.classList.add("mobile-compact-field");
+              const item = document.createElement("span");
+              item.className = "kv";
+              const key = document.createElement("span");
+              key.className = "k";
+              key.textContent = part.label;
+              const value = document.createElement("span");
+              value.className = "v";
+              value.textContent = part.value;
+              item.appendChild(key);
+              item.appendChild(value);
+              summary.appendChild(item);
+            });
+            return summary;
+          }
+
+          const primary = makeSummary(primaryLabels);
+          const secondary = makeSummary(secondaryLabels);
+          if (!primary && !secondary) return;
+          row.classList.add("mobile-row-compact");
+          const titleCell = cells.find((cell) => {
+            const label = (cell.getAttribute("data-label") || "").trim().toLowerCase();
+            return label === "title" || label === "project" || label === "release" || label === "award / screening";
+          });
+          if (titleCell && titleCell.nextSibling) {
+            if (primary) row.insertBefore(primary, titleCell.nextSibling);
+            if (secondary) row.insertBefore(secondary, primary ? primary.nextSibling : titleCell.nextSibling);
+          } else {
+            if (secondary) row.insertBefore(secondary, row.firstChild);
+            if (primary) row.insertBefore(primary, row.firstChild);
+          }
+        });
+      }
+
+      function buildMobileRowMediaBlocks() {
+        const rows = document.querySelectorAll("main.article .wikitable tbody tr");
+        rows.forEach((row) => {
+          if (row.dataset.mobileMediaBuilt === "true") return;
+          const cells = Array.from(row.children).filter((cell) => cell.matches("td,th"));
+          if (!cells.length) return;
+          const mediaHolder = document.createElement("div");
+          mediaHolder.className = "mobile-row-media";
+          let mediaCount = 0;
+          cells.forEach((cell) => {
+            const label = (cell.getAttribute("data-label") || "").trim().toLowerCase();
+            const mediaNodes = Array.from(
+              cell.querySelectorAll(":scope > .inline-table-video-stack, :scope > .film-inline-image, :scope > .bandcamp-embed, :scope > iframe, :scope > video")
+            );
+            if (!mediaNodes.length) return;
+            mediaNodes.forEach((node) => {
+              node.classList.add("mobile-original-media");
+              mediaHolder.appendChild(node.cloneNode(true));
+              mediaCount += 1;
+            });
+            if (label === "player" || label === "preview") {
+              cell.classList.add("mobile-compact-field");
+            }
+          });
+          if (mediaCount > 0) {
+            row.appendChild(mediaHolder);
+          }
+          row.dataset.mobileMediaBuilt = "true";
         });
       }
 
@@ -2874,13 +3114,22 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           rows.forEach((row) => {
             const cells = Array.from(row.children).filter((cell) => cell.matches("th,td"));
             if (cells.length <= yearIdx) return;
-            row.insertBefore(cells[yearIdx], cells[0]);
+            const yearCell = cells[yearIdx];
+            row.insertBefore(yearCell, cells[0]);
+            const raw = (yearCell.textContent || "").trim();
+            if (!raw || yearCell.querySelector("*")) return;
+            const m = raw.match(/^(\d{4})\s*-\s*(.+)$/);
+            if (m) {
+              yearCell.innerHTML = m[1] + "-<br>" + m[2];
+            }
           });
         });
       }
 
       normalizeYearColumns();
       initResponsiveTableCards();
+      buildMobileRowSummaries();
+      buildMobileRowMediaBlocks();
 
       window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
       window.addEventListener("load", updateActiveFromScroll);
