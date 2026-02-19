@@ -6,6 +6,12 @@
     <link rel="icon" type="image/png" href="images/header-logo.png" />
     <link rel="apple-touch-icon" href="images/header-logo.png" />
     <title>WillKpedia - Will Kempner</title>
+    <meta property="og:title" content="WillKpedia - Will Kempner" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://willkempner-coder.github.io/" />
+    <meta property="og:image" content="https://willkempner-coder.github.io/images/header-logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://willkempner-coder.github.io/images/header-logo.png" />
     <style>
       :root {
         --wiki-blue: #3366cc;
@@ -60,6 +66,7 @@
         display: flex;
         width: max-content;
         animation: flagScroll 140s linear infinite;
+        animation-play-state: running;
         will-change: transform;
       }
       .flag-track {
@@ -555,6 +562,21 @@
         background: #eaecf0;
         text-align: left;
       }
+      .table-video-col-1 th:nth-child(1),
+      .table-video-col-1 td:nth-child(1) {
+        width: 46%;
+        min-width: 340px;
+      }
+      .table-video-col-2 th:nth-child(2),
+      .table-video-col-2 td:nth-child(2) {
+        width: 44%;
+        min-width: 340px;
+      }
+      .table-player-last th:last-child,
+      .table-player-last td:last-child {
+        width: 42%;
+        min-width: 320px;
+      }
       .ref {
         font-family: sans-serif;
         font-size: 0.78rem;
@@ -689,7 +711,7 @@
       }
       .inline-table-video {
         margin-top: 8px;
-        width: min(100%, 360px);
+        width: min(100%, 520px);
         border: 1px solid #a2a9b1;
         background: #fff;
       }
@@ -722,7 +744,7 @@
       }
       .film-inline-image {
         margin-top: 8px;
-        max-width: 230px;
+        max-width: 320px;
       }
       .film-inline-image img {
         width: 100%;
@@ -976,7 +998,8 @@
         .flag-banner-inner {
           top: 36%;
           transform: translateY(-50%);
-          animation-duration: 120s;
+          animation-duration: 60s;
+          animation-play-state: running;
         }
         .flag-item {
           font-size: 2.8rem;
@@ -1027,6 +1050,25 @@
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
         }
+        .table-video-col-1 td:nth-child(1),
+        .table-video-col-1 th:nth-child(1) {
+          min-width: 300px;
+        }
+        .table-video-col-2 td:nth-child(2),
+        .table-video-col-2 th:nth-child(2) {
+          min-width: 300px;
+        }
+        .table-player-last td:last-child,
+        .table-player-last th:last-child {
+          min-width: 280px;
+        }
+        .inline-table-video {
+          width: 100%;
+          max-width: none;
+        }
+        .film-inline-image {
+          max-width: 100%;
+        }
         body.mobile-collapsible-enabled main.article > section {
           border-top: 1px solid #c8ccd1;
           padding-top: 8px;
@@ -1058,7 +1100,7 @@
         body.mobile-collapsible-enabled main.article > section.mobile-collapsible:not(.is-collapsed) > .mobile-section-head::before {
           transform: translateY(-50%) rotate(0deg);
         }
-        body.mobile-collapsible-enabled main.article > section.mobile-collapsible.is-collapsed > :not(.mobile-section-head) {
+        body.mobile-collapsible-enabled .mobile-section-body[hidden] {
           display: none;
         }
         #discography .wikitable {
@@ -1198,7 +1240,7 @@ Colleagues have described his process as fast, iterative, and reference-heavy.
 * Graham Mason's ''Inspector Ike'' trailer — Editor
 * ''Reveries: Going Deeper'' trailer — Trailer Editor
 * Andre 3000 — ''Listening To The Sun'' teaser — Trailer Editor (unlisted link pending)
-* ''Seek No Favor'' — Trailer Editor (unlisted link pending)
+* ''Seek No Favor'' — Trailer Editor (unlisted link pending). Director Leilah Weintraub.
 * ''Telfar New Models Season 1 Trailer'' — Trailer Editor (2025)
 
 ==Assistant editing==
@@ -1224,7 +1266,7 @@ Additional assistant editorial entries may be appended as the source list is fin
 |-
 | 2023 || New Models Season One || Editor, Producer || Telfar series
 |-
-| 2023 || Andre 3000 - Listening To The Sun (Teaser) || Trailer Editor || Unlisted trailer link pending
+| 2023 || Andre 3000 - Listening To The Sun (Teaser) || Trailer Editor || Unlisted trailer link pending. Director Terence Nance.
 |-
 | 2022 || Growing Up || Editor || Disney+ series
 |-
@@ -1234,7 +1276,7 @@ Additional assistant editorial entries may be appended as the source list is fin
 |-
 | 2021 || Wondr Health Testimonials || Editor || Unlisted YouTube link pending
 |-
-| 2024 || Seek No Favor || Trailer Editor || Unlisted trailer link pending
+| 2024 || Seek No Favor || Trailer Editor || Unlisted trailer link pending. Director Leilah Weintraub.
 |-
 | 2025 || Telfar New Models Season 1 Trailer || Trailer Editor || Unlisted trailer link pending
 |-
@@ -1483,7 +1525,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
             <h3 id="tv">Television</h3>
             <p class="notes">Mr. Will has worked for networks like HBO, self-released YouTube, and Disney+.</p>
-            <table class="wikitable">
+            <table class="wikitable table-video-col-2">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -1541,7 +1583,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
             <h3 id="films-editing">Film</h3>
             <p class="notes">Twenty-four frames per second is a standard measure of motion picture projection, a span in which a remarkable number of images pass by, and Kempner is often employed organizing, editing, and assisting with them.</p>
-            <table class="wikitable">
+            <table class="wikitable table-video-col-1">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -1577,7 +1619,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h4>Short Films</h4>
-            <table class="wikitable">
+            <table class="wikitable table-video-col-1">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -1593,7 +1635,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>2024</td>
                   <td>Additional Editor, Trailer Editor</td>
                   <td></td>
-                  <td>Short film</td>
+                  <td>Short film. Director Leilah Weintraub.</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link"><i>Straight Line</i> (dir. Jack Bensinger)</a></td>
@@ -1607,7 +1649,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
             <h3 id="fashion">Fashion</h3>
             <p class="notes">When Kempner enters a room, his outfits are often described as conversation starters and statement pieces. His attention to detail, from his initial-embroidered socks to his signature fedora, “helps explain why his editing is so precise it cuts like a Wagyu knife.”<sup class="ref" id="cite-15a"><a href="#ref-15">[15]</a></sup> Before film, fashion was Will K’s first love, and long after he has forgotten how to care for himself, not to mention how to use a personal computer, that fedora will undoubtedly remain snug upon his cap.</p>
-            <table class="wikitable">
+            <table class="wikitable table-video-col-2">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -1638,7 +1680,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <p class="notes">
               Corporate and branded editing includes years of work with various <b>Conde</b> brands, including <i>Vogue</i>, <i>Glamour</i>, and Teen Vogue Prom, as well as work for healthcare and consumer campaigns. Additional brand collaborators shown in portfolio materials include <b>Spotify</b>, <b>HBO</b>, <b>Disney+</b>, <b>Topic Studios</b>, and <b>Twitch</b>.
             </p>
-            <table class="wikitable">
+            <table class="wikitable table-video-col-2">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -1683,7 +1725,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
             <h3 id="trailers">Trailers</h3>
             <p class="notes">The trailers of “Will K” are well known and often imitated. In local pubs, drunkards have reportedly been heard asking, “How can he cram this much life, pure essence, into an object of such brevity?” <span class="citation-needed">[citation needed]</span></p>
-            <table class="wikitable">
+            <table class="wikitable table-video-col-2">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -1703,19 +1745,19 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>2020</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" class="video-link"><i>Reveries: Going Deeper</i></a></td>
                   <td>Trailer Editor</td>
-                  <td>Trailer</td>
+                  <td>Trailer. Director Graham Mason.</td>
                 </tr>
                 <tr>
                   <td>2023</td>
                   <td><i>Andre 3000 - Listening To The Sun</i> (teaser)</td>
                   <td>Trailer Editor</td>
-                  <td>Unlisted trailer link pending</td>
+                  <td>Unlisted trailer link pending. Director Terence Nance.</td>
                 </tr>
                 <tr>
                   <td>2024</td>
                   <td><i>Seek No Favor</i></td>
                   <td>Trailer Editor</td>
-                  <td>Unlisted trailer link pending</td>
+                  <td>Unlisted trailer link pending. Director Leilah Weintraub.</td>
                 </tr>
                 <tr>
                   <td>2025</td>
@@ -1730,7 +1772,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           <section id="filmography">
             <h2>Filmography <span class="edit">[edit]</span></h2>
             <p>From places in New Jersey to private family Zoom chats, these films showcase a deep understanding of mise-en-scène and dramatic irony.</p>
-            <table class="wikitable">
+            <table class="wikitable table-video-col-1">
               <thead>
                 <tr>
                   <th>Title</th>
@@ -1767,7 +1809,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <h2>Discography <span class="edit">[edit]</span></h2>
 
             <h3 id="discography-cranklin">Cranklin<sup class="ref" id="cite-9a"><a href="#ref-9">[9]</a></sup></h3>
-            <table class="wikitable">
+            <table class="wikitable table-player-last">
               <thead>
                 <tr>
                   <th>Release</th>
@@ -1817,7 +1859,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
             <h3 id="discography-artdlr">ART DLR<sup class="ref" id="cite-8a"><a href="#ref-8">[8]</a></sup></h3>
             <p class="notes">Band with Noah Engel</p>
-            <table class="wikitable">
+            <table class="wikitable table-player-last">
               <thead>
                 <tr>
                   <th>Release</th>
@@ -1876,7 +1918,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
             <h3 id="discography-lanlord">Lanlord Lance<sup class="ref" id="cite-10a"><a href="#ref-10">[10]</a></sup></h3>
             <p class="notes">Band with Jeff Marks, selected works.</p>
-            <table class="wikitable">
+            <table class="wikitable table-player-last">
               <thead>
                 <tr>
                   <th>Release</th>
@@ -1907,7 +1949,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </div>
             </figure>
             <p>Kempner’s creative output has been recognized through several industry grants and festival screenings. In 2015, he was the winner of the Todd Phillips Post Production Grant. He later won the 2019 Tribeca Film Festival Snapchat Story Contest (w/ Colin Garland and Ben Townsend). His work has also been selected for official screenings, including the 2021 NPCC Short Film Block and a scheduled presentation at NoBudge Live 12.</p>
-            <table class="wikitable">
+            <table class="wikitable table-video-col-1">
               <thead>
                 <tr>
                   <th>Year</th>
@@ -1963,7 +2005,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <h2>Other Stuff <span class="edit">[edit]</span></h2>
             <p>Here lies the bonus work, the uncategorizable, the links I assume no one will click. Yet they are Kempner’s children, and he loves them as dearly as the higher placed ones. <span class="citation-needed">[citation needed]</span></p>
             <h3 id="other-video">Other Video</h3>
-            <table class="wikitable">
+            <table class="wikitable table-player-last">
               <thead>
                 <tr>
                   <th>Project</th>
@@ -2477,12 +2519,45 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         });
       }
 
+      function getSectionHead(section) {
+        if (!section) return null;
+        for (const child of Array.from(section.children)) {
+          if (child.tagName === "H2") return child;
+        }
+        return null;
+      }
+
+      function getSectionBody(section) {
+        if (!section) return null;
+        for (const child of Array.from(section.children)) {
+          if (child.classList && child.classList.contains("mobile-section-body")) return child;
+        }
+        return null;
+      }
+
+      function ensureSectionBody(section, head) {
+        let body = getSectionBody(section);
+        if (body) return body;
+        body = document.createElement("div");
+        body.className = "mobile-section-body";
+        const children = Array.from(section.children);
+        children.forEach((child) => {
+          if (child !== head) body.appendChild(child);
+        });
+        section.appendChild(body);
+        return body;
+      }
+
       function setSectionCollapsed(section, collapsed) {
         if (!section) return;
         section.classList.toggle("is-collapsed", collapsed);
-        const head = section.querySelector(":scope > h2");
+        const head = getSectionHead(section);
+        const body = getSectionBody(section);
         if (head) {
           head.setAttribute("aria-expanded", collapsed ? "false" : "true");
+        }
+        if (body) {
+          body.hidden = !!collapsed;
         }
       }
 
@@ -2492,8 +2567,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         if (mobileCollapsibleEnabled) return;
         document.body.classList.add("mobile-collapsible-enabled");
         topLevelSections.forEach((section) => {
-          const head = section.querySelector(":scope > h2");
+          const head = getSectionHead(section);
           if (!head) return;
+          ensureSectionBody(section, head);
           section.classList.add("mobile-collapsible");
           head.classList.add("mobile-section-head");
           head.setAttribute("role", "button");
@@ -2528,8 +2604,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         if (!mobileCollapsibleEnabled) return;
         document.body.classList.remove("mobile-collapsible-enabled");
         topLevelSections.forEach((section) => {
-          const head = section.querySelector(":scope > h2");
+          const head = getSectionHead(section);
+          const body = getSectionBody(section);
           section.classList.remove("mobile-collapsible", "is-collapsed");
+          if (body) body.hidden = false;
           if (head) {
             head.classList.remove("mobile-section-head");
             head.removeAttribute("role");
