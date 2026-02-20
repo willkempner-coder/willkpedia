@@ -3352,7 +3352,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       }
 
       function showHoverPreviewForLink(link) {
-        if (!link || link.dataset.directUrl || link.dataset.noHoverPreview === "true") return;
+        if (!link || link.dataset.directUrl || link.dataset.noHoverPreview === "true" || shouldUseVintageGuard(link)) return;
         if (videoHoverShowTimer) {
           clearTimeout(videoHoverShowTimer);
           videoHoverShowTimer = null;
@@ -3407,7 +3407,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         links.forEach((link) => {
           if (!link.dataset.videoHandlersBound) {
             link.addEventListener("click", (event) => {
-              if (link.dataset.vintageGuard === "true") {
+              if (shouldUseVintageGuard(link)) {
                 event.preventDefault();
                 startVintageGuardFlow(link);
                 return;
@@ -3428,6 +3428,28 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             link.dataset.videoHandlersBound = "true";
           }
         });
+      }
+
+      function getOtherVideoYearForLink(link) {
+        if (!link) return null;
+        const table = link.closest('table[data-admin-table="other-video"]');
+        const row = link.closest("tr");
+        if (!table || !row) return null;
+        const yearCell =
+          row.querySelector('td[data-label="Year"], th[data-label="Year"]') ||
+          row.querySelector("td:nth-child(2), th:nth-child(2)");
+        if (!yearCell) return null;
+        const match = (yearCell.textContent || "").match(/\d{4}/);
+        if (!match) return null;
+        const year = Number(match[0]);
+        return Number.isFinite(year) ? year : null;
+      }
+
+      function shouldUseVintageGuard(link) {
+        if (!link) return false;
+        if (link.dataset.vintageGuard === "true") return true;
+        const year = getOtherVideoYearForLink(link);
+        return Number.isFinite(year) && year < 2015;
       }
       function initVintageOtherVideoGuards() {
         const table = document.querySelector('table[data-admin-table="other-video"]');
