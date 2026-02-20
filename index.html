@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="images/header-logo.png" />
     <link rel="apple-touch-icon" href="images/header-logo.png" />
-    <link rel="preload" as="image" href="images/bio-photo-fast.jpg" />
+    <link rel="preload" as="image" href="images/bio-photo-portrait-fast.jpg" />
     <title>WillKpedia - Will Kempner</title>
     <meta property="og:title" content="WillKpedia - Will Kempner" />
     <meta property="og:type" content="website" />
@@ -1518,7 +1518,7 @@
       <header class="site-brand" aria-label="WillKpedia header">
         <h1 class="site-brand-text" id="site-brand-text">WillKpedia</h1>
         <div class="site-brand-mark">
-          <img id="globe-logo" src="images/header-logo-transparent.png" onerror="this.onerror=null;this.src='images/header-logo.png';" alt="WillKpedia globe mark" draggable="false" />
+          <img id="globe-logo" src="images/header-logo-transparent-head.png" onerror="this.onerror=null;this.src='images/header-logo.png';" alt="WillKpedia globe mark" draggable="false" />
         </div>
       </header>
       <section class="wiki-top-strip" aria-label="Article top controls">
@@ -1832,7 +1832,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <td colspan="2" class="infobox-photo">
                   <figure style="margin:0;">
                     <img
-                      src="images/bio-photo-fast.jpg"
+                      src="images/bio-photo-portrait-fast.jpg"
                       onerror="this.onerror=null;this.src='images/bio-photo.jpg';"
                       alt="Will Kempner"
                       width="300"
@@ -2430,6 +2430,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>High school summer project.</td>
                 </tr>
                 <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PL17NtDihC7z9RfWjM7Dv01jCTmDIAqhCJ" data-inline-off="true" class="video-link"><i>Triangle Lord Live @ Help for Haiti Telethon</i></a></td>
+                  <td>2010</td>
+                  <td>Filmed by SPTV.</td>
+                </tr>
+                <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/3NyDxDqaOIs" data-inline-off="true" class="video-link"><i>What is Art? A Portrait of an Artist.</i></a></td>
                   <td>2011</td>
                   <td>Made for senior project at SPFHS with SPTV.</td>
@@ -2468,11 +2473,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/e6XXU7da70M" data-inline-off="true" class="video-link"><i>Wet Brownies</i></a></td>
                   <td>2015</td>
                   <td>Feature film. Written and Directed with Chris Gilman and Jeff Marks. Editor.</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PL17NtDihC7z9RfWjM7Dv01jCTmDIAqhCJ" data-inline-off="true" class="video-link"><i>Triangle Lord Live @ Help for Haiti Telethon</i></a></td>
-                  <td>2010</td>
-                  <td>Filmed by SPTV.</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLqpJjoFzG1_b_-haYhgTtnsIRVWQtkDNM" data-inline-off="true" class="video-link"><i>Silvery Snake</i></a></td>
@@ -3318,7 +3318,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           const yearMatch = yearCellText.match(/\d{4}/);
           if (!yearMatch) return;
           const year = Number(yearMatch[0]);
-          if (!Number.isFinite(year) || year > 2019) return;
+          if (!Number.isFinite(year) || year >= 2015) return;
           const links = cells[projectIdx].querySelectorAll(".video-link[data-video]");
           links.forEach((link) => {
             link.dataset.vintageGuard = "true";
@@ -3807,15 +3807,16 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       const darkModeAudio = new Audio("sounds/Dark Mode.mp3");
       darkModeAudio.loop = true;
-      darkModeAudio.preload = "auto";
+      darkModeAudio.preload = "none";
       const talkHeyAudio = new Audio("sounds/Hey.mp3");
-      talkHeyAudio.preload = "auto";
+      talkHeyAudio.preload = "none";
       const chinesePopupAudio = new Audio("sounds/ChinesePopUp.mp3");
-      chinesePopupAudio.preload = "auto";
+      chinesePopupAudio.preload = "none";
       const naviPopupAudio = new Audio("sounds/NaviSong.mp3");
-      naviPopupAudio.preload = "auto";
+      naviPopupAudio.preload = "none";
       naviPopupAudio.loop = true;
       let popupAudioPrimed = false;
+      let isInitialColorApply = true;
 
       function playPopupAudioNow(audio) {
         if (!audio) return;
@@ -3982,7 +3983,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       function applyColor(value) {
         if (value === "dark") {
           document.body.classList.add("dark-hellfire");
-          startDarkModeAudio();
+          if (!isInitialColorApply) {
+            startDarkModeAudio();
+          } else {
+            stopDarkModeAudio();
+          }
           startDarkDigitMode();
           return;
         }
@@ -4004,6 +4009,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       });
       const checkedColorMode = document.querySelector('input[name="color-mode"]:checked');
       applyColor(checkedColorMode ? checkedColorMode.value : "auto");
+      isInitialColorApply = false;
       if (darkAudioPlayBtn && darkAudioMuteBtn) {
         darkAudioPlayBtn.addEventListener("click", () => {
           if (darkModeAudio.paused) {
