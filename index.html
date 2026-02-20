@@ -3,21 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="images/header-logo.png" />
-    <link rel="apple-touch-icon" href="images/header-logo.png" />
-    <link rel="preload" as="image" href="images/bio-photo.jpg?v=3" />
+    <link rel="icon" type="image/png" href="images/header-logo.png?v=3" />
+    <link rel="apple-touch-icon" href="images/header-logo.png?v=3" />
+    <link rel="preload" as="image" href="images/bio-photo-fast.jpg?v=4" />
     <title>WillKpedia - Will Kempner</title>
     <meta property="og:title" content="WillKpedia - Will Kempner" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://willkempner-coder.github.io/" />
-    <meta property="og:image" content="https://willkempner-coder.github.io/images/header-logo.png?v=2" />
-    <meta property="og:image:secure_url" content="https://willkempner-coder.github.io/images/header-logo.png?v=2" />
+    <meta property="og:image" content="https://willkempner-coder.github.io/images/header-logo.png?v=3" />
+    <meta property="og:image:secure_url" content="https://willkempner-coder.github.io/images/header-logo.png?v=3" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta property="og:image:alt" content="WillKpedia logo" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://willkempner-coder.github.io/images/header-logo.png?v=2" />
+    <meta name="twitter:image" content="https://willkempner-coder.github.io/images/header-logo.png?v=3" />
     <meta name="twitter:image:alt" content="WillKpedia logo" />
     <style>
       :root {
@@ -723,16 +723,6 @@
       .wikitable th {
         background: #eaecf0;
         text-align: left;
-      }
-      .wikitable.has-year-col th:first-child,
-      .wikitable.has-year-col td:first-child {
-        width: 56px !important;
-        min-width: 56px !important;
-        max-width: 56px !important;
-        white-space: normal;
-        overflow-wrap: normal;
-        word-break: normal;
-        line-height: 1.2;
       }
       #trailers .wikitable {
         table-layout: fixed;
@@ -1540,6 +1530,12 @@
           color: var(--wiki-link);
           font-weight: 400;
         }
+        table[data-admin-table="found-footage-festival"] .mobile-row-title,
+        table[data-admin-table="found-footage-festival"] .mobile-row-title * {
+          white-space: nowrap !important;
+          font-size: 0.95rem !important;
+          line-height: 1.2;
+        }
       }
       @media (min-width: 981px) and (max-width: 1520px) {
         #personal-info .personal-info-table {
@@ -1570,7 +1566,7 @@
       <header class="site-brand" aria-label="WillKpedia header">
         <h1 class="site-brand-text" id="site-brand-text">WillKpedia</h1>
         <div class="site-brand-mark">
-          <img id="globe-logo" src="images/header-logo-transparent-head.png?v=2" onerror="this.onerror=null;this.src='images/header-logo.png?v=2';" alt="WillKpedia globe mark" draggable="false" />
+          <img id="globe-logo" src="images/header-logo-transparent-head.png?v=3" onerror="this.onerror=null;this.src='images/header-logo.png?v=3';" alt="WillKpedia globe mark" draggable="false" />
         </div>
       </header>
       <section class="wiki-top-strip" aria-label="Article top controls">
@@ -1883,7 +1879,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <td colspan="2" class="infobox-photo">
                   <figure style="margin:0;">
                     <img
-                      src="images/bio-photo.jpg?v=3"
+                      src="images/bio-photo-fast.jpg?v=4"
+                      onerror="this.onerror=null;this.src='images/bio-photo.jpg?v=3';"
                       alt="Will Kempner"
                       width="300"
                       height="400"
@@ -2153,9 +2150,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 </tr>
                 <tr>
                   <td>2020</td>
-                  <td><a href="#" data-video="https://www.glamour.com/video/watch/multiple-sclerosis-cant-knock-me-down" data-inline-off="true" class="video-link"><i>Multiple Sclerosis: Can't Knock Me Down</i></a> (Glamour Magazine)</td>
+                  <td><a href="#" data-video="https://www.glamour.com/video/watch/multiple-sclerosis-cant-knock-me-down" data-inline-off="true" class="video-link"><i>Multiple Sclerosis: Can't Knock Me Down</i></a></td>
                   <td>Editor</td>
-                  <td></td>
+                  <td>Glamour Magazine.</td>
                 </tr>
                 <tr>
                   <td>2021</td>
@@ -2186,7 +2183,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <th>Year</th>
                   <th>Title</th>
                   <th>Role</th>
-                  <th>Preview</th>
+                  <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -2194,13 +2191,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>2020</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" class="video-link"><i>Inspector Ike</i></a> (Graham Mason)</td>
                   <td>Trailer Editor</td>
-                  <td>Trailer</td>
+                  <td>Director Graham Mason.</td>
                 </tr>
                 <tr>
                   <td>2020</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" class="video-link"><i>Reveries: Going Deeper</i></a></td>
                   <td>Trailer Editor</td>
-                  <td>Trailer. Director Graham Mason.</td>
+                  <td>Director Graham Mason.</td>
                 </tr>
                 <tr>
                   <td>2023</td>
@@ -2212,13 +2209,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>2024</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/GUCNIpIwnPc" class="video-link"><i>Seek No Favor</i></a></td>
                   <td>Trailer Editor</td>
-                  <td>Unlisted trailer link pending. Director Leilah Weintraub.</td>
+                  <td>Director Leilah Weintraub.</td>
                 </tr>
                 <tr>
                   <td>2025</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ielzTKrADrw" class="video-link"><i>Telfar New Models Season 1 Trailer</i></a></td>
                   <td>Trailer Editor</td>
-                  <td>Trailer</td>
+                  <td>Director Babak Radboy.</td>
                 </tr>
               </tbody>
             </table>
@@ -2269,6 +2266,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <th>Release</th>
                   <th>Year</th>
+                  <th>Notes</th>
                   <th>Player</th>
                 </tr>
               </thead>
@@ -2276,6 +2274,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td><i>Songs For Guitar</i></td>
                   <td>2018</td>
+                  <td>LP</td>
                   <td>
                     <iframe
                       title="Songs For Guitar by Cranklin"
@@ -2288,6 +2287,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td><i>City Slicker</i></td>
                   <td>2018</td>
+                  <td>Single</td>
                   <td>
                     <iframe
                       title="City Slicker by Cranklin"
@@ -2300,6 +2300,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td><i>Random Song</i></td>
                   <td>2019</td>
+                  <td>Single</td>
                   <td>
                     <iframe
                       title="Random Song by Cranklin"
@@ -2378,15 +2379,16 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <th>Release</th>
                   <th>Year</th>
+                  <th>Notes</th>
                   <th>Player</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td><i>Night Sweats Box Set</i></td><td>2018</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3346191428/size=small/bgcol=ffffff/linkcol=0687f5/track=3957774942/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/sr14-night-sweats-box-set">Night Sweats Box Set by Lanlord Lance</a></iframe></td></tr>
-                <tr><td><i>Here Come The Entrees</i></td><td>2020</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3979275951/size=small/bgcol=ffffff/linkcol=0687f5/track=2805871613/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/here-come-the-entrees">Here Come The Entrees by Lanlord Lance</a></iframe></td></tr>
-                <tr><td><i>Winter's Too Cold</i></td><td>2020</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1899480135/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/winters-too-cold">Winter&#39;s Too Cold by Lanlord Lance</a></iframe></td></tr>
-                <tr><td><i>Calling On My Angels</i><sup class="ref" id="cite-9a"><a href="#ref-9">[9]</a></sup></td><td>2022</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/track=2050412820/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/track/calling-on-my-angels">Calling On My Angels by Lanlord Lance</a></iframe></td></tr>
-                <tr><td><i>it's hard to be an angel when you're still alive</i></td><td>2023</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3926722259/size=small/bgcol=ffffff/linkcol=0687f5/track=4108318433/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/its-hard-to-be-an-angel-when-youre-still-alive">it&#39;s hard to be an angel when you&#39;re still alive by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>Night Sweats Box Set</i></td><td>2018</td><td>EP</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3346191428/size=small/bgcol=ffffff/linkcol=0687f5/track=3957774942/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/sr14-night-sweats-box-set">Night Sweats Box Set by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>Here Come The Entrees</i></td><td>2020</td><td>EP</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3979275951/size=small/bgcol=ffffff/linkcol=0687f5/track=2805871613/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/here-come-the-entrees">Here Come The Entrees by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>Winter's Too Cold</i></td><td>2020</td><td>Single</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1899480135/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/winters-too-cold">Winter&#39;s Too Cold by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>Calling On My Angels</i><sup class="ref" id="cite-9a"><a href="#ref-9">[9]</a></sup></td><td>2022</td><td>Single</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/track=2050412820/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/track/calling-on-my-angels">Calling On My Angels by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>it's hard to be an angel when you're still alive</i></td><td>2023</td><td>EP</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3926722259/size=small/bgcol=ffffff/linkcol=0687f5/track=4108318433/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/its-hard-to-be-an-angel-when-youre-still-alive">it&#39;s hard to be an angel when you&#39;re still alive by Lanlord Lance</a></iframe></td></tr>
               </tbody>
             </table>
 
@@ -2465,7 +2467,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <table class="wikitable table-video-col-1" data-admin-table="found-footage-festival">
               <thead>
                 <tr>
-                  <th>Edition</th>
+                  <th>Title</th>
                   <th>Date</th>
                 </tr>
               </thead>
@@ -2479,7 +2481,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>4/18/2020</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/3RykS0eUas8" data-inline-off="true" class="video-link"><i>Found Footage Film Festival For Friends Vol. 3</i></a></td>
+                  <td><i>Found Footage Film Festival For Friends Vol. 3</i></td>
                   <td>5/2/2020</td>
                 </tr>
                 <tr>
@@ -3272,6 +3274,18 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         });
       }
 
+      function optimizeEmbeddedIframes() {
+        const iframes = document.querySelectorAll("main.article iframe");
+        iframes.forEach((frame) => {
+          if (!frame.getAttribute("loading")) {
+            frame.setAttribute("loading", "lazy");
+          }
+          if (!frame.getAttribute("referrerpolicy")) {
+            frame.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+          }
+        });
+      }
+
       async function initBandcampEmbeds() {
         const nodes = document.querySelectorAll(".bandcamp-embed[data-url]");
         for (const node of nodes) {
@@ -3298,6 +3312,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       initBandcampEmbeds();
       initInlineTableEmbeds();
+      optimizeEmbeddedIframes();
 
       function closeVideoModal() {
         modal.setAttribute("aria-hidden", "true");
@@ -3557,7 +3572,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       function enableMobileSubsectionCollapsibles() {
         if (mobileSubsectionCollapsibleEnabled) return;
         ensureSubsectionBodies();
-        const firstBySection = new Set();
         const wrappers = document.querySelectorAll("main.article > section .mobile-subsection");
         wrappers.forEach((wrapper) => {
           const head = wrapper.querySelector(":scope > h3");
@@ -3579,10 +3593,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             });
             head.dataset.mobileSubBound = "true";
           }
-          const parentSection = wrapper.closest("main.article > section");
-          const key = parentSection ? parentSection.id : "global";
-          const isFirst = !firstBySection.has(key);
-          if (isFirst) firstBySection.add(key);
           setSubsectionCollapsed(wrapper, true);
         });
         mobileSubsectionCollapsibleEnabled = true;
@@ -3708,7 +3718,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         });
       });
 
-      window.addEventListener("resize", syncMobileCollapsibles);
       window.addEventListener("hashchange", () => {
         if (!mobileCollapsibleEnabled || !window.location.hash) return;
         const target = document.querySelector(window.location.hash);
@@ -3730,6 +3739,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             cells.forEach((cell, idx) => {
               if (!cell.getAttribute("data-label")) {
                 cell.setAttribute("data-label", headers[idx] || "");
+              }
+              const label = (cell.getAttribute("data-label") || "").trim().toLowerCase();
+              if (label === "notes") {
+                const text = extractCellTextWithoutMedia(cell);
+                const hasMedia = !!cell.querySelector("iframe,video,.inline-table-video,.bandcamp-embed,img");
+                if (!text && !hasMedia) {
+                  cell.classList.add("mobile-compact-field");
+                }
               }
               const hasMedia = !!cell.querySelector("iframe,video,.inline-table-video,.bandcamp-embed");
               if (hasMedia) {
@@ -3877,38 +3894,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         });
       }
 
-      function normalizeYearColumns() {
-        const tables = document.querySelectorAll("main.article .wikitable");
-        tables.forEach((table) => {
-          const headRow = table.querySelector("thead tr");
-          if (!headRow) return;
-          const headers = Array.from(headRow.children).filter((cell) => cell.matches("th,td"));
-          if (!headers.length) return;
-          const yearIdx = headers.findIndex((cell) => {
-            const text = (cell.textContent || "").trim().toLowerCase();
-            return text === "year";
-          });
-          if (yearIdx < 0) return;
-          table.classList.add("has-year-col");
-          if (yearIdx === 0) return;
-          const yearHead = headers[yearIdx];
-          headRow.insertBefore(yearHead, headers[0]);
-          const rows = table.querySelectorAll("tbody tr");
-          rows.forEach((row) => {
-            const cells = Array.from(row.children).filter((cell) => cell.matches("th,td"));
-            if (cells.length <= yearIdx) return;
-            const yearCell = cells[yearIdx];
-            row.insertBefore(yearCell, cells[0]);
-            const raw = (yearCell.textContent || "").trim();
-            if (!raw || yearCell.querySelector("*")) return;
-            const m = raw.match(/^(\d{4})\s*-\s*(.+)$/);
-            if (m) {
-              yearCell.innerHTML = m[1] + "-<br>" + m[2];
-            }
-          });
-        });
-      }
-
       const responsiveTables = Array.from(document.querySelectorAll("main.article .wikitable"));
       const desktopTableSnapshots = new WeakMap();
       function snapshotDesktopTables() {
@@ -3925,11 +3910,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           if (desktopTableSnapshots.has(table)) {
             table.innerHTML = desktopTableSnapshots.get(table);
           }
-          table.classList.remove("has-year-col");
         });
         mobileTableTransformsApplied = false;
         initVintageOtherVideoGuards();
         bindVideoLinkHandlers();
+        optimizeEmbeddedIframes();
       }
 
       let mobileTableTransformsApplied = false;
@@ -3937,21 +3922,39 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       function syncResponsiveTableTransforms() {
         if (window.innerWidth <= 980) {
           if (mobileTableTransformsApplied) return;
-          normalizeYearColumns();
           initResponsiveTableCards();
           buildMobileRowSummaries();
           buildMobileRowMediaBlocks();
           mobileTableTransformsApplied = true;
+          optimizeEmbeddedIframes();
           return;
         }
         restoreDesktopTables();
       }
       syncResponsiveTableTransforms();
-      window.addEventListener("resize", syncResponsiveTableTransforms);
+      let resizeRafId = 0;
+      function handleLayoutResize() {
+        if (resizeRafId) return;
+        resizeRafId = window.requestAnimationFrame(() => {
+          resizeRafId = 0;
+          syncMobileCollapsibles();
+          syncResponsiveTableTransforms();
+          queueActiveTocUpdate();
+        });
+      }
+      window.addEventListener("resize", handleLayoutResize, { passive: true });
 
-      window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
-      window.addEventListener("load", updateActiveFromScroll);
-      updateActiveFromScroll();
+      let activeTocRafId = 0;
+      function queueActiveTocUpdate() {
+        if (activeTocRafId) return;
+        activeTocRafId = window.requestAnimationFrame(() => {
+          activeTocRafId = 0;
+          updateActiveFromScroll();
+        });
+      }
+      window.addEventListener("scroll", queueActiveTocUpdate, { passive: true });
+      window.addEventListener("load", queueActiveTocUpdate);
+      queueActiveTocUpdate();
 
       appearanceHide.addEventListener("click", () => {
         const hidden = appearancePanel.getAttribute("data-hidden") === "true";
@@ -3979,7 +3982,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const naviPopupAudio = new Audio("sounds/NaviSong.mp3");
       naviPopupAudio.preload = "none";
       naviPopupAudio.loop = true;
-      let popupAudioPrimed = false;
       let isInitialColorApply = true;
 
       function playPopupAudioNow(audio) {
@@ -3991,40 +3993,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             playPromise.catch(() => {});
           }
         } catch (_err) {}
-      }
-
-      function primePopupAudio() {
-        if (popupAudioPrimed) return;
-        popupAudioPrimed = true;
-        [chinesePopupAudio, naviPopupAudio].forEach((audio) => {
-          if (!audio) return;
-          const previousMuted = audio.muted;
-          const previousVolume = audio.volume;
-          audio.muted = true;
-          audio.volume = 0;
-          try {
-            const p = audio.play();
-            if (p && typeof p.then === "function") {
-              p.then(() => {
-                audio.pause();
-                audio.currentTime = 0;
-                audio.muted = previousMuted;
-                audio.volume = previousVolume;
-              }).catch(() => {
-                audio.muted = previousMuted;
-                audio.volume = previousVolume;
-              });
-            } else {
-              audio.pause();
-              audio.currentTime = 0;
-              audio.muted = previousMuted;
-              audio.volume = previousVolume;
-            }
-          } catch (_err) {
-            audio.muted = previousMuted;
-            audio.volume = previousVolume;
-          }
-        });
       }
 
       function updateDarkAudioUi() {
@@ -4544,7 +4512,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         if (event.defaultPrevented || event.button !== 0) return;
         if (!(event.target instanceof Element)) return;
         if (event.target.closest("#video-modal, #tamper-modal")) return;
-        primePopupAudio();
         const actionableTarget = getActionableTarget(event.target);
         clickGateCount += 1;
         if (clickGateCount === 13) {
