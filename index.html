@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="images/header-logo.png" />
     <link rel="apple-touch-icon" href="images/header-logo.png" />
-    <link rel="preload" as="image" href="images/bio-photo.jpg" />
+    <link rel="preload" as="image" href="images/bio-photo-fast.jpg" />
     <title>WillKpedia - Will Kempner</title>
     <meta property="og:title" content="WillKpedia - Will Kempner" />
     <meta property="og:type" content="website" />
@@ -272,18 +272,140 @@
         font-weight: 400;
       }
       .subtitle {
-        margin: 0 0 16px;
+        margin: 10px 0 16px;
         color: #54595d;
         font-size: 0.95rem;
+      }
+      .wiki-top-strip {
+        margin: 0 0 12px;
+      }
+      .wiki-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 12px;
+        border-bottom: 1px solid #a2a9b1;
+        padding-bottom: 8px;
+      }
+      .wiki-nav-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 10px;
+        border-bottom: 1px solid #a2a9b1;
+        margin-top: 8px;
+      }
+      .topic-tabs {
+        display: flex;
+        gap: 3px;
+        font-family: sans-serif;
+      }
+      .topic-tab {
+        border: 1px solid transparent;
+        border-bottom: 3px solid transparent;
+        background: transparent;
+        color: #3366cc;
+        font-size: 0.87rem;
+        line-height: 1;
+        padding: 8px 10px 7px;
+        cursor: pointer;
+      }
+      .topic-tab.active {
+        color: #202122;
+        border-bottom-color: #202122;
+        cursor: default;
+      }
+      .wiki-top-strip .language-toolbar {
+        margin: 0;
       }
       .page-actions {
         display: flex;
         justify-content: flex-end;
         gap: 3px;
-        margin: 0 0 10px;
+        margin: 0;
         font-family: sans-serif;
         position: relative;
         z-index: 1;
+      }
+      .language-toolbar {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0 0 8px;
+        position: relative;
+        z-index: 2;
+      }
+      .language-button {
+        border: 1px solid #c8ccd1;
+        background: #eaf3ff;
+        color: #3366cc;
+        font: 700 0.98rem/1 sans-serif;
+        padding: 10px 14px;
+        cursor: pointer;
+        min-width: 198px;
+        text-align: left;
+      }
+      .language-button .icon {
+        margin-right: 8px;
+        font-size: 1.3rem;
+        vertical-align: middle;
+      }
+      .language-button .caret {
+        float: right;
+        font-size: 1.1rem;
+      }
+      .language-menu {
+        position: absolute;
+        top: calc(100% + 4px);
+        right: 0;
+        width: 240px;
+        max-height: 320px;
+        overflow: auto;
+        border: 1px solid #a2a9b1;
+        background: #fff;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        display: none;
+      }
+      .language-menu.show {
+        display: block;
+      }
+      .language-option {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid #eaecf0;
+        background: #fff;
+        color: #202122;
+        font: 0.9rem/1.3 sans-serif;
+        text-align: left;
+        padding: 8px 10px;
+        cursor: pointer;
+      }
+      .language-option:hover,
+      .language-option:focus {
+        background: #f8f9fa;
+      }
+      .language-option.active {
+        font-weight: 700;
+        color: #1f4ea3;
+      }
+      #google_translate_element {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      .goog-logo-link,
+      .goog-te-gadget span {
+        display: none !important;
+      }
+      .goog-te-gadget {
+        color: transparent !important;
+      }
+      iframe.goog-te-banner-frame {
+        display: none !important;
+      }
+      body {
+        top: 0 !important;
       }
       .page-tab {
         border: 1px solid #a2a9b1;
@@ -293,6 +415,8 @@
         line-height: 1;
         padding: 6px 10px;
         cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
       }
       .page-tab.active {
         background: #fff;
@@ -1037,6 +1161,51 @@
         padding: 8px 10px;
         cursor: pointer;
       }
+      .vintage-gate-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.68);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 171;
+      }
+      .vintage-gate-modal[aria-hidden="false"] {
+        display: flex;
+      }
+      .vintage-gate-card {
+        width: min(560px, 96vw);
+        border: 1px solid #72777d;
+        background: #fff;
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+        padding: 16px;
+        font-family: serif;
+      }
+      .vintage-gate-text {
+        margin: 0;
+        font-size: 1.18rem;
+        line-height: 1.45;
+      }
+      .vintage-gate-actions {
+        margin-top: 14px;
+        display: flex;
+        gap: 10px;
+      }
+      .vintage-gate-actions button {
+        flex: 1;
+        border: 1px solid #a2a9b1;
+        background: #f8f9fa;
+        color: #202122;
+        font-size: 1rem;
+        padding: 8px 10px;
+        cursor: pointer;
+      }
+      .vintage-gate-actions button.primary {
+        background: #3366cc;
+        border-color: #2a4b8d;
+        color: #fff;
+      }
       .cookie-scam-card.navi {
         border-color: #1c53b8;
         background: linear-gradient(160deg, #d8ecff, #c0d9ff);
@@ -1073,6 +1242,21 @@
         }
         .page-actions {
           justify-content: flex-start;
+        }
+        .wiki-title-row,
+        .wiki-nav-row {
+          flex-wrap: wrap;
+          align-items: flex-start;
+        }
+        .topic-tabs,
+        .page-actions {
+          flex-wrap: wrap;
+        }
+        .language-toolbar {
+          justify-content: flex-start;
+        }
+        .language-button {
+          min-width: 180px;
         }
         .appearance-panel {
           position: static;
@@ -1337,10 +1521,29 @@
           <img id="globe-logo" src="images/header-logo-transparent.png" onerror="this.onerror=null;this.src='images/header-logo.png';" alt="WillKpedia globe mark" draggable="false" />
         </div>
       </header>
-      <div class="page-actions" aria-label="Page actions">
-        <button class="page-tab active" id="tab-read" type="button">Read</button>
-        <button class="page-tab" id="tab-edit" type="button">Edit</button>
-      </div>
+      <section class="wiki-top-strip" aria-label="Article top controls">
+        <div class="wiki-title-row">
+          <h1 class="title">Will Kempner</h1>
+          <div class="language-toolbar" aria-label="Languages">
+            <button class="language-button" id="language-button" type="button" aria-expanded="false" aria-controls="language-menu">
+              <span class="icon">文A</span><span id="language-button-label">26 languages</span><span class="caret">⌄</span>
+            </button>
+            <div class="language-menu" id="language-menu" role="menu" aria-label="Language options"></div>
+          </div>
+        </div>
+        <div class="wiki-nav-row">
+          <div class="topic-tabs" aria-label="Topic tabs">
+            <button class="topic-tab active" id="topic-article" type="button">Article</button>
+            <button class="topic-tab" id="topic-talk" type="button">Talk</button>
+          </div>
+          <div class="page-actions" aria-label="Page actions">
+            <button class="page-tab active" id="tab-read" type="button">Read</button>
+            <button class="page-tab" id="tab-edit" type="button">Edit</button>
+            <a class="page-tab" id="tab-history" href="https://www.marxists.org/archive/marx/works/subject/hist-mat/index.htm" target="_blank" rel="noreferrer">View history</a>
+          </div>
+        </div>
+        <p class="subtitle">From WillKpedia, the Will K Encyclopedia</p>
+      </section>
       <section class="edit-surface" id="edit-surface" aria-label="Edit source">
         <p class="edit-warning red"><strong>Warning:</strong> Any attempt to alter this page may trigger security reporting.</p>
         <p class="edit-warning yellow"><strong>Note:</strong> This source editor is monitored. Proceed with care.</p>
@@ -1629,7 +1832,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <td colspan="2" class="infobox-photo">
                   <figure style="margin:0;">
                     <img
-                      src="images/bio-photo.jpg"
+                      src="images/bio-photo-fast.jpg"
+                      onerror="this.onerror=null;this.src='images/bio-photo.jpg';"
                       alt="Will Kempner"
                       width="300"
                       height="400"
@@ -2438,11 +2642,21 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         </div>
       </div>
     </div>
+    <div id="vintage-gate-modal" class="vintage-gate-modal" aria-hidden="true">
+      <div class="vintage-gate-card" role="dialog" aria-modal="true" aria-labelledby="vintage-gate-text">
+        <p class="vintage-gate-text" id="vintage-gate-text">The human brain does not fully form until age 25. Are you sure you want to watch a work from a growing mind?</p>
+        <div class="vintage-gate-actions">
+          <button type="button" id="vintage-gate-no">No</button>
+          <button type="button" class="primary" id="vintage-gate-yes">Yes</button>
+        </div>
+      </div>
+    </div>
     <div id="dark-audio-player" class="dark-audio-player" aria-hidden="true">
       <button type="button" id="dark-audio-play" aria-label="Pause dark mode track">⛧⏸</button>
       <button type="button" id="dark-audio-mute" aria-label="Mute dark mode track">🔊</button>
       <span class="dark-audio-label">😈</span>
     </div>
+    <div id="google_translate_element" aria-hidden="true"></div>
 
     <script>
       if ("scrollRestoration" in history) {
@@ -2478,6 +2692,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const wikiCache = new Map();
       const tabRead = document.getElementById("tab-read");
       const tabEdit = document.getElementById("tab-edit");
+      const topicArticle = document.getElementById("topic-article");
+      const topicTalk = document.getElementById("topic-talk");
+      const languageButton = document.getElementById("language-button");
+      const languageButtonLabel = document.getElementById("language-button-label");
+      const languageMenu = document.getElementById("language-menu");
       const flagTrackA = document.getElementById("flag-track-a");
       const flagTrackB = document.getElementById("flag-track-b");
       const siteBrandText = document.getElementById("site-brand-text");
@@ -2510,6 +2729,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const naviScamModal = document.getElementById("navi-scam-modal");
       const naviInstallA = document.getElementById("navi-install-a");
       const naviInstallB = document.getElementById("navi-install-b");
+      const vintageGateModal = document.getElementById("vintage-gate-modal");
+      const vintageGateText = document.getElementById("vintage-gate-text");
+      const vintageGateNo = document.getElementById("vintage-gate-no");
+      const vintageGateYes = document.getElementById("vintage-gate-yes");
       const darkAudioPlayer = document.getElementById("dark-audio-player");
       const darkAudioPlayBtn = document.getElementById("dark-audio-play");
       const darkAudioMuteBtn = document.getElementById("dark-audio-mute");
@@ -2517,6 +2740,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       let wikiHideTimer = null;
       let wikiShowTimer = null;
       let videoHoverShowTimer = null;
+      let videoHoverHideTimer = null;
+      let videoHoverActiveLink = null;
+      let videoHoverPointerInPopup = false;
       let alertAudioCtx = null;
       let popupErrorAudioCtx = null;
       let clickGateCount = 0;
@@ -2525,6 +2751,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       let darkDigitObserver = null;
       let darkDigitMutating = false;
       let infoboxPhotoBlurPercent = 0;
+      let vintageGatePendingLink = null;
+      let currentLanguageCode = "en";
+      let googleTranslateReady = false;
+      let pendingGoogleLanguage = null;
+      const naviOriginalTextMap = new Map();
       const regionExclusions = new Set(["AC", "CP", "DG", "EA", "EU", "EZ", "IC", "IL", "TA", "UN", "XA", "XB", "XK", "ZZ"]);
       const scandalImages = [
         { src: "images/scandal-01.png", caption: "Public reaction image 1." },
@@ -2700,6 +2931,189 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       initFlagBanner();
 
+      const LANGUAGE_OPTIONS = [
+        { code: "en", label: "English" },
+        { code: "es", label: "Español" },
+        { code: "fr", label: "Français" },
+        { code: "de", label: "Deutsch" },
+        { code: "it", label: "Italiano" },
+        { code: "pt", label: "Português" },
+        { code: "ru", label: "Русский" },
+        { code: "uk", label: "Українська" },
+        { code: "pl", label: "Polski" },
+        { code: "nl", label: "Nederlands" },
+        { code: "sv", label: "Svenska" },
+        { code: "no", label: "Norsk" },
+        { code: "da", label: "Dansk" },
+        { code: "fi", label: "Suomi" },
+        { code: "tr", label: "Türkçe" },
+        { code: "el", label: "Ελληνικά" },
+        { code: "ar", label: "العربية" },
+        { code: "he", label: "עברית" },
+        { code: "hi", label: "हिन्दी" },
+        { code: "bn", label: "বাংলা" },
+        { code: "zh-CN", label: "中文（简体）" },
+        { code: "ja", label: "日本語" },
+        { code: "ko", label: "한국어" },
+        { code: "th", label: "ไทย" },
+        { code: "vi", label: "Tiếng Việt" },
+        { code: "navi", label: "Na'vi" }
+      ];
+
+      function getLanguageLabel(code) {
+        const lang = LANGUAGE_OPTIONS.find((item) => item.code === code);
+        return lang ? lang.label : "English";
+      }
+
+      function renderLanguageMenu() {
+        if (!languageMenu || !languageButtonLabel) return;
+        languageButtonLabel.textContent = LANGUAGE_OPTIONS.length + " languages";
+        languageMenu.innerHTML = "";
+        LANGUAGE_OPTIONS.forEach((item) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "language-option" + (item.code === currentLanguageCode ? " active" : "");
+          button.textContent = item.label;
+          button.dataset.langCode = item.code;
+          button.setAttribute("role", "menuitem");
+          button.addEventListener("click", () => {
+            applyLanguage(item.code);
+            languageMenu.classList.remove("show");
+            if (languageButton) languageButton.setAttribute("aria-expanded", "false");
+          });
+          languageMenu.appendChild(button);
+        });
+      }
+
+      function getGoogleTranslateSelect() {
+        return document.querySelector(".goog-te-combo");
+      }
+
+      function applyGoogleTranslateLanguage(langCode) {
+        const select = getGoogleTranslateSelect();
+        if (!select) return false;
+        select.value = langCode;
+        select.dispatchEvent(new Event("change"));
+        return true;
+      }
+
+      function getTranslatableTextNodes() {
+        const root = document.body;
+        const nodes = [];
+        if (!root) return nodes;
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            if (!node || !node.parentElement) return NodeFilter.FILTER_REJECT;
+            if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            if (node.parentElement.closest("script,style,textarea,input,select,option,noscript,#google_translate_element")) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+        let current = walker.nextNode();
+        while (current) {
+          nodes.push(current);
+          current = walker.nextNode();
+        }
+        return nodes;
+      }
+
+      function toPseudoNavi(text) {
+        const map = {
+          the: "txe", and: "sì", of: "ä", to: "nì", is: "lu", in: "mì", for: "fpi", with: "hu",
+          you: "nga", your: "ngaru", this: "fì", that: "tsa", work: "tsawl", film: "drama", video: "tseng",
+          editor: "tsahik", producer: "tìng", will: "Wil'l", kempner: "Kem'pnër", yes: "srane", no: "kehe"
+        };
+        return text.replace(/\b([A-Za-z']+)\b/g, (full, word) => {
+          const lower = word.toLowerCase();
+          const replacement = map[lower];
+          if (!replacement) return full;
+          if (word[0] === word[0].toUpperCase()) {
+            return replacement.charAt(0).toUpperCase() + replacement.slice(1);
+          }
+          return replacement;
+        });
+      }
+
+      function clearNaviTranslation() {
+        naviOriginalTextMap.forEach((original, node) => {
+          if (node && node.isConnected) node.nodeValue = original;
+        });
+      }
+
+      function applyNaviTranslation() {
+        const nodes = getTranslatableTextNodes();
+        nodes.forEach((node) => {
+          if (!naviOriginalTextMap.has(node)) {
+            naviOriginalTextMap.set(node, node.nodeValue);
+          }
+          const source = naviOriginalTextMap.get(node) || node.nodeValue;
+          node.nodeValue = toPseudoNavi(source);
+        });
+      }
+
+      function applyLanguage(langCode) {
+        currentLanguageCode = langCode;
+        clearNaviTranslation();
+        if (langCode === "navi") {
+          pendingGoogleLanguage = "en";
+          applyGoogleTranslateLanguage("en");
+          applyNaviTranslation();
+        } else if (langCode === "en") {
+          pendingGoogleLanguage = "en";
+          applyGoogleTranslateLanguage("en");
+        } else {
+          pendingGoogleLanguage = langCode;
+          applyGoogleTranslateLanguage(langCode);
+        }
+        if (languageButtonLabel) {
+          languageButtonLabel.textContent = "26 languages · " + getLanguageLabel(langCode);
+        }
+        renderLanguageMenu();
+      }
+
+      if (languageButton && languageMenu) {
+        languageButton.addEventListener("click", () => {
+          const willShow = !languageMenu.classList.contains("show");
+          languageMenu.classList.toggle("show", willShow);
+          languageButton.setAttribute("aria-expanded", willShow ? "true" : "false");
+        });
+        document.addEventListener("click", (event) => {
+          if (!languageMenu.classList.contains("show")) return;
+          if (!(event.target instanceof Element)) return;
+          if (event.target.closest("#language-menu, #language-button")) return;
+          languageMenu.classList.remove("show");
+          languageButton.setAttribute("aria-expanded", "false");
+        });
+      }
+
+      window.googleTranslateElementInit = function () {
+        if (!window.google || !window.google.translate || !window.google.translate.TranslateElement) return;
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "en,es,fr,de,it,pt,ru,uk,pl,nl,sv,no,da,fi,tr,el,ar,he,hi,bn,zh-CN,ja,ko,th,vi",
+            autoDisplay: false
+          },
+          "google_translate_element"
+        );
+        googleTranslateReady = true;
+        if (pendingGoogleLanguage) {
+          applyGoogleTranslateLanguage(pendingGoogleLanguage);
+        }
+        renderLanguageMenu();
+      };
+
+      (function injectGoogleTranslate() {
+        const script = document.createElement("script");
+        script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        script.async = true;
+        document.head.appendChild(script);
+      })();
+
+      renderLanguageMenu();
+
       function bandcampFallbackHtml(url) {
         return '<div class="bandcamp-fallback"><a href="' + url + '" target="_blank" rel="noreferrer">Open release on Bandcamp</a></div>';
       }
@@ -2797,17 +3211,28 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           clearTimeout(videoHoverShowTimer);
           videoHoverShowTimer = null;
         }
+        if (videoHoverHideTimer) {
+          clearTimeout(videoHoverHideTimer);
+          videoHoverHideTimer = null;
+        }
+        videoHoverActiveLink = null;
+        videoHoverPointerInPopup = false;
         videoHoverPreview.classList.remove("show");
         videoHoverPreview.setAttribute("aria-hidden", "true");
         videoHoverPreviewMedia.innerHTML = "";
       }
 
       function showHoverPreviewForLink(link) {
-        if (!link || link.dataset.directUrl) return;
+        if (!link || link.dataset.directUrl || link.dataset.noHoverPreview === "true") return;
         if (videoHoverShowTimer) {
           clearTimeout(videoHoverShowTimer);
           videoHoverShowTimer = null;
         }
+        if (videoHoverHideTimer) {
+          clearTimeout(videoHoverHideTimer);
+          videoHoverHideTimer = null;
+        }
+        videoHoverActiveLink = link;
         videoHoverShowTimer = setTimeout(() => {
           videoHoverShowTimer = null;
           const url = link.dataset.video || "";
@@ -2835,11 +3260,29 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         }, videoHoverDelayMs);
       }
 
+      function scheduleHoverPreviewHide() {
+        if (videoHoverHideTimer) {
+          clearTimeout(videoHoverHideTimer);
+          videoHoverHideTimer = null;
+        }
+        videoHoverHideTimer = setTimeout(() => {
+          videoHoverHideTimer = null;
+          const linkHovered = !!(videoHoverActiveLink && videoHoverActiveLink.matches(":hover"));
+          if (linkHovered || videoHoverPointerInPopup) return;
+          hideHoverPreview();
+        }, 120);
+      }
+
       function bindVideoLinkHandlers() {
         const links = document.querySelectorAll(".video-link");
         links.forEach((link) => {
           if (!link.dataset.videoHandlersBound) {
             link.addEventListener("click", (event) => {
+              if (link.dataset.vintageGuard === "true") {
+                event.preventDefault();
+                startVintageGuardFlow(link);
+                return;
+              }
               const directUrl = link.dataset.directUrl;
               if (directUrl) {
                 event.preventDefault();
@@ -2852,12 +3295,84 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               openModal(videoUrl);
             });
             link.addEventListener("mouseenter", () => showHoverPreviewForLink(link));
-            link.addEventListener("mouseleave", hideHoverPreview);
+            link.addEventListener("mouseleave", scheduleHoverPreviewHide);
             link.dataset.videoHandlersBound = "true";
           }
         });
       }
+      function initVintageOtherVideoGuards() {
+        const table = document.querySelector('table[data-admin-table="other-video"]');
+        if (!table) return;
+        const headers = Array.from(table.querySelectorAll("thead th")).map((th) =>
+          (th.textContent || "").trim().toLowerCase()
+        );
+        const yearIdx = headers.findIndex((text) => text === "year");
+        const projectIdx = headers.findIndex((text) => text === "project");
+        if (yearIdx < 0 || projectIdx < 0) return;
+        const rows = table.querySelectorAll("tbody tr");
+        rows.forEach((row) => {
+          const cells = Array.from(row.children).filter((cell) => cell.matches("td,th"));
+          if (cells.length <= Math.max(yearIdx, projectIdx)) return;
+          const yearCellText = (cells[yearIdx].textContent || "").trim();
+          const yearMatch = yearCellText.match(/\d{4}/);
+          if (!yearMatch) return;
+          const year = Number(yearMatch[0]);
+          if (!Number.isFinite(year) || year > 2019) return;
+          const links = cells[projectIdx].querySelectorAll(".video-link[data-video]");
+          links.forEach((link) => {
+            link.dataset.vintageGuard = "true";
+            link.dataset.noHoverPreview = "true";
+          });
+        });
+      }
+      function openVintageGateModal(step) {
+        if (!vintageGateModal || !vintageGateText || !vintageGateNo || !vintageGateYes) return;
+        if (step === 2) {
+          vintageGateText.innerHTML = "Really? Ok... 😮‍💨";
+          vintageGateNo.textContent = "No, youre right.";
+          vintageGateYes.textContent = "Yes!";
+        } else {
+          vintageGateText.innerHTML = "The human brain does not fully form until age 25. Are you sure you want to watch a work from a growing mind?";
+          vintageGateNo.textContent = "No";
+          vintageGateYes.textContent = "Yes";
+        }
+        vintageGateModal.dataset.step = String(step);
+        vintageGateModal.setAttribute("aria-hidden", "false");
+      }
+      function closeVintageGateModal() {
+        if (!vintageGateModal) return;
+        vintageGateModal.setAttribute("aria-hidden", "true");
+        vintageGateModal.dataset.step = "1";
+      }
+      function startVintageGuardFlow(link) {
+        vintageGatePendingLink = link || null;
+        openVintageGateModal(1);
+      }
+      function openVideoForLink(link) {
+        if (!link) return;
+        const directUrl = link.dataset.directUrl;
+        if (directUrl) {
+          window.open(directUrl, "_blank", "noopener");
+          return;
+        }
+        const videoUrl = link.dataset.video;
+        if (videoUrl) openModal(videoUrl);
+      }
+      initVintageOtherVideoGuards();
       bindVideoLinkHandlers();
+      if (videoHoverPreview) {
+        videoHoverPreview.addEventListener("mouseenter", () => {
+          videoHoverPointerInPopup = true;
+          if (videoHoverHideTimer) {
+            clearTimeout(videoHoverHideTimer);
+            videoHoverHideTimer = null;
+          }
+        });
+        videoHoverPreview.addEventListener("mouseleave", () => {
+          videoHoverPointerInPopup = false;
+          scheduleHoverPreviewHide();
+        });
+      }
 
       function setActiveTocLink(hash) {
         tocLinks.forEach((link) => {
@@ -3292,6 +3807,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       const darkModeAudio = new Audio("sounds/Dark Mode.mp3");
       darkModeAudio.loop = true;
       darkModeAudio.preload = "auto";
+      const talkHeyAudio = new Audio("sounds/Hey.mp3");
+      talkHeyAudio.preload = "auto";
       const chinesePopupAudio = new Audio("sounds/ChinesePopUp.mp3");
       chinesePopupAudio.preload = "auto";
       const naviPopupAudio = new Audio("sounds/NaviSong.mp3");
@@ -3510,6 +4027,23 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
       tabRead.addEventListener("click", () => setPageTab("read"));
       tabEdit.addEventListener("click", () => setPageTab("edit"));
+      if (topicTalk && topicArticle) {
+        topicTalk.addEventListener("click", () => {
+          topicTalk.classList.add("active");
+          topicArticle.classList.remove("active");
+          try {
+            talkHeyAudio.currentTime = 0;
+            const playPromise = talkHeyAudio.play();
+            if (playPromise && typeof playPromise.catch === "function") {
+              playPromise.catch(() => {});
+            }
+          } catch (_err) {}
+          setTimeout(() => {
+            topicArticle.classList.add("active");
+            topicTalk.classList.remove("active");
+          }, 900);
+        });
+      }
       showPreview.addEventListener("click", () => alert("Preview mode is disabled for protected pages."));
       showChanges.addEventListener("click", () => alert("Diff view unavailable."));
       editCancel.addEventListener("click", () => setPageTab("read"));
@@ -3779,6 +4313,29 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
         closeNaviScamModal();
       });
       naviScamModal.addEventListener("click", closeNaviScamModal);
+      if (vintageGateNo && vintageGateYes && vintageGateModal) {
+        vintageGateNo.addEventListener("click", () => {
+          const step = Number(vintageGateModal.dataset.step || "1");
+          if (step === 1) {
+            closeVintageGateModal();
+            vintageGatePendingLink = null;
+            return;
+          }
+          closeVintageGateModal();
+          vintageGatePendingLink = null;
+        });
+        vintageGateYes.addEventListener("click", () => {
+          const step = Number(vintageGateModal.dataset.step || "1");
+          if (step === 1) {
+            openVintageGateModal(2);
+            return;
+          }
+          const link = vintageGatePendingLink;
+          closeVintageGateModal();
+          vintageGatePendingLink = null;
+          openVideoForLink(link);
+        });
+      }
 
       document.addEventListener("click", (event) => {
         if (isReplayingDeferredClick || isScamModalOpen()) return;
