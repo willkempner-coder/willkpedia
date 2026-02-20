@@ -1434,6 +1434,20 @@
         .wikitable img {
           max-width: 100%;
         }
+        .wikitable tbody td iframe,
+        .wikitable tbody th iframe {
+          width: 100% !important;
+          max-width: 100% !important;
+          display: block;
+        }
+        .table-player-last tbody td:last-child,
+        .table-player-last tbody th:last-child,
+        table[data-admin-table="other-sounds"] tbody td:last-child,
+        table[data-admin-table="other-sounds"] tbody th:last-child {
+          width: 100% !important;
+          min-width: 0 !important;
+          max-width: none !important;
+        }
         .mobile-row-media {
           display: block;
           order: 100;
