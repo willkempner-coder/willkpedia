@@ -3,9 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com https://www.instagram.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; media-src 'self' https: blob:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://drive.google.com https://bandcamp.com https://player-widget.mixcloud.com https://www.instagram.com; connect-src 'self' https://translate.googleapis.com https://translate.google.com https://bandcamp.com https://www.wikipedia.org https://en.wikipedia.org https://www.youtube.com; font-src 'self' data: https:; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=()" />
     <link rel="icon" type="image/png" href="images/header-logo.png?v=3" />
     <link rel="apple-touch-icon" href="images/header-logo.png?v=3" />
     <link rel="preload" as="image" href="images/FedoraHeadshot.webp?v=1" />
+    <link rel="preload" as="image" href="images/FedoraHeadshot_small.webp?v=1" />
+    <link rel="preload" as="image" href="images/FedoraHeadshot_large.webp?v=1" />
     <title>WillKpedia - Will Kempner</title>
     <meta property="og:title" content="WillKpedia - Will Kempner" />
     <meta property="og:type" content="website" />
@@ -46,6 +51,33 @@
       .video-link::before {
         content: "▶ ";
         font-size: 0.82em;
+      }
+      table[data-admin-table="filmography"] th:first-child,
+      table[data-admin-table="filmography"] td:first-child {
+        width: 190px;
+      }
+      .filmography-still-link {
+        display: block;
+        height: 100%;
+      }
+      .filmography-still-link.video-link::before {
+        content: none;
+      }
+      .filmography-still {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        object-fit: cover;
+        object-position: center;
+        border: 1px solid #a2a9b1;
+      }
+      .filmography-description {
+        margin-top: 6px;
+        font-size: 0.92rem;
+        line-height: 1.4;
+        color: #202122;
       }
       .page {
         max-width: 1680px;
@@ -216,8 +248,8 @@
         z-index: 1;
       }
       .site-brand-mark {
-        width: 240px;
-        flex: 0 0 240px;
+        width: 320px;
+        flex: 0 0 320px;
         border: 0;
         background: transparent;
       }
@@ -403,6 +435,22 @@
       }
       iframe.goog-te-banner-frame {
         display: none !important;
+      }
+      iframe.goog-te-menu-frame,
+      iframe.goog-te-balloon-frame,
+      #goog-gt-tt,
+      #goog-gt-vt,
+      .goog-te-spinner-pos,
+      .goog-te-balloon-frame,
+      .skiptranslate iframe,
+      .skiptranslate .goog-te-gadget-simple {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+      .goog-text-highlight {
+        background-color: transparent !important;
+        box-shadow: none !important;
       }
       body {
         top: 0 !important;
@@ -752,17 +800,72 @@
         width: 42%;
         min-width: 320px;
       }
+      table[data-admin-table="filmography"] {
+        table-layout: fixed;
+      }
+      table[data-admin-table="filmography"] th:nth-child(1),
+      table[data-admin-table="filmography"] td:nth-child(1) {
+        width: 170px;
+        min-width: 170px;
+        max-width: 170px;
+      }
+      table[data-admin-table="filmography"] th:nth-child(2),
+      table[data-admin-table="filmography"] td:nth-child(2) {
+        width: auto;
+        min-width: 0;
+      }
+      table[data-admin-table="filmography"] th:nth-child(3),
+      table[data-admin-table="filmography"] td:nth-child(3) {
+        width: 88px;
+        min-width: 88px;
+        max-width: 88px;
+        white-space: nowrap;
+      }
+      table[data-admin-table="tv"],
+      table[data-admin-table="film-main"],
+      table[data-admin-table="fashion"],
+      table[data-admin-table="trailers"] {
+        table-layout: fixed;
+      }
+      table[data-admin-table="tv"] th:nth-child(1),
+      table[data-admin-table="tv"] td:nth-child(1),
+      table[data-admin-table="film-main"] th:nth-child(1),
+      table[data-admin-table="film-main"] td:nth-child(1),
+      table[data-admin-table="fashion"] th:nth-child(1),
+      table[data-admin-table="fashion"] td:nth-child(1),
+      table[data-admin-table="trailers"] th:nth-child(1),
+      table[data-admin-table="trailers"] td:nth-child(1) {
+        width: 170px;
+        min-width: 170px;
+        max-width: 170px;
+      }
+      table[data-admin-table="tv"] th:nth-child(2),
+      table[data-admin-table="tv"] td:nth-child(2),
+      table[data-admin-table="film-main"] th:nth-child(2),
+      table[data-admin-table="film-main"] td:nth-child(2),
+      table[data-admin-table="fashion"] th:nth-child(2),
+      table[data-admin-table="fashion"] td:nth-child(2),
+      table[data-admin-table="trailers"] th:nth-child(2),
+      table[data-admin-table="trailers"] td:nth-child(2) {
+        width: auto;
+        min-width: 0;
+      }
+      table[data-admin-table="tv"] th:nth-child(3),
+      table[data-admin-table="tv"] td:nth-child(3),
+      table[data-admin-table="film-main"] th:nth-child(3),
+      table[data-admin-table="film-main"] td:nth-child(3),
+      table[data-admin-table="fashion"] th:nth-child(3),
+      table[data-admin-table="fashion"] td:nth-child(3),
+      table[data-admin-table="trailers"] th:nth-child(3),
+      table[data-admin-table="trailers"] td:nth-child(3) {
+        width: 88px;
+        min-width: 88px;
+        max-width: 88px;
+        white-space: nowrap;
+      }
       @media (min-width: 981px) {
-        table[data-admin-table="tv"] th:nth-child(2),
-        table[data-admin-table="tv"] td:nth-child(2),
-        table[data-admin-table="fashion"] th:nth-child(2),
-        table[data-admin-table="fashion"] td:nth-child(2),
         table[data-admin-table="branded"] th:nth-child(2),
         table[data-admin-table="branded"] td:nth-child(2),
-        table[data-admin-table="trailers"] th:nth-child(2),
-        table[data-admin-table="trailers"] td:nth-child(2),
-        table[data-admin-table="film-main"] th:nth-child(2),
-        table[data-admin-table="film-main"] td:nth-child(2),
         table[data-admin-table="film-short"] th:nth-child(2),
         table[data-admin-table="film-short"] td:nth-child(2),
         table[data-admin-table="filmography"] th:nth-child(2),
@@ -794,6 +897,20 @@
         }
         table[data-admin-table="awards"] th:nth-child(2),
         table[data-admin-table="awards"] td:nth-child(2) {
+          width: 88px;
+          min-width: 88px;
+          max-width: 88px;
+          white-space: nowrap;
+        }
+        table[data-admin-table="filmography"] th:nth-child(2),
+        table[data-admin-table="filmography"] td:nth-child(2) {
+          width: auto;
+          min-width: 0;
+          max-width: none;
+          white-space: normal;
+        }
+        table[data-admin-table="filmography"] th:nth-child(3),
+        table[data-admin-table="filmography"] td:nth-child(3) {
           width: 88px;
           min-width: 88px;
           max-width: 88px;
@@ -899,6 +1016,33 @@
         font-family: sans-serif;
         font-size: 0.8rem;
         color: #54595d;
+      }
+      .telfar-showcase {
+        margin: 8px 0 14px;
+        border: 1px solid #a2a9b1;
+        background: #fff;
+      }
+      .telfar-showcase-media {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #000;
+      }
+      .telfar-showcase-media iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+      }
+      .telfar-showcase-caption {
+        padding: 8px 10px 2px;
+        font-size: 0.93rem;
+        line-height: 1.35;
+      }
+      .telfar-showcase .scandal-controls button {
+        font-size: 1rem;
+        padding: 8px 14px;
+        min-width: 72px;
+        font-weight: 600;
       }
       #references li {
         scroll-margin-top: 18px;
@@ -1142,6 +1286,47 @@
         cursor: pointer;
         font-family: sans-serif;
       }
+      .image-lightbox-card {
+        width: min(1200px, 95vw);
+      }
+      .image-lightbox-body {
+        aspect-ratio: auto;
+        min-height: 220px;
+        background: #101114;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+      }
+      .image-lightbox-body img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 84vh;
+        object-fit: contain;
+        display: block;
+      }
+      .image-lightbox-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px 10px;
+        border-top: 1px solid #c8ccd1;
+        background: #f8f9fa;
+      }
+      .image-lightbox-controls[hidden] {
+        display: none;
+      }
+      .image-lightbox-controls button {
+        border: 1px solid #a2a9b1;
+        background: #fff;
+        color: #202122;
+        font-family: sans-serif;
+        font-size: 0.9rem;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
       .cookie-scam-modal {
         position: fixed;
         inset: 0;
@@ -1305,8 +1490,8 @@
           margin: 0 0 12px;
         }
         .site-brand-mark {
-          width: 120px;
-          flex-basis: 120px;
+          width: 150px;
+          flex-basis: 150px;
         }
         .site-brand-text {
           font-size: clamp(2.2rem, 10vw, 3.4rem);
@@ -1592,11 +1777,70 @@
           color: var(--wiki-link);
           font-weight: 400;
         }
+        table[data-admin-table="found-footage-festival"] .mobile-row-header {
+          align-items: center;
+          gap: 8px;
+        }
         table[data-admin-table="found-footage-festival"] .mobile-row-title,
         table[data-admin-table="found-footage-festival"] .mobile-row-title * {
-          white-space: nowrap !important;
           font-size: 0.95rem !important;
           line-height: 1.2;
+        }
+        table[data-admin-table="found-footage-festival"] .mobile-row-title {
+          flex: 1 1 auto;
+          min-width: 0;
+        }
+        table[data-admin-table="found-footage-festival"] .mobile-row-title a,
+        table[data-admin-table="found-footage-festival"] .mobile-row-title i {
+          display: block;
+          white-space: nowrap !important;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+        }
+        table[data-admin-table="found-footage-festival"] .mobile-row-year {
+          flex: 0 0 auto;
+          margin-left: auto;
+          font-size: 0.88rem;
+          font-weight: 700;
+          white-space: nowrap;
+        }
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact {
+          display: grid;
+          grid-template-columns: 108px minmax(0, 1fr);
+          grid-template-rows: auto auto;
+        }
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"] {
+          grid-column: 1;
+          grid-row: 1 / span 2;
+          border-top: 0;
+          border-right: 1px solid #eaecf0;
+          padding: 8px;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+        }
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"]::before {
+          content: none;
+          display: none;
+        }
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact .mobile-row-header {
+          grid-column: 2;
+          grid-row: 1;
+          border-top: 0;
+        }
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact .mobile-row-summary {
+          grid-column: 2;
+          grid-row: 2;
+        }
+        table[data-admin-table="filmography"] .filmography-still {
+          width: 100%;
+          max-width: 100%;
+        }
+        table[data-admin-table="filmography"] .filmography-description {
+          margin-top: 4px;
+          font-size: 0.9rem;
+          line-height: 1.35;
         }
       }
       @media (min-width: 981px) and (max-width: 1520px) {
@@ -1666,213 +1910,174 @@
         </div>
         <div class="edit-head">Editing source code for page: <strong>Will Kempner</strong></div>
         <div class="edit-body">
-          <textarea id="edit-box" spellcheck="false">{{Short description|American editor, producer, and occasional copywriter}}
+          <textarea id="edit-box" spellcheck="false">{{Short description|American editor, filmmaker, tinkerer, musician, and friend}}
 {{Use mdy dates|date=February 2026}}
 {{Infobox person
 | name           = Will Kempner
-| image          = bio-photo.jpg
+| image          = FedoraHeadshot.webp
 | caption        = Kempner in New York
 | birth_date     = {{Birth date and age|1993|6|12}}
 | birth_place    = New York City, New York, U.S.
-| occupation     = Editor, producer, assistant editor, copywriter
+| occupation     = Reclusive iconoclast
 | years_active   = 2007-present?
 | aliases        = Will K
-| known_for      = Random Acts of Flyness, Growing Up, Telfar New Models
+| origin         = New York, New York
+| genres         = corporate, indie, fashion, television, film, noir, afrofuturist
+| known_for      = Random Acts of Flyness, Growing Up, TELFAR TV campaigns
 }}
 
-'''Will Kempner''' (born June 12, 1993), also known as '''Will K''', is an American editor and producer.
-He has worked across television, fashion campaigns, branded media, corporate storytelling, and independent film.
-He is known for post-production credits on ''Random Acts of Flyness'' and ''Growing Up'', and for editorial and producing work with Telfar.
-
-The article below is a stylized work-in-progress source draft.
-Some entries are subject-supplied and pending final verification in references.
-
-==Lead==
-Will K, as he is increasingly known, has developed an editing portfolio spanning short-form, episodic, and campaign work.
-His credits include HBO, Disney+, Conde Nast titles, and independent projects.
-He has also worked in assistant editorial and DIT roles on selected productions.
-
-Kempner has been associated with projects featuring high-visibility talent while maintaining a mixed portfolio of mainstream and independent collaborations.
-In parallel with screen work, he has produced and released music under multiple project names.
+'''Will Kempner''' (born June 12, 1993) is an American editor, filmmaker, tinkerer, musician, and friend.
+Increasingly known as '''Will K''', he has worked professionally across television, Hollywood features, fashion campaigns, branded media, and independent film.
+His personal work is rarely viewed or fully understood.
 
 ==Biography==
-Kempner was born in New York City.
-He began editing in his teens and continued building credits through independent and commissioned work.
-By the late 2010s and early 2020s, his credits expanded across television, branded media, and fashion campaign production.
-
-His workflow combines timeline editorial, structure passes, trailer-style promotional cuts, and occasional copy adaptation for campaign materials.
-Colleagues have described his process as fast, iterative, and reference-heavy.
-
-===Career overview===
-* Television and series editing
-* Fashion campaign and launch content
-* Corporate/social announcements and branded media
-* Assistant editing and DIT support on series and features
-* Trailer editing for independent film projects
+Born in New York, Kempner also spent time in New Jersey.
+He was last seen in Ridgewood, Queens.
+At present, the only empirical evidence of his existence is tied to a specific portfolio of creative projects, primarily editorial credits.
 
 ==Editing work==
+Editing is the craft Kempner is often called to perform.
+He handles the blade with grace and certainty.
+
 ===Television===
-* ''Random Acts of Flyness'' (HBO) — Lead Assistant Editor / Associate Editor
-* ''Growing Up'' (Disney+) — Editor
+TV is a constant presence in most Americans' lives.
+Studies have shown that television competes with other sources of human interaction, such as family, friends, church, and school, in helping young people develop values and form ideas about the world around them.
+Kempner has worked for networks like HBO, self-released YouTube, and Disney+.
+
+* ''Random Acts of Flyness'' (Season 1, 2018) — Lead Assistant Editor (HBO), 6 episodes
+* ''Two Dope Queens'' (Season 1, 2018) — Assistant Editor (HBO), 4 episodes
+* ''Best Walk'' (2020) — Editor (Topic), 5 episodes
+* ''Random Acts of Flyness'' (Season 2, 2022) — Associate Editor (HBO), 6 episodes
+* ''Growing Up'' (2022) — Editor (Disney+), 5 episodes
+* ''Conner O'Malley's Stand Up Solutions'' (2024) — Assistant Editor / DIT (Self-released)
+* ''Cole Escola's Our Home Out West'' (2023) — Assistant Editor / DIT (Self-released)
+
+===Films===
+Twenty-four frames per second is the standard rate of motion picture projection, a span in which a remarkable number of images pass before the eye.
+Kempner's work frequently involves organizing, editing, and assisting in the assembly of these frames.
+
+* ''Good One'' (2022) — DIT | Distributor: Metrograph Pictures | Director: India Donaldson
+* ''Seeking Mavis Beacon'' (2024) — Assistant Editor | Distributor: NEON | Director: Jazmin Jones
+* ''Telfar New Models Season One'' (2025) — Editor w/ Telfar TV. / Confessional interviews. | Distributor: TELFAR TV
+
+====Short Films====
+When the Brooklyn alt-comedy scene needs an assistant editor for its microbudget short films, they know who to call.
+* ''Close The Gap'' (2023) — Assistant Editor | Director: Alex Bliss
+* ''Seek No Favor'' (2024) — Additional Editor, Trailer Editor | Director: Leilah Weintraub
+* ''Straight Line'' (2025) — Assistant Editor | Director: Jack Bensinger
 
 ===Fashion===
-* Telfar advertisements (playlist) — Editor / Producer
-* ''Ms. Lauryn Hill for S/S 2021'' (Louis Vuitton) — Editor
+When Kempner enters a room, his outfits are always conversation starters and statement pieces.
 
-===Corporate and branded===
-* Q&amp;A with Juvederm — Editor
-* ''Beauty Secrets'' (Vogue) — Editor
-* Multiple Sclerosis: ''Can't Knock Me Down'' (Glamour) — Editor
-* Wondr Health Testimonials — Editor
-* Teen Vogue Prom (Conde Nast) — Editorial contribution
+* ''Ms. Lauryn Hill for S/S 2021'' (Louis Vuitton, 2021) — Editor, alongside Kristan Sprague. Directed by Naima Ramos-Chapman
+* ''TELFAR 20th Anniversary Show | SS25 Runway'' (2025) — Editor
 
-===Trailer editing===
-* Graham Mason's ''Inspector Ike'' trailer — Editor
-* ''Reveries: Going Deeper'' trailer — Trailer Editor
-* Andre 3000 — ''Listening To The Sun'' teaser — Trailer Editor. Director Terence Nance.
-* ''Seek No Favor'' — Trailer Editor (unlisted link pending). Director Leilah Weintraub.
-* ''Telfar New Models Season 1 Trailer'' — Trailer Editor (2025)
+====Telfar Advertisements – Select Work====
+Will began working with TELFAR TV in 2024 as a producer on the reality series ''New Models'' (Season Zero).
+He subsequently joined the editing team, contributing to numerous campaigns.
 
-==Assistant editing==
-* ''Cole Escola's Our Home Out West'' (TV special) — Assistant Editor / DIT
-* ''Good One'' — Assistant Editor / DIT
-* ''Two Dope Queens'' Season 1 — Assistant Editor
+Current visible entries include:
+* ''New Models Season Zero Teaser'' (09/13/2024) — Produced and Edited
+* ''Shmedium Dream'' (11/25/2024) — Edited
+* ''Joseline x Dumping Teaser'' (02/24/2025) — Edited
+* ''Sample Sale'' (03/17/2025) — Edited
+* ''Plastic Bag: Microplastics'' (08/14/2025) — Wrote and Edited
+* ''GANG: Telfar x Timeberland'' (09/12/2025) — Edited
+* ''Man In Store: Telfar x Timberland'' (10/30/2025) — Edited
+* ''Shearling Bag'' (12/08/2025) — Edited
+* ''Shmedium Noir'' (12/17/2025) — Wrote and Edited
+* ''Tie Bag: Tie Food'' (01/23/2026) — Wrote and Edited
+* ''Tie Bag: My Tie'' (01/27/2026) — Wrote and Edited
 
-Additional assistant editorial entries may be appended as the source list is finalized.
+Additional Telfar videos are listed in a collapsible table.
+
+===Branded===
+The economic incentives of the corporations for which Kempner has worked have been associated with environmental and psychological decline, even as those firms report record breaking profit margins.
+In addition to years working with various Condé Nast brands, he has also edited for Spotify, Twitch, Adidas, and other major platforms.
+
+* ''Doja Cat's Guide to E-Girl Beauty | Beauty Secrets | Vogue'' (2016) — Editor
+* ''Multiple Sclerosis: Can't Knock Me Down'' (2020) — Editor; Glamour Magazine
+* ''Wondr Health Testimonials'' (2021) — Editor
+* ''MoMA'' (2023) — Editor; Ghost Edited
+* ''Q&A with Juvederm'' (2024) — Editor
+
+===Trailers===
+Kempner's trailers are well known and often imitated.
+In local pubs, drunkards have reportedly been heard asking, "How can he cram this much life, pure essence, into an object of such brevity?" [citation needed]
+
+* ''Inspector Ike'' (2020) — Trailer Editor | Director Graham Mason
+* ''Reveries: Going Deeper'' (2020) — Trailer Editor | Director Graham Mason
+* ''Andre 3000 – Listening To The Sun'' (teaser, 2023) — Trailer Editor | Director Terence Nance
+* ''Seek No Favor'' (2024) — Trailer Editor | Director Leilah Weintraub
+* ''Telfar New Models Season 1'' (2025) — Trailer Editor | Director Babak Radboy
 
 ==Filmography==
-{{hatnote|This section uses subject-provided project listing and site-linked media popups.}}
+These short films contain wonder, humor, commentary on toxic masculinity, and probing reflections on the impact of technology on social structures.
 
-===Personal/independent work===
-* ''A Flaw in the System''
-* ''Reveries''
-* Additional works listed on official project pages
-
-===Credits matrix (draft)==
-{| class="wikitable"
-! Year !! Title !! Role !! Notes
-|-
-| 2024 || Q&amp;A with Juvederm || Editor || 
-|-
-| 2023 || New Models Season One || Editor, Producer || Telfar series
-|-
-| 2023 || Andre 3000 - Listening To The Sun (Teaser) || Trailer Editor || Director Terence Nance.
-|-
-| 2022 || Growing Up || Editor || Disney+ series
-|-
-| 2022 || Random Acts of Flyness Season 2 || Associate Editor || HBO
-|-
-| 2021 || Random Acts of Flyness Season 1 || Lead Assistant Editor || HBO
-|-
-| 2021 || Wondr Health Testimonials || Editor || 
-|-
-| 2024 || Seek No Favor || Trailer Editor || Unlisted trailer link pending. Director Leilah Weintraub.
-|-
-| 2025 || Telfar New Models Season 1 Trailer || Trailer Editor || Unlisted trailer link pending
-|-
-| 2020 || Reveries: Going Deeper (Trailer) || Trailer Editor || Independent
-|}
+* ''Serf's Up'' (2016) — Director, writer, editor. Short Film.
+: After getting rejected from space camp, Dan is forced to hang out with his "dark energy" cousin.
+* ''The Good Boy'' (2018) — Director, co-writer, editor. Short Film.
+: An automatic hammer threatens to destroy a man's construction company and his relationship with his son.
+* ''A Flaw In The System'' (2020) — Director, editor. Short Film.
+: During the novel coronavirus pandemic, a curious flaw wandered the digital world.
 
 ==Discography==
+Explore a sampling of songs made from samples.
+
 ===Cranklin===
-* ''Songs For Guitar'' (2018)
-* ''City Slicker'' (2018)
-* ''Random Song'' (2019)
+Representative releases include ''Songs For Guitar'' (LP), ''City Slicker'' (Single), ''Random Song'' (Single), ''Goo Lagoon'' (EP), ''0000rchestra'', ''4 The 1s'', ''Tony's Acid Remix'', and ''Submarine Story Score''.
 
 ===ART DLR===
-* ''I Met A Mummy: A Detective Reed Mystery''
-* ''DLR.MAG''
-* ''Endangered: On Ice (In Space)''
-* ''Ghoulsikal''
-* ''The Ballad of Veggie Dog - Dress Rehearsal Audio''
-* ''Work Flows''
-* ''Half Step Down - Live at Giamatti's''
-* ''Live Stream SLX - 05.22.20''
-* ''Live Stream SLX - 04.28.20''
+Band with Noah Engel, selected works.
+Highlighted records include ''Work Flows'' (LP), ''DLR.MAG'' (LP), ''Ghoulsikal'' (Musical), ''Endangered: On Ice (In Space)'' (Musical), and ''I Met A Mummy: A Detective Reed Mystery'' (Musical).
 
 ===Lanlord Lance===
-* Multiple releases; years and role granularity in progress
-
-===Triangle Lord===
-* ''Spaceman'' (2011)
-* ''Shit'' (2014)
+Band with Jeff Marks, selected works.
+Visible entries include ''Night Sweats Box Set'', ''The Streets Of Lovebug'', ''Here Come The Entrees'', ''Winter's Too Cold'', ''Calling On My Angels'', and ''it's hard to be an angel when you're still alive''.
 
 ==Awards and screenings==
-{| class="wikitable"
-! Year !! Event !! Result
-|-
-| 2015 || Todd Phillips Post Production Grant || Winner
-|-
-| 2019 || Tribeca Film Festival Snapchat Story Contest || Winner
-|-
-| 2021 || NPCC Short Film Block || Official screening
-|-
-| TBD || NoBudge Live 12 || Screening
-|}
+===Recognitions===
+Though Kempner reportedly does not pursue his work for fame, his creative output has nonetheless been recognized through several industry grants and screenings at mid-tier and regional film festivals.
 
-Team attribution note for the 2019 contest: Colin Garland and Ben Townsend.
+* Todd Phillips Post Production Grant (2015) — Winner
+* NoBudge Live 12 (2018) — Screening
+* Tribeca Film Festival Snapchat Story Contest (2016) — Winner (w/ Colin Garland and Ben Townsend)
+* NPCC Short Film Block (2021) — Screening
+* 8 Ball TV: Everything but the Kitchen Sink (2024) — Screening
+* Paradigm Shift @ 180 Studios, London (2025) — Exhibition screening of ''Telfar's New Models'' alongside work by Arthur Jafa, Ryan Trecartin, and more
+
+===Found Footage Film Festival For Friends===
+During the height of lockdowns amid the COVID-19 pandemic in 2020, Kempner organized an online film festival from the spare room of his former girlfriend's apartment.
+The event ran biweekly for approximately four months, followed by an IRL installment in Bushwick on June 26, 2021.
+
+Editions:
+* Found Footage Film Festival For Friends Vol. 1 — 4/4/2020
+* Found Footage Film Festival For Friends Vol. 2 — 4/18/2020
+* Found Footage Film Festival For Friends Vol. 3 — 5/2/2020
+* Found Footage Film Festival For Friends Vol. 4 — 5/16/2020
+* Found Footage Film Festival For Friends IRL — 6/26/2021
 
 ==Scandals==
-No substantiated professional scandals are documented in reliable coverage.
-The page tone remains satirical in layout simulation while preserving a conventional encyclopedic frame.
-Subject statement: universally beloved by colleagues.
+While Kempner has been the subject of numerous alleged scandals, none have been formally verified or substantiated.
+He has, however, reportedly threatened legal action for slander on multiple occasions.
+In contrast to these unconfirmed claims, he is said to be held in high regard by professional associates.
+
+==Other Stuff==
+===Other Video===
+Includes archive and side projects such as ''Happy Birthday, Mr. Hoffman'', ''The Boy Also Rises'', ''Silvery Snake'', ''Lost It: A Snap Story'', ''Two Days In Dallas'', and ''Jack & The Fear''.
+
+===Other Sounds===
+Includes Triangle Lord entries, ''The Good Boy (OST)'', ''Shared Assets'' (ART DLR), and ''The Heartsick Boys'' podcast credits.
 
 ==References==
 <references />
 
-==External links==
-* [https://www.willkempner.com/ Official website]
-* [https://www.willkempner.com/my-films My films]
-* [https://cranklin.bandcamp.com/ Cranklin on Bandcamp]
-* [https://artdealer.bandcamp.com/ ART DLR on Bandcamp]
-* [https://lanlordlance.bandcamp.com/ Lanlord Lance on Bandcamp]
-* [https://trianglelord.bandcamp.com/ Triangle Lord on Bandcamp]
-
 ----
-Draft notes (not for display):
-* Keep first mention links in body (wiki-style).
-* Keep title links pointing to works, not people.
-* Keep video links marked with play indicator.
-* Hover previews should show after delay and dismiss on leave.
-* TOC section should update with active scroll state.
-* Dark mode should remain intentionally theatrical.
-* Edit publish should continue triggering anti-tamper fullscreen warning.
-
-Appendix A: structured source fragments
-; fragment: lead-one
-: Will K, as he is increasingly known, has worked across television, fashion campaigns, branded and corporate media, and independent film.
-; fragment: lead-two
-: His editing portfolio includes narrative shorts and features, as well as post-production work on series for HBO and Disney+.
-; fragment: lead-three
-: He has served as lead assistant editor and associate editor across both seasons of ''Random Acts of Flyness''.
-
-Appendix B: scratchpad rows
-* row-001 | topic=television | status=kept
-* row-002 | topic=fashion | status=kept
-* row-003 | topic=corporate | status=kept
-* row-004 | topic=trailers | status=kept
-* row-005 | topic=assistant | status=kept
-* row-006 | topic=filmography | status=kept
-* row-007 | topic=discography | status=kept
-* row-008 | topic=awards | status=kept
-* row-009 | topic=scandals | status=added
-* row-010 | topic=references | status=kept
-
-Appendix C: verbose source-like filler for realism
-Lorem wiki ipsum dolor sit amet, citation adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Lorem wiki ipsum dolor sit amet, citation adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Lorem wiki ipsum dolor sit amet, citation adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Admin scratch notes:
+* Keep hover previews delayed by 1 second where enabled.
+* Keep mobile accordion behavior for sections/subsections.
+* Keep click-gated popups and dark mode easter egg features.
+* Keep carousel image lightbox on desktop click.
 
 {{DEFAULTSORT:Kempner, Will}}
 [[Category:1993 births]]
@@ -2027,10 +2232,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <p data-admin-text="editing-intro">Editing is the craft Kempner is often called to perform. He handles the blade with grace and certainty.</p>
 
             <h3 id="tv">Television</h3>
-            <p class="notes" data-admin-text="tv-intro">TV is a constant presence in most Americans' lives. With its fast-moving, visually interesting, highly entertaining style, it commands many people's attention for several hours each day. Studies have shown that television competes with other sources of human interaction, such as family, friends, church, and school, in helping young people develop values and form ideas about the world around them. It also influences viewers' attitudes and beliefs about themselves, as well as about people from other social, ethnic, and cultural backgrounds.<sup class="ref" id="cite-4a"><a href="#ref-4">[4]</a></sup> Kempner has worked for networks like HBO, self-released YouTube, and Disney+.</p>
-            <table class="wikitable table-video-col-2" data-admin-table="tv">
+            <p class="notes" data-admin-text="tv-intro">TV is a constant presence in most Americans' lives. Studies have shown that television competes with other sources of human interaction, such as family, friends, church, and school, in helping young people develop values and form ideas about the world around them.<sup class="ref" id="cite-4a"><a href="#ref-4">[4]</a></sup> Kempner has worked for networks like HBO, self-released YouTube, and Disney+.</p>
+            <table class="wikitable" data-admin-table="tv">
               <thead>
                 <tr>
+                  <th>Still</th>
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
@@ -2040,6 +2246,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/kIzUwpfAl5k" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/kIzUwpfAl5k/hqdefault.jpg" alt="Random Acts of Flyness season 1 still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/kIzUwpfAl5k" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (Season 1)</td>
                   <td>2018</td>
                   <td>Lead Assistant Editor</td>
@@ -2047,6 +2258,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>6 episodes</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/KlnZyaIyZdw" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/KlnZyaIyZdw/hqdefault.jpg" alt="Two Dope Queens still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/KlnZyaIyZdw" data-inline-off="true" class="video-link"><i>Two Dope Queens</i></a> (HBO, Season 1)</td>
                   <td>2018</td>
                   <td>Assistant Editor</td>
@@ -2054,6 +2270,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>4 episodes</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/x_LJxBOAlXw" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/x_LJxBOAlXw/hqdefault.jpg" alt="Best Walk still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/x_LJxBOAlXw" data-inline-off="true" class="video-link"><i>Best Walk</i></a> (Topic)</td>
                   <td>2020</td>
                   <td>Editor</td>
@@ -2061,6 +2282,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>5 episodes</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/HAAl3vXHWLs/hqdefault.jpg" alt="Random Acts of Flyness season 2 still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (Season 2)</td>
                   <td>2022</td>
                   <td>Associate Editor</td>
@@ -2068,6 +2294,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>6 episodes</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/tFMQs50V1g8" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/tFMQs50V1g8/hqdefault.jpg" alt="Growing Up still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tFMQs50V1g8" data-inline-off="true" class="video-link"><i>Growing Up</i></a> (Disney+)</td>
                   <td>2022</td>
                   <td>Editor</td>
@@ -2075,6 +2306,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>5 episodes</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/nYkDGvT4tJk/hqdefault.jpg" alt="Cole Escola's Our Home Out West still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" data-inline-off="true" class="video-link"><i>Cole Escola's Our Home Out West</i></a></td>
                   <td>2023</td>
                   <td>DIT</td>
@@ -2082,6 +2318,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>TV special</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="https://www.youtube.com/watch?v=Svual-PcOxE" target="_blank" rel="noreferrer" class="filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/Svual-PcOxE/hqdefault.jpg" alt="Conner O'Malley's Stand Up Solutions still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="https://www.youtube.com/watch?v=Svual-PcOxE" target="_blank" rel="noreferrer" data-direct-url="https://www.youtube.com/watch?v=Svual-PcOxE" data-inline-off="true" class="video-link"><i>Conner O'Malley's Stand Up Solutions</i></a></td>
                   <td>2024</td>
                   <td>Assistant Editor / DIT</td>
@@ -2092,10 +2333,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h3 id="films-editing">Film</h3>
-            <p class="notes" data-admin-text="film-intro">Twenty-four frames per second is a standard measure of motion picture projection, a span in which a remarkable number of images pass by, and Kempner is often employed organizing, editing, and assisting with them.</p>
-            <table class="wikitable table-video-col-1" data-admin-table="film-main">
+            <p class="notes" data-admin-text="film-intro">Twenty-four frames per second is the standard rate of motion picture projection, a span in which a remarkable number of images pass before the eye. Kempner’s work frequently involves organizing, editing, and assisting in the assembly of these frames.</p>
+            <table class="wikitable" data-admin-table="film-main">
               <thead>
                 <tr>
+                  <th>Still</th>
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
@@ -2105,6 +2347,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
+                  <td>
+                    <a class="wiki-link filmography-still-link" href="https://en.wikipedia.org/wiki/Good_One_(film)" target="_blank" rel="noreferrer">
+                      <img class="filmography-still" src="images/GoodOne.jpg" alt="Good One still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Good_One_(film)" target="_blank" rel="noreferrer"><i>Good One</i></a></td>
                   <td>2022</td>
                   <td>Assistant Editor; DIT</td>
@@ -2112,6 +2359,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Director: India Donaldson.</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a class="wiki-link filmography-still-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer">
+                      <img class="filmography-still" src="images/SeekingMavisBeacon.jpg" alt="Seeking Mavis Beacon still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a></td>
                   <td>2024</td>
                   <td>Assistant Editor</td>
@@ -2119,6 +2371,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Director: Jazmin Jones.</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/7Dkp41QdFgw?list=PLh-uDRIvQHP0o2Aj1Ti9oTUFzvCRP5Uu3" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/7Dkp41QdFgw/hqdefault.jpg" alt="Telfar New Models Season One still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/7Dkp41QdFgw?list=PLh-uDRIvQHP0o2Aj1Ti9oTUFzvCRP5Uu3" data-inline-off="true" class="video-link"><i>Telfar New Models Season One</i></a></td>
                   <td>2025</td>
                   <td>Editor w/ Telfar TV.<br />Confessional interviews.</td>
@@ -2144,19 +2401,19 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/3U9xgN3GsZc" data-inline-off="true" class="video-link"><i>Close The Gap</i></a></td>
                   <td>2023</td>
                   <td>Assistant Editor</td>
-                  <td>Director: Alex Bliss.</td>
+                  <td>Director: Alex Bliss</td>
                 </tr>
                 <tr>
                   <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a></td>
                   <td>2024</td>
                   <td>Additional Editor, Trailer Editor</td>
-                  <td>Director: Leilah Weintraub.</td>
+                  <td>Director: Leilah Weintraub</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link"><i>Straight Line</i></a></td>
                   <td>2025</td>
                   <td>Assistant Editor</td>
-                  <td>Director: Jack Bensinger.</td>
+                  <td>Director: Jack Bensinger</td>
                 </tr>
               </tbody>
             </table>
@@ -2166,6 +2423,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <table class="wikitable table-video-col-2" data-admin-table="fashion">
               <thead>
                 <tr>
+                  <th>Still</th>
                   <th>Project</th>
                   <th>Year</th>
                   <th>Notes</th>
@@ -2173,12 +2431,22 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)</td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/ehNpmxYYXiQ/hqdefault.jpg" alt="Ms. Lauryn Hill for S/S 2021 still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" data-inline-off="true" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)</td>
                   <td>2021</td>
                   <td>Editor, alongside Kristan Sprague. Directed by Naima Ramos-Chapman</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/6A7EYnKNiVk" class="video-link"><i>TELFAR 20th Anniversary Show | SS25 Runway</i></a></td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/6A7EYnKNiVk" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/6A7EYnKNiVk/hqdefault.jpg" alt="TELFAR 20th Anniversary Show still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/6A7EYnKNiVk" data-inline-off="true" class="video-link"><i>TELFAR 20th Anniversary Show | SS25 Runway</i></a></td>
                   <td>2025</td>
                   <td>Editor</td>
                 </tr>
@@ -2186,7 +2454,16 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             </table>
 
             <h4 id="telfar-select-work">Telfar Advertisements - Select Work</h4>
-            <p class="notes">Will began working with TELFAR TV in 2024 as a producer on the reality series New Models (Season Zero). He subsequently joined the editing team, contributing to numerous campaigns. His responsibilities later expanded to include writing advertising copy and overseeing confessional interviews.</p>
+            <p class="notes">Will began working with TELFAR TV in 2024 as a producer on the reality series New Models (Season Zero). He subsequently joined the editing team, contributing to numerous campaigns.</p>
+            <figure class="telfar-showcase" id="telfar-showcase-carousel">
+              <div class="telfar-showcase-media" id="telfar-showcase-media"></div>
+              <figcaption class="telfar-showcase-caption" id="telfar-showcase-caption"></figcaption>
+              <div class="scandal-controls">
+                <button id="telfar-showcase-prev" type="button" aria-label="Previous Telfar showcase video">Prev</button>
+                <span class="scandal-counter" id="telfar-showcase-counter">1 / 4</span>
+                <button id="telfar-showcase-next" type="button" aria-label="Next Telfar showcase video">Next</button>
+              </div>
+            </figure>
             <table class="wikitable table-video-col-1" data-admin-table="fashion-telfar-select">
               <thead>
                 <tr>
@@ -2197,28 +2474,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="https://www.instagram.com/p/C_3La_mucu3/" target="_blank" rel="noreferrer"><i>New Models Teaser</i></a></td>
+                  <td><a href="https://www.instagram.com/p/C_3La_mucu3/" target="_blank" rel="noreferrer"><i>New Models Season Zero Teaser</i></a></td>
                   <td>09/13/2024</td>
                   <td>Produced and Edited</td>
                 </tr>
                 <tr>
-                  <td><a href="https://www.instagram.com/p/DBq6_wMuwQn/" target="_blank" rel="noreferrer"><i>Cuppa Tea</i></a></td>
-                  <td>10/28/2024</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/p/DB1STpJO3OE/" target="_blank" rel="noreferrer"><i>Diary Room London</i></a></td>
-                  <td>11/01/2024</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
                   <td><a href="https://www.instagram.com/p/DCzEOYMuYmO/" target="_blank" rel="noreferrer"><i>Shmedium Dream</i></a></td>
                   <td>11/25/2024</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/p/DDZ11QoOm6c/" target="_blank" rel="noreferrer"><i>Holiday Vendors</i></a></td>
-                  <td>12/10/2024</td>
                   <td>Edited</td>
                 </tr>
                 <tr>
@@ -2232,48 +2494,13 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Edited</td>
                 </tr>
                 <tr>
-                  <td><a href="https://www.instagram.com/p/DJah0K2uFxF/" target="_blank" rel="noreferrer"><i>Hellfire TV: Met Gala</i></a></td>
-                  <td>05/08/2025</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/reel/DKuOoNUOin7/" target="_blank" rel="noreferrer"><i>Duffle Saga pt 1</i></a></td>
-                  <td>06/10/2025</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/p/DKw5CXoxp9e/" target="_blank" rel="noreferrer"><i>Duffle Saga pt 2</i></a></td>
-                  <td>06/11/2025</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/reel/DKzcfvKOzcN/" target="_blank" rel="noreferrer"><i>Duffle Saga pt 3</i></a></td>
-                  <td>06/12/2025</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/p/DK9sldbuKKp/" target="_blank" rel="noreferrer"><i>New Models: Vote Live</i></a></td>
-                  <td>06/16/2025</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
                   <td><a href="https://www.tiktok.com/@telfarglobal/video/7538490450001415455?lang=en" target="_blank" rel="noreferrer"><i>Plastic Bag: Microplastics</i></a></td>
                   <td>08/14/2025</td>
                   <td>Wrote and Edited</td>
                 </tr>
                 <tr>
-                  <td><a href="https://www.instagram.com/reel/DNYKGVZOpzJ/" target="_blank" rel="noreferrer"><i>Thank You For Shopping</i></a></td>
-                  <td>08/15/2025</td>
-                  <td>Wrote</td>
-                </tr>
-                <tr>
                   <td><a href="https://www.instagram.com/p/DOgVCdTjqIG/" target="_blank" rel="noreferrer"><i>GANG: Telfar x Timeberland</i></a></td>
                   <td>09/12/2025</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/p/DOn8btfjkgH/" target="_blank" rel="noreferrer"><i>20 Years</i></a></td>
-                  <td>09/15/2025</td>
                   <td>Edited</td>
                 </tr>
                 <tr>
@@ -2292,16 +2519,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Wrote and Edited</td>
                 </tr>
                 <tr>
-                  <td><a href="https://www.instagram.com/p/DSu2SahjU1z/" target="_blank" rel="noreferrer"><i>Plastic Bag Restock</i></a></td>
-                  <td>12/26/2025</td>
-                  <td>Wrote and Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/reel/DS2lF4jDv6Q/" target="_blank" rel="noreferrer"><i>Make Tug Not War</i></a></td>
-                  <td>12/29/2025</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
                   <td><a href="https://www.instagram.com/p/DT2-KHaDtl7/" target="_blank" rel="noreferrer"><i>Tie Bag: Tie Food</i></a></td>
                   <td>01/23/2026</td>
                   <td>Wrote and Edited</td>
@@ -2313,6 +2530,75 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 </tr>
               </tbody>
             </table>
+            <details class="telfar-additional-accordion">
+              <summary>Additional Telfar Videos</summary>
+              <table class="wikitable table-video-col-1" data-admin-table="fashion-telfar-additional">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="https://www.instagram.com/p/DBq6_wMuwQn/" target="_blank" rel="noreferrer"><i>Cuppa Tea</i></a></td>
+                    <td>10/28/2024</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/p/DB1STpJO3OE/" target="_blank" rel="noreferrer"><i>Diary Room London</i></a></td>
+                    <td>11/01/2024</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/p/DDZ11QoOm6c/" target="_blank" rel="noreferrer"><i>Holiday Vendors</i></a></td>
+                    <td>12/10/2024</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/p/DJah0K2uFxF/" target="_blank" rel="noreferrer"><i>Hellfire TV: Met Gala</i></a></td>
+                    <td>05/08/2025</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/reel/DKuOoNUOin7/" target="_blank" rel="noreferrer"><i>Duffle Saga pt 1</i></a></td>
+                    <td>06/10/2025</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/p/DKw5CXoxp9e/" target="_blank" rel="noreferrer"><i>Duffle Saga pt 2</i></a></td>
+                    <td>06/11/2025</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/reel/DKzcfvKOzcN/" target="_blank" rel="noreferrer"><i>Duffle Saga pt 3</i></a></td>
+                    <td>06/12/2025</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/reel/DNYKGVZOpzJ/" target="_blank" rel="noreferrer"><i>Thank You For Shopping</i></a></td>
+                    <td>08/15/2025</td>
+                    <td>Wrote</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/p/DOn8btfjkgH/" target="_blank" rel="noreferrer"><i>20 Years</i></a></td>
+                    <td>09/15/2025</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/p/DSu2SahjU1z/" target="_blank" rel="noreferrer"><i>Plastic Bag Restock</i></a></td>
+                    <td>12/26/2025</td>
+                    <td>Wrote and Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/reel/DS2lF4jDv6Q/" target="_blank" rel="noreferrer"><i>Make Tug Not War</i></a></td>
+                    <td>12/29/2025</td>
+                    <td>Edited</td>
+                  </tr>
+                </tbody>
+              </table>
+            </details>
 
             <h3 id="corporate">Branded</h3>
             <p class="notes" data-admin-text="branded-intro">
@@ -2330,7 +2616,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <tbody>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" data-inline-off="true" class="video-link"><i>Doja Cat's Guide to E-Girl Beauty | Beauty Secrets | Vogue</i></a></td>
-                  <td>2019</td>
+                  <td>2016</td>
                   <td>Editor</td>
                   <td>Edited for numerous Vogue series.</td>
                 </tr>
@@ -2366,6 +2652,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <table class="wikitable table-video-col-2" data-admin-table="trailers">
               <thead>
                 <tr>
+                  <th>Still</th>
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
@@ -2374,31 +2661,54 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" class="video-link"><i>Inspector Ike</i></a> (Graham Mason)</td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/nZKpkRAZ3a0/hqdefault.jpg" alt="Inspector Ike trailer still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" data-inline-off="true" class="video-link"><i>Inspector Ike</i></a> (Graham Mason)</td>
                   <td>2020</td>
                   <td>Trailer Editor</td>
                   <td>Director Graham Mason.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" class="video-link"><i>Reveries: Going Deeper</i></a></td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/W1DOHtQe5D0/hqdefault.jpg" alt="Reveries: Going Deeper trailer still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" data-inline-off="true" class="video-link"><i>Reveries: Going Deeper</i></a></td>
                   <td>2020</td>
                   <td>Trailer Editor</td>
                   <td>Director Graham Mason.</td>
                 </tr>
                 <tr>
+                  <td>
+                    <img class="filmography-still" src="https://lens.usercontent.google.com/image?vsrid=COuD8e26zOSUZxACGAEiJDY3ZTliM2ZlLThjNTQtNGRhYi1iNmFlLTkxNDJmZGZiOGUzNzIGIgJiaSgEONCMjN_a65ID&gsessionid=n5RpEg0PsWJF3gh2H604hv_RLjN_kam3shSzQBqFpaPUwfv1sQ__Jg" alt="Andre 3000 trailer still" loading="lazy" />
+                  </td>
                   <td><i>Andre 3000 - Listening To The Sun</i> (teaser)</td>
                   <td>2023</td>
                   <td>Trailer Editor</td>
                   <td>Director Terence Nance.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W-l3s0Ea2C0" class="video-link"><i>Seek No Favor</i></a></td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/W-l3s0Ea2C0" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/W-l3s0Ea2C0/hqdefault.jpg" alt="Seek No Favor trailer still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W-l3s0Ea2C0" data-inline-off="true" class="video-link"><i>Seek No Favor</i></a></td>
                   <td>2024</td>
                   <td>Trailer Editor</td>
                   <td>Director Leilah Weintraub.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/s_tayJQ8TGg" class="video-link"><i>Telfar New Models Season 1</i></a></td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/s_tayJQ8TGg" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/s_tayJQ8TGg/hqdefault.jpg" alt="Telfar New Models Season 1 trailer still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/s_tayJQ8TGg" data-inline-off="true" class="video-link"><i>Telfar New Models Season 1</i></a></td>
                   <td>2025</td>
                   <td>Trailer Editor</td>
                   <td>Director Babak Radboy.</td>
@@ -2409,10 +2719,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
           <section id="filmography">
             <h2>Filmography <span class="edit">[edit]</span></h2>
-            <p data-admin-text="filmography-intro">From places in New Jersey to private family Zoom chats, these films showcase a deep understanding of mise-en-scène and dramatic irony.</p>
+            <p data-admin-text="filmography-intro">These short films contain wonder, humor, commentary on toxic masculinity, and probing reflections on the impact of technology on social structures.</p>
             <table class="wikitable table-video-col-1" data-admin-table="filmography">
               <thead>
                 <tr>
+                  <th>Still</th>
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
@@ -2420,22 +2731,41 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/pn7tYDdCfuQ" data-inline-off="true" class="video-link"><i>Serf's Up</i></a></td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/pn7tYDdCfuQ" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/pn7tYDdCfuQ/hqdefault.jpg" alt="Serf's Up still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/pn7tYDdCfuQ" data-inline-off="true" class="video-link"><i>Serf's Up</i></a>
+                    <div class="filmography-description">After getting rejected from space camp, Dan is forced to hang out with his “dark energy” cousin.</div>
+                  </td>
                   <td>2016</td>
                   <td>Director, writer, editor. Short Film.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/WDuSxJ_eAGU" data-inline-off="true" class="video-link"><i>The Good Boy</i></a></td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/WDuSxJ_eAGU" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/WDuSxJ_eAGU/hqdefault.jpg" alt="The Good Boy still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/WDuSxJ_eAGU" data-inline-off="true" class="video-link"><i>The Good Boy</i></a>
+                    <div class="filmography-description">An automatic hammer threatens to destroy a man’s construction company and his relationship with his son.</div>
+                  </td>
                   <td>2018</td>
                   <td>Director, co-writer, editor. Short Film.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://player.vimeo.com/video/376714183" data-inline-off="true" class="video-link"><i>Writer's Retreat</i></a></td>
-                  <td>2019</td>
-                  <td>Co-director/writer, camera, editor. Short Film.</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://player.vimeo.com/video/409480281" data-inline-off="true" class="video-link"><i>A Flaw In The System</i></a></td>
+                  <td>
+                    <a href="#" data-video="https://player.vimeo.com/video/409480281" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://vumbnail.com/409480281.jpg" alt="A Flaw In The System still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="#" data-video="https://player.vimeo.com/video/409480281" data-inline-off="true" class="video-link"><i>A Flaw In The System</i></a>
+                    <div class="filmography-description">During the novel coronavirus pandemic, a curious flaw wandered the digital world.</div>
+                  </td>
                   <td>2020</td>
                   <td>Director, editor. Short Film.</td>
                 </tr>
@@ -2496,6 +2826,36 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                       seamless
                     ><a href="https://digitalzoom.bandcamp.com/track/random-song">Random Song by Cranklin</a></iframe>
                   </td>
+                </tr>
+                <tr>
+                  <td><i>Goo Lagoon</i> (Mouse Sucks x Cranklin)</td>
+                  <td>2020</td>
+                  <td>EP; Producer</td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=2764651477/size=small/bgcol=ffffff/linkcol=0687f5/track=3797275202/transparent=true/" seamless><a href="https://mousey.bandcamp.com/album/goo-lagoon">Goo Lagoon by Mouse Sucks &amp; Cranklin</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>0000rchestra</i> (Tony G x Cranklin)</td>
+                  <td>2020</td>
+                  <td>Part of <a href="https://sorryrecords.bandcamp.com/album/sorry-records-and-friends" target="_blank" rel="noreferrer">Sorry Records &amp; Friends</a></td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3621118757/size=small/bgcol=ffffff/linkcol=0687f5/track=3449825365/transparent=true/" seamless><a href="https://sorryrecords.bandcamp.com/album/sorry-records-and-friends">Sorry Records And Friends by Cranklin &amp; Tony G</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>Submarine Story Score</i></td>
+                  <td>2020</td>
+                  <td>Original score for Mischa Aletta's <a href="https://youtu.be/Br006oI49SE?si=X344vEA-B_4N0iqW" target="_blank" rel="noreferrer">Submarine Story</a></td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3622462752/size=small/bgcol=ffffff/linkcol=0687f5/track=858058876/transparent=true/" seamless><a href="https://digitalzoom.bandcamp.com/album/submarine-story-score">Submarine Story Score by Cranklin</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>Tony's Acid Remix</i> (Cranklin &amp; Friends Ode To Tony)</td>
+                  <td>2022</td>
+                  <td>Part of <a href="https://sorryrecords.bandcamp.com/album/acid-tony-ii-tonys-revenge-re-up" target="_blank" rel="noreferrer">ACID TONY II</a></td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=337195417/size=small/bgcol=ffffff/linkcol=0687f5/track=4051543665/transparent=true/" seamless><a href="https://sorryrecords.bandcamp.com/album/acid-tony-ii-tonys-revenge-re-up">ACID TONY II: TONY&#39;S REVENGE [RE-UP] by Tony G | Max Watts | DJ Girl | WTCHCRFT | Escaflowne | Figur | DULLAFTRUSE | Cranklin | Drummy</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>4 The 1s</i> (Tony G x Cranklin)</td>
+                  <td>2022</td>
+                  <td>Part of <a href="https://t0nyg.bandcamp.com/album/two-collaborative-tools" target="_blank" rel="noreferrer">Two Collaborative Tools</a></td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=32678446/size=small/bgcol=ffffff/linkcol=0687f5/track=2835985428/transparent=true/" seamless><a href="https://t0nyg.bandcamp.com/album/two-collaborative-tools">Two Collaborative Tools by Tony G &amp; Cranklin</a></iframe></td>
                 </tr>
               </tbody>
             </table>
@@ -2757,9 +3117,9 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Short film.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/e6XXU7da70M" data-inline-off="true" class="video-link"><i>Wet Brownies</i></a></td>
+                  <td><i>Wet Brownies</i></td>
                   <td>2015</td>
-                  <td>Feature film. Written and Directed with Chris Gilman and Jeff Marks. Editor.</td>
+                  <td>Feature film. Written and Directed with Chris Gilman and Jeff Marks. Editor. (Available upon request, maybe.)</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/videoseries?list=PLqpJjoFzG1_b_-haYhgTtnsIRVWQtkDNM" data-inline-off="true" class="video-link"><i>Silvery Snake</i></a></td>
@@ -2787,6 +3147,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td>Man on the street comedy short.</td>
                 </tr>
                 <tr>
+                  <td><a href="#" data-video="https://player.vimeo.com/video/376714183" data-inline-off="true" class="video-link"><i>Writer's Retreat</i></a></td>
+                  <td>2019</td>
+                  <td>Co-director/writer, camera, editor. Short Film.</td>
+                </tr>
+                <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/x7tyL7CTTcU" data-inline-off="true" class="video-link"><i>Lost It: A Snap Story</i></a></td>
                   <td>2019</td>
                   <td>Made with Colin Garland and Ben Townsend. Selected for Tribeca Film Festival Snapchat Stories.</td>
@@ -2795,6 +3160,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/DnPUObfPxqw" data-inline-off="true" class="video-link"><i>Mouse Sucks &amp; Cranklin - Eugene</i> (Music Video)</a></td>
                   <td>2020</td>
                   <td>Song Production, Video Editing.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/E946nAyp-Pg" data-inline-off="true" class="video-link"><i>Winter's Too Cold</i> (Fan Edit - Sing-a-long)</a></td>
+                  <td>2020</td>
+                  <td>Lanlord Lance Music Video.</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://player.vimeo.com/video/953743073?h=e52cebbd6c" data-inline-off="true" class="video-link"><i>Two Days In Dallas</i></a></td>
@@ -2828,8 +3198,14 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                 <tr>
                   <td><i>Shit - Triangle Lord</i></td>
                   <td>2014</td>
-                  <td>rarities collection</td>
+                  <td>Rarities collection</td>
                   <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3222078808/size=small/bgcol=ffffff/linkcol=0687f5/track=4184075124/transparent=true/" seamless><a href="https://trianglelord.bandcamp.com/album/shit-rarities-tri-sides">Shit - Rarities &amp; Tri-sides by Triangle Lord</a></iframe></td>
+                </tr>
+                <tr>
+                  <td><i>The Good Boy (OST)</i></td>
+                  <td>2018</td>
+                  <td>Original score for short film. Various artists.</td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1357344585/size=small/bgcol=ffffff/linkcol=0687f5/track=2664001555/transparent=true/" seamless><a href="https://digitalzoom.bandcamp.com/album/the-good-boy-ost">The Good Boy OST by Various Artists</a></iframe></td>
                 </tr>
                 <tr>
                   <td><i>Shared Assets</i> (ART DLR)</td>
@@ -2866,7 +3242,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               <li id="ref-14"><a href="https://pbs.twimg.com/ext_tw_video_thumb/1451612469655441452/pu/img/HDWiY6IFLnEb43GL.jpg" target="_blank" rel="noreferrer">NPCC Short Film Block image evidence</a> <a href="#cite-14a">^</a></li>
               <li id="ref-15"><a href="https://trianglelord.bandcamp.com/" target="_blank" rel="noreferrer">Triangle Lord - Bandcamp</a> <a href="#cite-15a">^</a></li>
               <li id="ref-16"><a href="https://www.instagram.com/p/DSXlE0_Duyf/" target="_blank" rel="noreferrer">Noir reference (Instagram)</a> <a href="#cite-16a">^</a></li>
-              <li id="ref-17"><a href="images/afrofuturism.JPG" target="_blank" rel="noreferrer">Comments on someone hating on my Microplastic Telfar edit</a> <a href="#cite-17a">^</a></li>
+              <li id="ref-17"><a href="images/afrofuturism.JPG" target="_blank" rel="noreferrer">Comments from people hating on my Telfar Microplastic edit</a> <a href="#cite-17a">^</a></li>
             </ol>
           </section>
         </main>
@@ -2900,6 +3276,21 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           <button type="button" class="modal-close" id="close-modal">Close</button>
         </div>
         <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+    <div id="image-lightbox" class="modal" aria-hidden="true">
+      <div class="modal-card image-lightbox-card" role="dialog" aria-modal="true" aria-labelledby="image-lightbox-title">
+        <div class="modal-head">
+          <strong id="image-lightbox-title">Image preview</strong>
+          <button type="button" class="modal-close" id="close-image-lightbox">Close</button>
+        </div>
+        <div class="modal-body image-lightbox-body">
+          <img id="image-lightbox-img" src="" alt="Expanded image preview" />
+        </div>
+        <div class="image-lightbox-controls" id="image-lightbox-controls" hidden>
+          <button type="button" id="image-lightbox-prev">Prev</button>
+          <button type="button" id="image-lightbox-next">Next</button>
+        </div>
       </div>
     </div>
     <div id="video-hover-preview" class="video-hover-preview" aria-hidden="true">
@@ -2964,12 +3355,24 @@ __/  o o \___
 
     <script>
       if ("scrollRestoration" in history) {
-        history.scrollRestoration = "auto";
+        history.scrollRestoration = "manual";
+      }
+      const navEntries = performance.getEntriesByType ? performance.getEntriesByType("navigation") : [];
+      const navType = navEntries && navEntries[0] ? navEntries[0].type : "";
+      if (navType === "reload") {
+        window.scrollTo(0, 0);
+        window.addEventListener("load", () => {
+          window.scrollTo(0, 0);
+          window.requestAnimationFrame(() => window.scrollTo(0, 0));
+        });
       }
 
       const modal = document.getElementById("video-modal");
       const modalBody = document.getElementById("modal-body");
       const closeModal = document.getElementById("close-modal");
+      const imageLightbox = document.getElementById("image-lightbox");
+      const imageLightboxImg = document.getElementById("image-lightbox-img");
+      const closeImageLightbox = document.getElementById("close-image-lightbox");
       const videoHoverPreview = document.getElementById("video-hover-preview");
       const videoHoverPreviewMedia = document.getElementById("video-hover-preview-media");
       const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
@@ -2995,6 +3398,11 @@ __/  o o \___
       const siteBrandText = document.getElementById("site-brand-text");
       const globeLogo = document.getElementById("globe-logo");
       const infoboxMainPhoto = document.querySelector(".infobox-photo img");
+      const profileImageByTextSize = {
+        standard: "images/FedoraHeadshot.webp?v=1",
+        small: "images/FedoraHeadshot_small.webp?v=1",
+        large: "images/FedoraHeadshot_large.webp?v=1"
+      };
       const sorryHoldOverlay = document.getElementById("sorry-hold-overlay");
       const editSurface = document.getElementById("edit-surface");
       const editBox = document.getElementById("edit-box");
@@ -3020,6 +3428,12 @@ __/  o o \___
       const ffffPrev = document.getElementById("ffff-prev");
       const ffffNext = document.getElementById("ffff-next");
       const ffffCarousel = document.getElementById("ffff-carousel");
+      const telfarShowcaseCarousel = document.getElementById("telfar-showcase-carousel");
+      const telfarShowcaseMedia = document.getElementById("telfar-showcase-media");
+      const telfarShowcaseCaption = document.getElementById("telfar-showcase-caption");
+      const telfarShowcaseCounter = document.getElementById("telfar-showcase-counter");
+      const telfarShowcasePrev = document.getElementById("telfar-showcase-prev");
+      const telfarShowcaseNext = document.getElementById("telfar-showcase-next");
       const tamperModal = document.getElementById("tamper-modal");
       const tamperClose = document.getElementById("tamper-close");
       const cookieScamModal = document.getElementById("cookie-scam-modal");
@@ -3087,10 +3501,60 @@ __/  o o \___
         { src: "images/Fposters/FFFFFF4.png", caption: "Found Footage Festival For Friends image 4 (5/16/2020)." },
         { src: "images/Fposters/FFFFFFIRL.jpeg", caption: "Found Footage Festival For Friends IRL (6/26/2021)." }
       ];
+      const telfarShowcaseVideos = [
+        { src: "https://www.youtube-nocookie.com/embed/OD2zDBPLdWE", title: "TELFAR showcase video 1" },
+        { src: "https://www.youtube-nocookie.com/embed/dB1lnEhK9kM", title: "TELFAR showcase video 2" },
+        { src: "https://www.youtube-nocookie.com/embed/wGksJM026Vg", title: "TELFAR showcase video 3" },
+        { src: "https://www.youtube-nocookie.com/embed/9Y1EhJndDGg", title: "TELFAR showcase video 4" }
+      ];
+      const telfarShowcaseTitleCache = new Map();
       let scandalIndex = 0;
       let awardsIndex = 0;
       let ffffIndex = 0;
+      let telfarShowcaseIndex = 0;
       const ADMIN_STORAGE_KEY = "willkpediaAdminData";
+      const ALLOWED_PROTOCOLS = new Set(["http:", "https:"]);
+
+      function isSafeUrl(url) {
+        if (typeof url !== "string") return false;
+        try {
+          const parsed = new URL(url, window.location.href);
+          return ALLOWED_PROTOCOLS.has(parsed.protocol);
+        } catch (_err) {
+          return false;
+        }
+      }
+
+      function sanitizeHtmlFragment(input) {
+        if (typeof input !== "string") return "";
+        const template = document.createElement("template");
+        template.innerHTML = input;
+        const blocked = ["script", "style", "object", "embed", "link", "meta"];
+        template.content.querySelectorAll(blocked.join(",")).forEach((node) => node.remove());
+        const walker = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
+        let node = walker.nextNode();
+        while (node) {
+          const attrs = Array.from(node.attributes || []);
+          attrs.forEach((attr) => {
+            const name = attr.name.toLowerCase();
+            const value = attr.value || "";
+            if (name.startsWith("on")) {
+              node.removeAttribute(attr.name);
+              return;
+            }
+            if (name === "style" && /url\s*\(/i.test(value)) {
+              node.removeAttribute(attr.name);
+              return;
+            }
+            if ((name === "href" || name === "src" || name === "poster") && value && !isSafeUrl(value)) {
+              node.removeAttribute(attr.name);
+              return;
+            }
+          });
+          node = walker.nextNode();
+        }
+        return template.innerHTML;
+      }
 
       function applyAdminOverridesFromStorage() {
         const raw = localStorage.getItem(ADMIN_STORAGE_KEY);
@@ -3109,7 +3573,7 @@ __/  o o \___
           if (!node) return;
           const html = textBlocks[key];
           if (typeof html !== "string") return;
-          node.innerHTML = html;
+          node.innerHTML = sanitizeHtmlFragment(html);
         });
 
         const tables = payload.tables && typeof payload.tables === "object" ? payload.tables : {};
@@ -3135,7 +3599,7 @@ __/  o o \___
           headRow.innerHTML = "";
           headers.forEach((label) => {
             const th = document.createElement("th");
-            th.innerHTML = String(label || "");
+            th.innerHTML = sanitizeHtmlFragment(String(label || ""));
             headRow.appendChild(th);
           });
 
@@ -3150,7 +3614,7 @@ __/  o o \___
             const normalized = Array.isArray(rowCells) ? rowCells : [];
             headers.forEach((_, idx) => {
               const td = document.createElement("td");
-              td.innerHTML = String(normalized[idx] || "");
+              td.innerHTML = sanitizeHtmlFragment(String(normalized[idx] || ""));
               tr.appendChild(td);
             });
             tbody.appendChild(tr);
@@ -3165,8 +3629,39 @@ __/  o o \___
         return url.replace(/\/view(\?.*)?$/i, "/preview");
       }
 
+      function youtubeWatchUrlFromEmbed(embedUrl) {
+        if (typeof embedUrl !== "string") return "";
+        const match = embedUrl.match(/youtube(?:-nocookie)?\.com\/embed\/([A-Za-z0-9_-]{6,})/i);
+        if (!match || !match[1]) return "";
+        return "https://www.youtube.com/watch?v=" + match[1];
+      }
+
+      async function getYoutubeTitleForEmbed(embedUrl) {
+        if (!embedUrl) return "";
+        if (telfarShowcaseTitleCache.has(embedUrl)) return telfarShowcaseTitleCache.get(embedUrl);
+        const watchUrl = youtubeWatchUrlFromEmbed(embedUrl);
+        if (!watchUrl) return "";
+        try {
+          const endpoint =
+            "https://www.youtube.com/oembed?url=" + encodeURIComponent(watchUrl) + "&format=json";
+          const response = await fetch(endpoint, { credentials: "omit" });
+          if (!response.ok) return "";
+          const payload = await response.json();
+          const title = payload && typeof payload.title === "string" ? payload.title.trim() : "";
+          if (title) telfarShowcaseTitleCache.set(embedUrl, title);
+          return title;
+        } catch (_err) {
+          return "";
+        }
+      }
+
       function openModal(url) {
         const normalizedUrl = normalizeDriveEmbedUrl(url);
+        if (!isSafeUrl(normalizedUrl)) {
+          modalBody.textContent = "Blocked unsafe media URL.";
+          modal.setAttribute("aria-hidden", "false");
+          return;
+        }
         const isYouTube = normalizedUrl.includes("youtube.com/embed") || normalizedUrl.includes("youtube-nocookie.com/embed");
         const isVimeo = normalizedUrl.includes("player.vimeo.com/video/");
         const isDrivePreview = /drive\.google\.com\/file\/d\/[^/]+\/preview/i.test(normalizedUrl);
@@ -3535,6 +4030,20 @@ __/  o o \___
         modal.setAttribute("aria-hidden", "true");
         modalBody.innerHTML = "";
       }
+      function openImageLightboxFrom(imgNode) {
+        if (!imgNode || !imageLightbox || !imageLightboxImg) return;
+        if (window.innerWidth <= 980) return;
+        const src = imgNode.getAttribute("src");
+        if (!src) return;
+        imageLightboxImg.src = src;
+        imageLightboxImg.alt = imgNode.getAttribute("alt") || "Expanded image preview";
+        imageLightbox.setAttribute("aria-hidden", "false");
+      }
+      function closeImageLightboxModal() {
+        if (!imageLightbox || !imageLightboxImg) return;
+        imageLightbox.setAttribute("aria-hidden", "true");
+        imageLightboxImg.removeAttribute("src");
+      }
 
       const videoHoverDelayMs = 1000;
 
@@ -3568,6 +4077,7 @@ __/  o o \___
         videoHoverShowTimer = setTimeout(() => {
           videoHoverShowTimer = null;
           const url = normalizeDriveEmbedUrl(link.dataset.video || "");
+          if (!isSafeUrl(url)) return;
           if (!url) return;
           const rect = link.getBoundingClientRect();
           const left = Math.min(window.innerWidth - 430, Math.max(10, rect.left));
@@ -3618,11 +4128,19 @@ __/  o o \___
               }
               const directUrl = link.dataset.directUrl;
               if (directUrl) {
+                if (!isSafeUrl(directUrl)) {
+                  event.preventDefault();
+                  return;
+                }
                 event.preventDefault();
                 window.open(directUrl, "_blank", "noopener");
                 return;
               }
               const videoUrl = link.dataset.video;
+              if (videoUrl && !isSafeUrl(normalizeDriveEmbedUrl(videoUrl))) {
+                event.preventDefault();
+                return;
+              }
               if (!videoUrl) return;
               event.preventDefault();
               openModal(videoUrl);
@@ -3707,11 +4225,12 @@ __/  o o \___
         if (!link) return;
         const directUrl = link.dataset.directUrl;
         if (directUrl) {
+          if (!isSafeUrl(directUrl)) return;
           window.open(directUrl, "_blank", "noopener");
           return;
         }
         const videoUrl = link.dataset.video;
-        if (videoUrl) openModal(videoUrl);
+        if (videoUrl && isSafeUrl(normalizeDriveEmbedUrl(videoUrl))) openModal(videoUrl);
       }
       initVintageOtherVideoGuards();
       bindVideoLinkHandlers();
@@ -4206,6 +4725,13 @@ __/  o o \___
         document.documentElement.classList.remove("text-small", "text-large");
         if (value === "small") document.documentElement.classList.add("text-small");
         if (value === "large") document.documentElement.classList.add("text-large");
+        if (infoboxMainPhoto) {
+          const nextSrc = profileImageByTextSize[value] || profileImageByTextSize.standard;
+          if (infoboxMainPhoto.getAttribute("src") !== nextSrc) {
+            infoboxMainPhoto.dataset.fallbackStep = "";
+            infoboxMainPhoto.setAttribute("src", nextSrc);
+          }
+        }
       }
 
       function applyWidth(value) {
@@ -4387,6 +4913,8 @@ __/  o o \___
       document.querySelectorAll('input[name="text-size"]').forEach((radio) => {
         radio.addEventListener("change", () => applyTextSize(radio.value));
       });
+      const checkedTextSize = document.querySelector('input[name="text-size"]:checked');
+      applyTextSize(checkedTextSize ? checkedTextSize.value : "standard");
       document.querySelectorAll('input[name="page-width"]').forEach((radio) => {
         radio.addEventListener("change", () => applyWidth(radio.value));
       });
@@ -4474,6 +5002,13 @@ __/  o o \___
           renderScandalImage();
         });
       }
+      if (scandalImage) {
+        scandalImage.addEventListener("click", (event) => {
+          if (window.innerWidth <= 980) return;
+          event.preventDefault();
+          openImageLightboxFrom(scandalImage);
+        });
+      }
 
       function renderAwardsImage() {
         if (!awardsImage || !awardsCaption || !awardsCounter) return;
@@ -4491,6 +5026,36 @@ __/  o o \___
         ffffImage.alt = "Found Footage Festival For Friends image " + (ffffIndex + 1);
         ffffCaption.textContent = item.caption;
         ffffCounter.textContent = (ffffIndex + 1) + " / " + ffffImages.length;
+      }
+
+      async function renderTelfarShowcase() {
+        if (!telfarShowcaseMedia || !telfarShowcaseCaption || !telfarShowcaseCounter) return;
+        const item = telfarShowcaseVideos[telfarShowcaseIndex];
+        if (!item) return;
+        const renderForSrc = item.src;
+        const renderForIndex = telfarShowcaseIndex;
+        if (!isSafeUrl(item.src)) {
+          telfarShowcaseMedia.textContent = "Blocked unsafe media URL.";
+          telfarShowcaseCaption.textContent = item.title;
+          return;
+        }
+        telfarShowcaseMedia.innerHTML =
+          '<iframe src="' +
+          item.src +
+          '" title="' +
+          item.title +
+          '" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>';
+        const resolvedTitle = (await getYoutubeTitleForEmbed(item.src)) || item.title;
+        if (
+          renderForIndex !== telfarShowcaseIndex ||
+          !telfarShowcaseVideos[telfarShowcaseIndex] ||
+          telfarShowcaseVideos[telfarShowcaseIndex].src !== renderForSrc
+        ) {
+          return;
+        }
+        telfarShowcaseCaption.textContent = resolvedTitle;
+        telfarShowcaseCounter.textContent =
+          telfarShowcaseIndex + 1 + " / " + telfarShowcaseVideos.length;
       }
 
       if (awardsPrev && awardsNext) {
@@ -4512,6 +5077,13 @@ __/  o o \___
           renderAwardsImage();
         });
       }
+      if (awardsImage) {
+        awardsImage.addEventListener("click", (event) => {
+          if (window.innerWidth <= 980) return;
+          event.preventDefault();
+          openImageLightboxFrom(awardsImage);
+        });
+      }
 
       if (ffffPrev && ffffNext) {
         ffffPrev.addEventListener("click", () => {
@@ -4530,6 +5102,35 @@ __/  o o \___
           if (event.target.closest("button")) return;
           ffffIndex = (ffffIndex + 1) % ffffImages.length;
           renderFfffImage();
+        });
+      }
+      if (ffffImage) {
+        ffffImage.addEventListener("click", (event) => {
+          if (window.innerWidth <= 980) return;
+          event.preventDefault();
+          openImageLightboxFrom(ffffImage);
+        });
+      }
+
+      if (telfarShowcasePrev && telfarShowcaseNext) {
+        telfarShowcasePrev.addEventListener("click", () => {
+          telfarShowcaseIndex =
+            (telfarShowcaseIndex - 1 + telfarShowcaseVideos.length) %
+            telfarShowcaseVideos.length;
+          renderTelfarShowcase();
+        });
+        telfarShowcaseNext.addEventListener("click", () => {
+          telfarShowcaseIndex = (telfarShowcaseIndex + 1) % telfarShowcaseVideos.length;
+          renderTelfarShowcase();
+        });
+        renderTelfarShowcase();
+      }
+      if (telfarShowcaseCarousel) {
+        telfarShowcaseCarousel.addEventListener("click", (event) => {
+          if (event.target.closest("button")) return;
+          if (window.innerWidth > 980) return;
+          telfarShowcaseIndex = (telfarShowcaseIndex + 1) % telfarShowcaseVideos.length;
+          renderTelfarShowcase();
         });
       }
 
@@ -4769,7 +5370,7 @@ __/  o o \___
         if (isReplayingDeferredClick || isScamModalOpen()) return;
         if (event.defaultPrevented || event.button !== 0) return;
         if (!(event.target instanceof Element)) return;
-        if (event.target.closest("#video-modal, #tamper-modal")) return;
+        if (event.target.closest("#video-modal, #image-lightbox, #tamper-modal")) return;
         const actionableTarget = getActionableTarget(event.target);
         clickGateCount += 1;
         if (clickGateCount === 13) {
@@ -4793,9 +5394,20 @@ __/  o o \___
           closeVideoModal();
         }
       });
+      if (imageLightbox && closeImageLightbox) {
+        closeImageLightbox.addEventListener("click", closeImageLightboxModal);
+        imageLightbox.addEventListener("click", (event) => {
+          if (event.target === imageLightbox && window.innerWidth > 980) {
+            closeImageLightboxModal();
+          }
+        });
+      }
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
           closeVideoModal();
+        }
+        if (event.key === "Escape" && imageLightbox && imageLightbox.getAttribute("aria-hidden") === "false") {
+          closeImageLightboxModal();
         }
         if (event.key === "Escape" && tamperModal.getAttribute("aria-hidden") === "false") {
           closeTamperModal();
