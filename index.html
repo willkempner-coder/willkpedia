@@ -727,8 +727,8 @@
       #trailers .wikitable {
         table-layout: fixed;
       }
-      #trailers .wikitable th:first-child,
-      #trailers .wikitable td:first-child {
+      #trailers .wikitable th:nth-child(2),
+      #trailers .wikitable td:nth-child(2) {
         width: 54px !important;
         min-width: 54px !important;
         max-width: 54px !important;
@@ -742,8 +742,8 @@
         width: 46%;
         min-width: 340px;
       }
-      .table-video-col-2 th:nth-child(2),
-      .table-video-col-2 td:nth-child(2) {
+      .table-video-col-2 th:nth-child(1),
+      .table-video-col-2 td:nth-child(1) {
         width: 44%;
         min-width: 340px;
       }
@@ -753,6 +753,45 @@
         min-width: 320px;
       }
       @media (min-width: 981px) {
+        table[data-admin-table="tv"] th:nth-child(2),
+        table[data-admin-table="tv"] td:nth-child(2),
+        table[data-admin-table="fashion"] th:nth-child(2),
+        table[data-admin-table="fashion"] td:nth-child(2),
+        table[data-admin-table="branded"] th:nth-child(2),
+        table[data-admin-table="branded"] td:nth-child(2),
+        table[data-admin-table="trailers"] th:nth-child(2),
+        table[data-admin-table="trailers"] td:nth-child(2),
+        table[data-admin-table="film-main"] th:nth-child(2),
+        table[data-admin-table="film-main"] td:nth-child(2),
+        table[data-admin-table="film-short"] th:nth-child(2),
+        table[data-admin-table="film-short"] td:nth-child(2),
+        table[data-admin-table="filmography"] th:nth-child(2),
+        table[data-admin-table="filmography"] td:nth-child(2),
+        table[data-admin-table="awards"] th:nth-child(2),
+        table[data-admin-table="awards"] td:nth-child(2),
+        table[data-admin-table="other-video"] th:nth-child(2),
+        table[data-admin-table="other-video"] td:nth-child(2),
+        table[data-admin-table="found-footage-festival"] th:nth-child(2),
+        table[data-admin-table="found-footage-festival"] td:nth-child(2),
+        table[data-admin-table="discography-cranklin"] th:nth-child(2),
+        table[data-admin-table="discography-cranklin"] td:nth-child(2),
+        table[data-admin-table="discography-artdlr"] th:nth-child(2),
+        table[data-admin-table="discography-artdlr"] td:nth-child(2),
+        table[data-admin-table="discography-lanlord"] th:nth-child(2),
+        table[data-admin-table="discography-lanlord"] td:nth-child(2),
+        table[data-admin-table="other-sounds"] th:nth-child(2),
+        table[data-admin-table="other-sounds"] td:nth-child(2) {
+          width: 88px;
+          min-width: 88px;
+          max-width: 88px;
+          white-space: nowrap;
+        }
+        table[data-admin-table="found-footage-festival"] th:nth-child(2),
+        table[data-admin-table="found-footage-festival"] td:nth-child(2) {
+          width: 110px;
+          min-width: 110px;
+          max-width: 110px;
+        }
         table[data-admin-table="awards"] th:nth-child(2),
         table[data-admin-table="awards"] td:nth-child(2) {
           width: 88px;
@@ -1993,8 +2032,8 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <table class="wikitable table-video-col-2" data-admin-table="tv">
               <thead>
                 <tr>
-                  <th>Year</th>
                   <th>Title</th>
+                  <th>Year</th>
                   <th>Role</th>
                   <th>Network</th>
                   <th>Notes</th>
@@ -2002,50 +2041,50 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
               </thead>
               <tbody>
                 <tr>
-                  <td>2018</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/kIzUwpfAl5k" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (Season 1)</td>
+                  <td>2018</td>
                   <td>Lead Assistant Editor</td>
                   <td>HBO</td>
                   <td>6 episodes</td>
                 </tr>
                 <tr>
-                  <td>2018</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/KlnZyaIyZdw" data-inline-off="true" class="video-link"><i>Two Dope Queens</i></a> (HBO, Season 1)</td>
+                  <td>2018</td>
                   <td>Assistant Editor</td>
                   <td>HBO</td>
                   <td>4 episodes</td>
                 </tr>
                 <tr>
-                  <td>2020</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/x_LJxBOAlXw" data-inline-off="true" class="video-link"><i>Best Walk</i></a> (Topic)</td>
+                  <td>2020</td>
                   <td>Editor</td>
                   <td>Topic</td>
                   <td>5 episodes</td>
                 </tr>
                 <tr>
-                  <td>2022</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (Season 2)</td>
+                  <td>2022</td>
                   <td>Associate Editor</td>
                   <td>HBO</td>
                   <td>6 episodes</td>
                 </tr>
                 <tr>
-                  <td>2022</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tFMQs50V1g8" data-inline-off="true" class="video-link"><i>Growing Up</i></a> (Disney+)</td>
+                  <td>2022</td>
                   <td>Editor</td>
                   <td>Disney+</td>
                   <td>5 episodes</td>
                 </tr>
                 <tr>
-                  <td>2023</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" data-inline-off="true" class="video-link"><i>Cole Escola's Our Home Out West</i></a></td>
+                  <td>2023</td>
                   <td>Assistant Editor; DIT</td>
                   <td>Self-released</td>
                   <td>TV special</td>
                 </tr>
                 <tr>
-                  <td>2024</td>
                   <td><a href="https://www.youtube.com/watch?v=Svual-PcOxE" target="_blank" rel="noreferrer" data-direct-url="https://www.youtube.com/watch?v=Svual-PcOxE" data-inline-off="true" class="video-link"><i>Conner O'Malley's Stand Up Solutions</i></a></td>
+                  <td>2024</td>
                   <td>Assistant Editor / DIT</td>
                   <td>Self-released</td>
                   <td>Special</td>
@@ -2127,25 +2166,25 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <table class="wikitable table-video-col-2" data-admin-table="fashion">
               <thead>
                 <tr>
-                  <th>Year</th>
                   <th>Project</th>
+                  <th>Year</th>
                   <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>2021</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)</td>
+                  <td>2021</td>
                   <td>Editor, alongside Kristan Sprague. Directed by Naima Ramos-Chapman</td>
                 </tr>
                 <tr>
-                  <td>2023-2026</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/8gajKue9RpQ?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" class="video-link"><i>Telfar advertisements</i></a></td>
+                  <td>2023-2026</td>
                   <td>Editor, for Telfar TV. Occasional Producer and Writer. <a href="https://www.youtube.com/playlist?list=PLeiJek-5vFUmvh6rr9SdYhY5nLxKTJLgg" target="_blank" rel="noreferrer">View playlist</a>.</td>
                 </tr>
                 <tr>
-                  <td>2025</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/6A7EYnKNiVk" class="video-link"><i>TELFAR 20th Anniversary Show | SS25 Runway</i></a></td>
+                  <td>2025</td>
                   <td>Editor</td>
                 </tr>
               </tbody>
@@ -2158,40 +2197,40 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <table class="wikitable table-video-col-2" data-admin-table="branded">
               <thead>
                 <tr>
-                  <th>Year</th>
                   <th>Project</th>
+                  <th>Year</th>
                   <th>Role</th>
                   <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>2019</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" data-inline-off="true" class="video-link"><i>Doja Cat's Guide to E-Girl Beauty | Beauty Secrets | Vogue</i></a></td>
+                  <td>2019</td>
                   <td>Editor</td>
                   <td>Edited for numerous Vogue series.</td>
                 </tr>
                 <tr>
-                  <td>2020</td>
                   <td><a href="https://www.glamour.com/video/watch/multiple-sclerosis-cant-knock-me-down" target="_blank" rel="noreferrer"><i>Multiple Sclerosis: Can't Knock Me Down</i></a></td>
+                  <td>2020</td>
                   <td>Editor</td>
                   <td>Glamour Magazine.</td>
                 </tr>
                 <tr>
-                  <td>2021</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/xqYXccyN1BM" data-inline-off="true" class="video-link"><i>Wondr Health Testimonials</i></a></td>
+                  <td>2021</td>
                   <td>Editor</td>
                   <td></td>
                 </tr>
                 <tr>
-                  <td>2023</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/YIFbLdPDGzo" data-inline-off="true" class="video-link"><i>MoMA</i></a></td>
+                  <td>2023</td>
                   <td>Editor</td>
                   <td>Ghost Edited</td>
                 </tr>
                 <tr>
-                  <td>2024</td>
                   <td><a href="https://youtu.be/18FpvGcl_DA?si=tfJpmJLASgr0-3Zw" target="_blank" rel="noreferrer"><i>Q&amp;A with Juvederm</i></a></td>
+                  <td>2024</td>
                   <td>Editor</td>
                   <td></td>
                 </tr>
@@ -2203,40 +2242,40 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
             <table class="wikitable table-video-col-2" data-admin-table="trailers">
               <thead>
                 <tr>
-                  <th>Year</th>
                   <th>Title</th>
+                  <th>Year</th>
                   <th>Role</th>
                   <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>2020</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" class="video-link"><i>Inspector Ike</i></a> (Graham Mason)</td>
-                  <td>Trailer Editor</td>
-                  <td>Director Graham Mason.</td>
-                </tr>
-                <tr>
                   <td>2020</td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" class="video-link"><i>Reveries: Going Deeper</i></a></td>
                   <td>Trailer Editor</td>
                   <td>Director Graham Mason.</td>
                 </tr>
                 <tr>
-                  <td>2023</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" class="video-link"><i>Reveries: Going Deeper</i></a></td>
+                  <td>2020</td>
+                  <td>Trailer Editor</td>
+                  <td>Director Graham Mason.</td>
+                </tr>
+                <tr>
                   <td><i>Andre 3000 - Listening To The Sun</i> (teaser)</td>
+                  <td>2023</td>
                   <td>Trailer Editor</td>
                   <td>Director Terence Nance.</td>
                 </tr>
                 <tr>
-                  <td>2024</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W-l3s0Ea2C0" class="video-link"><i>Seek No Favor</i></a></td>
+                  <td>2024</td>
                   <td>Trailer Editor</td>
                   <td>Director Leilah Weintraub.</td>
                 </tr>
                 <tr>
-                  <td>2025</td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/s_tayJQ8TGg" class="video-link"><i>Telfar New Models Season 1 Trailer</i></a></td>
+                  <td>2025</td>
                   <td>Trailer Editor</td>
                   <td>Director Babak Radboy.</td>
                 </tr>
@@ -2636,6 +2675,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
                   <td><a href="#" data-video="https://player.vimeo.com/video/953743073?h=e52cebbd6c" data-inline-off="true" class="video-link"><i>Two Days In Dallas</i></a></td>
                   <td>2024</td>
                   <td>20min film made with Father and Brother.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/IxBGmInX-IA" data-inline-off="true" class="video-link"><i>Jack &amp; The Fear</i></a></td>
+                  <td>2025</td>
+                  <td>AI Short Experiment.</td>
                 </tr>
               </tbody>
             </table>
