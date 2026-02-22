@@ -79,6 +79,13 @@
         line-height: 1.4;
         color: #202122;
       }
+      .title-subnote {
+        margin-top: 4px;
+        font-family: sans-serif;
+        font-size: 0.88rem;
+        line-height: 1.35;
+        color: #54595d;
+      }
       .page {
         max-width: 1680px;
         margin: 0 auto;
@@ -656,6 +663,9 @@
         color: #202122;
         font-weight: 700;
       }
+      .mobile-toc-toggle {
+        display: none;
+      }
       .article {
         min-width: 0;
         max-width: 1120px;
@@ -823,6 +833,7 @@
       }
       table[data-admin-table="tv"],
       table[data-admin-table="film-main"],
+      table[data-admin-table="film-short"],
       table[data-admin-table="fashion"],
       table[data-admin-table="trailers"] {
         table-layout: fixed;
@@ -831,6 +842,8 @@
       table[data-admin-table="tv"] td:nth-child(1),
       table[data-admin-table="film-main"] th:nth-child(1),
       table[data-admin-table="film-main"] td:nth-child(1),
+      table[data-admin-table="film-short"] th:nth-child(1),
+      table[data-admin-table="film-short"] td:nth-child(1),
       table[data-admin-table="fashion"] th:nth-child(1),
       table[data-admin-table="fashion"] td:nth-child(1),
       table[data-admin-table="trailers"] th:nth-child(1),
@@ -843,6 +856,8 @@
       table[data-admin-table="tv"] td:nth-child(2),
       table[data-admin-table="film-main"] th:nth-child(2),
       table[data-admin-table="film-main"] td:nth-child(2),
+      table[data-admin-table="film-short"] th:nth-child(2),
+      table[data-admin-table="film-short"] td:nth-child(2),
       table[data-admin-table="fashion"] th:nth-child(2),
       table[data-admin-table="fashion"] td:nth-child(2),
       table[data-admin-table="trailers"] th:nth-child(2),
@@ -854,6 +869,8 @@
       table[data-admin-table="tv"] td:nth-child(3),
       table[data-admin-table="film-main"] th:nth-child(3),
       table[data-admin-table="film-main"] td:nth-child(3),
+      table[data-admin-table="film-short"] th:nth-child(3),
+      table[data-admin-table="film-short"] td:nth-child(3),
       table[data-admin-table="fashion"] th:nth-child(3),
       table[data-admin-table="fashion"] td:nth-child(3),
       table[data-admin-table="trailers"] th:nth-child(3),
@@ -866,8 +883,6 @@
       @media (min-width: 981px) {
         table[data-admin-table="branded"] th:nth-child(2),
         table[data-admin-table="branded"] td:nth-child(2),
-        table[data-admin-table="film-short"] th:nth-child(2),
-        table[data-admin-table="film-short"] td:nth-child(2),
         table[data-admin-table="filmography"] th:nth-child(2),
         table[data-admin-table="filmography"] td:nth-child(2),
         table[data-admin-table="awards"] th:nth-child(2),
@@ -1024,7 +1039,7 @@
       }
       .telfar-showcase-media {
         width: 100%;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 4 / 3;
         background: #000;
       }
       .telfar-showcase-media iframe {
@@ -1327,6 +1342,15 @@
         padding: 6px 12px;
         cursor: pointer;
       }
+      .image-lightbox-caption {
+        padding: 8px 10px 0;
+        font-family: sans-serif;
+        font-size: 0.86rem;
+        color: #54595d;
+      }
+      .image-lightbox-caption[hidden] {
+        display: none;
+      }
       .cookie-scam-modal {
         position: fixed;
         inset: 0;
@@ -1504,7 +1528,47 @@
           grid-template-columns: 1fr;
         }
         .toc-wrap {
-          position: static;
+          position: fixed;
+          top: 58px;
+          left: 10px;
+          width: min(80vw, 360px);
+          margin: 0;
+          z-index: 70;
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(-6px);
+          transition: opacity 140ms ease, transform 140ms ease;
+        }
+        body.mobile-toc-open .toc-wrap {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(0);
+        }
+        .toc-wrap .toc {
+          max-height: min(72vh, 620px);
+          overflow: auto;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        }
+        .mobile-toc-toggle {
+          display: none;
+          position: fixed;
+          top: 58px;
+          left: 10px;
+          width: 52px;
+          height: 52px;
+          border: 2px solid #72777d;
+          border-radius: 2px;
+          background: #f8f9fa;
+          color: #202122;
+          z-index: 71;
+          font: 700 1.55rem/1 sans-serif;
+          cursor: pointer;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+        }
+        body.mobile-toc-toggle-visible .mobile-toc-toggle {
+          display: inline-flex;
         }
         .infobox,
         .thumb,
@@ -1805,37 +1869,95 @@
           font-weight: 700;
           white-space: nowrap;
         }
-        table[data-admin-table="filmography"] tbody tr.mobile-row-compact {
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact,
+        table[data-admin-table="tv"] tbody tr.mobile-row-compact,
+        table[data-admin-table="fashion"] tbody tr.mobile-row-compact,
+        table[data-admin-table="trailers"] tbody tr.mobile-row-compact,
+        table[data-admin-table="film-main"] tbody tr.mobile-row-compact,
+        table[data-admin-table="film-short"] tbody tr.mobile-row-compact {
           display: grid;
-          grid-template-columns: 108px minmax(0, 1fr);
+          grid-template-columns: 136px minmax(0, 1fr);
           grid-template-rows: auto auto;
         }
-        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"] {
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"] {
           grid-column: 1;
           grid-row: 1 / span 2;
           border-top: 0;
           border-right: 1px solid #eaecf0;
-          padding: 8px;
+          padding: 10px;
           display: flex !important;
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
         }
-        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"]::before {
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
+        table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
+        table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
+        table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
+        table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
+        table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"]::before {
           content: none;
           display: none;
         }
-        table[data-admin-table="filmography"] tbody tr.mobile-row-compact .mobile-row-header {
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact .mobile-row-header,
+        table[data-admin-table="tv"] tbody tr.mobile-row-compact .mobile-row-header,
+        table[data-admin-table="fashion"] tbody tr.mobile-row-compact .mobile-row-header,
+        table[data-admin-table="trailers"] tbody tr.mobile-row-compact .mobile-row-header,
+        table[data-admin-table="film-main"] tbody tr.mobile-row-compact .mobile-row-header,
+        table[data-admin-table="film-short"] tbody tr.mobile-row-compact .mobile-row-header {
           grid-column: 2;
           grid-row: 1;
           border-top: 0;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          align-items: start;
+          gap: 6px 10px;
         }
-        table[data-admin-table="filmography"] tbody tr.mobile-row-compact .mobile-row-summary {
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact .mobile-row-summary,
+        table[data-admin-table="tv"] tbody tr.mobile-row-compact .mobile-row-summary,
+        table[data-admin-table="fashion"] tbody tr.mobile-row-compact .mobile-row-summary,
+        table[data-admin-table="trailers"] tbody tr.mobile-row-compact .mobile-row-summary,
+        table[data-admin-table="film-main"] tbody tr.mobile-row-compact .mobile-row-summary,
+        table[data-admin-table="film-short"] tbody tr.mobile-row-compact .mobile-row-summary {
           grid-column: 2;
           grid-row: 2;
         }
-        table[data-admin-table="filmography"] .filmography-still {
+        table[data-admin-table="filmography"] .filmography-still,
+        table[data-admin-table="tv"] .filmography-still,
+        table[data-admin-table="fashion"] .filmography-still,
+        table[data-admin-table="trailers"] .filmography-still,
+        table[data-admin-table="film-main"] .filmography-still,
+        table[data-admin-table="film-short"] .filmography-still {
           width: 100%;
           max-width: 100%;
+        }
+        table[data-admin-table="tv"] .mobile-row-title *,
+        table[data-admin-table="fashion"] .mobile-row-title *,
+        table[data-admin-table="trailers"] .mobile-row-title *,
+        table[data-admin-table="film-main"] .mobile-row-title *,
+        table[data-admin-table="film-short"] .mobile-row-title * {
+          font-size: 0.98rem !important;
+          line-height: 1.25;
+        }
+        table[data-admin-table="tv"] .mobile-row-year,
+        table[data-admin-table="fashion"] .mobile-row-year,
+        table[data-admin-table="trailers"] .mobile-row-year,
+        table[data-admin-table="film-main"] .mobile-row-year,
+        table[data-admin-table="film-short"] .mobile-row-year {
+          font-size: 0.95rem;
+          font-weight: 700;
+        }
+        .mobile-row-subnote {
+          margin-top: 4px;
+          font-family: sans-serif;
+          font-size: 0.9rem;
+          line-height: 1.35;
+          color: #202122;
+          grid-column: 1 / -1;
         }
         table[data-admin-table="filmography"] .filmography-description {
           margin-top: 4px;
@@ -1897,6 +2019,7 @@
         </div>
         <p class="subtitle">From WillKpedia, the Will K Encyclopedia</p>
       </section>
+      <button type="button" class="mobile-toc-toggle" id="mobile-toc-toggle" aria-label="Toggle contents" aria-expanded="false">☷</button>
       <section class="edit-surface" id="edit-surface" aria-label="Edit source">
         <p class="edit-warning red"><strong>Warning:</strong> Any attempt to alter this page may trigger security reporting.</p>
         <p class="edit-warning yellow"><strong>Note:</strong> This source editor is monitored. Proceed with care.</p>
@@ -2112,8 +2235,8 @@ Admin scratch notes:
                   <li><a href="#tv">Television</a></li>
                   <li><a href="#films-editing">Films</a></li>
                   <li><a href="#fashion">Fashion</a></li>
-                  <li><a href="#corporate">Branded</a></li>
                   <li><a href="#trailers">Trailers</a></li>
+                  <li><a href="#corporate">Branded</a></li>
                 </ol>
               </li>
               <li><a href="#filmography">Filmography</a></li>
@@ -2169,7 +2292,7 @@ Admin scratch notes:
               </tr>
               <tr>
                 <th>Aliases</th>
-                <td>Will K</td>
+                <td>Will K, "That freak"</td>
               </tr>
               <tr>
                 <th>Origin</th>
@@ -2390,6 +2513,7 @@ Admin scratch notes:
             <table class="wikitable table-video-col-1" data-admin-table="film-short">
               <thead>
                 <tr>
+                  <th>Still</th>
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
@@ -2398,18 +2522,33 @@ Admin scratch notes:
               </thead>
               <tbody>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/3U9xgN3GsZc" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/3U9xgN3GsZc/hqdefault.jpg" alt="Close The Gap still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/3U9xgN3GsZc" data-inline-off="true" class="video-link"><i>Close The Gap</i></a></td>
                   <td>2023</td>
                   <td>Assistant Editor</td>
                   <td>Director: Alex Bliss</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer" class="filmography-still-link">
+                      <img class="filmography-still" src="images/SeekNoFavor.webp" alt="Seek No Favor still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a></td>
                   <td>2024</td>
                   <td>Additional Editor, Trailer Editor</td>
                   <td>Director: Leilah Weintraub</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/FwankVjcbeQ/hqdefault.jpg" alt="Straight Line still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link"><i>Straight Line</i></a></td>
                   <td>2025</td>
                   <td>Assistant Editor</td>
@@ -2600,6 +2739,92 @@ Admin scratch notes:
               </table>
             </details>
 
+            <h3 id="trailers">Trailers</h3>
+            <p class="notes" data-admin-text="trailers-intro">Kempner's trailers are well known and often imitated. In local pubs, drunkards have reportedly been heard asking, “How can he cram this much life, pure essence, into an object of such brevity?” <span class="citation-needed">[citation needed]</span></p>
+            <table class="wikitable table-video-col-2" data-admin-table="trailers">
+              <thead>
+                <tr>
+                  <th>Still</th>
+                  <th>Title</th>
+                  <th>Year</th>
+                  <th>Role</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/nZKpkRAZ3a0/hqdefault.jpg" alt="Inspector Ike trailer still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" data-inline-off="true" class="video-link"><i>Inspector Ike</i></a>
+                    <div class="title-subnote">Director Graham Mason</div>
+                  </td>
+                  <td>2020</td>
+                  <td>Trailer Editor</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/W1DOHtQe5D0/hqdefault.jpg" alt="Reveries: Going Deeper trailer still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" data-inline-off="true" class="video-link"><i>Reveries: Going Deeper</i></a>
+                    <div class="title-subnote">Director Graham Mason</div>
+                  </td>
+                  <td>2020</td>
+                  <td>Trailer Editor</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/2nOxSeBhQAA" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://lens.usercontent.google.com/image?vsrid=COuD8e26zOSUZxACGAEiJDY3ZTliM2ZlLThjNTQtNGRhYi1iNmFlLTkxNDJmZGZiOGUzNzIGIgJiaSgEONCMjN_a65ID&gsessionid=n5RpEg0PsWJF3gh2H604hv_RLjN_kam3shSzQBqFpaPUwfv1sQ__Jg" alt="Andre 3000 trailer still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/2nOxSeBhQAA" data-inline-off="true" class="video-link"><i>Andre 3000 - Listening To The Sun</i></a> (teaser)
+                    <div class="title-subnote">Director Terence Nance</div>
+                  </td>
+                  <td>2023</td>
+                  <td>Trailer Editor</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/W-l3s0Ea2C0" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/W-l3s0Ea2C0/hqdefault.jpg" alt="Seek No Favor trailer still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/W-l3s0Ea2C0" data-inline-off="true" class="video-link"><i>Seek No Favor</i></a>
+                    <div class="title-subnote">Director Leilah Weintraub</div>
+                  </td>
+                  <td>2024</td>
+                  <td>Trailer Editor</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/s_tayJQ8TGg" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/s_tayJQ8TGg/hqdefault.jpg" alt="Telfar New Models Season 1 trailer still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/s_tayJQ8TGg" data-inline-off="true" class="video-link"><i>Telfar New Models Season 1</i></a>
+                    <div class="title-subnote">Director Babak Radboy</div>
+                  </td>
+                  <td>2025</td>
+                  <td>Trailer Editor</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+
             <h3 id="corporate">Branded</h3>
             <p class="notes" data-admin-text="branded-intro">
               The economic incentives of the corporations for which Kempner has worked have been associated with environmental and psychological decline, even as those firms report record breaking profit margins. The content he produces for these companies is said to foster a sense of contentment among all stakeholders, from customers to chief executives, though some critics suggest the prevailing mood more closely resembles ennui. In addition to his years working with various Condé Nast brands, he has also edited for Spotify, Twitch, Adidas, and other major platforms.
@@ -2643,75 +2868,6 @@ Admin scratch notes:
                   <td>2024</td>
                   <td>Editor</td>
                   <td></td>
-                </tr>
-              </tbody>
-            </table>
-
-            <h3 id="trailers">Trailers</h3>
-            <p class="notes" data-admin-text="trailers-intro">Kempner's trailers are well known and often imitated. In local pubs, drunkards have reportedly been heard asking, “How can he cram this much life, pure essence, into an object of such brevity?” <span class="citation-needed">[citation needed]</span></p>
-            <table class="wikitable table-video-col-2" data-admin-table="trailers">
-              <thead>
-                <tr>
-                  <th>Still</th>
-                  <th>Title</th>
-                  <th>Year</th>
-                  <th>Role</th>
-                  <th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" data-inline-off="true" class="video-link filmography-still-link">
-                      <img class="filmography-still" src="https://i.ytimg.com/vi/nZKpkRAZ3a0/hqdefault.jpg" alt="Inspector Ike trailer still" loading="lazy" />
-                    </a>
-                  </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nZKpkRAZ3a0" data-inline-off="true" class="video-link"><i>Inspector Ike</i></a> (Graham Mason)</td>
-                  <td>2020</td>
-                  <td>Trailer Editor</td>
-                  <td>Director Graham Mason.</td>
-                </tr>
-                <tr>
-                  <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" data-inline-off="true" class="video-link filmography-still-link">
-                      <img class="filmography-still" src="https://i.ytimg.com/vi/W1DOHtQe5D0/hqdefault.jpg" alt="Reveries: Going Deeper trailer still" loading="lazy" />
-                    </a>
-                  </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W1DOHtQe5D0" data-inline-off="true" class="video-link"><i>Reveries: Going Deeper</i></a></td>
-                  <td>2020</td>
-                  <td>Trailer Editor</td>
-                  <td>Director Graham Mason.</td>
-                </tr>
-                <tr>
-                  <td>
-                    <img class="filmography-still" src="https://lens.usercontent.google.com/image?vsrid=COuD8e26zOSUZxACGAEiJDY3ZTliM2ZlLThjNTQtNGRhYi1iNmFlLTkxNDJmZGZiOGUzNzIGIgJiaSgEONCMjN_a65ID&gsessionid=n5RpEg0PsWJF3gh2H604hv_RLjN_kam3shSzQBqFpaPUwfv1sQ__Jg" alt="Andre 3000 trailer still" loading="lazy" />
-                  </td>
-                  <td><i>Andre 3000 - Listening To The Sun</i> (teaser)</td>
-                  <td>2023</td>
-                  <td>Trailer Editor</td>
-                  <td>Director Terence Nance.</td>
-                </tr>
-                <tr>
-                  <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/W-l3s0Ea2C0" data-inline-off="true" class="video-link filmography-still-link">
-                      <img class="filmography-still" src="https://i.ytimg.com/vi/W-l3s0Ea2C0/hqdefault.jpg" alt="Seek No Favor trailer still" loading="lazy" />
-                    </a>
-                  </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/W-l3s0Ea2C0" data-inline-off="true" class="video-link"><i>Seek No Favor</i></a></td>
-                  <td>2024</td>
-                  <td>Trailer Editor</td>
-                  <td>Director Leilah Weintraub.</td>
-                </tr>
-                <tr>
-                  <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/s_tayJQ8TGg" data-inline-off="true" class="video-link filmography-still-link">
-                      <img class="filmography-still" src="https://i.ytimg.com/vi/s_tayJQ8TGg/hqdefault.jpg" alt="Telfar New Models Season 1 trailer still" loading="lazy" />
-                    </a>
-                  </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/s_tayJQ8TGg" data-inline-off="true" class="video-link"><i>Telfar New Models Season 1</i></a></td>
-                  <td>2025</td>
-                  <td>Trailer Editor</td>
-                  <td>Director Babak Radboy.</td>
                 </tr>
               </tbody>
             </table>
@@ -2972,22 +3128,22 @@ Admin scratch notes:
                 <tr>
                   <td>NoBudge Live 12<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></td>
                   <td>2018</td>
-                  <td>Screening</td>
+                  <td>The Good Boy Screening</td>
                 </tr>
                 <tr>
                   <td>Tribeca Film Festival Snapchat Story Contest<sup class="ref" id="cite-12a"><a href="#ref-12">[12]</a></sup><sup class="ref" id="cite-13a"><a href="#ref-13">[13]</a></sup></td>
-                  <td>2019</td>
+                  <td>2016</td>
                   <td>Winner (w/ Colin Garland and Ben Townsend)</td>
                 </tr>
                 <tr>
                   <td>NPCC Short Film Block<sup class="ref" id="cite-14a"><a href="#ref-14">[14]</a></sup></td>
                   <td>2021</td>
-                  <td>Screening</td>
+                  <td>A Flaw In The System Screening</td>
                 </tr>
                 <tr>
                   <td>8 Ball TV: Everything but the Kitchen Sink</td>
                   <td>2024</td>
-                  <td>Screening</td>
+                  <td>A Flaw In The System Screening</td>
                 </tr>
                 <tr>
                   <td>Paradigm Shift @ 180 Studios, London</td>
@@ -3287,6 +3443,7 @@ Admin scratch notes:
         <div class="modal-body image-lightbox-body">
           <img id="image-lightbox-img" src="" alt="Expanded image preview" />
         </div>
+        <div class="image-lightbox-caption" id="image-lightbox-caption" hidden></div>
         <div class="image-lightbox-controls" id="image-lightbox-controls" hidden>
           <button type="button" id="image-lightbox-prev">Prev</button>
           <button type="button" id="image-lightbox-next">Next</button>
@@ -3372,12 +3529,18 @@ __/  o o \___
       const closeModal = document.getElementById("close-modal");
       const imageLightbox = document.getElementById("image-lightbox");
       const imageLightboxImg = document.getElementById("image-lightbox-img");
+      const imageLightboxCaption = document.getElementById("image-lightbox-caption");
       const closeImageLightbox = document.getElementById("close-image-lightbox");
+      const imageLightboxControls = document.getElementById("image-lightbox-controls");
+      const imageLightboxPrev = document.getElementById("image-lightbox-prev");
+      const imageLightboxNext = document.getElementById("image-lightbox-next");
       const videoHoverPreview = document.getElementById("video-hover-preview");
       const videoHoverPreviewMedia = document.getElementById("video-hover-preview-media");
       const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
       const topLevelSections = document.querySelectorAll("main.article > section");
       const tocWrap = document.querySelector(".toc-wrap");
+      const mobileTocToggle = document.getElementById("mobile-toc-toggle");
+      const articleNameHeading = document.querySelector(".wiki-title-row .title");
       const layoutRoot = document.querySelector(".layout");
       const mainArticle = document.querySelector("main.article");
       const leadSection = document.querySelector("main.article > section.lead");
@@ -3456,6 +3619,7 @@ __/  o o \___
       let videoHoverHideTimer = null;
       let videoHoverActiveLink = null;
       let videoHoverPointerInPopup = false;
+      let imageLightboxSourceKey = null;
       let alertAudioCtx = null;
       let popupErrorAudioCtx = null;
       let clickGateCount = 0;
@@ -3501,6 +3665,10 @@ __/  o o \___
         { src: "images/Fposters/FFFFFF4.png", caption: "Found Footage Festival For Friends image 4 (5/16/2020)." },
         { src: "images/Fposters/FFFFFFIRL.jpeg", caption: "Found Footage Festival For Friends IRL (6/26/2021)." }
       ];
+      const ffffLightboxCredits = {
+        "images/Fposters/FFFFFF2.png": "F 3D logos by Ben Ross",
+        "images/Fposters/FFFFFFIRL.jpeg": "Image by Mitchel Johnson"
+      };
       const telfarShowcaseVideos = [
         { src: "https://www.youtube-nocookie.com/embed/OD2zDBPLdWE", title: "TELFAR showcase video 1" },
         { src: "https://www.youtube-nocookie.com/embed/dB1lnEhK9kM", title: "TELFAR showcase video 2" },
@@ -4030,19 +4198,68 @@ __/  o o \___
         modal.setAttribute("aria-hidden", "true");
         modalBody.innerHTML = "";
       }
-      function openImageLightboxFrom(imgNode) {
+      function setImageLightboxControlsVisible(visible) {
+        if (!imageLightboxControls) return;
+        imageLightboxControls.hidden = !visible;
+      }
+
+      function getImageLightboxCurrentItem() {
+        if (imageLightboxSourceKey === "scandal") return scandalImages[scandalIndex] || null;
+        if (imageLightboxSourceKey === "awards") return awardsImages[awardsIndex] || null;
+        if (imageLightboxSourceKey === "ffff") return ffffImages[ffffIndex] || null;
+        return null;
+      }
+
+      function refreshImageLightboxFromSource() {
+        if (!imageLightbox || !imageLightboxImg) return;
+        const item = getImageLightboxCurrentItem();
+        if (!item || !item.src) return;
+        imageLightboxImg.src = item.src;
+        imageLightboxImg.alt = item.caption || "Expanded image preview";
+        if (imageLightboxCaption) {
+          const credit = imageLightboxSourceKey === "ffff" ? ffffLightboxCredits[item.src] : "";
+          if (credit) {
+            imageLightboxCaption.textContent = credit;
+            imageLightboxCaption.hidden = false;
+          } else {
+            imageLightboxCaption.textContent = "";
+            imageLightboxCaption.hidden = true;
+          }
+        }
+      }
+
+      function openImageLightboxFrom(imgNode, sourceKey) {
         if (!imgNode || !imageLightbox || !imageLightboxImg) return;
         if (window.innerWidth <= 980) return;
         const src = imgNode.getAttribute("src");
         if (!src) return;
+        imageLightboxSourceKey = sourceKey || null;
+        setImageLightboxControlsVisible(!!imageLightboxSourceKey);
         imageLightboxImg.src = src;
         imageLightboxImg.alt = imgNode.getAttribute("alt") || "Expanded image preview";
+        if (imageLightboxCaption) {
+          const item = getImageLightboxCurrentItem();
+          const credit = imageLightboxSourceKey === "ffff" && item ? ffffLightboxCredits[item.src] : "";
+          if (credit) {
+            imageLightboxCaption.textContent = credit;
+            imageLightboxCaption.hidden = false;
+          } else {
+            imageLightboxCaption.textContent = "";
+            imageLightboxCaption.hidden = true;
+          }
+        }
         imageLightbox.setAttribute("aria-hidden", "false");
       }
       function closeImageLightboxModal() {
         if (!imageLightbox || !imageLightboxImg) return;
         imageLightbox.setAttribute("aria-hidden", "true");
         imageLightboxImg.removeAttribute("src");
+        if (imageLightboxCaption) {
+          imageLightboxCaption.textContent = "";
+          imageLightboxCaption.hidden = true;
+        }
+        imageLightboxSourceKey = null;
+        setImageLightboxControlsVisible(false);
       }
 
       const videoHoverDelayMs = 1000;
@@ -4446,6 +4663,27 @@ __/  o o \___
         }
       }
 
+      function setMobileTocOpen(open) {
+        if (window.innerWidth > 980) open = false;
+        document.body.classList.toggle("mobile-toc-open", !!open);
+        if (mobileTocToggle) {
+          mobileTocToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+      }
+
+      function syncMobileTocFloating() {
+        if (window.innerWidth > 980) {
+          document.body.classList.remove("mobile-toc-toggle-visible", "mobile-toc-open");
+          if (mobileTocToggle) mobileTocToggle.setAttribute("aria-expanded", "false");
+          return;
+        }
+        const thresholdReached = articleNameHeading
+          ? articleNameHeading.getBoundingClientRect().bottom <= 8
+          : window.scrollY > 120;
+        document.body.classList.toggle("mobile-toc-toggle-visible", thresholdReached);
+        if (!thresholdReached) setMobileTocOpen(false);
+      }
+
       function expandSubsectionForTarget(target) {
         if (!target) return;
         const wrapper = target.closest(".mobile-subsection");
@@ -4474,6 +4712,7 @@ __/  o o \___
           const targetSection = target && target.closest("main.article > section");
           if (targetSection) setSectionCollapsed(targetSection, false);
           expandSubsectionForTarget(target);
+          if (window.innerWidth <= 980) setMobileTocOpen(false);
         });
       });
 
@@ -4485,6 +4724,7 @@ __/  o o \___
         expandSubsectionForTarget(target);
       });
       syncMobileCollapsibles();
+      syncMobileTocFloating();
 
       function initResponsiveTableCards() {
         const tables = document.querySelectorAll("main.article .wikitable");
@@ -4528,6 +4768,15 @@ __/  o o \___
         rows.forEach((row) => {
           if (row.classList.contains("mobile-row-compact")) return;
           const table = row.closest("table");
+          const tableKey = table ? table.getAttribute("data-admin-table") : "";
+          const hasStillColumn =
+            tableKey === "filmography" ||
+            tableKey === "tv" ||
+            tableKey === "fashion" ||
+            tableKey === "trailers" ||
+            tableKey === "film-main" ||
+            tableKey === "film-short";
+          const isTrailersTable = tableKey === "trailers";
           const inDiscography = !!row.closest("#discography");
           const isMusicTable = !!(inDiscography || (table && table.getAttribute("data-admin-table") === "other-sounds"));
           const cells = Array.from(row.children).filter((cell) => cell.matches("td,th"));
@@ -4538,7 +4787,9 @@ __/  o o \___
             if (label) byLabel.set(label, cell);
           });
 
-          const detailLabels = ["role", "network", "distributor", "notes"];
+          const detailLabels = isTrailersTable
+            ? ["role", "network", "distributor"]
+            : ["role", "network", "distributor", "notes"];
 
           function makeSummary(labels) {
             const parts = [];
@@ -4583,6 +4834,11 @@ __/  o o \___
           });
 
           const yearCell = byLabel.get("year") || byLabel.get("date");
+          const notesCell = byLabel.get("notes");
+          const trailersNoteText = isTrailersTable && notesCell ? extractCellTextWithoutMedia(notesCell) : "";
+          if (isTrailersTable && notesCell && trailersNoteText) {
+            notesCell.classList.add("mobile-compact-field");
+          }
           if (titleCell || yearCell) {
             const header = document.createElement("div");
             header.className = "mobile-row-header";
@@ -4594,6 +4850,12 @@ __/  o o \___
               clone.querySelectorAll("iframe,video,img,.inline-table-video,.inline-table-video-stack,.bandcamp-embed,.film-inline-image").forEach((node) => node.remove());
               while (clone.firstChild) titleWrap.appendChild(clone.firstChild);
               header.appendChild(titleWrap);
+            }
+            if (trailersNoteText) {
+              const noteWrap = document.createElement("div");
+              noteWrap.className = "mobile-row-subnote";
+              noteWrap.textContent = trailersNoteText;
+              header.appendChild(noteWrap);
             }
             if (yearCell) {
               yearCell.classList.add("mobile-compact-field");
@@ -4611,6 +4873,12 @@ __/  o o \___
               row.insertBefore(details, titleOrHeader.nextSibling);
             } else {
               row.insertBefore(details, row.firstChild);
+            }
+          }
+          if (hasStillColumn) {
+            const stillCell = cells.find((cell) => (cell.getAttribute("data-label") || "").trim().toLowerCase() === "still");
+            if (stillCell) {
+              stillCell.classList.remove("mobile-compact-field");
             }
           }
         });
@@ -4697,6 +4965,7 @@ __/  o o \___
         resizeRafId = window.requestAnimationFrame(() => {
           resizeRafId = 0;
           syncMobileCollapsibles();
+          syncMobileTocFloating();
           syncResponsiveTableTransforms();
           queueActiveTocUpdate();
         });
@@ -4709,11 +4978,26 @@ __/  o o \___
         activeTocRafId = window.requestAnimationFrame(() => {
           activeTocRafId = 0;
           updateActiveFromScroll();
+          syncMobileTocFloating();
         });
       }
       window.addEventListener("scroll", queueActiveTocUpdate, { passive: true });
       window.addEventListener("load", queueActiveTocUpdate);
       queueActiveTocUpdate();
+      if (mobileTocToggle) {
+        mobileTocToggle.addEventListener("click", (event) => {
+          event.preventDefault();
+          const nextOpen = !document.body.classList.contains("mobile-toc-open");
+          setMobileTocOpen(nextOpen);
+        });
+      }
+      document.addEventListener("click", (event) => {
+        if (window.innerWidth > 980) return;
+        if (!document.body.classList.contains("mobile-toc-open")) return;
+        if (!(event.target instanceof Element)) return;
+        if (event.target.closest("#mobile-toc-toggle, .toc-wrap")) return;
+        setMobileTocOpen(false);
+      });
 
       appearanceHide.addEventListener("click", () => {
         const hidden = appearancePanel.getAttribute("data-hidden") === "true";
@@ -5006,7 +5290,7 @@ __/  o o \___
         scandalImage.addEventListener("click", (event) => {
           if (window.innerWidth <= 980) return;
           event.preventDefault();
-          openImageLightboxFrom(scandalImage);
+          openImageLightboxFrom(scandalImage, "scandal");
         });
       }
 
@@ -5026,6 +5310,21 @@ __/  o o \___
         ffffImage.alt = "Found Footage Festival For Friends image " + (ffffIndex + 1);
         ffffCaption.textContent = item.caption;
         ffffCounter.textContent = (ffffIndex + 1) + " / " + ffffImages.length;
+      }
+
+      function stepImageLightbox(direction) {
+        if (!imageLightboxSourceKey) return;
+        if (imageLightboxSourceKey === "scandal") {
+          scandalIndex = (scandalIndex + direction + scandalImages.length) % scandalImages.length;
+          renderScandalImage();
+        } else if (imageLightboxSourceKey === "awards") {
+          awardsIndex = (awardsIndex + direction + awardsImages.length) % awardsImages.length;
+          renderAwardsImage();
+        } else if (imageLightboxSourceKey === "ffff") {
+          ffffIndex = (ffffIndex + direction + ffffImages.length) % ffffImages.length;
+          renderFfffImage();
+        }
+        refreshImageLightboxFromSource();
       }
 
       async function renderTelfarShowcase() {
@@ -5081,7 +5380,7 @@ __/  o o \___
         awardsImage.addEventListener("click", (event) => {
           if (window.innerWidth <= 980) return;
           event.preventDefault();
-          openImageLightboxFrom(awardsImage);
+          openImageLightboxFrom(awardsImage, "awards");
         });
       }
 
@@ -5108,7 +5407,7 @@ __/  o o \___
         ffffImage.addEventListener("click", (event) => {
           if (window.innerWidth <= 980) return;
           event.preventDefault();
-          openImageLightboxFrom(ffffImage);
+          openImageLightboxFrom(ffffImage, "ffff");
         });
       }
 
@@ -5396,6 +5695,10 @@ __/  o o \___
       });
       if (imageLightbox && closeImageLightbox) {
         closeImageLightbox.addEventListener("click", closeImageLightboxModal);
+        if (imageLightboxPrev && imageLightboxNext) {
+          imageLightboxPrev.addEventListener("click", () => stepImageLightbox(-1));
+          imageLightboxNext.addEventListener("click", () => stepImageLightbox(1));
+        }
         imageLightbox.addEventListener("click", (event) => {
           if (event.target === imageLightbox && window.innerWidth > 980) {
             closeImageLightboxModal();
@@ -5408,6 +5711,10 @@ __/  o o \___
         }
         if (event.key === "Escape" && imageLightbox && imageLightbox.getAttribute("aria-hidden") === "false") {
           closeImageLightboxModal();
+        }
+        if (imageLightbox && imageLightbox.getAttribute("aria-hidden") === "false") {
+          if (event.key === "ArrowLeft") stepImageLightbox(-1);
+          if (event.key === "ArrowRight") stepImageLightbox(1);
         }
         if (event.key === "Escape" && tamperModal.getAttribute("aria-hidden") === "false") {
           closeTamperModal();
