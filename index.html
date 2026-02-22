@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com https://www.instagram.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; media-src 'self' https: blob:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://drive.google.com https://bandcamp.com https://player-widget.mixcloud.com https://www.instagram.com; connect-src 'self' https://translate.googleapis.com https://translate.google.com https://bandcamp.com https://www.wikipedia.org https://en.wikipedia.org https://www.youtube.com; font-src 'self' data: https:; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com https://translate.gstatic.com https://www.instagram.com; style-src 'self' 'unsafe-inline' https://translate.googleapis.com https://translate.google.com https://translate.gstatic.com; img-src 'self' data: https:; media-src 'self' https: blob:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://drive.google.com https://bandcamp.com https://player-widget.mixcloud.com https://www.instagram.com https://translate.google.com https://translate.googleapis.com https://translate.gstatic.com; connect-src 'self' https://translate.googleapis.com https://translate.google.com https://translate.gstatic.com https://bandcamp.com https://www.wikipedia.org https://en.wikipedia.org https://www.youtube.com; font-src 'self' data: https: https://translate.gstatic.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=()" />
-    <link rel="icon" type="image/png" href="images/header-logo.png?v=3" />
-    <link rel="apple-touch-icon" href="images/header-logo.png?v=3" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/header-logo.png?v=5" />
+    <link rel="shortcut icon" href="/images/header-logo.png?v=5" />
+    <link rel="apple-touch-icon" href="/images/header-logo.png?v=5" />
     <link rel="canonical" href="https://willkempner.com/" />
     <link rel="preload" as="image" href="images/FedoraHeadshot.webp?v=1" />
     <link rel="preload" as="image" href="images/FedoraHeadshot_small2.webp?v=1" />
@@ -3531,16 +3532,6 @@ Admin scratch notes:
                   <td>College assignment.</td>
                 </tr>
                 <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/bDT9M6-oSgE" data-inline-off="true" class="video-link"><i>Rats</i></a></td>
-                  <td>2013</td>
-                  <td>Webseries made with college roommates. Never finished.</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://player.vimeo.com/video/227838700?h=0a8a57d957" data-inline-off="true" class="video-link"><i>Zoo: A Theater of War</i></a></td>
-                  <td>2013</td>
-                  <td>Made with Chris Gilman.</td>
-                </tr>
-                <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/_ruyXpuaSV4?start=10" data-inline-off="true" class="video-link"><i>Ticket Out Of Town</i></a></td>
                   <td>2015</td>
                   <td>Short film.</td>
@@ -3559,6 +3550,11 @@ Admin scratch notes:
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/x7tyL7CTTcU" data-inline-off="true" class="video-link"><i>Lost It: A Snap Story</i></a></td>
                   <td>2016</td>
                   <td>Made with Colin Garland and Ben Townsend. Selected for Tribeca Film Festival Snapchat Stories.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://player.vimeo.com/video/227838700?h=0a8a57d957" data-external="https://vimeo.com/227838700/0a8a57d957?fl=pl&amp;fe=ti" data-inline-off="true" class="video-link"><i>Zoo: A Theater of War</i></a></td>
+                  <td>2017</td>
+                  <td>Made with Chris Gilman.</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AdT44qXOu4I" data-inline-off="true" class="video-link"><i>Fuck New York - Trash Boy</i></a></td>
@@ -4123,7 +4119,7 @@ __/  o o \___
         }
       }
 
-      function openModal(url) {
+      function openModal(url, sourceLink) {
         const normalizedUrl = normalizeDriveEmbedUrl(url);
         if (!isSafeUrl(normalizedUrl)) {
           modalBody.textContent = "Blocked unsafe media URL.";
@@ -4145,11 +4141,15 @@ __/  o o \___
           if (isDrivePreview) {
             watchUrl = normalizedUrl.replace(/\/preview(\?.*)?$/i, "/view");
           }
+          const externalOverride =
+            sourceLink && sourceLink.dataset && sourceLink.dataset.external
+              ? sourceLink.dataset.external
+              : "";
           const footer = isDrivePreview
             ? '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on Google Drive</a></div>'
             : isYouTube
             ? '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on YouTube</a></div>'
-            : '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + normalizedUrl.replace("https://player.vimeo.com/video/", "https://vimeo.com/") + '" target="_blank" rel="noreferrer">Open on Vimeo</a></div>';
+            : '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + (externalOverride || normalizedUrl.replace("https://player.vimeo.com/video/", "https://vimeo.com/")) + '" target="_blank" rel="noreferrer">Open on Vimeo</a></div>';
           modalBody.innerHTML =
             '<iframe src="' + normalizedUrl + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video preview"></iframe>' +
             footer;
@@ -4660,7 +4660,7 @@ __/  o o \___
               }
               if (!videoUrl) return;
               event.preventDefault();
-              openModal(videoUrl);
+              openModal(videoUrl, link);
             });
             link.addEventListener("mouseenter", () => showHoverPreviewForLink(link));
             link.addEventListener("mouseleave", scheduleHoverPreviewHide);
@@ -4747,7 +4747,7 @@ __/  o o \___
           return;
         }
         const videoUrl = link.dataset.video;
-        if (videoUrl && isSafeUrl(normalizeDriveEmbedUrl(videoUrl))) openModal(videoUrl);
+        if (videoUrl && isSafeUrl(normalizeDriveEmbedUrl(videoUrl))) openModal(videoUrl, link);
       }
       initVintageOtherVideoGuards();
       bindVideoLinkHandlers();
