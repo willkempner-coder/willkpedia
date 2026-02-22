@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com https://translate.gstatic.com https://www.instagram.com; style-src 'self' 'unsafe-inline' https://translate.googleapis.com https://translate.google.com https://translate.gstatic.com; img-src 'self' data: https:; media-src 'self' https: blob:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://drive.google.com https://bandcamp.com https://player-widget.mixcloud.com https://www.instagram.com https://translate.google.com https://translate.googleapis.com https://translate.gstatic.com; connect-src 'self' https://translate.googleapis.com https://translate.google.com https://translate.gstatic.com https://bandcamp.com https://www.wikipedia.org https://en.wikipedia.org https://www.youtube.com; font-src 'self' data: https: https://translate.gstatic.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://translate.google.com https://translate.googleapis.com https://translate.gstatic.com https://www.gstatic.com https://ssl.gstatic.com https://www.instagram.com; style-src 'self' 'unsafe-inline' https://translate.googleapis.com https://translate.google.com https://translate.gstatic.com https://www.gstatic.com; img-src 'self' data: https:; media-src 'self' https: blob:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://drive.google.com https://bandcamp.com https://player-widget.mixcloud.com https://www.instagram.com https://translate.google.com https://translate.googleapis.com https://translate.gstatic.com; connect-src 'self' https://translate.googleapis.com https://translate.google.com https://translate.gstatic.com https://www.gstatic.com https://bandcamp.com https://www.wikipedia.org https://en.wikipedia.org https://www.youtube.com; font-src 'self' data: https: https://translate.gstatic.com https://www.gstatic.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=()" />
     <link rel="icon" href="/favicon.ico?v=1" sizes="any" />
@@ -3595,6 +3595,16 @@ Admin scratch notes:
                   <td>Lanlord Lance Music Video.</td>
                 </tr>
                 <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/zkd2RA0d4js" data-inline-off="true" class="video-link"><i>A Message from Mark</i></a></td>
+                  <td>2020</td>
+                  <td>For FFFFFF2 ft. Mark Duplass.</td>
+                </tr>
+                <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/DEH6n7yW80o" data-inline-off="true" class="video-link"><i>The Lord of the Rings</i></a></td>
+                  <td>2020</td>
+                  <td>For FFFFFF3.</td>
+                </tr>
+                <tr>
                   <td><a href="#" data-video="https://player.vimeo.com/video/953743073?h=e52cebbd6c" data-inline-off="true" class="video-link"><i>Two Days In Dallas</i></a></td>
                   <td>2024</td>
                   <td>20min film made with Father and Brother.</td>
@@ -4282,6 +4292,16 @@ __/  o o \___
         return true;
       }
 
+      function applyGoogleTranslateLanguageWithRetry(langCode, retries) {
+        const attempts = typeof retries === "number" ? retries : 20;
+        if (applyGoogleTranslateLanguage(langCode)) return true;
+        if (attempts <= 0) return false;
+        window.setTimeout(() => {
+          applyGoogleTranslateLanguageWithRetry(langCode, attempts - 1);
+        }, 250);
+        return false;
+      }
+
       function getTranslatableTextNodes() {
         const root = document.body;
         const nodes = [];
@@ -4343,14 +4363,14 @@ __/  o o \___
         clearNaviTranslation();
         if (langCode === "navi") {
           pendingGoogleLanguage = "en";
-          applyGoogleTranslateLanguage("en");
+          applyGoogleTranslateLanguageWithRetry("en");
           applyNaviTranslation();
         } else if (langCode === "en") {
           pendingGoogleLanguage = "en";
-          applyGoogleTranslateLanguage("en");
+          applyGoogleTranslateLanguageWithRetry("en");
         } else {
           pendingGoogleLanguage = langCode;
-          applyGoogleTranslateLanguage(langCode);
+          applyGoogleTranslateLanguageWithRetry(langCode);
         }
         if (languageButtonLabel) {
           languageButtonLabel.textContent = "26 languages · " + getLanguageLabel(langCode);
@@ -4385,7 +4405,7 @@ __/  o o \___
         );
         googleTranslateReady = true;
         if (pendingGoogleLanguage) {
-          applyGoogleTranslateLanguage(pendingGoogleLanguage);
+          applyGoogleTranslateLanguageWithRetry(pendingGoogleLanguage);
         }
         renderLanguageMenu();
       };
@@ -4394,6 +4414,9 @@ __/  o o \___
         const script = document.createElement("script");
         script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
         script.async = true;
+        script.onerror = function () {
+          googleTranslateReady = false;
+        };
         document.head.appendChild(script);
       })();
 
