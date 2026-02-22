@@ -2609,7 +2609,7 @@ Admin scratch notes:
 
           <section id="editing">
             <h2>Editing Work <span class="edit">[edit]</span></h2>
-            <p data-admin-text="editing-intro">Editing is the craft Kempner is often called to perform. He handles the blade with grace and certainty.</p>
+            <p data-admin-text="editing-intro">Editing is the craft Kempner is most often called upon to perform. His employers love to place him in front of a computer and have him tap away all day. They relish using their funds to goad him into an office, where they plop him in front of Adobe Premiere. They smile at the thought of him dragging and dropping clips, transforming their assets into a finished export.<br /><br />His editorial work spans television, film, fashion, trailers, and branded content.</p>
 
             <h3 id="tv">Television</h3>
             <p class="notes" data-admin-text="tv-intro">TV is a constant presence in most Americans' lives. Studies have shown that television competes with other sources of human interaction, such as family, friends, church, and school, in helping young people develop values and form ideas about the world around them.<sup class="ref" id="cite-4a"><a href="#ref-4">[4]</a></sup> Kempner has worked for networks like HBO, self-released YouTube, and Disney+.</p>
@@ -4812,7 +4812,6 @@ __/  o o \___
       let mobileSubsectionCollapsibleEnabled = false;
       let mobileTocDockTop = null;
       let mobileTocDockAnchorY = null;
-      let mobileTocFloatThresholdY = null;
 
       function setSubsectionCollapsed(wrapper, collapsed) {
         if (!wrapper) return;
@@ -4987,7 +4986,6 @@ __/  o o \___
           document.documentElement.style.removeProperty("--mobile-toc-left");
           mobileTocDockTop = null;
           mobileTocDockAnchorY = null;
-          mobileTocFloatThresholdY = null;
           return;
         }
         const floatTop = 58;
@@ -4999,24 +4997,22 @@ __/  o o \___
           if (mobileTocDockTop == null) {
             mobileTocDockTop = Math.round(langRect.top - viewportOffsetTop);
             mobileTocDockAnchorY = Math.max(0, Math.round(window.scrollY + langRect.top));
-            mobileTocFloatThresholdY = Math.max(0, mobileTocDockAnchorY - floatTop);
           }
-          const shouldFloat = window.scrollY >= (mobileTocFloatThresholdY ?? 0);
-          dynamicTop = (shouldFloat ? floatTop : mobileTocDockTop) + viewportOffsetTop;
+          const stickyTop = Math.max(floatTop, Math.round((mobileTocDockAnchorY ?? 0) - window.scrollY));
+          dynamicTop = stickyTop + viewportOffsetTop;
         } else if (wikiTitleRow) {
           const titleRect = wikiTitleRow.getBoundingClientRect();
           const fallbackTop = Math.round(titleRect.bottom + 8);
           if (mobileTocDockTop == null) {
             mobileTocDockTop = fallbackTop - viewportOffsetTop;
             mobileTocDockAnchorY = Math.max(0, Math.round(window.scrollY + fallbackTop));
-            mobileTocFloatThresholdY = Math.max(0, mobileTocDockAnchorY - floatTop);
           }
-          const shouldFloat = window.scrollY >= (mobileTocFloatThresholdY ?? 0);
-          dynamicTop = (shouldFloat ? floatTop : mobileTocDockTop) + viewportOffsetTop;
+          const stickyTop = Math.max(floatTop, Math.round((mobileTocDockAnchorY ?? 0) - window.scrollY));
+          dynamicTop = stickyTop + viewportOffsetTop;
         }
         document.documentElement.style.setProperty("--mobile-toc-top", `${dynamicTop}px`);
         document.documentElement.style.setProperty("--mobile-toc-left", `${dynamicLeft}px`);
-        const thresholdReached = dynamicTop <= floatTop;
+        const thresholdReached = Math.round(dynamicTop - viewportOffsetTop) <= floatTop;
         document.body.classList.add("mobile-toc-toggle-visible");
         document.body.classList.toggle("mobile-toc-floating", thresholdReached);
         if (!thresholdReached) setMobileTocOpen(false);
