@@ -2628,7 +2628,7 @@ Admin scratch notes:
 
           <section id="editing">
             <h2>Editing Work <span class="edit">[edit]</span></h2>
-            <p data-admin-text="editing-intro">Editing is the craft Kempner is most often called upon to perform. His employers love to place him in front of a computer and have him tap away all day. They relish using their funds to goad him into an office, where they plop him in front of Adobe Premiere. They smile at the thought of him dragging and dropping clips, transforming their assets into a finished export.<br /><br />His editorial work spans <a href="#television">television</a>, <a href="#film-editing">film</a>, <a href="#fashion">fashion</a>, <a href="#trailers">trailers</a>, and <a href="#branded">branded content</a>.</p>
+            <p data-admin-text="editing-intro">Editing is the craft Kempner is most often called upon to perform. His employers love to place him in front of a computer and have him tap away all day. They relish using their funds to goad him into an office, where they plop him in front of Adobe Premiere. They smile at the thought of him dragging and dropping clips, transforming their assets into a finished export.<br /><br />His editorial work spans <a href="#tv">television</a>, <a href="#films-editing">film</a>, <a href="#fashion">fashion</a>, <a href="#trailers">trailers</a>, and <a href="#corporate">branded content</a>.</p>
 
             <h3 id="tv">Television</h3>
             <p class="notes" data-admin-text="tv-intro">TV is a constant presence in most Americans' lives. Studies have shown that television competes with other sources of human interaction, such as family, friends, church, and school, in helping young people develop values and form ideas about the world around them.<sup class="ref" id="cite-4a"><a href="#ref-4">[4]</a></sup> Kempner has worked for networks like HBO, self-released YouTube, and Disney+.</p>
@@ -2848,16 +2848,6 @@ Admin scratch notes:
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" data-inline-off="true" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)<div class="title-subnote">Directed by Naima Ramos-Chapman</div></td>
                   <td>2021</td>
                   <td>Editor, alongside Kristan Sprague</td>
-                </tr>
-                <tr>
-                  <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/6A7EYnKNiVk" data-inline-off="true" class="video-link filmography-still-link">
-                      <img class="filmography-still" src="https://i.ytimg.com/vi/6A7EYnKNiVk/hqdefault.jpg" alt="TELFAR 20th Anniversary Show still" loading="lazy" />
-                    </a>
-                  </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/6A7EYnKNiVk" data-inline-off="true" class="video-link"><i>TELFAR 20th Anniversary Show | SS25 Runway</i></a></td>
-                  <td>2025</td>
-                  <td>Editor</td>
                 </tr>
                 <tr>
                   <td>
@@ -5037,6 +5027,10 @@ __/  o o \___
           }
           const stickyTop = Math.max(floatTop, Math.round((mobileTocDockAnchorY ?? 0) - window.scrollY));
           dynamicTop = stickyTop + viewportOffsetTop;
+        }
+        if (mobileTocDockTop != null) {
+          const maxDockedTop = Math.round(mobileTocDockTop + viewportOffsetTop);
+          dynamicTop = Math.min(dynamicTop, maxDockedTop);
         }
         document.documentElement.style.setProperty("--mobile-toc-top", `${dynamicTop}px`);
         document.documentElement.style.setProperty("--mobile-toc-left", `${dynamicLeft}px`);
