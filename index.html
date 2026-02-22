@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="images/header-logo.png?v=3" />
     <link rel="apple-touch-icon" href="images/header-logo.png?v=3" />
     <link rel="preload" as="image" href="images/FedoraHeadshot.webp?v=1" />
-    <link rel="preload" as="image" href="images/FedoraHeadshot_small.webp?v=1" />
+    <link rel="preload" as="image" href="images/FedoraHeadshot_small2.webp?v=1" />
     <link rel="preload" as="image" href="images/FedoraHeadshot_large.webp?v=1" />
     <title>WillKpedia - Will Kempner</title>
     <meta property="og:title" content="WillKpedia - Will Kempner" />
@@ -78,6 +78,11 @@
         font-size: 0.92rem;
         line-height: 1.4;
         color: #202122;
+        text-align: left;
+      }
+      table[data-admin-table="filmography"] td:nth-child(2),
+      table[data-admin-table="filmography"] td:nth-child(2) * {
+        text-align: left;
       }
       .title-subnote {
         margin-top: 4px;
@@ -666,6 +671,58 @@
       .mobile-toc-toggle {
         display: none;
       }
+      .mobile-preview-shell {
+        display: none;
+        min-height: 100vh;
+        background: #0f1115;
+        color: #fff;
+        padding: 16px;
+        font-family: sans-serif;
+      }
+      body.force-mobile-preview > *:not(.mobile-preview-shell) {
+        display: none !important;
+      }
+      body.force-mobile-preview {
+        margin: 0;
+        background: #0f1115;
+      }
+      body.force-mobile-preview .mobile-preview-shell {
+        display: block;
+      }
+      .mobile-preview-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin: 0 auto 14px;
+        max-width: 460px;
+      }
+      .mobile-preview-toolbar a {
+        color: #9fc0ff;
+        font-size: 0.9rem;
+      }
+      .mobile-preview-label {
+        font-size: 0.9rem;
+        color: #c8ccd1;
+      }
+      .mobile-preview-frame-wrap {
+        width: min(430px, calc(100vw - 32px));
+        margin: 0 auto;
+        border: 1px solid #3a3f47;
+        border-radius: 18px;
+        background: #1a1d22;
+        padding: 10px;
+        box-shadow: 0 18px 46px rgba(0, 0, 0, 0.45);
+      }
+      .mobile-preview-frame {
+        width: 100%;
+        height: calc(100vh - 108px);
+        min-height: 620px;
+        border: 0;
+        border-radius: 12px;
+        background: #fff;
+        display: block;
+      }
       .article {
         min-width: 0;
         max-width: 1120px;
@@ -745,8 +802,10 @@
         width: 100%;
         border-collapse: collapse;
         font-family: sans-serif;
-        font-size: 0.9rem;
-        margin: 10px 0 14px;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        margin: 10px 0 16px;
+        background: #fff;
       }
       #personal-info .wikitable {
         width: auto;
@@ -775,40 +834,40 @@
       .wikitable th,
       .wikitable td {
         border: 1px solid var(--wiki-border);
-        padding: 7px 9px;
+        padding: 8px 10px;
         vertical-align: top;
+        overflow-wrap: anywhere;
+        word-break: normal;
       }
       .wikitable th {
         background: #eaecf0;
         text-align: left;
+        font-weight: 700;
+        line-height: 1.25;
       }
-      #trailers .wikitable {
-        table-layout: fixed;
+      .wikitable td {
+        background: #fff;
       }
-      #trailers .wikitable th:nth-child(2),
-      #trailers .wikitable td:nth-child(2) {
-        width: 54px !important;
-        min-width: 54px !important;
-        max-width: 54px !important;
-        white-space: normal;
-        overflow-wrap: normal;
-        word-break: normal;
-        line-height: 1.2;
+      .wikitable td > :first-child {
+        margin-top: 0;
+      }
+      .wikitable td > :last-child {
+        margin-bottom: 0;
       }
       .table-video-col-1 th:nth-child(1),
       .table-video-col-1 td:nth-child(1) {
         width: 46%;
-        min-width: 340px;
+        min-width: 300px;
       }
       .table-video-col-2 th:nth-child(1),
       .table-video-col-2 td:nth-child(1) {
         width: 44%;
-        min-width: 340px;
+        min-width: 300px;
       }
       .table-player-last th:last-child,
       .table-player-last td:last-child {
         width: 42%;
-        min-width: 320px;
+        min-width: 280px;
       }
       table[data-admin-table="filmography"] {
         table-layout: fixed;
@@ -875,16 +934,31 @@
       table[data-admin-table="fashion"] td:nth-child(3),
       table[data-admin-table="trailers"] th:nth-child(3),
       table[data-admin-table="trailers"] td:nth-child(3) {
-        width: 88px;
-        min-width: 88px;
-        max-width: 88px;
+        width: 82px;
+        min-width: 82px;
+        max-width: 82px;
         white-space: nowrap;
+        text-align: right;
+      }
+      table[data-admin-table="tv"] th:nth-child(4),
+      table[data-admin-table="tv"] td:nth-child(4),
+      table[data-admin-table="film-short"] th:nth-child(4),
+      table[data-admin-table="film-short"] td:nth-child(4),
+      table[data-admin-table="trailers"] th:nth-child(4),
+      table[data-admin-table="trailers"] td:nth-child(4) {
+        width: 160px;
+        min-width: 140px;
+      }
+      table[data-admin-table="tv"] th:nth-child(5),
+      table[data-admin-table="tv"] td:nth-child(5),
+      table[data-admin-table="film-main"] th:nth-child(5),
+      table[data-admin-table="film-main"] td:nth-child(5) {
+        width: 170px;
+        min-width: 150px;
       }
       @media (min-width: 981px) {
         table[data-admin-table="branded"] th:nth-child(2),
         table[data-admin-table="branded"] td:nth-child(2),
-        table[data-admin-table="filmography"] th:nth-child(2),
-        table[data-admin-table="filmography"] td:nth-child(2),
         table[data-admin-table="awards"] th:nth-child(2),
         table[data-admin-table="awards"] td:nth-child(2),
         table[data-admin-table="other-video"] th:nth-child(2),
@@ -898,24 +972,31 @@
         table[data-admin-table="discography-lanlord"] th:nth-child(2),
         table[data-admin-table="discography-lanlord"] td:nth-child(2),
         table[data-admin-table="other-sounds"] th:nth-child(2),
-        table[data-admin-table="other-sounds"] td:nth-child(2) {
-          width: 88px;
-          min-width: 88px;
-          max-width: 88px;
+        table[data-admin-table="other-sounds"] td:nth-child(2),
+        table[data-admin-table="fashion-telfar-select"] th:nth-child(2),
+        table[data-admin-table="fashion-telfar-select"] td:nth-child(2),
+        table[data-admin-table="fashion-telfar-additional"] th:nth-child(2),
+        table[data-admin-table="fashion-telfar-additional"] td:nth-child(2) {
+          width: 96px;
+          min-width: 96px;
+          max-width: 96px;
           white-space: nowrap;
+          text-align: right;
         }
         table[data-admin-table="found-footage-festival"] th:nth-child(2),
         table[data-admin-table="found-footage-festival"] td:nth-child(2) {
           width: 110px;
           min-width: 110px;
           max-width: 110px;
+          text-align: right;
         }
         table[data-admin-table="awards"] th:nth-child(2),
         table[data-admin-table="awards"] td:nth-child(2) {
-          width: 88px;
-          min-width: 88px;
-          max-width: 88px;
+          width: 82px;
+          min-width: 82px;
+          max-width: 82px;
           white-space: nowrap;
+          text-align: right;
         }
         table[data-admin-table="filmography"] th:nth-child(2),
         table[data-admin-table="filmography"] td:nth-child(2) {
@@ -923,13 +1004,42 @@
           min-width: 0;
           max-width: none;
           white-space: normal;
+          text-align: left;
         }
         table[data-admin-table="filmography"] th:nth-child(3),
         table[data-admin-table="filmography"] td:nth-child(3) {
-          width: 88px;
-          min-width: 88px;
-          max-width: 88px;
+          width: 82px;
+          min-width: 82px;
+          max-width: 82px;
           white-space: nowrap;
+          text-align: right;
+        }
+        table[data-admin-table="other-video"] th:nth-child(2),
+        table[data-admin-table="other-video"] td:nth-child(2) {
+          text-align: right;
+          white-space: normal;
+          overflow-wrap: normal;
+          word-break: keep-all;
+        }
+        table[data-admin-table="tv"] th:nth-child(3),
+        table[data-admin-table="tv"] td:nth-child(3),
+        table[data-admin-table="film-main"] th:nth-child(3),
+        table[data-admin-table="film-main"] td:nth-child(3),
+        table[data-admin-table="film-short"] th:nth-child(3),
+        table[data-admin-table="film-short"] td:nth-child(3),
+        table[data-admin-table="fashion"] th:nth-child(3),
+        table[data-admin-table="fashion"] td:nth-child(3),
+        table[data-admin-table="trailers"] th:nth-child(3),
+        table[data-admin-table="trailers"] td:nth-child(3),
+        table[data-admin-table="filmography"] th:nth-child(3),
+        table[data-admin-table="filmography"] td:nth-child(3) {
+          font-variant-numeric: tabular-nums;
+        }
+        table[data-admin-table="awards"] th:nth-child(1),
+        table[data-admin-table="awards"] td:nth-child(1),
+        table[data-admin-table="found-footage-festival"] th:nth-child(1),
+        table[data-admin-table="found-footage-festival"] td:nth-child(1) {
+          width: auto;
         }
       }
       .ref {
@@ -1093,7 +1203,7 @@
       }
       .inline-table-video {
         margin-top: 8px;
-        width: min(100%, 520px);
+        width: min(100%, 500px);
         border: 1px solid #a2a9b1;
         background: #fff;
       }
@@ -1498,12 +1608,17 @@
           flex-wrap: wrap;
           align-items: flex-start;
         }
+        .wiki-title-row {
+          gap: 8px;
+        }
         .topic-tabs,
         .page-actions {
           flex-wrap: wrap;
         }
         .language-toolbar {
           justify-content: flex-start;
+          padding-left: 62px;
+          min-height: 52px;
         }
         .language-button {
           min-width: 180px;
@@ -1550,10 +1665,10 @@
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
         }
         .mobile-toc-toggle {
-          display: none;
+          display: inline-flex;
           position: fixed;
-          top: 58px;
-          left: 10px;
+          top: var(--mobile-toc-top, 58px);
+          left: var(--mobile-toc-left, 10px);
           width: 52px;
           height: 52px;
           border: 2px solid #72777d;
@@ -1566,9 +1681,15 @@
           align-items: center;
           justify-content: center;
           padding: 0;
+          flex: 0 0 auto;
+          margin: 0;
+          transition: box-shadow 120ms ease;
         }
         body.mobile-toc-toggle-visible .mobile-toc-toggle {
           display: inline-flex;
+        }
+        body.mobile-toc-floating .mobile-toc-toggle {
+          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
         }
         .infobox,
         .thumb,
@@ -1609,6 +1730,7 @@
           margin: 0;
           border-top: 0;
           background: #fff;
+          overflow: hidden;
         }
         .wikitable tbody tr:first-child {
           border-top: 1px solid var(--wiki-border);
@@ -1620,12 +1742,12 @@
           box-sizing: border-box;
           border: 0;
           border-top: 1px solid #eaecf0;
-          padding: 8px 10px;
+          padding: 8px 12px;
           white-space: normal;
           min-width: 0 !important;
           font-family: sans-serif;
-          font-size: 1rem;
-          line-height: 1.42;
+          font-size: 0.98rem;
+          line-height: 1.4;
         }
         .wikitable tbody tr > *:first-child {
           border-top: 0;
@@ -1655,7 +1777,7 @@
           display: flex;
           flex-wrap: wrap;
           gap: 8px 14px;
-          padding: 8px 10px;
+          padding: 8px 12px 10px;
           border-top: 1px solid #eaecf0;
           background: #fff;
         }
@@ -1664,7 +1786,7 @@
           align-items: baseline;
           justify-content: space-between;
           gap: 10px;
-          padding: 10px;
+          padding: 10px 12px;
           border-top: 1px solid #eaecf0;
           background: #fff;
         }
@@ -1712,13 +1834,13 @@
         }
         .mobile-row-summary .v {
           font-family: sans-serif;
-          font-size: 1rem;
+          font-size: 0.96rem;
           font-weight: 500;
           color: #202122;
         }
         .mobile-row-summary .v-only {
           font-family: sans-serif;
-          font-size: 1rem;
+          font-size: 0.96rem;
           font-weight: 500;
           color: #202122;
         }
@@ -1748,7 +1870,7 @@
         .mobile-row-media {
           display: block;
           order: 100;
-          padding: 8px 10px 10px;
+          padding: 8px 12px 12px;
           border-top: 1px solid #eaecf0;
         }
         .mobile-row-media .inline-table-video,
@@ -1764,6 +1886,24 @@
         .inline-table-video {
           width: 100%;
           max-width: none;
+        }
+        .mobile-row-media .inline-table-video {
+          width: 100%;
+          max-width: 100%;
+        }
+        .mobile-row-media .inline-table-video-media {
+          aspect-ratio: 16 / 9;
+        }
+        #discography .mobile-row-media .bandcamp-embed,
+        table[data-admin-table="other-sounds"] .mobile-row-media .bandcamp-embed {
+          width: 100%;
+          min-width: 0;
+          max-width: none;
+        }
+        #discography .mobile-row-media iframe,
+        table[data-admin-table="other-sounds"] .mobile-row-media iframe {
+          width: 100% !important;
+          max-width: 100% !important;
         }
         .film-inline-image {
           max-width: 100%;
@@ -1838,12 +1978,13 @@
           min-width: 160px;
         }
         .toc a.active {
-          color: var(--wiki-link);
-          font-weight: 400;
+          color: #202122;
+          font-weight: 700;
         }
         table[data-admin-table="found-footage-festival"] .mobile-row-header {
           align-items: center;
           gap: 8px;
+          padding: 10px 12px;
         }
         table[data-admin-table="found-footage-festival"] .mobile-row-title,
         table[data-admin-table="found-footage-festival"] .mobile-row-title * {
@@ -1868,6 +2009,7 @@
           font-size: 0.88rem;
           font-weight: 700;
           white-space: nowrap;
+          font-variant-numeric: tabular-nums;
         }
         table[data-admin-table="filmography"] tbody tr.mobile-row-compact,
         table[data-admin-table="tv"] tbody tr.mobile-row-compact,
@@ -1875,9 +2017,23 @@
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact,
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact,
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact {
-          display: grid;
-          grid-template-columns: 136px minmax(0, 1fr);
-          grid-template-rows: auto auto;
+          display: flex;
+          flex-direction: column;
+        }
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"] {
+          order: 1;
+          border-top: 0;
+          border-right: 0;
+          padding: 12px 12px 0;
+          display: block !important;
+          width: 100%;
         }
         table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"],
@@ -1885,14 +2041,31 @@
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"] {
-          grid-column: 1;
-          grid-row: 1 / span 2;
-          border-top: 0;
-          border-right: 1px solid #eaecf0;
-          padding: 10px;
-          display: flex !important;
-          align-items: flex-start;
-          justify-content: center;
+          padding: 0 !important;
+          width: 100% !important;
+          max-width: none !important;
+        }
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
+        table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
+        table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
+        table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
+        table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
+        table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link {
+          width: 100%;
+          display: block;
+        }
+        table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
+        table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
+        table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
+        table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
+        table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
+        table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still {
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          object-position: center;
+          border: 0;
+          border-bottom: 1px solid #a2a9b1;
         }
         table[data-admin-table="filmography"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
         table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
@@ -1909,13 +2082,13 @@
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact .mobile-row-header,
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact .mobile-row-header,
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact .mobile-row-header {
-          grid-column: 2;
-          grid-row: 1;
-          border-top: 0;
+          order: 2;
+          border-top: 1px solid #eaecf0;
           display: grid;
           grid-template-columns: minmax(0, 1fr) auto;
           align-items: start;
           gap: 6px 10px;
+          padding: 10px 12px 8px;
         }
         table[data-admin-table="filmography"] tbody tr.mobile-row-compact .mobile-row-summary,
         table[data-admin-table="tv"] tbody tr.mobile-row-compact .mobile-row-summary,
@@ -1923,8 +2096,8 @@
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact .mobile-row-summary,
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact .mobile-row-summary,
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact .mobile-row-summary {
-          grid-column: 2;
-          grid-row: 2;
+          order: 3;
+          padding: 6px 12px 12px;
         }
         table[data-admin-table="filmography"] .filmography-still,
         table[data-admin-table="tv"] .filmography-still,
@@ -1934,35 +2107,126 @@
         table[data-admin-table="film-short"] .filmography-still {
           width: 100%;
           max-width: 100%;
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          object-position: center;
+          display: block;
+          border: 1px solid #a2a9b1;
+        }
+        table[data-admin-table="filmography"] .filmography-still-link,
+        table[data-admin-table="tv"] .filmography-still-link,
+        table[data-admin-table="fashion"] .filmography-still-link,
+        table[data-admin-table="trailers"] .filmography-still-link,
+        table[data-admin-table="film-main"] .filmography-still-link,
+        table[data-admin-table="film-short"] .filmography-still-link {
+          display: block;
+          width: 100%;
+        }
+        table[data-admin-table="filmography"] .mobile-row-title,
+        table[data-admin-table="tv"] .mobile-row-title,
+        table[data-admin-table="fashion"] .mobile-row-title,
+        table[data-admin-table="trailers"] .mobile-row-title,
+        table[data-admin-table="film-main"] .mobile-row-title,
+        table[data-admin-table="film-short"] .mobile-row-title {
+          min-width: 0;
         }
         table[data-admin-table="tv"] .mobile-row-title *,
         table[data-admin-table="fashion"] .mobile-row-title *,
         table[data-admin-table="trailers"] .mobile-row-title *,
         table[data-admin-table="film-main"] .mobile-row-title *,
         table[data-admin-table="film-short"] .mobile-row-title * {
-          font-size: 0.98rem !important;
+          font-size: 0.95rem !important;
           line-height: 1.25;
+        }
+        table[data-admin-table="tv"] .mobile-row-title a,
+        table[data-admin-table="fashion"] .mobile-row-title a,
+        table[data-admin-table="trailers"] .mobile-row-title a,
+        table[data-admin-table="film-main"] .mobile-row-title a,
+        table[data-admin-table="film-short"] .mobile-row-title a {
+          display: inline;
+          text-wrap: pretty;
+        }
+        table[data-admin-table="filmography"] .mobile-row-title *,
+        table[data-admin-table="filmography"] .filmography-description {
+          font-size: 0.96rem !important;
+          line-height: 1.32;
         }
         table[data-admin-table="tv"] .mobile-row-year,
         table[data-admin-table="fashion"] .mobile-row-year,
         table[data-admin-table="trailers"] .mobile-row-year,
         table[data-admin-table="film-main"] .mobile-row-year,
         table[data-admin-table="film-short"] .mobile-row-year {
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           font-weight: 700;
+        }
+        table[data-admin-table="filmography"] .mobile-row-year {
+          font-size: 1rem;
+          font-weight: 700;
+        }
+        table[data-admin-table="filmography"] .mobile-row-year,
+        table[data-admin-table="tv"] .mobile-row-year,
+        table[data-admin-table="fashion"] .mobile-row-year,
+        table[data-admin-table="trailers"] .mobile-row-year,
+        table[data-admin-table="film-main"] .mobile-row-year,
+        table[data-admin-table="film-short"] .mobile-row-year {
+          font-variant-numeric: tabular-nums;
         }
         .mobile-row-subnote {
           margin-top: 4px;
           font-family: sans-serif;
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           line-height: 1.35;
           color: #202122;
           grid-column: 1 / -1;
         }
         table[data-admin-table="filmography"] .filmography-description {
           margin-top: 4px;
-          font-size: 0.9rem;
+          font-size: 0.92rem;
           line-height: 1.35;
+        }
+        table[data-admin-table="filmography"] .mobile-row-summary .k,
+        table[data-admin-table="tv"] .mobile-row-summary .k,
+        table[data-admin-table="fashion"] .mobile-row-summary .k,
+        table[data-admin-table="trailers"] .mobile-row-summary .k,
+        table[data-admin-table="film-main"] .mobile-row-summary .k,
+        table[data-admin-table="film-short"] .mobile-row-summary .k {
+          font-size: 0.68rem;
+        }
+        table[data-admin-table="filmography"] .mobile-row-summary .v,
+        table[data-admin-table="tv"] .mobile-row-summary .v,
+        table[data-admin-table="fashion"] .mobile-row-summary .v,
+        table[data-admin-table="trailers"] .mobile-row-summary .v,
+        table[data-admin-table="film-main"] .mobile-row-summary .v,
+        table[data-admin-table="film-short"] .mobile-row-summary .v {
+          font-size: 0.95rem;
+        }
+        table[data-admin-table="branded"] .mobile-row-title *,
+        table[data-admin-table="fashion-telfar-select"] .mobile-row-title *,
+        table[data-admin-table="fashion-telfar-additional"] .mobile-row-title * {
+          font-size: 0.95rem !important;
+          line-height: 1.25;
+        }
+        table[data-admin-table="branded"] .mobile-row-title a,
+        table[data-admin-table="fashion-telfar-select"] .mobile-row-title a,
+        table[data-admin-table="fashion-telfar-additional"] .mobile-row-title a {
+          text-wrap: pretty;
+        }
+        table[data-admin-table="branded"] .mobile-row-year,
+        table[data-admin-table="fashion-telfar-select"] .mobile-row-year,
+        table[data-admin-table="fashion-telfar-additional"] .mobile-row-year {
+          font-size: 0.9rem;
+          font-weight: 700;
+          font-variant-numeric: tabular-nums;
+        }
+        table[data-admin-table="branded"] .mobile-row-summary .k,
+        table[data-admin-table="fashion-telfar-select"] .mobile-row-summary .k,
+        table[data-admin-table="fashion-telfar-additional"] .mobile-row-summary .k {
+          font-size: 0.68rem;
+        }
+        table[data-admin-table="branded"] .mobile-row-summary .v,
+        table[data-admin-table="fashion-telfar-select"] .mobile-row-summary .v,
+        table[data-admin-table="fashion-telfar-additional"] .mobile-row-summary .v {
+          font-size: 0.95rem;
         }
       }
       @media (min-width: 981px) and (max-width: 1520px) {
@@ -2049,14 +2313,13 @@
 | known_for      = Random Acts of Flyness, Growing Up, TELFAR TV campaigns
 }}
 
-'''Will Kempner''' (born June 12, 1993) is an American editor, filmmaker, tinkerer, musician, and friend.
-Increasingly known as '''Will K''', he has worked professionally across television, Hollywood features, fashion campaigns, branded media, and independent film.
-His personal work is rarely viewed or fully understood.
-
-==Biography==
-Born in New York, Kempner also spent time in New Jersey.
+'''Will Kempner''' (born June 12, 1993) is an American editor, filmmaker, savant, and enfant terrible.
+Born in New York, he also spent time in New Jersey.
 He was last seen in Ridgewood, Queens.
-At present, the only empirical evidence of his existence is tied to a specific portfolio of creative projects, primarily editorial credits.
+At present, the only empirical evidence of his existence is a specific portfolio of creative projects, primarily editorial credits.
+
+His personal work is rarely viewed or fully understood.
+From high-concept musical albums to short films, he tends to operate within some of the least respected mediums available today.
 
 ==Editing work==
 Editing is the craft Kempner is often called to perform.
@@ -2072,8 +2335,8 @@ Kempner has worked for networks like HBO, self-released YouTube, and Disney+.
 * ''Best Walk'' (2020) — Editor (Topic), 5 episodes
 * ''Random Acts of Flyness'' (Season 2, 2022) — Associate Editor (HBO), 6 episodes
 * ''Growing Up'' (2022) — Editor (Disney+), 5 episodes
-* ''Conner O'Malley's Stand Up Solutions'' (2024) — Assistant Editor / DIT (Self-released)
-* ''Cole Escola's Our Home Out West'' (2023) — Assistant Editor / DIT (Self-released)
+* ''Conner O'Malley's Stand Up Solutions'' (2024) — Assistant Editor, DIT (Self-released)
+* ''Cole Escola's Our Home Out West'' (2023) — Assistant Editor, DIT (Self-released)
 
 ===Films===
 Twenty-four frames per second is the standard rate of motion picture projection, a span in which a remarkable number of images pass before the eye.
@@ -2088,9 +2351,11 @@ When the Brooklyn alt-comedy scene needs an assistant editor for its microbudget
 * ''Close The Gap'' (2023) — Assistant Editor | Director: Alex Bliss
 * ''Seek No Favor'' (2024) — Additional Editor, Trailer Editor | Director: Leilah Weintraub
 * ''Straight Line'' (2025) — Assistant Editor | Director: Jack Bensinger
+* ''Grey Day'' (2024) — One of the editors | Director: Brian Fiddyment
 
 ===Fashion===
-When Kempner enters a room, his outfits are always conversation starters and statement pieces.
+It is hard to think of fashion without thinking of “Will K.”
+When he enters a room, his signature fedora signals that elegance and video-editing virtuosity have arrived.
 
 * ''Ms. Lauryn Hill for S/S 2021'' (Louis Vuitton, 2021) — Editor, alongside Kristan Sprague. Directed by Naima Ramos-Chapman
 * ''TELFAR 20th Anniversary Show | SS25 Runway'' (2025) — Editor
@@ -2228,7 +2493,6 @@ Admin scratch notes:
             <h2>Contents</h2>
             <ol>
               <li><a href="#personal-info">Personal Info</a></li>
-              <li><a href="#bio">Biography</a></li>
               <li>
                 <a href="#editing">Editing Work</a>
                 <ol>
@@ -2312,9 +2576,9 @@ Admin scratch notes:
               </tr>
             </table>
             <p data-admin-text="lead-intro">
-              <b>Will Kempner</b> (born June 12, 1993) is an American editor, filmmaker, tinkerer, musician, and friend. Increasingly known as “Will K,” he has worked professionally across television, Hollywood features, fashion campaigns, branded media, and independent film.
+              <b>Will Kempner</b> (born June 12, 1993) is an American editor, filmmaker, savant, and enfant terrible. Born in New York, he also spent time in New Jersey. He was last seen in Ridgewood, Queens. At present, the only empirical evidence of his existence is a specific portfolio of creative projects, primarily editorial credits.
               <br /><br />
-              His personal work is rarely viewed or fully understood. From high-concept musical albums to college thesis short films, he tends to operate within some of the least respected mediums available today.
+              His personal work is rarely viewed or fully understood. From high-concept musical albums to short films, he tends to operate within some of the least respected mediums available today.
             </p>
           </section>
 
@@ -2343,13 +2607,6 @@ Admin scratch notes:
             </div>
           </section>
 
-          <section id="bio">
-            <h2>Biography <span class="edit">[edit]</span></h2>
-            <p data-admin-text="biography">
-              Born in New York, Kempner also spent time in New Jersey. He was last seen in Ridgewood, Queens. At present, the only empirical evidence of his existence is tied to a specific portfolio of creative projects, primarily editorial credits.
-            </p>
-          </section>
-
           <section id="editing">
             <h2>Editing Work <span class="edit">[edit]</span></h2>
             <p data-admin-text="editing-intro">Editing is the craft Kempner is often called to perform. He handles the blade with grace and certainty.</p>
@@ -2363,7 +2620,6 @@ Admin scratch notes:
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
-                  <th>Network</th>
                   <th>Notes</th>
                 </tr>
               </thead>
@@ -2374,10 +2630,9 @@ Admin scratch notes:
                       <img class="filmography-still" src="https://i.ytimg.com/vi/kIzUwpfAl5k/hqdefault.jpg" alt="Random Acts of Flyness season 1 still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/kIzUwpfAl5k" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (Season 1)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/kIzUwpfAl5k" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (HBO, Season 1)</td>
                   <td>2018</td>
                   <td>Lead Assistant Editor</td>
-                  <td>HBO</td>
                   <td>6 episodes</td>
                 </tr>
                 <tr>
@@ -2389,7 +2644,6 @@ Admin scratch notes:
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/KlnZyaIyZdw" data-inline-off="true" class="video-link"><i>Two Dope Queens</i></a> (HBO, Season 1)</td>
                   <td>2018</td>
                   <td>Assistant Editor</td>
-                  <td>HBO</td>
                   <td>4 episodes</td>
                 </tr>
                 <tr>
@@ -2401,7 +2655,6 @@ Admin scratch notes:
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/x_LJxBOAlXw" data-inline-off="true" class="video-link"><i>Best Walk</i></a> (Topic)</td>
                   <td>2020</td>
                   <td>Editor</td>
-                  <td>Topic</td>
                   <td>5 episodes</td>
                 </tr>
                 <tr>
@@ -2410,10 +2663,9 @@ Admin scratch notes:
                       <img class="filmography-still" src="https://i.ytimg.com/vi/HAAl3vXHWLs/hqdefault.jpg" alt="Random Acts of Flyness season 2 still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (Season 2)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/HAAl3vXHWLs" data-inline-off="true" class="video-link"><i>Random Acts of Flyness</i></a> (HBO, Season 2)</td>
                   <td>2022</td>
                   <td>Associate Editor</td>
-                  <td>HBO</td>
                   <td>6 episodes</td>
                 </tr>
                 <tr>
@@ -2425,7 +2677,6 @@ Admin scratch notes:
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tFMQs50V1g8" data-inline-off="true" class="video-link"><i>Growing Up</i></a> (Disney+)</td>
                   <td>2022</td>
                   <td>Editor</td>
-                  <td>Disney+</td>
                   <td>5 episodes</td>
                 </tr>
                 <tr>
@@ -2434,10 +2685,9 @@ Admin scratch notes:
                       <img class="filmography-still" src="https://i.ytimg.com/vi/nYkDGvT4tJk/hqdefault.jpg" alt="Cole Escola's Our Home Out West still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" data-inline-off="true" class="video-link"><i>Cole Escola's Our Home Out West</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/nYkDGvT4tJk" data-inline-off="true" class="video-link"><i>Cole Escola's Our Home Out West</i></a> (Self-released)</td>
                   <td>2023</td>
-                  <td>DIT</td>
-                  <td>Self-released</td>
+                  <td>Assistant Editor, DIT</td>
                   <td>TV special</td>
                 </tr>
                 <tr>
@@ -2446,10 +2696,9 @@ Admin scratch notes:
                       <img class="filmography-still" src="https://i.ytimg.com/vi/Svual-PcOxE/hqdefault.jpg" alt="Conner O'Malley's Stand Up Solutions still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a href="https://www.youtube.com/watch?v=Svual-PcOxE" target="_blank" rel="noreferrer" data-direct-url="https://www.youtube.com/watch?v=Svual-PcOxE" data-inline-off="true" class="video-link"><i>Conner O'Malley's Stand Up Solutions</i></a></td>
+                  <td><a href="https://www.youtube.com/watch?v=Svual-PcOxE" target="_blank" rel="noreferrer" data-direct-url="https://www.youtube.com/watch?v=Svual-PcOxE" data-inline-off="true" class="video-link"><i>Conner O'Malley's Stand Up Solutions</i></a> (Self-released)</td>
                   <td>2024</td>
-                  <td>Assistant Editor / DIT</td>
-                  <td>Self-released</td>
+                  <td>Assistant Editor, DIT</td>
                   <td>Special</td>
                 </tr>
               </tbody>
@@ -2465,7 +2714,6 @@ Admin scratch notes:
                   <th>Year</th>
                   <th>Role</th>
                   <th>Distributor</th>
-                  <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -2475,11 +2723,10 @@ Admin scratch notes:
                       <img class="filmography-still" src="images/GoodOne.jpg" alt="Good One still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Good_One_(film)" target="_blank" rel="noreferrer"><i>Good One</i></a></td>
+                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Good_One_(film)" target="_blank" rel="noreferrer"><i>Good One</i></a><div class="title-subnote">Director India Donaldson</div></td>
                   <td>2022</td>
-                  <td>Assistant Editor; DIT</td>
+                  <td>DIT</td>
                   <td>Metrograph Pictures</td>
-                  <td>Director: India Donaldson.</td>
                 </tr>
                 <tr>
                   <td>
@@ -2487,11 +2734,10 @@ Admin scratch notes:
                       <img class="filmography-still" src="images/SeekingMavisBeacon.jpg" alt="Seeking Mavis Beacon still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a></td>
+                  <td><a class="wiki-link" href="https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon" target="_blank" rel="noreferrer"><i>Seeking Mavis Beacon</i></a><div class="title-subnote">Director Jazmin Jones</div></td>
                   <td>2024</td>
                   <td>Assistant Editor</td>
                   <td>NEON</td>
-                  <td>Director: Jazmin Jones.</td>
                 </tr>
                 <tr>
                   <td>
@@ -2499,11 +2745,10 @@ Admin scratch notes:
                       <img class="filmography-still" src="https://i.ytimg.com/vi/7Dkp41QdFgw/hqdefault.jpg" alt="Telfar New Models Season One still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/7Dkp41QdFgw?list=PLh-uDRIvQHP0o2Aj1Ti9oTUFzvCRP5Uu3" data-inline-off="true" class="video-link"><i>Telfar New Models Season One</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/7Dkp41QdFgw?list=PLh-uDRIvQHP0o2Aj1Ti9oTUFzvCRP5Uu3" data-inline-off="true" class="video-link"><i>Telfar New Models Season One</i></a><div class="title-subnote">Director Babak Radboy</div></td>
                   <td>2025</td>
                   <td>Editor w/ Telfar TV.<br />Confessional interviews.</td>
                   <td>TELFAR TV</td>
-                  <td>Full-length art film and competition show.</td>
                 </tr>
               </tbody>
             </table>
@@ -2517,20 +2762,18 @@ Admin scratch notes:
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
-                  <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
                     <a href="#" data-video="https://www.youtube-nocookie.com/embed/3U9xgN3GsZc" data-inline-off="true" class="video-link filmography-still-link">
-                      <img class="filmography-still" src="https://i.ytimg.com/vi/3U9xgN3GsZc/hqdefault.jpg" alt="Close The Gap still" loading="lazy" />
+                      <img class="filmography-still" src="images/CloseTheGap.webp" alt="Close The Gap still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/3U9xgN3GsZc" data-inline-off="true" class="video-link"><i>Close The Gap</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/3U9xgN3GsZc" data-inline-off="true" class="video-link"><i>Close The Gap</i></a><div class="title-subnote">Director Alex Bliss</div></td>
                   <td>2023</td>
                   <td>Assistant Editor</td>
-                  <td>Director: Alex Bliss</td>
                 </tr>
                 <tr>
                   <td>
@@ -2538,10 +2781,19 @@ Admin scratch notes:
                       <img class="filmography-still" src="images/SeekNoFavor.webp" alt="Seek No Favor still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a></td>
+                  <td><a href="https://www.imdb.com/title/tt32369268/" target="_blank" rel="noreferrer"><i>Seek No Favor</i></a><div class="title-subnote">Director Leilah Weintraub</div></td>
                   <td>2024</td>
                   <td>Additional Editor, Trailer Editor</td>
-                  <td>Director: Leilah Weintraub</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.nobudge.com/videos/grey-day" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="images/GreyDay.webp" alt="Grey Day still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.nobudge.com/videos/grey-day" data-inline-off="true" class="video-link"><i>Grey Day</i></a><div class="title-subnote">Director Brian Fiddyment</div></td>
+                  <td>2024</td>
+                  <td>One of the editors</td>
                 </tr>
                 <tr>
                   <td>
@@ -2549,16 +2801,15 @@ Admin scratch notes:
                       <img class="filmography-still" src="https://i.ytimg.com/vi/FwankVjcbeQ/hqdefault.jpg" alt="Straight Line still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link"><i>Straight Line</i></a></td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/FwankVjcbeQ" data-inline-off="true" class="video-link"><i>Straight Line</i></a><div class="title-subnote">Director Jack Bensinger</div></td>
                   <td>2025</td>
                   <td>Assistant Editor</td>
-                  <td>Director: Jack Bensinger</td>
                 </tr>
               </tbody>
             </table>
 
             <h3 id="fashion">Fashion</h3>
-            <p class="notes" data-admin-text="fashion-intro">When Kempner enters a room, his outfits are always conversation starters and statement pieces. His attention to detail, from his initial-embroidered socks to his signature fedora, “helps explain why his editing is so precise it cuts like a Wagyu knife.”<sup class="ref" id="cite-5a"><a href="#ref-5">[5]</a></sup> Before film, fashion was his first love, and long after he has forgotten how to care for himself, not to mention how to use a personal computer, that fedora will undoubtedly remain snug upon his cap.</p>
+            <p class="notes" data-admin-text="fashion-intro">It is hard to think of fashion without thinking of “Will K.” When he enters a room, his signature fedora signals that elegance and video-editing virtuosity have arrived.</p>
             <table class="wikitable table-video-col-2" data-admin-table="fashion">
               <thead>
                 <tr>
@@ -2575,9 +2826,9 @@ Admin scratch notes:
                       <img class="filmography-still" src="https://i.ytimg.com/vi/ehNpmxYYXiQ/hqdefault.jpg" alt="Ms. Lauryn Hill for S/S 2021 still" loading="lazy" />
                     </a>
                   </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" data-inline-off="true" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)</td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" data-inline-off="true" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)<div class="title-subnote">Directed by Naima Ramos-Chapman</div></td>
                   <td>2021</td>
-                  <td>Editor, alongside Kristan Sprague. Directed by Naima Ramos-Chapman</td>
+                  <td>Editor, alongside Kristan Sprague</td>
                 </tr>
                 <tr>
                   <td>
@@ -2616,16 +2867,6 @@ Admin scratch notes:
                   <td><a href="https://www.instagram.com/p/C_3La_mucu3/" target="_blank" rel="noreferrer"><i>New Models Season Zero Teaser</i></a></td>
                   <td>09/13/2024</td>
                   <td>Produced and Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/p/DCzEOYMuYmO/" target="_blank" rel="noreferrer"><i>Shmedium Dream</i></a></td>
-                  <td>11/25/2024</td>
-                  <td>Edited</td>
-                </tr>
-                <tr>
-                  <td><a href="https://www.instagram.com/p/DGdYT5DO9Px/" target="_blank" rel="noreferrer"><i>Joseline x Dumping Teaser</i></a></td>
-                  <td>02/24/2025</td>
-                  <td>Edited</td>
                 </tr>
                 <tr>
                   <td><a href="https://www.instagram.com/p/DHTXQ8Hu0I4/" target="_blank" rel="noreferrer"><i>Sample Sale</i></a></td>
@@ -2691,8 +2932,18 @@ Admin scratch notes:
                     <td>Edited</td>
                   </tr>
                   <tr>
+                    <td><a href="https://www.instagram.com/p/DCzEOYMuYmO/" target="_blank" rel="noreferrer"><i>Shmedium Dream</i></a></td>
+                    <td>11/25/2024</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
                     <td><a href="https://www.instagram.com/p/DDZ11QoOm6c/" target="_blank" rel="noreferrer"><i>Holiday Vendors</i></a></td>
                     <td>12/10/2024</td>
+                    <td>Edited</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.instagram.com/p/DGdYT5DO9Px/" target="_blank" rel="noreferrer"><i>Joseline x Dumping Teaser</i></a></td>
+                    <td>02/24/2025</td>
                     <td>Edited</td>
                   </tr>
                   <tr>
@@ -2748,7 +2999,6 @@ Admin scratch notes:
                   <th>Title</th>
                   <th>Year</th>
                   <th>Role</th>
-                  <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -2764,7 +3014,6 @@ Admin scratch notes:
                   </td>
                   <td>2020</td>
                   <td>Trailer Editor</td>
-                  <td></td>
                 </tr>
                 <tr>
                   <td>
@@ -2778,12 +3027,11 @@ Admin scratch notes:
                   </td>
                   <td>2020</td>
                   <td>Trailer Editor</td>
-                  <td></td>
                 </tr>
                 <tr>
                   <td>
                     <a href="#" data-video="https://www.youtube-nocookie.com/embed/2nOxSeBhQAA" data-inline-off="true" class="video-link filmography-still-link">
-                      <img class="filmography-still" src="https://lens.usercontent.google.com/image?vsrid=COuD8e26zOSUZxACGAEiJDY3ZTliM2ZlLThjNTQtNGRhYi1iNmFlLTkxNDJmZGZiOGUzNzIGIgJiaSgEONCMjN_a65ID&gsessionid=n5RpEg0PsWJF3gh2H604hv_RLjN_kam3shSzQBqFpaPUwfv1sQ__Jg" alt="Andre 3000 trailer still" loading="lazy" />
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/2nOxSeBhQAA/hqdefault.jpg" alt="Andre 3000 trailer still" loading="lazy" />
                     </a>
                   </td>
                   <td>
@@ -2792,7 +3040,6 @@ Admin scratch notes:
                   </td>
                   <td>2023</td>
                   <td>Trailer Editor</td>
-                  <td></td>
                 </tr>
                 <tr>
                   <td>
@@ -2806,7 +3053,6 @@ Admin scratch notes:
                   </td>
                   <td>2024</td>
                   <td>Trailer Editor</td>
-                  <td></td>
                 </tr>
                 <tr>
                   <td>
@@ -2820,7 +3066,6 @@ Admin scratch notes:
                   </td>
                   <td>2025</td>
                   <td>Trailer Editor</td>
-                  <td></td>
                 </tr>
               </tbody>
             </table>
@@ -2875,7 +3120,7 @@ Admin scratch notes:
 
           <section id="filmography">
             <h2>Filmography <span class="edit">[edit]</span></h2>
-            <p data-admin-text="filmography-intro">These short films contain wonder, humor, commentary on toxic masculinity, and probing reflections on the impact of technology on social structures.</p>
+            <p data-admin-text="filmography-intro">Curated selection of shorts, additional work can be found at <a href="#other-video">Other Videos</a>.</p>
             <table class="wikitable table-video-col-1" data-admin-table="filmography">
               <thead>
                 <tr>
@@ -3049,27 +3294,27 @@ Admin scratch notes:
                 <tr><td><i>Live Stream SLX - 04.28.20</i></td><td>2020</td><td>Live Album</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=562369201/size=small/bgcol=ffffff/linkcol=0687f5/track=3606749663/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/live-stream-slx-042820">Live Stream SLX - 04.28.20 by ART DLR</a></iframe></td></tr>
                 <tr><td><i>Live Stream SLX - 05.22.20</i></td><td>2020</td><td>Live Album</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3016501130/size=small/bgcol=ffffff/linkcol=0687f5/track=2548174888/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/live-stream-slx-052220">Live Stream SLX - 05.22.20 by ART DLR</a></iframe></td></tr>
                 <tr>
-                  <td><i>Endangered: On Ice (In Space)</i></td>
-                  <td>2021</td>
-                  <td>Musical</td>
-                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3911052177/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/endangered-on-ice-in-space">Endangered: On Ice (In Space) by ART DLR</a></iframe></td>
-                </tr>
-                <tr>
                   <td><i>Ghoulsikal</i></td>
-                  <td>2021</td>
+                  <td>2020</td>
                   <td>Musical</td>
                   <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=374827418/size=small/bgcol=ffffff/linkcol=0687f5/track=1463963902/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/ghoulsikal">Ghoulsikal by ART DLR</a></iframe></td>
                 </tr>
                 <tr>
+                  <td><i>Endangered: On Ice (In Space)</i></td>
+                  <td>2020</td>
+                  <td>Musical</td>
+                  <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3911052177/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/endangered-on-ice-in-space">Endangered: On Ice (In Space) by ART DLR</a></iframe></td>
+                </tr>
+                <tr>
                   <td><i>DLR.MAG</i></td>
-                  <td>2022</td>
+                  <td>2021</td>
                   <td>LP</td>
                   <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1671801552/size=small/bgcol=ffffff/linkcol=0687f5/track=914687706/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/dlr-mag">DLR.MAG by ART DLR</a></iframe></td>
                 </tr>
                 <tr>
                   <td><i>I Met A Mummy: A Detective Reed Mystery</i></td>
                   <td>2022</td>
-                  <td>Musical</td>
+                  <td>Musical, prequel to Ghoulsikal</td>
                   <td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3309072255/size=small/bgcol=ffffff/linkcol=0687f5/track=3145238614/transparent=true/" seamless><a href="https://artdealer.bandcamp.com/album/i-met-a-mummy-a-detective-reed-mystery">I Met A Mummy: A Detective Reed Mystery by ART DLR</a></iframe></td>
                 </tr>
               </tbody>
@@ -3087,7 +3332,10 @@ Admin scratch notes:
                 </tr>
               </thead>
               <tbody>
+                <tr><td><i>Don't Be A Shit Boy</i></td><td>2015</td><td>Single</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/track=1056106101/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/track/dont-be-a-shit-boy-single">Don&#39;t Be A Shit Boy - Single by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>Again Again</i></td><td>2018</td><td>Figur Remix</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1258906885/size=small/bgcol=ffffff/linkcol=0687f5/track=488916443/transparent=true/" seamless><a href="https://figur.bandcamp.com/album/sr15-figur01">SR15: FIGUR01 by Figur | Lanlord Lance | Drummy | Tony G</a></iframe></td></tr>
                 <tr><td><i>Night Sweats Box Set</i></td><td>2018</td><td>EP</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3346191428/size=small/bgcol=ffffff/linkcol=0687f5/track=3957774942/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/sr14-night-sweats-box-set">Night Sweats Box Set by Lanlord Lance</a></iframe></td></tr>
+                <tr><td><i>Catskill Queen</i></td><td>2019</td><td>Single</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/track=3927409640/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/track/catskill-queen">Catskill Queen by Lanlord Lance</a></iframe></td></tr>
                 <tr><td><i>The Streets Of Lovebug</i></td><td>2019</td><td>EP</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3947569287/size=small/bgcol=ffffff/linkcol=0687f5/track=2039093351/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/the-streets-of-love-bug">The Streets Of Love Bug by Lanlord Lance</a></iframe></td></tr>
                 <tr><td><i>Here Come The Entrees</i></td><td>2020</td><td>EP</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3979275951/size=small/bgcol=ffffff/linkcol=0687f5/track=2805871613/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/here-come-the-entrees">Here Come The Entrees by Lanlord Lance</a></iframe></td></tr>
                 <tr><td><i>Winter's Too Cold</i></td><td>2020</td><td>Single</td><td><iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1899480135/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://lanlordlance.bandcamp.com/album/winters-too-cold">Winter&#39;s Too Cold by Lanlord Lance</a></iframe></td></tr>
@@ -3126,14 +3374,19 @@ Admin scratch notes:
                   <td>Winner</td>
                 </tr>
                 <tr>
-                  <td>NoBudge Live 12<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></td>
-                  <td>2018</td>
-                  <td>The Good Boy Screening</td>
+                  <td>NoBudge Live 5</td>
+                  <td>2016</td>
+                  <td><i>Serf's Up</i> Screening</td>
                 </tr>
                 <tr>
                   <td>Tribeca Film Festival Snapchat Story Contest<sup class="ref" id="cite-12a"><a href="#ref-12">[12]</a></sup><sup class="ref" id="cite-13a"><a href="#ref-13">[13]</a></sup></td>
                   <td>2016</td>
                   <td>Winner (w/ Colin Garland and Ben Townsend)</td>
+                </tr>
+                <tr>
+                  <td>NoBudge Live 12<sup class="ref" id="cite-11a"><a href="#ref-11">[11]</a></sup></td>
+                  <td>2018</td>
+                  <td>The Good Boy Screening</td>
                 </tr>
                 <tr>
                   <td>NPCC Short Film Block<sup class="ref" id="cite-14a"><a href="#ref-14">[14]</a></sup></td>
@@ -3149,6 +3402,11 @@ Admin scratch notes:
                   <td>Paradigm Shift @ 180 Studios, London</td>
                   <td>2025</td>
                   <td><a href="https://www.theguardian.com/artanddesign/2025/oct/14/paradigm-shift-review-video-art-180-studios-london" target="_blank" rel="noreferrer">Exhibition screening of Telfar's New Models alongside work by Arthur Jafa, Ryan Trecartin and more.</a></td>
+                </tr>
+                <tr>
+                  <td>NonFilms Darkroom</td>
+                  <td>2026</td>
+                  <td><i>A Flaw In The System</i> Screening</td>
                 </tr>
               </tbody>
             </table>
@@ -3211,7 +3469,7 @@ Admin scratch notes:
                 <button id="scandal-next" type="button" aria-label="Next scandals image">Next</button>
               </div>
             </figure>
-            <p data-admin-text="scandals-intro">While Kempner has been the subject of numerous alleged scandals, none have been formally verified or substantiated. He has, however, reportedly threatened legal action for slander on multiple occasions. In contrast to these unconfirmed claims, he is said to be held in high regard by professional associates.</p>
+            <p data-admin-text="scandals-intro">In 2026, Kempner launched WillKpedia, a personal website conceived as a parody of a public figure's Wikipedia page. Initially met with mild intrigue, the project quickly drew scrutiny when viewers realized he had used a large language model to “vibe code” much of the site. Public sentiment shifted from impressed to disgust. Former high school classmates, some of whom he had not spoken to in years, began publicly commenting on his posts with calculations estimating the volume of water allegedly wasted in generating the site's content.<br /><br />Despite Kempner's insistence that he had conducted his own moral calculations and determined the project's environmental impact to be negligible, the controversy intensified. Rather than generating new professional opportunities, WillKpedia became a cautionary tale within his industry, contributing to a period of professional ostracization. Whereas colleagues had once lauded his editing ability, many now declined to respond to his increasingly frequent emails seeking freelance work.</p>
           </section>
 
           <section id="other-stuff">
@@ -3283,6 +3541,11 @@ Admin scratch notes:
                   <td>Web series, co-creator with Colin Garland and Ben Townsend.</td>
                 </tr>
                 <tr>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/x7tyL7CTTcU" data-inline-off="true" class="video-link"><i>Lost It: A Snap Story</i></a></td>
+                  <td>2016</td>
+                  <td>Made with Colin Garland and Ben Townsend. Selected for Tribeca Film Festival Snapchat Stories.</td>
+                </tr>
+                <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/AdT44qXOu4I" data-inline-off="true" class="video-link"><i>Fuck New York - Trash Boy</i></a></td>
                   <td>2018</td>
                   <td>Music Video. Directed and edited by ART DLR.</td>
@@ -3306,11 +3569,6 @@ Admin scratch notes:
                   <td><a href="#" data-video="https://player.vimeo.com/video/376714183" data-inline-off="true" class="video-link"><i>Writer's Retreat</i></a></td>
                   <td>2019</td>
                   <td>Co-director/writer, camera, editor. Short Film.</td>
-                </tr>
-                <tr>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/x7tyL7CTTcU" data-inline-off="true" class="video-link"><i>Lost It: A Snap Story</i></a></td>
-                  <td>2019</td>
-                  <td>Made with Colin Garland and Ben Townsend. Selected for Tribeca Film Festival Snapchat Stories.</td>
                 </tr>
                 <tr>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/DnPUObfPxqw" data-inline-off="true" class="video-link"><i>Mouse Sucks &amp; Cranklin - Eugene</i> (Music Video)</a></td>
@@ -3509,6 +3767,7 @@ __/  o o \___
       <span class="dark-audio-label">😈</span>
     </div>
     <div id="google_translate_element" aria-hidden="true"></div>
+    <div id="mobile-preview-shell" class="mobile-preview-shell" aria-hidden="true"></div>
 
     <script>
       if ("scrollRestoration" in history) {
@@ -3516,12 +3775,33 @@ __/  o o \___
       }
       const navEntries = performance.getEntriesByType ? performance.getEntriesByType("navigation") : [];
       const navType = navEntries && navEntries[0] ? navEntries[0].type : "";
+      const userAgent = navigator.userAgent || "";
+      const isiOS = /iP(hone|ad|od)/.test(userAgent);
+      const isSafariBrowser = /Safari\//.test(userAgent) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(userAgent);
+      const useMobileTocViewportOffsetComp = isiOS && isSafariBrowser;
       if (navType === "reload") {
         window.scrollTo(0, 0);
-        window.addEventListener("load", () => {
-          window.scrollTo(0, 0);
-          window.requestAnimationFrame(() => window.scrollTo(0, 0));
-        });
+      }
+
+      const pageParams = new URLSearchParams(window.location.search);
+      const forceMobilePreviewMode = pageParams.get("mobile") === "1" && pageParams.get("mobile-frame") !== "1";
+      if (forceMobilePreviewMode) {
+        document.body.classList.add("force-mobile-preview");
+        const shell = document.getElementById("mobile-preview-shell");
+        if (shell) {
+          const iframeUrl = new URL(window.location.href);
+          iframeUrl.searchParams.delete("mobile");
+          iframeUrl.searchParams.set("mobile-frame", "1");
+          shell.setAttribute("aria-hidden", "false");
+          shell.innerHTML =
+            '<div class="mobile-preview-toolbar">' +
+              '<span class="mobile-preview-label">Mobile preview (forced)</span>' +
+              '<a href="' + iframeUrl.toString().replace(/mobile-frame=1&?/, "").replace(/\?$/, "") + '">Open normal page</a>' +
+            '</div>' +
+            '<div class="mobile-preview-frame-wrap">' +
+              '<iframe class="mobile-preview-frame" src="' + iframeUrl.toString() + '" title="Mobile preview" loading="eager"></iframe>' +
+            '</div>';
+        }
       }
 
       const modal = document.getElementById("video-modal");
@@ -3540,10 +3820,13 @@ __/  o o \___
       const topLevelSections = document.querySelectorAll("main.article > section");
       const tocWrap = document.querySelector(".toc-wrap");
       const mobileTocToggle = document.getElementById("mobile-toc-toggle");
+      const wikiTitleRow = document.querySelector(".wiki-title-row");
       const articleNameHeading = document.querySelector(".wiki-title-row .title");
       const layoutRoot = document.querySelector(".layout");
       const mainArticle = document.querySelector("main.article");
       const leadSection = document.querySelector("main.article > section.lead");
+      const mobileTocToggleOriginalParent = mobileTocToggle ? mobileTocToggle.parentElement : null;
+      const mobileTocToggleOriginalNext = mobileTocToggle ? mobileTocToggle.nextElementSibling : null;
       const appearancePanel = document.getElementById("appearance-panel");
       const appearanceHide = document.getElementById("appearance-hide");
       const wikiPreview = document.getElementById("wiki-preview");
@@ -3563,7 +3846,7 @@ __/  o o \___
       const infoboxMainPhoto = document.querySelector(".infobox-photo img");
       const profileImageByTextSize = {
         standard: "images/FedoraHeadshot.webp?v=1",
-        small: "images/FedoraHeadshot_small.webp?v=1",
+        small: "images/FedoraHeadshot_small2.webp?v=1",
         large: "images/FedoraHeadshot_large.webp?v=1"
       };
       const sorryHoldOverlay = document.getElementById("sorry-hold-overlay");
@@ -3670,10 +3953,12 @@ __/  o o \___
         "images/Fposters/FFFFFFIRL.jpeg": "Image by Mitchel Johnson"
       };
       const telfarShowcaseVideos = [
-        { src: "https://www.youtube-nocookie.com/embed/OD2zDBPLdWE", title: "TELFAR showcase video 1" },
+        { src: "https://www.youtube-nocookie.com/embed/qd46AT3SSRE", title: "qd46AT3SSRE" },
+        { src: "https://www.youtube-nocookie.com/embed/OD2zDBPLdWE", title: "OD2zDBPLdWE" },
         { src: "https://www.youtube-nocookie.com/embed/dB1lnEhK9kM", title: "TELFAR showcase video 2" },
         { src: "https://www.youtube-nocookie.com/embed/wGksJM026Vg", title: "TELFAR showcase video 3" },
-        { src: "https://www.youtube-nocookie.com/embed/9Y1EhJndDGg", title: "TELFAR showcase video 4" }
+        { src: "https://www.youtube-nocookie.com/embed/9Y1EhJndDGg", title: "TELFAR showcase video 4" },
+        { src: "https://www.youtube-nocookie.com/embed/5fyjQbEII9s", title: "5fyjQbEII9s" }
       ];
       const telfarShowcaseTitleCache = new Map();
       let scandalIndex = 0;
@@ -4336,7 +4621,7 @@ __/  o o \___
       function bindVideoLinkHandlers() {
         const links = document.querySelectorAll(".video-link");
         links.forEach((link) => {
-          if (!link.dataset.videoHandlersBound) {
+          if (!link.__videoHandlersBound) {
             link.addEventListener("click", (event) => {
               if (shouldUseVintageGuard(link)) {
                 event.preventDefault();
@@ -4364,7 +4649,7 @@ __/  o o \___
             });
             link.addEventListener("mouseenter", () => showHoverPreviewForLink(link));
             link.addEventListener("mouseleave", scheduleHoverPreviewHide);
-            link.dataset.videoHandlersBound = "true";
+            link.__videoHandlersBound = true;
           }
         });
       }
@@ -4408,7 +4693,7 @@ __/  o o \___
           if (!yearMatch) return;
           const year = Number(yearMatch[0]);
           if (!Number.isFinite(year) || year >= 2015) return;
-          const links = cells[projectIdx].querySelectorAll(".video-link[data-video]");
+          const links = row.querySelectorAll(".video-link[data-video]");
           links.forEach((link) => {
             link.dataset.vintageGuard = "true";
             link.dataset.noHoverPreview = "true";
@@ -4471,6 +4756,16 @@ __/  o o \___
         });
       }
 
+      function isTocTargetVisible(target) {
+        if (!target || !(target instanceof Element)) return false;
+        if (target.closest("[hidden]")) return false;
+        const rects = target.getClientRects();
+        if (!rects || rects.length === 0) return false;
+        const style = window.getComputedStyle(target);
+        if (style.display === "none" || style.visibility === "hidden") return false;
+        return true;
+      }
+
       function getSectionHead(section) {
         if (!section) return null;
         for (const child of Array.from(section.children)) {
@@ -4515,6 +4810,9 @@ __/  o o \___
 
       let mobileCollapsibleEnabled = false;
       let mobileSubsectionCollapsibleEnabled = false;
+      let mobileTocDockTop = null;
+      let mobileTocDockAnchorY = null;
+      let mobileTocFloatThresholdY = null;
 
       function setSubsectionCollapsed(wrapper, collapsed) {
         if (!wrapper) return;
@@ -4619,7 +4917,7 @@ __/  o o \___
             });
             head.dataset.mobileAccordionBound = "true";
           }
-          setSectionCollapsed(section, section.id !== "personal-info");
+          setSectionCollapsed(section, false);
         });
         if (window.location.hash) {
           const target = document.querySelector(window.location.hash);
@@ -4649,12 +4947,22 @@ __/  o o \___
 
       function syncMobileCollapsibles() {
         if (window.innerWidth <= 980) {
+          if (mobileTocToggle && wikiTitleRow && mobileTocToggle.parentElement !== wikiTitleRow) {
+            wikiTitleRow.insertBefore(mobileTocToggle, wikiTitleRow.firstChild);
+          }
           if (tocWrap && mainArticle && leadSection && tocWrap.parentElement !== mainArticle) {
             leadSection.insertAdjacentElement("afterend", tocWrap);
           }
           enableMobileCollapsibles();
           enableMobileSubsectionCollapsibles();
         } else {
+          if (mobileTocToggle && mobileTocToggleOriginalParent && mobileTocToggle.parentElement !== mobileTocToggleOriginalParent) {
+            if (mobileTocToggleOriginalNext && mobileTocToggleOriginalNext.parentElement === mobileTocToggleOriginalParent) {
+              mobileTocToggleOriginalParent.insertBefore(mobileTocToggle, mobileTocToggleOriginalNext);
+            } else {
+              mobileTocToggleOriginalParent.appendChild(mobileTocToggle);
+            }
+          }
           if (tocWrap && layoutRoot && tocWrap.parentElement !== layoutRoot) {
             layoutRoot.insertBefore(tocWrap, mainArticle);
           }
@@ -4673,14 +4981,44 @@ __/  o o \___
 
       function syncMobileTocFloating() {
         if (window.innerWidth > 980) {
-          document.body.classList.remove("mobile-toc-toggle-visible", "mobile-toc-open");
+          document.body.classList.remove("mobile-toc-toggle-visible", "mobile-toc-open", "mobile-toc-floating");
           if (mobileTocToggle) mobileTocToggle.setAttribute("aria-expanded", "false");
+          document.documentElement.style.removeProperty("--mobile-toc-top");
+          document.documentElement.style.removeProperty("--mobile-toc-left");
+          mobileTocDockTop = null;
+          mobileTocDockAnchorY = null;
+          mobileTocFloatThresholdY = null;
           return;
         }
-        const thresholdReached = articleNameHeading
-          ? articleNameHeading.getBoundingClientRect().bottom <= 8
-          : window.scrollY > 120;
-        document.body.classList.toggle("mobile-toc-toggle-visible", thresholdReached);
+        const floatTop = 58;
+        const viewportOffsetTop = useMobileTocViewportOffsetComp && window.visualViewport ? Math.round(window.visualViewport.offsetTop || 0) : 0;
+        let dynamicTop = floatTop;
+        const dynamicLeft = 10;
+        if (languageButton) {
+          const langRect = languageButton.getBoundingClientRect();
+          if (mobileTocDockTop == null) {
+            mobileTocDockTop = Math.round(langRect.top - viewportOffsetTop);
+            mobileTocDockAnchorY = Math.max(0, Math.round(window.scrollY + langRect.top));
+            mobileTocFloatThresholdY = Math.max(0, mobileTocDockAnchorY - floatTop);
+          }
+          const shouldFloat = window.scrollY >= (mobileTocFloatThresholdY ?? 0);
+          dynamicTop = (shouldFloat ? floatTop : mobileTocDockTop) + viewportOffsetTop;
+        } else if (wikiTitleRow) {
+          const titleRect = wikiTitleRow.getBoundingClientRect();
+          const fallbackTop = Math.round(titleRect.bottom + 8);
+          if (mobileTocDockTop == null) {
+            mobileTocDockTop = fallbackTop - viewportOffsetTop;
+            mobileTocDockAnchorY = Math.max(0, Math.round(window.scrollY + fallbackTop));
+            mobileTocFloatThresholdY = Math.max(0, mobileTocDockAnchorY - floatTop);
+          }
+          const shouldFloat = window.scrollY >= (mobileTocFloatThresholdY ?? 0);
+          dynamicTop = (shouldFloat ? floatTop : mobileTocDockTop) + viewportOffsetTop;
+        }
+        document.documentElement.style.setProperty("--mobile-toc-top", `${dynamicTop}px`);
+        document.documentElement.style.setProperty("--mobile-toc-left", `${dynamicLeft}px`);
+        const thresholdReached = dynamicTop <= floatTop;
+        document.body.classList.add("mobile-toc-toggle-visible");
+        document.body.classList.toggle("mobile-toc-floating", thresholdReached);
         if (!thresholdReached) setMobileTocOpen(false);
       }
 
@@ -4691,14 +5029,19 @@ __/  o o \___
       }
 
       function updateActiveFromScroll() {
-        let currentHash = "#bio";
+        let currentHash = "#personal-info";
+        let firstVisibleHash = null;
         for (const link of tocLinks) {
           const hash = link.getAttribute("href");
           const target = document.querySelector(hash);
-          if (!target) continue;
+          if (!target || !isTocTargetVisible(target)) continue;
+          if (!firstVisibleHash) firstVisibleHash = hash;
           if (target.getBoundingClientRect().top <= 120) {
             currentHash = hash;
           }
+        }
+        if (currentHash === "#personal-info" && firstVisibleHash && window.scrollY < 120) {
+          currentHash = firstVisibleHash;
         }
         setActiveTocLink(currentHash);
       }
@@ -4953,6 +5296,8 @@ __/  o o \___
           buildMobileRowSummaries();
           buildMobileRowMediaBlocks();
           mobileTableTransformsApplied = true;
+          initVintageOtherVideoGuards();
+          bindVideoLinkHandlers();
           optimizeEmbeddedIframes();
           return;
         }
@@ -4982,6 +5327,10 @@ __/  o o \___
         });
       }
       window.addEventListener("scroll", queueActiveTocUpdate, { passive: true });
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", queueActiveTocUpdate, { passive: true });
+        window.visualViewport.addEventListener("scroll", queueActiveTocUpdate, { passive: true });
+      }
       window.addEventListener("load", queueActiveTocUpdate);
       queueActiveTocUpdate();
       if (mobileTocToggle) {
