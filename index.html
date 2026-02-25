@@ -1125,6 +1125,24 @@
         padding: 3px;
         font-family: sans-serif;
       }
+      .editing-intro-layout {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        margin: 0 0 6px;
+      }
+      .editing-intro-layout > #scandal-carousel {
+        float: none;
+        clear: none;
+        flex: 0 0 300px;
+        width: 300px;
+        margin: 2px 0 8px 0;
+      }
+      .editing-intro-layout > [data-admin-text="editing-intro"] {
+        margin: 0;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
       .scandal-thumb img {
         width: 100%;
         aspect-ratio: 1 / 1;
@@ -1716,6 +1734,22 @@
         .scandal-thumb {
           width: 100%;
           float: none;
+          margin: 8px 0 14px;
+        }
+        .editing-intro-layout {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          margin-bottom: 8px;
+        }
+        .editing-intro-layout > [data-admin-text="editing-intro"] {
+          order: 1;
+          margin-bottom: 0;
+        }
+        .editing-intro-layout > #scandal-carousel {
+          order: 2;
+          width: 100%;
+          flex: 0 0 auto;
           margin: 8px 0 14px;
         }
         #personal-info .wikitable {
@@ -2628,7 +2662,18 @@ Admin scratch notes:
 
           <section id="editing">
             <h2>Editing Work <span class="edit">[edit]</span></h2>
-            <p data-admin-text="editing-intro">Editing is the craft Kempner is most often called upon to perform. His employers love to place him in front of a computer and have him tap away all day. They relish using their funds to goad him into an office, where they plop him in front of Adobe Premiere. They smile at the thought of him dragging and dropping clips, transforming their assets into a finished export.<br /><br />His editorial work spans <a href="#tv">television</a>, <a href="#films-editing">film</a>, <a href="#fashion">fashion</a>, <a href="#trailers">trailers</a>, and <a href="#corporate">branded content</a>.</p>
+            <div class="editing-intro-layout">
+              <figure class="scandal-thumb" id="scandal-carousel">
+                <img id="scandal-image" src="images/scandal-01.png" alt="Scandals image 1" />
+                <figcaption id="scandal-caption">Public reaction image 1.</figcaption>
+                <div class="scandal-controls">
+                  <button id="scandal-prev" type="button" aria-label="Previous scandals image">Prev</button>
+                  <span class="scandal-counter" id="scandal-counter">1 / 8</span>
+                  <button id="scandal-next" type="button" aria-label="Next scandals image">Next</button>
+                </div>
+              </figure>
+              <p data-admin-text="editing-intro">Editing is the craft Kempner is most often called upon to perform. His employers love to place him in front of a computer and have him tap away all day. They relish using their funds to goad him into an office, where they plop him in front of Adobe Premiere. They smile at the thought of him dragging and dropping clips, transforming their assets into a finished export.<br /><br />His editorial work spans <a href="#tv">television</a>, <a href="#films-editing">film</a>, <a href="#fashion">fashion</a>, <a href="#trailers">trailers</a>, and <a href="#corporate">branded content</a>.</p>
+            </div>
 
             <h3 id="tv">Television</h3>
             <p class="notes" data-admin-text="tv-intro">TV is a constant presence in most Americans' lives. Studies have shown that television competes with other sources of human interaction, such as family, friends, church, and school, in helping young people develop values and form ideas about the world around them.<sup class="ref" id="cite-4a"><a href="#ref-4">[4]</a></sup> Kempner has worked for networks like HBO, self-released YouTube, and Disney+.</p>
@@ -3479,15 +3524,6 @@ Admin scratch notes:
 
           <section id="scandals">
             <h2>Scandals <span class="edit">[edit]</span></h2>
-            <figure class="scandal-thumb" id="scandal-carousel">
-              <img id="scandal-image" src="images/scandal-01.png" alt="Scandals image 1" />
-              <figcaption id="scandal-caption">Public reaction image 1.</figcaption>
-              <div class="scandal-controls">
-                <button id="scandal-prev" type="button" aria-label="Previous scandals image">Prev</button>
-                <span class="scandal-counter" id="scandal-counter">1 / 8</span>
-                <button id="scandal-next" type="button" aria-label="Next scandals image">Next</button>
-              </div>
-            </figure>
             <p data-admin-text="scandals-intro">In 2026, Kempner launched WillKpedia, a personal website conceived as a parody of a public figure's Wikipedia page. Initially met with mild intrigue, the project quickly drew scrutiny when viewers realized he had used a large language model to “vibe code” much of the site. Public sentiment shifted from impressed to disgust. Former high school classmates, some of whom he had not spoken to in years, began publicly commenting on his posts with calculations estimating the volume of water allegedly wasted in generating the site's content.<br /><br />Despite Kempner's insistence that he had conducted his own moral calculations and determined the project's environmental impact to be negligible, the controversy intensified. Rather than generating new professional opportunities, WillKpedia became a cautionary tale within his industry, contributing to a period of professional ostracization. Whereas colleagues had once lauded his editing ability, many now declined to respond to his increasingly frequent emails seeking freelance work.</p>
           </section>
 
@@ -3945,7 +3981,7 @@ __/  o o \___
         { src: "images/scandal-01.png", caption: "Public reaction image 1." },
         { src: "images/scandal-02.png", caption: "Public reaction image 2." },
         { src: "images/scandal-03.png", caption: "Public reaction image 3." },
-        { src: "images/scandal-04.png", caption: "Public reaction image 4." },
+        { src: "images/scandal-04_2.png", caption: "Public reaction image 4." },
         { src: "images/scandal-05.png", caption: "Public reaction image 5." },
         { src: "images/scandal-06.png", caption: "Public reaction image 6." },
         { src: "images/scandal-07.png", caption: "Public reaction image 7." },
