@@ -5055,6 +5055,11 @@ __/  o o \___
           const maxDockedTop = Math.round(mobileTocDockTop + viewportOffsetTop);
           dynamicTop = Math.min(dynamicTop, maxDockedTop);
         }
+        if (mobileTocDockAnchorY != null) {
+          const computedPageTop = Math.round(window.scrollY + dynamicTop - viewportOffsetTop);
+          const clampedPageTop = Math.max(Math.round(mobileTocDockAnchorY), computedPageTop);
+          dynamicTop = Math.round(clampedPageTop - window.scrollY + viewportOffsetTop);
+        }
         document.documentElement.style.setProperty("--mobile-toc-top", `${dynamicTop}px`);
         document.documentElement.style.setProperty("--mobile-toc-left", `${dynamicLeft}px`);
         const thresholdReached = Math.round(dynamicTop - viewportOffsetTop) <= floatTop;
