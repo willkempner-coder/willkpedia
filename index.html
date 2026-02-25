@@ -395,7 +395,7 @@
         justify-content: flex-end;
         margin: 0 0 8px;
         position: relative;
-        z-index: 2;
+        z-index: 250;
       }
       .language-button {
         border: 1px solid #c8ccd1;
@@ -427,6 +427,7 @@
         background: #fff;
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
         display: none;
+        z-index: 260;
       }
       .language-menu.show {
         display: block;
@@ -4314,11 +4315,34 @@ __/  o o \___
         return document.querySelector(".goog-te-combo");
       }
 
+      function setGoogleTranslateCookie(langCode) {
+        const normalized = langCode === "en" ? "en" : langCode;
+        const value = "/en/" + normalized;
+        const cookie = "googtrans=" + encodeURIComponent(value) + "; path=/; SameSite=Lax";
+        document.cookie = cookie;
+        const host = window.location.hostname || "";
+        if (host && host.includes(".")) {
+          const parts = host.split(".");
+          if (parts.length >= 2) {
+            const base = "." + parts.slice(-2).join(".");
+            document.cookie = cookie + "; domain=" + base;
+          }
+        }
+      }
+
       function applyGoogleTranslateLanguage(langCode) {
         const select = getGoogleTranslateSelect();
+        setGoogleTranslateCookie(langCode);
         if (!select) return false;
         select.value = langCode;
-        select.dispatchEvent(new Event("change"));
+        try {
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+          select.dispatchEvent(new Event("input", { bubbles: true }));
+        } catch (_err) {
+          const evt = document.createEvent("HTMLEvents");
+          evt.initEvent("change", true, true);
+          select.dispatchEvent(evt);
+        }
         return true;
       }
 
