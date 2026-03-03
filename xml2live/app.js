@@ -298,12 +298,13 @@
         const mode = await postToBackend(payload);
         setStatus(`Backend conversion finished. Downloaded ${mode === "zip" ? "zip" : "response payload"}.`);
         showToast("Conversion complete");
-      } catch (_error) {
+      } catch (error) {
         downloadBlob(
           `${projectName.replace(/[\\/:*?"<>|]/g, "_") || "XML2LIVE Set"} - web payload.json`,
           new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }),
         );
-        setStatus("Frontend is live, but no `/api/xml2live` backend is deployed yet. Downloaded a conversion payload instead.");
+        console.error("XML2LIVE web conversion failed", error);
+        setStatus(`Web conversion failed: ${error.message}. Downloaded a fallback payload instead.`);
         showToast("Web payload downloaded");
       }
     } finally {
