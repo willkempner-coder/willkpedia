@@ -1,5 +1,5 @@
 (function () {
-  const API_ENDPOINT = (window.XML2LIVE_API_URL || "https://xml2live-api.vercel.app/api/xml2live").trim();
+  const API_ENDPOINT = (window.XML2LIVE_API_URL || "https://xml2live-api-vercel.vercel.app/api/xml2live").trim();
   const blankPosterUrl =
     "data:image/svg+xml;utf8," +
     encodeURIComponent(
