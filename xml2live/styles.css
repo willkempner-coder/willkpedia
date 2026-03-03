@@ -341,12 +341,14 @@ body {
 }
 
 @media (max-width: 900px) {
-  .panel {
+  .panel,
+  .panel-no-poster {
     grid-template-columns: 1fr;
   }
 
-  .poster-wrap {
-    align-items: center;
+  .panel-no-poster .content {
+    grid-column: 1;
+    max-width: 100%;
   }
 
   .toggle-grid {
@@ -362,8 +364,14 @@ body {
   }
 }
 
+.panel-no-poster {
+  grid-template-columns: clamp(88px, 11vw, 212px) minmax(640px, 960px) 1fr;
+  gap: 1.9rem;
+}
+
 .panel-no-poster .content {
-  max-width: 100%;
+  grid-column: 2;
+  max-width: 960px;
 }
 
 .web-status[hidden] {
