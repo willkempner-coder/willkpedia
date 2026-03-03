@@ -23,18 +23,7 @@
         <img id="logo" src="/xml2live/assets/XML2LIVE%20LOGO.png" alt="XML2LIVE" />
       </header>
 
-      <main class="panel">
-        <aside class="poster-wrap">
-          <button id="reference-zone" class="poster-frame reference-zone" type="button">
-            <img id="poster" alt="Reference poster" />
-            <div class="poster-overlay">
-              <span id="reference-video-label" class="poster-label">Reference Video (Optional)</span>
-              <p id="reference-video-name">Drop or upload a `.mov` or `h264` file here.</p>
-            </div>
-          </button>
-          <input id="reference-input" type="file" accept=".mov,.mp4,.m4v,.mpg,.mpeg,.avi,.mkv,.h264,video/*" hidden />
-        </aside>
-
+      <main class="panel panel-no-poster">
         <section class="content">
           <div class="title-row">
             <div class="title-group">
@@ -76,9 +65,7 @@
             </section>
           </div>
 
-          <p id="status" class="web-status">
-            Browser page is ready.
-          </p>
+          <p id="status" class="web-status" hidden></p>
 
           <div class="convert-row">
             <button id="convert" class="convert-button" type="button">CONVERT</button>

@@ -1,27 +1,14 @@
 (function () {
   const API_ENDPOINT = (window.XML2LIVE_API_URL || "https://xml2live-api-vercel.vercel.app/api/xml2live").trim();
-  const blankPosterUrl =
-    "data:image/svg+xml;utf8," +
-    encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900"><rect width="600" height="900" fill="#1a2833"/></svg>',
-    );
   const XML_MIME_PATTERN = /(text\/xml|application\/xml|\.xml$)/i;
-  const REFERENCE_EXTENSIONS = /(mov|mp4|m4v|mpg|mpeg|avi|mkv|h264)$/i;
 
   const state = {
     xmlFile: null,
     xmlText: "",
     xmlSummary: null,
-    referenceFile: null,
-    referenceDurationSeconds: 0,
   };
 
   const els = {
-    poster: document.querySelector("#poster"),
-    referenceZone: document.querySelector("#reference-zone"),
-    referenceVideoLabel: document.querySelector("#reference-video-label"),
-    referenceVideoName: document.querySelector("#reference-video-name"),
-    referenceInput: document.querySelector("#reference-input"),
     sequenceName: document.querySelector("#sequence-name"),
     sequenceYear: document.querySelector("#sequence-year"),
     sequenceMeta: document.querySelector("#sequence-meta"),
@@ -39,9 +26,6 @@
     toast: document.querySelector("#toast"),
   };
 
-  els.poster.src = blankPosterUrl;
-  els.poster.dataset.defaultSrc = blankPosterUrl;
-
   function basenameOf(name) {
     return String(name).split(/[\/\\]/).pop() || name;
   }
@@ -57,7 +41,6 @@
   function setBusy(isBusy) {
     els.convert.disabled = isBusy;
     els.dropZone.disabled = isBusy;
-    els.referenceZone.disabled = isBusy;
     els.importMetadata.disabled = isBusy;
     els.abletonVersion.disabled = isBusy;
     els.convert.textContent = isBusy ? "PREPARING..." : "CONVERT";
@@ -157,73 +140,11 @@
     }
   }
 
-  async function capturePosterFromFile(file) {
-    const objectUrl = URL.createObjectURL(file);
-    return new Promise((resolve) => {
-      const video = document.createElement("video");
-      video.preload = "metadata";
-      video.muted = true;
-      video.playsInline = true;
-
-      const finish = (result) => {
-        URL.revokeObjectURL(objectUrl);
-        resolve(result);
-      };
-
-      video.addEventListener("error", () => finish({ durationSeconds: 0, previewUrl: "" }), { once: true });
-      video.addEventListener(
-        "loadedmetadata",
-        () => {
-          const duration = Number.isFinite(video.duration) ? video.duration : 0;
-          if (!duration) {
-            finish({ durationSeconds: 0, previewUrl: "" });
-            return;
-          }
-          video.currentTime = Math.min(Math.max(duration * 0.14, 0.2), Math.max(duration - 0.2, 0.2));
-        },
-        { once: true },
-      );
-      video.addEventListener(
-        "seeked",
-        () => {
-          const canvas = document.createElement("canvas");
-          canvas.width = video.videoWidth || 600;
-          canvas.height = video.videoHeight || 900;
-          const ctx = canvas.getContext("2d");
-          if (!ctx) {
-            finish({ durationSeconds: video.duration || 0, previewUrl: "" });
-            return;
-          }
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          finish({
-            durationSeconds: video.duration || 0,
-            previewUrl: canvas.toDataURL("image/jpeg", 0.88),
-          });
-        },
-        { once: true },
-      );
-
-      video.src = objectUrl;
-    });
-  }
-
-  async function loadReferenceFile(file) {
-    state.referenceFile = file;
-    state.referenceVideoLabel.textContent = stemOf(file.name);
-    state.referenceDurationSeconds = 0;
-    const result = await capturePosterFromFile(file);
-    state.referenceDurationSeconds = result.durationSeconds || 0;
-    els.poster.src = result.previewUrl || els.poster.dataset.defaultSrc;
-    setStatus("Reference video added.");
-  }
 
   function isXmlFile(file) {
     return file && (XML_MIME_PATTERN.test(file.type) || file.name.toLowerCase().endsWith(".xml"));
   }
 
-  function isReferenceFile(file) {
-    return file && REFERENCE_EXTENSIONS.test(file.name || "");
-  }
 
   function downloadBlob(filename, blob) {
     const objectUrl = URL.createObjectURL(blob);
@@ -280,13 +201,6 @@
         summary: state.xmlSummary,
         text: state.xmlText,
       },
-      referenceMedia: state.referenceFile
-        ? {
-            fileName: state.referenceFile.name,
-            mimeType: state.referenceFile.type || "",
-            durationSeconds: state.referenceDurationSeconds || 0,
-          }
-        : null,
     };
 
     setBusy(true);
@@ -314,7 +228,7 @@
   }
 
   function attachDropEvents() {
-    [els.dropZone, els.referenceZone].forEach((target) => {
+    [els.dropZone].forEach((target) => {
       ["dragenter", "dragover"].forEach((eventName) => {
         target.addEventListener(eventName, (event) => {
           event.preventDefault();
@@ -333,22 +247,12 @@
       const file = Array.from(event.dataTransfer?.files || []).find(isXmlFile);
       if (file) await loadXmlFile(file);
     });
-
-    els.referenceZone.addEventListener("drop", async (event) => {
-      const file = Array.from(event.dataTransfer?.files || []).find(isReferenceFile);
-      if (file) await loadReferenceFile(file);
-    });
   }
 
   els.dropZone.addEventListener("click", () => els.xmlInput.click());
-  els.referenceZone.addEventListener("click", () => els.referenceInput.click());
   els.xmlInput.addEventListener("change", async () => {
     const file = els.xmlInput.files && els.xmlInput.files[0];
     if (file) await loadXmlFile(file);
-  });
-  els.referenceInput.addEventListener("change", async () => {
-    const file = els.referenceInput.files && els.referenceInput.files[0];
-    if (file) await loadReferenceFile(file);
   });
   els.convert.addEventListener("click", convert);
   attachDropEvents();
