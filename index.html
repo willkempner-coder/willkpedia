@@ -914,7 +914,8 @@
       table[data-admin-table="film-main"],
       table[data-admin-table="film-short"],
       table[data-admin-table="fashion"],
-      table[data-admin-table="trailers"] {
+      table[data-admin-table="trailers"],
+      table[data-admin-table="music-videos-live-performance"] {
         table-layout: fixed;
       }
       table[data-admin-table="tv"] th:nth-child(1),
@@ -926,7 +927,9 @@
       table[data-admin-table="fashion"] th:nth-child(1),
       table[data-admin-table="fashion"] td:nth-child(1),
       table[data-admin-table="trailers"] th:nth-child(1),
-      table[data-admin-table="trailers"] td:nth-child(1) {
+      table[data-admin-table="trailers"] td:nth-child(1),
+      table[data-admin-table="music-videos-live-performance"] th:nth-child(1),
+      table[data-admin-table="music-videos-live-performance"] td:nth-child(1) {
         width: 170px;
         min-width: 170px;
         max-width: 170px;
@@ -940,7 +943,9 @@
       table[data-admin-table="fashion"] th:nth-child(2),
       table[data-admin-table="fashion"] td:nth-child(2),
       table[data-admin-table="trailers"] th:nth-child(2),
-      table[data-admin-table="trailers"] td:nth-child(2) {
+      table[data-admin-table="trailers"] td:nth-child(2),
+      table[data-admin-table="music-videos-live-performance"] th:nth-child(2),
+      table[data-admin-table="music-videos-live-performance"] td:nth-child(2) {
         width: auto;
         min-width: 0;
       }
@@ -953,7 +958,9 @@
       table[data-admin-table="fashion"] th:nth-child(3),
       table[data-admin-table="fashion"] td:nth-child(3),
       table[data-admin-table="trailers"] th:nth-child(3),
-      table[data-admin-table="trailers"] td:nth-child(3) {
+      table[data-admin-table="trailers"] td:nth-child(3),
+      table[data-admin-table="music-videos-live-performance"] th:nth-child(3),
+      table[data-admin-table="music-videos-live-performance"] td:nth-child(3) {
         width: 82px;
         min-width: 82px;
         max-width: 82px;
@@ -965,7 +972,9 @@
       table[data-admin-table="film-short"] th:nth-child(4),
       table[data-admin-table="film-short"] td:nth-child(4),
       table[data-admin-table="trailers"] th:nth-child(4),
-      table[data-admin-table="trailers"] td:nth-child(4) {
+      table[data-admin-table="trailers"] td:nth-child(4),
+      table[data-admin-table="music-videos-live-performance"] th:nth-child(4),
+      table[data-admin-table="music-videos-live-performance"] td:nth-child(4) {
         width: 160px;
         min-width: 140px;
       }
@@ -1043,17 +1052,19 @@
         }
         table[data-admin-table="tv"] th:nth-child(3),
         table[data-admin-table="tv"] td:nth-child(3),
-        table[data-admin-table="film-main"] th:nth-child(3),
-        table[data-admin-table="film-main"] td:nth-child(3),
-        table[data-admin-table="film-short"] th:nth-child(3),
-        table[data-admin-table="film-short"] td:nth-child(3),
-        table[data-admin-table="fashion"] th:nth-child(3),
-        table[data-admin-table="fashion"] td:nth-child(3),
-        table[data-admin-table="trailers"] th:nth-child(3),
-        table[data-admin-table="trailers"] td:nth-child(3),
-        table[data-admin-table="filmography"] th:nth-child(3),
-        table[data-admin-table="filmography"] td:nth-child(3) {
-          font-variant-numeric: tabular-nums;
+      table[data-admin-table="film-main"] th:nth-child(3),
+      table[data-admin-table="film-main"] td:nth-child(3),
+      table[data-admin-table="film-short"] th:nth-child(3),
+      table[data-admin-table="film-short"] td:nth-child(3),
+      table[data-admin-table="fashion"] th:nth-child(3),
+      table[data-admin-table="fashion"] td:nth-child(3),
+      table[data-admin-table="trailers"] th:nth-child(3),
+      table[data-admin-table="trailers"] td:nth-child(3),
+      table[data-admin-table="music-videos-live-performance"] th:nth-child(3),
+      table[data-admin-table="music-videos-live-performance"] td:nth-child(3),
+      table[data-admin-table="filmography"] th:nth-child(3),
+      table[data-admin-table="filmography"] td:nth-child(3) {
+        font-variant-numeric: tabular-nums;
         }
         table[data-admin-table="awards"] th:nth-child(1),
         table[data-admin-table="awards"] td:nth-child(1),
@@ -2254,6 +2265,82 @@
         table[data-admin-table="film-short"] .mobile-row-summary .v {
           font-size: 0.95rem;
         }
+        table[data-admin-table="music-videos-live-performance"] tbody tr.mobile-row-compact {
+          display: flex;
+          flex-direction: column;
+        }
+        table[data-admin-table="music-videos-live-performance"] tbody tr.mobile-row-compact > td[data-label="Still"] {
+          order: 1;
+          border-top: 0;
+          border-right: 0;
+          padding: 0 !important;
+          display: block !important;
+          width: 100% !important;
+          max-width: none !important;
+        }
+        table[data-admin-table="music-videos-live-performance"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link {
+          width: 100%;
+          display: block;
+        }
+        table[data-admin-table="music-videos-live-performance"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still {
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          object-position: center;
+          border: 0;
+          border-bottom: 1px solid #a2a9b1;
+        }
+        table[data-admin-table="music-videos-live-performance"] tbody tr.mobile-row-compact > td[data-label="Still"]::before {
+          content: none;
+          display: none;
+        }
+        table[data-admin-table="music-videos-live-performance"] tbody tr.mobile-row-compact .mobile-row-header {
+          order: 2;
+          border-top: 1px solid #eaecf0;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          align-items: start;
+          gap: 6px 10px;
+          padding: 10px 12px 8px;
+        }
+        table[data-admin-table="music-videos-live-performance"] tbody tr.mobile-row-compact .mobile-row-summary {
+          order: 3;
+          padding: 6px 12px 12px;
+        }
+        table[data-admin-table="music-videos-live-performance"] .filmography-still,
+        table[data-admin-table="music-videos-live-performance"] .filmography-still-link {
+          width: 100%;
+          max-width: 100%;
+          display: block;
+        }
+        table[data-admin-table="music-videos-live-performance"] .filmography-still {
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          object-position: center;
+          border: 1px solid #a2a9b1;
+        }
+        table[data-admin-table="music-videos-live-performance"] .mobile-row-title {
+          min-width: 0;
+        }
+        table[data-admin-table="music-videos-live-performance"] .mobile-row-title * {
+          font-size: 0.95rem !important;
+          line-height: 1.25;
+        }
+        table[data-admin-table="music-videos-live-performance"] .mobile-row-title a {
+          display: inline;
+          text-wrap: pretty;
+        }
+        table[data-admin-table="music-videos-live-performance"] .mobile-row-year {
+          font-size: 0.9rem;
+          font-weight: 700;
+          font-variant-numeric: tabular-nums;
+        }
+        table[data-admin-table="music-videos-live-performance"] .mobile-row-summary .k {
+          font-size: 0.68rem;
+        }
+        table[data-admin-table="music-videos-live-performance"] .mobile-row-summary .v {
+          font-size: 0.95rem;
+        }
         table[data-admin-table="branded"] .mobile-row-title *,
         table[data-admin-table="fashion-telfar-select"] .mobile-row-title *,
         table[data-admin-table="fashion-telfar-additional"] .mobile-row-title * {
@@ -2411,9 +2498,6 @@ When the Brooklyn alt-comedy scene needs an assistant editor for its microbudget
 It is hard to think of fashion without thinking of “Will K.”
 When he enters a room, his signature fedora signals that elegance and video-editing virtuosity have arrived.
 
-* ''Ms. Lauryn Hill for S/S 2021'' (Louis Vuitton, 2021) — Editor, alongside Kristan Sprague. Directed by Naima Ramos-Chapman
-* ''TELFAR 20th Anniversary Show | SS25 Runway'' (2025) — Editor
-
 ====Telfar Advertisements – Select Work====
 Will began working with TELFAR TV in 2024 as a producer on the reality series ''New Models'' (Season Zero).
 He subsequently joined the editing team, contributing to numerous campaigns.
@@ -2452,6 +2536,11 @@ In local pubs, drunkards have reportedly been heard asking, "How can he cram thi
 * ''Andre 3000 – Listening To The Sun'' (teaser, 2023) — Trailer Editor | Director Terence Nance
 * ''Seek No Favor'' (2024) — Trailer Editor | Director Leilah Weintraub
 * ''Telfar New Models Season 1'' (2025) — Trailer Editor | Director Babak Radboy
+
+===Music Videos and Live Performance===
+* ''Ms. Lauryn Hill for S/S 2021'' (Louis Vuitton, 2021) — Editor, alongside Kristan Sprague. Directed by Naima Ramos-Chapman
+* ''BIG ONE : SEEN BY HOUSE OF JUICY COUTURE'' (2025) — Editor | Director Ian Isiah
+* ''Naomi Sharon (LIVE from Telfar)'' (2026) — Editor, Label: OVO
 
 ==Filmography==
 These short films contain wonder, humor, commentary on toxic masculinity, and probing reflections on the impact of technology on social structures.
@@ -2554,6 +2643,7 @@ Admin scratch notes:
                   <li><a href="#films-editing">Films</a></li>
                   <li><a href="#fashion">Fashion</a></li>
                   <li><a href="#trailers">Trailers</a></li>
+                  <li><a href="#music-videos-live-performance">Music Videos and Live Performance</a></li>
                   <li><a href="#corporate">Branded</a></li>
                 </ol>
               </li>
@@ -2672,7 +2762,7 @@ Admin scratch notes:
                   <button id="scandal-next" type="button" aria-label="Next scandals image">Next</button>
                 </div>
               </figure>
-              <p data-admin-text="editing-intro">Editing is the craft Kempner is most often called upon to perform. His employers love to place him in front of a computer and have him tap away all day. They relish using their funds to goad him into an office, where they plop him in front of Adobe Premiere. They smile at the thought of him dragging and dropping clips, transforming their assets into a finished export.<br /><br />His editorial work spans <a href="#tv">television</a>, <a href="#films-editing">film</a>, <a href="#fashion">fashion</a>, <a href="#trailers">trailers</a>, and <a href="#corporate">branded content</a>.</p>
+              <p data-admin-text="editing-intro">Editing is the craft Kempner is most often called upon to perform. His employers love to place him in front of a computer and have him tap away all day. They relish using their funds to goad him into an office, where they plop him in front of Adobe Premiere. They smile at the thought of him dragging and dropping clips, transforming their assets into a finished export.<br /><br />His editorial work spans <a href="#tv">television</a>, <a href="#films-editing">film</a>, <a href="#trailers">trailers</a>, <a href="#music-videos-live-performance">music videos and live performance</a>, <a href="#fashion">fashion</a>, and <a href="#corporate">branded content</a>.</p>
             </div>
 
             <h3 id="tv">Television</h3>
@@ -2874,39 +2964,6 @@ Admin scratch notes:
 
             <h3 id="fashion">Fashion</h3>
             <p class="notes" data-admin-text="fashion-intro">It is hard to think of fashion without thinking of “Will K.” When he enters a room, his signature fedora signals that elegance and video-editing virtuosity have arrived.</p>
-            <table class="wikitable table-video-col-2" data-admin-table="fashion">
-              <thead>
-                <tr>
-                  <th>Still</th>
-                  <th>Project</th>
-                  <th>Year</th>
-                  <th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" data-inline-off="true" class="video-link filmography-still-link">
-                      <img class="filmography-still" src="https://i.ytimg.com/vi/ehNpmxYYXiQ/hqdefault.jpg" alt="Ms. Lauryn Hill for S/S 2021 still" loading="lazy" />
-                    </a>
-                  </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" data-inline-off="true" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)<div class="title-subnote">Directed by Naima Ramos-Chapman</div></td>
-                  <td>2021</td>
-                  <td>Editor, alongside Kristan Sprague</td>
-                </tr>
-                <tr>
-                  <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/g0tiLW2nPuk" data-inline-off="true" class="video-link filmography-still-link">
-                      <img class="filmography-still" src="https://i.ytimg.com/vi/g0tiLW2nPuk/hqdefault.jpg" alt="BIG ONE : SEEN BY HOUSE OF JUICY COUTURE still" loading="lazy" />
-                    </a>
-                  </td>
-                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/g0tiLW2nPuk" data-inline-off="true" class="video-link"><i>BIG ONE : SEEN BY HOUSE OF JUICY COUTURE</i></a><div class="title-subnote">Directed by Ian Isiah</div></td>
-                  <td>2025</td>
-                  <td>Editor</td>
-                </tr>
-              </tbody>
-            </table>
-
             <h4 id="telfar-select-work">Telfar Advertisements - Select Work</h4>
             <p class="notes">Will began working with TELFAR TV in 2024 as a producer on the reality series New Models (Season Zero). He subsequently joined the editing team, contributing to numerous campaigns.</p>
             <figure class="telfar-showcase" id="telfar-showcase-carousel">
@@ -3130,6 +3187,50 @@ Admin scratch notes:
                   </td>
                   <td>2025</td>
                   <td>Trailer Editor</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 id="music-videos-live-performance">Music Videos and Live Performance</h3>
+            <table class="wikitable table-video-col-2" data-admin-table="music-videos-live-performance">
+              <thead>
+                <tr>
+                  <th>Still</th>
+                  <th>Project</th>
+                  <th>Year</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/ehNpmxYYXiQ/hqdefault.jpg" alt="Ms. Lauryn Hill for S/S 2021 still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/ehNpmxYYXiQ" data-inline-off="true" class="video-link"><i>Ms. Lauryn Hill for S/S 2021</i></a> (Louis Vuitton)<div class="title-subnote">Directed by Naima Ramos-Chapman</div></td>
+                  <td>2021</td>
+                  <td>Editor, alongside Kristan Sprague</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/g0tiLW2nPuk" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/g0tiLW2nPuk/hqdefault.jpg" alt="BIG ONE : SEEN BY HOUSE OF JUICY COUTURE still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/g0tiLW2nPuk" data-inline-off="true" class="video-link"><i>BIG ONE : SEEN BY HOUSE OF JUICY COUTURE</i></a><div class="title-subnote">Directed by Ian Isiah</div></td>
+                  <td>2025</td>
+                  <td>Editor</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/tvtJ0aaxImQ" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/tvtJ0aaxImQ/hqdefault.jpg" alt="Naomi Sharon (LIVE from Telfar) still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tvtJ0aaxImQ" data-inline-off="true" class="video-link"><i>Naomi Sharon (LIVE from Telfar)</i></a></td>
+                  <td>2026</td>
+                  <td>Editor, Label: OVO</td>
                 </tr>
               </tbody>
             </table>
@@ -5110,6 +5211,7 @@ __/  o o \___
             tableKey === "tv" ||
             tableKey === "fashion" ||
             tableKey === "trailers" ||
+            tableKey === "music-videos-live-performance" ||
             tableKey === "film-main" ||
             tableKey === "film-short";
           const isTrailersTable = tableKey === "trailers";
