@@ -1693,11 +1693,11 @@
         }
         .toc-wrap {
           position: fixed;
-          top: 58px;
+          top: calc(var(--mobile-toc-top, 58px) + 60px);
           left: 10px;
           width: min(80vw, 360px);
           margin: 0;
-          z-index: 70;
+          z-index: 270;
           opacity: 0;
           pointer-events: none;
           transform: translateY(-6px);
@@ -1724,7 +1724,7 @@
           border-radius: 2px;
           background: #f8f9fa;
           color: #202122;
-          z-index: 71;
+          z-index: 271;
           font: 700 1.55rem/1 sans-serif;
           cursor: pointer;
           align-items: center;
@@ -2971,7 +2971,7 @@ Admin scratch notes:
               <figcaption class="telfar-showcase-caption" id="telfar-showcase-caption"></figcaption>
               <div class="scandal-controls">
                 <button id="telfar-showcase-prev" type="button" aria-label="Previous Telfar showcase video">Prev</button>
-                <span class="scandal-counter" id="telfar-showcase-counter">1 / 4</span>
+                <span class="scandal-counter" id="telfar-showcase-counter">1 / 8</span>
                 <button id="telfar-showcase-next" type="button" aria-label="Next Telfar showcase video">Next</button>
               </div>
             </figure>
@@ -4106,14 +4106,24 @@ __/  o o \___
         "images/Fposters/FFFFFF2.png": "F 3D logos by Ben Ross",
         "images/Fposters/FFFFFFIRL.jpeg": "Image by Mitchel Johnson"
       };
+      const telfarShowcasePlaylistId = "PL17NtDihC7z84tvByTCU9mb6S1wNc6PCC";
       const telfarShowcaseVideos = [
-        { src: "https://www.youtube-nocookie.com/embed/qd46AT3SSRE", title: "qd46AT3SSRE" },
-        { src: "https://www.youtube-nocookie.com/embed/OD2zDBPLdWE", title: "OD2zDBPLdWE" },
-        { src: "https://www.youtube-nocookie.com/embed/dB1lnEhK9kM", title: "TELFAR showcase video 2" },
-        { src: "https://www.youtube-nocookie.com/embed/wGksJM026Vg", title: "TELFAR showcase video 3" },
-        { src: "https://www.youtube-nocookie.com/embed/9Y1EhJndDGg", title: "TELFAR showcase video 4" },
-        { src: "https://www.youtube-nocookie.com/embed/5fyjQbEII9s", title: "5fyjQbEII9s" }
-      ];
+        "gKBevzxdv34",
+        "vM3tVatX3Pg",
+        "qd46AT3SSRE",
+        "5fyjQbEII9s",
+        "dB1lnEhK9kM",
+        "9Y1EhJndDGg",
+        "OD2zDBPLdWE",
+        "wGksJM026Vg"
+      ].map((videoId, index) => ({
+        src:
+          "https://www.youtube-nocookie.com/embed/" +
+          videoId +
+          "?list=" +
+          telfarShowcasePlaylistId,
+        title: "TELFAR showcase video " + (index + 1)
+      }));
       const telfarShowcaseTitleCache = new Map();
       let scandalIndex = 0;
       let awardsIndex = 0;
