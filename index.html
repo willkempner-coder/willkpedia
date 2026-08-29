@@ -49,6 +49,10 @@
         --wiki-border: #a2a9b1;
         --wiki-bg: #f8f9fa;
         --wiki-text: #202122;
+        --wiki-font-base: sans-serif;
+        --wiki-font-ui: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Inter", "Helvetica", "Arial", sans-serif;
+        --wiki-font-serif: "Linux Libertine", "Georgia", "Times", "Source Serif 4", serif;
+        --wiki-font-mono: "Menlo", "Consolas", "Liberation Mono", "Fira Code", "Courier New", monospace;
       }
       * {
         box-sizing: border-box;
@@ -57,7 +61,7 @@
         margin: 0;
         color: var(--wiki-text);
         background: #ffffff;
-        font-family: "Linux Libertine", "Georgia", "Times New Roman", serif;
+        font-family: var(--wiki-font-base);
         line-height: 1.6;
       }
       a {
@@ -105,7 +109,7 @@
       }
       .title-subnote {
         margin-top: 4px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.88rem;
         line-height: 1.35;
         color: #54595d;
@@ -169,7 +173,7 @@
         width: 100%;
         border: 1px solid #c8ccd1;
         background: #f8f9fa;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         z-index: 10;
       }
       .appearance-head {
@@ -308,7 +312,7 @@
         display: flex;
       }
       .sorry-hold-text {
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-weight: 900;
         font-size: clamp(3.8rem, 13vw, 14rem);
         color: #ff2ca8;
@@ -319,6 +323,7 @@
       .site-brand-text {
         margin: 0;
         flex: 0 1 auto;
+        font-family: var(--wiki-font-serif);
         font-size: clamp(2.8rem, 6.2vw, 5.8rem);
         font-weight: 400;
         letter-spacing: 0.3px;
@@ -331,6 +336,7 @@
       }
       .title {
         margin: 0 0 10px;
+        font-family: var(--wiki-font-serif);
         font-size: 2rem;
         font-weight: 400;
       }
@@ -361,7 +367,7 @@
       .topic-tabs {
         display: flex;
         gap: 3px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
       }
       .topic-tab {
         border: 1px solid transparent;
@@ -386,7 +392,7 @@
         justify-content: flex-end;
         gap: 3px;
         margin: 0;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         position: relative;
         z-index: 1;
       }
@@ -401,7 +407,7 @@
         border: 1px solid #c8ccd1;
         background: #eaf3ff;
         color: #3366cc;
-        font: 700 0.98rem/1 sans-serif;
+        font: 700 0.98rem/1 var(--wiki-font-ui);
         padding: 10px 14px;
         cursor: pointer;
         min-width: 198px;
@@ -438,7 +444,7 @@
         border-bottom: 1px solid #eaecf0;
         background: #fff;
         color: #202122;
-        font: 0.9rem/1.3 sans-serif;
+        font: 0.9rem/1.3 var(--wiki-font-ui);
         text-align: left;
         padding: 8px 10px;
         cursor: pointer;
@@ -509,7 +515,7 @@
         border: 1px solid #a2a9b1;
         background: #fff;
         margin: 0 0 14px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
       }
       .edit-surface.show {
         display: block;
@@ -556,7 +562,7 @@
       .edit-body textarea {
         width: 100%;
         min-height: 430px;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+        font-family: var(--wiki-font-mono);
         font-size: 0.82rem;
         border: 0;
         border-top: 1px solid #c8ccd1;
@@ -620,7 +626,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         padding: 24px;
       }
       .tamper-modal[aria-hidden="false"] {
@@ -668,7 +674,7 @@
       .toc {
         border: 1px solid var(--wiki-border);
         background: var(--wiki-bg);
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.9rem;
         padding: 10px 12px;
       }
@@ -697,7 +703,7 @@
         background: #0f1115;
         color: #fff;
         padding: 16px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
       }
       body.force-mobile-preview > *:not(.mobile-preview-shell) {
         display: none !important;
@@ -757,7 +763,7 @@
         border: 1px solid var(--wiki-border);
         background: var(--wiki-bg);
         border-collapse: collapse;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.88rem;
       }
       .infobox caption {
@@ -799,6 +805,7 @@
       }
       h2 {
         margin: 28px 0 8px;
+        font-family: var(--wiki-font-serif);
         font-size: 1.55rem;
         font-weight: 400;
         border-bottom: 1px solid #a2a9b1;
@@ -809,7 +816,7 @@
         font-weight: 600;
       }
       .edit {
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.84rem;
         margin-left: 10px;
         color: var(--wiki-blue);
@@ -821,7 +828,7 @@
       .wikitable {
         width: 100%;
         border-collapse: collapse;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.92rem;
         line-height: 1.45;
         margin: 10px 0 16px;
@@ -835,7 +842,7 @@
       }
       .personal-info-plain {
         display: none;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 1rem;
         line-height: 1.55;
         border: 1px solid var(--wiki-border);
@@ -1074,12 +1081,12 @@
         }
       }
       .ref {
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.78rem;
         vertical-align: super;
       }
       .citation-needed {
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.76rem;
         color: #54595d;
         margin-left: 4px;
@@ -1091,7 +1098,7 @@
         background: #f8f9fa;
         margin: 6px 0 14px 22px;
         padding: 3px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.82rem;
       }
       .thumb img {
@@ -1110,7 +1117,7 @@
         background: #f8f9fa;
         margin: 2px 0 16px 24px;
         padding: 3px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
       }
       .awards-thumb img {
         width: 100%;
@@ -1135,7 +1142,7 @@
         background: #f8f9fa;
         margin: 2px 24px 16px 0;
         padding: 3px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
       }
       .editing-intro-layout {
         display: flex;
@@ -1195,13 +1202,13 @@
         border: 1px solid #a2a9b1;
         background: #f8f9fa;
         color: #202122;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.85rem;
         padding: 3px 8px;
         cursor: pointer;
       }
       .scandal-counter {
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.8rem;
         color: #54595d;
       }
@@ -1260,7 +1267,7 @@
         display: block;
       }
       .bandcamp-fallback {
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.78rem;
         color: #54595d;
       }
@@ -1287,7 +1294,7 @@
       }
       .inline-table-video-fallback {
         padding: 8px 9px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.8rem;
         color: #54595d;
         line-height: 1.35;
@@ -1380,7 +1387,7 @@
       }
       .wiki-preview-copy {
         padding: 10px 12px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.84rem;
         line-height: 1.35;
       }
@@ -1397,7 +1404,7 @@
         border-top: 1px solid #c8ccd1;
       }
       .wiki-preview-loading {
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.85rem;
         color: #54595d;
       }
@@ -1428,7 +1435,7 @@
         display: block;
       }
       .video-hover-preview-caption {
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.82rem;
         color: #54595d;
         padding: 6px 8px;
@@ -1458,7 +1465,7 @@
         align-items: center;
         border-bottom: 1px solid #c8ccd1;
         padding: 8px 10px;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
       }
       .modal-body {
         aspect-ratio: 16 / 9;
@@ -1472,7 +1479,7 @@
         border: 1px solid #a2a9b1;
         background: #f8f9fa;
         cursor: pointer;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
       }
       .image-lightbox-card {
         width: min(1200px, 95vw);
@@ -1510,14 +1517,14 @@
         border: 1px solid #a2a9b1;
         background: #fff;
         color: #202122;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.9rem;
         padding: 6px 12px;
         cursor: pointer;
       }
       .image-lightbox-caption {
         padding: 8px 10px 0;
-        font-family: sans-serif;
+        font-family: var(--wiki-font-ui);
         font-size: 0.86rem;
         color: #54595d;
       }
@@ -1600,7 +1607,7 @@
         background: #fff;
         box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
         padding: 16px;
-        font-family: serif;
+        font-family: var(--wiki-font-serif);
       }
       .vintage-gate-text {
         margin: 0;
@@ -1739,7 +1746,7 @@
           background: #f8f9fa;
           color: #202122;
           z-index: 271;
-          font: 700 1.55rem/1 sans-serif;
+          font: 700 1.55rem/1 var(--wiki-font-ui);
           cursor: pointer;
           align-items: center;
           justify-content: center;
@@ -1824,7 +1831,7 @@
           padding: 8px 12px;
           white-space: normal;
           min-width: 0 !important;
-          font-family: sans-serif;
+          font-family: var(--wiki-font-ui);
           font-size: 0.98rem;
           line-height: 1.4;
         }
@@ -1835,7 +1842,7 @@
         .wikitable tbody th::before {
           content: attr(data-label);
           display: block;
-          font-family: sans-serif;
+          font-family: var(--wiki-font-ui);
           font-size: 0.78rem;
           font-weight: 700;
           text-transform: uppercase;
@@ -1889,7 +1896,7 @@
           line-height: 1;
         }
         .mobile-row-year {
-          font-family: sans-serif;
+          font-family: var(--wiki-font-ui);
           font-size: 1.25rem;
           font-weight: 700;
           color: #202122;
@@ -1904,7 +1911,7 @@
           gap: 6px;
         }
         .mobile-row-summary .k {
-          font-family: sans-serif;
+          font-family: var(--wiki-font-ui);
           font-size: 0.72rem;
           font-weight: 700;
           text-transform: uppercase;
@@ -1912,13 +1919,13 @@
           color: #54595d;
         }
         .mobile-row-summary .v {
-          font-family: sans-serif;
+          font-family: var(--wiki-font-ui);
           font-size: 0.96rem;
           font-weight: 500;
           color: #202122;
         }
         .mobile-row-summary .v-only {
-          font-family: sans-serif;
+          font-family: var(--wiki-font-ui);
           font-size: 0.96rem;
           font-weight: 500;
           color: #202122;
@@ -2252,7 +2259,7 @@
         }
         .mobile-row-subnote {
           margin-top: 4px;
-          font-family: sans-serif;
+          font-family: var(--wiki-font-ui);
           font-size: 0.88rem;
           line-height: 1.35;
           color: #202122;
@@ -4410,10 +4417,10 @@ __/  o o \___
               ? sourceLink.dataset.external
               : "";
           const footer = isDrivePreview
-            ? '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on Google Drive</a></div>'
+            ? '<div style="padding:8px 10px;font-family:var(--wiki-font-ui);font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on Google Drive</a></div>'
             : isYouTube
-            ? '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on YouTube</a></div>'
-            : '<div style="padding:8px 10px;font-family:sans-serif;font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + (externalOverride || normalizedUrl.replace("https://player.vimeo.com/video/", "https://vimeo.com/")) + '" target="_blank" rel="noreferrer">Open on Vimeo</a></div>';
+            ? '<div style="padding:8px 10px;font-family:var(--wiki-font-ui);font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + watchUrl + '" target="_blank" rel="noreferrer">Open on YouTube</a></div>'
+            : '<div style="padding:8px 10px;font-family:var(--wiki-font-ui);font-size:0.85rem;border-top:1px solid #c8ccd1;"><a href="' + (externalOverride || normalizedUrl.replace("https://player.vimeo.com/video/", "https://vimeo.com/")) + '" target="_blank" rel="noreferrer">Open on Vimeo</a></div>';
           modalBody.innerHTML =
             '<iframe src="' + normalizedUrl + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video preview"></iframe>' +
             footer;
@@ -4434,7 +4441,7 @@ __/  o o \___
             return;
           }
           modalBody.innerHTML =
-            '<div style="padding:20px;font-family:sans-serif;">' +
+            '<div style="padding:20px;font-family:var(--wiki-font-ui);">' +
             "<p>This link does not provide a guaranteed embeddable player.</p>" +
             '<p><a href="' + normalizedUrl + '" target="_blank" rel="noreferrer">Open video in new tab</a></p>' +
             "</div>";
@@ -4809,7 +4816,7 @@ __/  o o \___
           } else if (isImage) {
             videoHoverPreviewMedia.innerHTML = '<img src="' + url + '" alt="Preview">';
           } else {
-            videoHoverPreviewMedia.innerHTML = '<div style="color:#fff;font-family:sans-serif;font-size:0.9rem;padding:16px;">No inline preview available</div>';
+            videoHoverPreviewMedia.innerHTML = '<div style="color:#fff;font-family:var(--wiki-font-ui);font-size:0.9rem;padding:16px;">No inline preview available</div>';
           }
           videoHoverPreview.classList.add("show");
           videoHoverPreview.setAttribute("aria-hidden", "false");
