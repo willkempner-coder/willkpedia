@@ -967,7 +967,9 @@
       table[data-admin-table="trailers"] th:nth-child(3),
       table[data-admin-table="trailers"] td:nth-child(3),
       table[data-admin-table="music-videos-live-performance"] th:nth-child(3),
-      table[data-admin-table="music-videos-live-performance"] td:nth-child(3) {
+      table[data-admin-table="music-videos-live-performance"] td:nth-child(3),
+      table[data-admin-table="branded"] th:nth-child(3),
+      table[data-admin-table="branded"] td:nth-child(3) {
         width: 82px;
         min-width: 82px;
         max-width: 82px;
@@ -993,8 +995,6 @@
         min-width: 150px;
       }
       @media (min-width: 981px) {
-        table[data-admin-table="branded"] th:nth-child(2),
-        table[data-admin-table="branded"] td:nth-child(2),
         table[data-admin-table="awards"] th:nth-child(2),
         table[data-admin-table="awards"] td:nth-child(2),
         table[data-admin-table="other-video"] th:nth-child(2),
@@ -2101,6 +2101,7 @@
         table[data-admin-table="tv"] tbody tr.mobile-row-compact,
         table[data-admin-table="fashion"] tbody tr.mobile-row-compact,
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact,
+        table[data-admin-table="branded"] tbody tr.mobile-row-compact,
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact,
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact {
           display: flex;
@@ -2112,6 +2113,7 @@
         table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="branded"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"] {
           order: 1;
@@ -2125,6 +2127,7 @@
         table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"],
+        table[data-admin-table="branded"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"],
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"] {
           padding: 0 !important;
@@ -2135,6 +2138,7 @@
         table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
         table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
+        table[data-admin-table="branded"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link,
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still-link {
           width: 100%;
@@ -2144,6 +2148,7 @@
         table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
         table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
+        table[data-admin-table="branded"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still,
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"] .filmography-still {
           width: 100%;
@@ -2157,6 +2162,7 @@
         table[data-admin-table="tv"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
         table[data-admin-table="fashion"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
+        table[data-admin-table="branded"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact > td[data-label="Still"]::before,
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact > td[data-label="Still"]::before {
           content: none;
@@ -2166,6 +2172,7 @@
         table[data-admin-table="tv"] tbody tr.mobile-row-compact .mobile-row-header,
         table[data-admin-table="fashion"] tbody tr.mobile-row-compact .mobile-row-header,
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact .mobile-row-header,
+        table[data-admin-table="branded"] tbody tr.mobile-row-compact .mobile-row-header,
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact .mobile-row-header,
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact .mobile-row-header {
           order: 2;
@@ -2180,6 +2187,7 @@
         table[data-admin-table="tv"] tbody tr.mobile-row-compact .mobile-row-summary,
         table[data-admin-table="fashion"] tbody tr.mobile-row-compact .mobile-row-summary,
         table[data-admin-table="trailers"] tbody tr.mobile-row-compact .mobile-row-summary,
+        table[data-admin-table="branded"] tbody tr.mobile-row-compact .mobile-row-summary,
         table[data-admin-table="film-main"] tbody tr.mobile-row-compact .mobile-row-summary,
         table[data-admin-table="film-short"] tbody tr.mobile-row-compact .mobile-row-summary {
           order: 3;
@@ -2189,6 +2197,7 @@
         table[data-admin-table="tv"] .filmography-still,
         table[data-admin-table="fashion"] .filmography-still,
         table[data-admin-table="trailers"] .filmography-still,
+        table[data-admin-table="branded"] .filmography-still,
         table[data-admin-table="film-main"] .filmography-still,
         table[data-admin-table="film-short"] .filmography-still {
           width: 100%;
@@ -2203,6 +2212,7 @@
         table[data-admin-table="tv"] .filmography-still-link,
         table[data-admin-table="fashion"] .filmography-still-link,
         table[data-admin-table="trailers"] .filmography-still-link,
+        table[data-admin-table="branded"] .filmography-still-link,
         table[data-admin-table="film-main"] .filmography-still-link,
         table[data-admin-table="film-short"] .filmography-still-link {
           display: block;
@@ -3339,9 +3349,10 @@ Admin scratch notes:
             <p class="notes" data-admin-text="branded-intro">
               The economic incentives of the corporations for which Kempner has worked have been associated with environmental and psychological decline, even as those firms report record breaking profit margins. The content he produces for these companies is said to foster a sense of contentment among all stakeholders, from customers to chief executives, though some critics suggest the prevailing mood more closely resembles ennui. In addition to his years working with various Condé Nast brands, he has also edited for Spotify, Twitch, Adidas, and other major platforms.
             </p>
-            <table class="wikitable table-video-col-2" data-admin-table="branded">
+            <table class="wikitable table-video-col-1" data-admin-table="branded">
               <thead>
                 <tr>
+                  <th>Still</th>
                   <th>Project</th>
                   <th>Year</th>
                   <th>Role</th>
@@ -3350,34 +3361,70 @@ Admin scratch notes:
               </thead>
               <tbody>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/tsk9c7KF76E/hqdefault.jpg" alt="Doja Cat's Guide to E-Girl Beauty still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/tsk9c7KF76E" data-inline-off="true" class="video-link"><i>Doja Cat's Guide to E-Girl Beauty | Beauty Secrets | Vogue</i></a></td>
                   <td>2016</td>
                   <td>Editor</td>
                   <td>Edited for numerous Vogue series.</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="https://www.glamour.com/video/watch/multiple-sclerosis-cant-knock-me-down" target="_blank" rel="noreferrer" class="filmography-still-link">
+                      <img class="filmography-still" src="images/glamour-cant-knock-me-down.jpg" alt="Multiple Sclerosis: Can't Knock Me Down still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="https://www.glamour.com/video/watch/multiple-sclerosis-cant-knock-me-down" target="_blank" rel="noreferrer"><i>Multiple Sclerosis: Can't Knock Me Down</i></a></td>
                   <td>2020</td>
                   <td>Editor</td>
                   <td>Glamour Magazine.</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/xqYXccyN1BM" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/xqYXccyN1BM/hqdefault.jpg" alt="Wondr Health Testimonials still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/xqYXccyN1BM" data-inline-off="true" class="video-link"><i>Wondr Health Testimonials</i></a></td>
                   <td>2021</td>
                   <td>Editor</td>
                   <td></td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/YIFbLdPDGzo" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/YIFbLdPDGzo/hqdefault.jpg" alt="MoMA still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/YIFbLdPDGzo" data-inline-off="true" class="video-link"><i>MoMA</i></a></td>
                   <td>2023</td>
                   <td>Editor</td>
                   <td>Ghost Edited</td>
                 </tr>
                 <tr>
+                  <td>
+                    <a href="https://youtu.be/18FpvGcl_DA?si=tfJpmJLASgr0-3Zw" target="_blank" rel="noreferrer" class="filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/18FpvGcl_DA/hqdefault.jpg" alt="Q&amp;A with Juvederm still" loading="lazy" />
+                    </a>
+                  </td>
                   <td><a href="https://youtu.be/18FpvGcl_DA?si=tfJpmJLASgr0-3Zw" target="_blank" rel="noreferrer"><i>Q&amp;A with Juvederm</i></a></td>
                   <td>2024</td>
                   <td>Editor</td>
                   <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/K6kg6C1XSwA" data-inline-off="true" class="video-link filmography-still-link">
+                      <img class="filmography-still" src="https://i.ytimg.com/vi/K6kg6C1XSwA/hqdefault.jpg" alt="Tumi Bag Campaign still" loading="lazy" />
+                    </a>
+                  </td>
+                  <td><a href="#" data-video="https://www.youtube-nocookie.com/embed/K6kg6C1XSwA" data-inline-off="true" class="video-link"><i>Tumi | Bag Campaign</i></a></td>
+                  <td>2026</td>
+                  <td>Editor</td>
+                  <td>30 second hero + Four 15 second videos. Hearst Media.</td>
                 </tr>
               </tbody>
             </table>
@@ -5340,6 +5387,7 @@ __/  o o \___
             tableKey === "tv" ||
             tableKey === "fashion" ||
             tableKey === "trailers" ||
+            tableKey === "branded" ||
             tableKey === "music-videos-live-performance" ||
             tableKey === "film-main" ||
             tableKey === "film-short";
