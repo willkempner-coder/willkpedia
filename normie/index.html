@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will Kempner - Normie Mode</title>
+    <meta
+      name="description"
+      content="A streamlined WillKpedia view for employers, focused on Will Kempner's editing work."
+    />
+    <style>
+      @font-face {
+        font-family: "WillKpedia Libertine";
+        src: url("../fonts/LinLibertine_R.woff") format("woff");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      :root {
+        --wiki-blue: #3366cc;
+        --wiki-border: #a2a9b1;
+        --wiki-bg: #f8f9fa;
+        --wiki-text: #202122;
+        --wiki-muted: #54595d;
+        --wiki-font-base: sans-serif;
+        --wiki-font-ui: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Inter", "Helvetica", "Arial", sans-serif;
+        --wiki-font-serif: "WillKpedia Libertine", "Linux Libertine", "Georgia", "Times", "Source Serif 4", serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: var(--wiki-text);
+        background: #fff;
+        font-family: var(--wiki-font-base);
+        line-height: 1.45;
+      }
+      a {
+        color: var(--wiki-blue);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .page {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto 48px;
+      }
+      .flag-banner {
+        width: 100%;
+        overflow: hidden;
+        padding: 30px 0 0;
+      }
+      .flag-track {
+        display: flex;
+        gap: 24px;
+        width: max-content;
+        animation: flagScroll 120s linear infinite;
+      }
+      .flag-track span {
+        flex: 0 0 auto;
+        font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+        font-size: clamp(1.5rem, 3vw, 2.35rem);
+        line-height: 1;
+      }
+      @keyframes flagScroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .site-brand {
+        display: flex;
+        align-items: center;
+        gap: clamp(18px, 4vw, 58px);
+        min-height: 178px;
+        padding: 8px 0 20px;
+      }
+      .site-brand h1 {
+        margin: 0;
+        color: #000;
+        font-family: var(--wiki-font-serif);
+        font-size: clamp(3.45rem, 7.7vw, 6rem);
+        font-weight: 400;
+        letter-spacing: 0.006em;
+        line-height: 0.82;
+        white-space: nowrap;
+      }
+      .site-brand-wordmark {
+        display: inline-grid;
+        gap: 0;
+        justify-items: center;
+        width: max-content;
+        max-width: 100%;
+      }
+      .site-brand-cap {
+        display: inline-block;
+        font-size: 1.36em;
+        line-height: 0.72;
+        vertical-align: -0.055em;
+      }
+      .site-brand-tagline {
+        width: 100%;
+        margin: 0.08em 0 0;
+        color: #000;
+        font-family: var(--wiki-font-serif);
+        font-size: clamp(1.28rem, 3vw, 2.14rem);
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 0.95;
+        text-align: center;
+      }
+      .site-brand img {
+        width: clamp(132px, 22vw, 240px);
+        height: clamp(132px, 22vw, 240px);
+        object-fit: contain;
+      }
+      .wiki-nav-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 10px;
+        border-bottom: 1px solid var(--wiki-border);
+        margin-bottom: 14px;
+      }
+      .topic-tabs {
+        display: flex;
+        gap: 3px;
+        font-family: var(--wiki-font-ui);
+      }
+      .topic-tab {
+        border: 1px solid transparent;
+        border-bottom: 3px solid transparent;
+        background: transparent;
+        color: var(--wiki-blue);
+        font-size: 0.9rem;
+        line-height: 1;
+        padding: 8px 10px 7px;
+      }
+      .topic-tab.active {
+        color: var(--wiki-text);
+        border-bottom-color: var(--wiki-text);
+      }
+      .editing-head {
+        margin-top: 24px;
+      }
+      .editing-head h2,
+      .work-section h2 {
+        margin: 0 0 10px;
+        font-family: var(--wiki-font-serif);
+        font-size: clamp(1.9rem, 4vw, 2.8rem);
+        font-weight: 400;
+        line-height: 1.1;
+        border-bottom: 1px solid var(--wiki-border);
+      }
+      .compliment-row {
+        display: grid;
+        grid-template-columns: minmax(280px, 420px) 1fr;
+        gap: 28px;
+        align-items: start;
+      }
+      .compliment-card {
+        border: 1px solid var(--wiki-border);
+        background: var(--wiki-bg);
+        padding: 6px;
+        font-family: var(--wiki-font-ui);
+      }
+      .compliment-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: contain;
+        background: #fff;
+        border: 1px solid #c8ccd1;
+      }
+      .compliment-caption {
+        margin: 6px 0 5px;
+        font-size: 0.9rem;
+      }
+      .carousel-controls {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 12px;
+        align-items: center;
+        font-family: var(--wiki-font-ui);
+      }
+      .carousel-controls button,
+      .section-nav button {
+        border: 1px solid var(--wiki-border);
+        background: var(--wiki-bg);
+        color: var(--wiki-text);
+        font: 700 0.94rem/1 var(--wiki-font-ui);
+        padding: 7px 13px;
+        cursor: pointer;
+      }
+      .carousel-controls button:disabled,
+      .section-nav button:disabled {
+        color: #72777d;
+        cursor: default;
+        opacity: 0.6;
+      }
+      .counter {
+        text-align: center;
+        color: var(--wiki-muted);
+        font-size: 0.88rem;
+      }
+      .summary-box {
+        border: 1px solid var(--wiki-border);
+        background: #fff;
+        padding: 16px 18px;
+        font-size: 1.04rem;
+      }
+      .summary-box p {
+        margin: 0;
+      }
+      .summary-box strong {
+        font-weight: 700;
+      }
+      .quick-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px 12px;
+        margin-top: 10px;
+        padding-top: 8px;
+        border-top: 1px solid #c8ccd1;
+        font-family: var(--wiki-font-ui);
+        font-size: 0.94rem;
+      }
+      .bio-stack {
+        display: grid;
+        gap: 12px;
+      }
+      .contact-box {
+        border: 1px solid var(--wiki-border);
+        background: var(--wiki-bg);
+        padding: 14px 18px;
+        font-family: var(--wiki-font-ui);
+        font-size: 1.02rem;
+      }
+      .contact-box dl {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        gap: 5px 34px;
+        margin: 0;
+      }
+      .contact-box dt {
+        font-weight: 700;
+      }
+      .contact-box dd {
+        margin: 0;
+        min-width: 0;
+      }
+      .work-section {
+        margin-top: 40px;
+      }
+      .work-section-head {
+        border-bottom: 1px solid var(--wiki-border);
+        margin-bottom: 14px;
+      }
+      .collapse-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        color: var(--wiki-text);
+        padding: 0;
+        text-align: left;
+        cursor: pointer;
+      }
+      .collapse-icon {
+        width: 0.72em;
+        color: var(--wiki-muted);
+        font-family: var(--wiki-font-ui);
+        font-size: clamp(1.15rem, 3vw, 1.7rem);
+        font-weight: 700;
+        line-height: 1;
+        transform: rotate(90deg);
+        transition: transform 160ms ease;
+      }
+      .work-section.is-collapsed .collapse-icon {
+        transform: rotate(0deg);
+      }
+      .collapse-toggle h2 {
+        margin: 0;
+        border-bottom: 0;
+      }
+      .work-section-body[hidden] {
+        display: none;
+      }
+      .work-subsection {
+        margin-top: 24px;
+      }
+      .work-subsection-title {
+        margin: 0 0 10px;
+        font-family: var(--wiki-font-serif);
+        font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+        font-weight: 400;
+        line-height: 1.15;
+        border-bottom: 1px solid var(--wiki-border);
+      }
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        margin-bottom: 14px;
+      }
+      .section-header h2 {
+        margin-bottom: 0;
+        flex: 1;
+      }
+      .section-header .work-subsection-title {
+        margin-bottom: 0;
+        flex: 1;
+      }
+      .section-nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--wiki-font-ui);
+      }
+      .section-nav.is-hidden {
+        display: none;
+      }
+      .work-viewport {
+        overflow: hidden;
+        border-left: 1px solid var(--wiki-border);
+        border-right: 1px solid var(--wiki-border);
+      }
+      .work-track {
+        display: flex;
+        transition: transform 260ms ease;
+      }
+      .work-page {
+        flex: 0 0 100%;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 26px 28px;
+        align-items: start;
+        align-content: start;
+        padding: 14px 36px 20px;
+      }
+      .work-page.page-size-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .work-card {
+        min-width: 0;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        border-top: 2px solid var(--wiki-border);
+        background: #fff;
+      }
+      .work-card a.media-link {
+        display: block;
+      }
+      .work-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border: 1px solid var(--wiki-border);
+        background: #000;
+      }
+      .work-meta {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px 12px;
+        border: 1px solid #c8ccd1;
+        border-top: 0;
+        padding: 9px 10px 10px;
+        font-family: var(--wiki-font-ui);
+        font-size: 0.88rem;
+        line-height: 1.32;
+        min-height: 124px;
+        align-content: start;
+      }
+      .work-title {
+        min-width: 0;
+        font-weight: 700;
+        display: -webkit-box;
+        min-height: 2.64em;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+      .work-year {
+        color: var(--wiki-text);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .work-role,
+      .work-notes {
+        grid-column: 1 / -1;
+        color: var(--wiki-muted);
+      }
+      .work-role::before,
+      .work-notes::before {
+        color: var(--wiki-text);
+        font-weight: 700;
+      }
+      .work-role::before {
+        content: "Role: ";
+      }
+      .work-notes::before {
+        content: "Details: ";
+      }
+      .work-notes {
+        display: -webkit-box;
+        min-height: 2.64em;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+      .work-notes.is-empty {
+        color: transparent;
+      }
+      .work-notes.is-empty::before {
+        color: transparent;
+      }
+      .bottom-contact {
+        margin-top: 44px;
+        padding-top: 18px;
+        border-top: 1px solid var(--wiki-border);
+      }
+      .mobile-compliment-slot {
+        display: none;
+      }
+      .bottom-contact h2 {
+        margin: 0 0 10px;
+        font-family: var(--wiki-font-serif);
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        font-weight: 400;
+        line-height: 1.1;
+        border-bottom: 1px solid var(--wiki-border);
+      }
+      .video-link::before {
+        content: "▶ ";
+        font-size: 0.82em;
+      }
+      .media-link.video-link::before {
+        content: none;
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(0, 0, 0, 0.55);
+      }
+      .modal[aria-hidden="false"] {
+        display: flex;
+      }
+      .modal-card {
+        width: min(920px, 96vw);
+        border: 1px solid var(--wiki-border);
+        background: #fff;
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+      }
+      .modal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid #c8ccd1;
+        padding: 8px 10px;
+        font-family: var(--wiki-font-ui);
+      }
+      .modal-head strong {
+        min-width: 0;
+      }
+      .modal-close {
+        border: 1px solid var(--wiki-border);
+        background: var(--wiki-bg);
+        color: var(--wiki-text);
+        font: 700 0.9rem/1 var(--wiki-font-ui);
+        padding: 6px 10px;
+        cursor: pointer;
+      }
+      .modal-body {
+        background: #000;
+      }
+      .modal-body iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 0;
+      }
+      .modal-footer {
+        border-top: 1px solid #c8ccd1;
+        background: #fff;
+        padding: 10px 12px 12px;
+        font-family: var(--wiki-font-ui);
+        font-size: 0.88rem;
+      }
+      .modal-facts {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        gap: 4px 16px;
+        margin: 0 0 10px;
+      }
+      .modal-facts dt {
+        font-weight: 700;
+      }
+      .modal-facts dd {
+        margin: 0;
+        color: var(--wiki-muted);
+      }
+      @media (max-width: 900px) {
+        .page {
+          width: min(100% - 22px, 720px);
+        }
+        .site-brand {
+          justify-content: space-between;
+        }
+        .wiki-nav-row,
+        .section-header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .contact-box dl {
+          gap: 5px 20px;
+        }
+        .compliment-row {
+          grid-template-columns: 1fr;
+        }
+        .bio-stack {
+          order: 1;
+        }
+        .compliment-card {
+          order: 2;
+        }
+        .mobile-compliment-slot {
+          display: block;
+          margin-top: 44px;
+        }
+        .mobile-compliment-slot .compliment-card {
+          margin: 0;
+        }
+        .work-page {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          padding: 12px 12px 18px;
+        }
+        .work-page.page-size-3 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 560px) {
+        .site-brand {
+          min-height: 120px;
+        }
+        .site-brand h1 {
+          font-size: clamp(1.72rem, 8.2vw, 2.15rem);
+        }
+        .site-brand-tagline {
+          font-size: clamp(0.92rem, 4vw, 1.12rem);
+        }
+        .site-brand img {
+          width: clamp(82px, 22vw, 96px);
+          height: clamp(82px, 22vw, 96px);
+        }
+        .topic-tabs,
+        .section-nav {
+          width: 100%;
+        }
+        .work-page {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px 12px;
+          padding: 10px 8px 14px;
+        }
+        .work-page.page-size-3 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flag-banner" aria-hidden="true">
+      <div class="flag-track">
+        <span>🇺🇸</span><span>🇲🇦</span><span>🇩🇿</span><span>🇪🇬</span><span>🇳🇬</span><span>🇬🇭</span><span>🇰🇪</span><span>🇪🇹</span><span>🇹🇿</span><span>🇿🇦</span><span>🇸🇦</span><span>🇦🇪</span><span>🇵🇰</span><span>🇧🇩</span><span>🇨🇳</span><span>🇯🇵</span><span>🇰🇷</span><span>🇹🇭</span><span>🇻🇳</span><span>🇵🇭</span>
+        <span>🇺🇸</span><span>🇲🇦</span><span>🇩🇿</span><span>🇪🇬</span><span>🇳🇬</span><span>🇬🇭</span><span>🇰🇪</span><span>🇪🇹</span><span>🇹🇿</span><span>🇿🇦</span><span>🇸🇦</span><span>🇦🇪</span><span>🇵🇰</span><span>🇧🇩</span><span>🇨🇳</span><span>🇯🇵</span><span>🇰🇷</span><span>🇹🇭</span><span>🇻🇳</span><span>🇵🇭</span>
+      </div>
+    </div>
+    <div class="page">
+      <header class="site-brand" aria-label="WillKpedia banner">
+        <div class="site-brand-wordmark">
+          <h1><span class="site-brand-cap">W</span>ILL<span class="site-brand-cap">K</span>PEDIA</h1>
+          <p class="site-brand-tagline">For potential employers.</p>
+        </div>
+        <img src="../images/header-logo-transparent-pixelated.png" alt="WillKpedia globe mark" />
+      </header>
+
+      <nav class="wiki-nav-row" aria-label="Article modes">
+        <div class="topic-tabs">
+          <a class="topic-tab" href="../">Original WillKpedia</a>
+          <a class="topic-tab active" href="./">Normie Mode</a>
+        </div>
+      </nav>
+
+      <section class="editing-head" aria-labelledby="editing-work-title">
+        <h2 id="editing-work-title">Will Kempner's Editing Work</h2>
+        <div class="compliment-row">
+          <figure class="compliment-card" id="compliment-carousel">
+            <img id="compliment-image" src="../images/NewScandal1.webp" alt="Public reaction image 1" />
+            <figcaption class="compliment-caption" id="compliment-caption">Public reaction image 1.</figcaption>
+            <div class="carousel-controls">
+              <button type="button" id="compliment-prev">Prev</button>
+              <span class="counter" id="compliment-counter">1 / 8</span>
+              <button type="button" id="compliment-next">Next</button>
+            </div>
+          </figure>
+          <div class="bio-stack">
+            <div class="summary-box">
+              <p><strong>Will Kempner</strong> is an editor and creative producer whose work spans <a href="#branded">Branded</a>, <a href="#fashion">Fashion</a>, <a href="#television">Television</a>, <a href="#film">Film</a>, and <a href="#music-video">Music Video</a>.</p>
+            </div>
+            <div class="contact-box" aria-label="Contact information">
+              <dl>
+                <dt>Cell:</dt>
+                <dd><a href="tel:+19084561839">908-456-1839</a></dd>
+                <dt>Email:</dt>
+                <dd><a href="mailto:willkempner@gmail.com">willkempner@gmail.com</a></dd>
+                <dt>Insta:</dt>
+                <dd><a href="https://instagram.com/willl__k" target="_blank" rel="noreferrer">@willl__k</a></dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main id="work-sections" aria-label="Selected editing work"></main>
+
+      <div class="mobile-compliment-slot" id="mobile-compliment-slot"></div>
+
+      <section class="bottom-contact" aria-labelledby="bottom-contact-title">
+        <h2 id="bottom-contact-title">Contact</h2>
+        <div class="contact-box" aria-label="Contact information">
+          <dl>
+            <dt>Cell:</dt>
+            <dd><a href="tel:+19084561839">908-456-1839</a></dd>
+            <dt>Email:</dt>
+            <dd><a href="mailto:willkempner@gmail.com">willkempner@gmail.com</a></dd>
+            <dt>Insta:</dt>
+            <dd><a href="https://instagram.com/willl__k" target="_blank" rel="noreferrer">@willl__k</a></dd>
+          </dl>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal" id="video-modal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-head">
+          <strong id="modal-title">Video preview</strong>
+          <button type="button" class="modal-close" id="close-modal">Close</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-footer" id="modal-footer"></div>
+      </div>
+    </div>
+
+    <script>
+      const compliments = [
+        ["../images/NewScandal1.webp", "Public reaction image 1."],
+        ["../images/scandal-02.png", "Public reaction image 2."],
+        ["../images/scandal-03.png", "Public reaction image 3."],
+        ["../images/scandal-04_2.png", "Public reaction image 4."],
+        ["../images/scandal-05.png", "Public reaction image 5."],
+        ["../images/scandal-06.png", "Public reaction image 6."],
+        ["../images/scandal-07.png", "Public reaction image 7."],
+        ["../images/scandal-08.png", "Public reaction image 8."]
+      ];
+
+      const sections = [
+        {
+          title: "Branded",
+          items: [
+            ["Tumi | Bag Campaign", "2026", "Editor", "Client: Tumi. Agency/media: Hearst Media.", "https://youtu.be/K6kg6C1XSwA", "https://i.ytimg.com/vi/K6kg6C1XSwA/hqdefault.jpg"],
+            ["Q&A with Juvederm", "2024", "Editor", "Client: Juvederm. Format: branded Q&A.", "https://youtu.be/18FpvGcl_DA?si=tfJpmJLASgr0-3Zw", "https://i.ytimg.com/vi/18FpvGcl_DA/hqdefault.jpg"],
+            ["MoMA", "2023", "Editor", "Client: MoMA. Credit: Ghost edit.", "https://www.youtube.com/watch?v=YIFbLdPDGzo", "https://i.ytimg.com/vi/YIFbLdPDGzo/hqdefault.jpg"],
+            ["Wondr Health Testimonials", "2021", "Editor", "Client: Wondr Health. Format: Testimonials.", "https://www.youtube.com/watch?v=xqYXccyN1BM", "https://i.ytimg.com/vi/xqYXccyN1BM/hqdefault.jpg"],
+            ["Multiple Sclerosis: Can't Knock Me Down", "2020", "Editor", "Publisher: Glamour Magazine. Format: Documentary short.", "https://www.glamour.com/video/watch/multiple-sclerosis-cant-knock-me-down", "../images/glamour-cant-knock-me-down.jpg"],
+            ["Doja Cat's Guide to E-Girl Beauty", "2016", "Editor", "Publisher: Vogue. Series: Beauty Secrets.", "https://www.youtube.com/watch?v=tsk9c7KF76E", "https://i.ytimg.com/vi/tsk9c7KF76E/hqdefault.jpg"]
+          ]
+        },
+        {
+          title: "Fashion",
+          items: [
+            ["MicroPlastic Bag: Landfill", "2026", "Wrote and Edited", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/reel/DYM5ZB7OLMa/", "../images/telfar-microplastic-landfill.jpg"],
+            ["Tie Bag: My Tie", "2026", "Wrote and Edited", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DUBNApYjpKh/", "https://i.ytimg.com/vi/5fyjQbEII9s/hqdefault.jpg"],
+            ["Tie Bag: Tie Food", "2026", "Wrote and Edited", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DT2-KHaDtl7/", "https://i.ytimg.com/vi/qd46AT3SSRE/hqdefault.jpg"],
+            ["Shmedium Noir", "2025", "Wrote and Edited", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DSXlE0_Duyf/", "https://i.ytimg.com/vi/OD2zDBPLdWE/hqdefault.jpg"],
+            ["GANG: Telfar x Timberland", "2025", "Editor", "Brand: TELFAR. Collaboration: Timberland.", "https://www.instagram.com/p/DOgVCdTjqIG/", "../images/telfar-gang-timberland.jpg"],
+            ["Plastic Bag: Microplastics", "2025", "Wrote and Edited", "Brand: TELFAR. Format: Campaign video.", "https://www.tiktok.com/@telfarglobal/video/7538490450001415455?lang=en", "https://i.ytimg.com/vi/wGksJM026Vg/hqdefault.jpg"],
+            ["New Models Season Zero Teaser", "2024", "Produced and Edited", "Brand: TELFAR TV. Format: Teaser.", "https://www.instagram.com/p/C_3La_mucu3/", "../images/telfar-new-models-season-zero.jpg"],
+            ["Make Tug Not War", "2025", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/reel/DS2lF4jDv6Q/", "../images/telfar-make-tug-not-war.jpg"],
+            ["Plastic Bag Restock", "2025", "Wrote and Edited", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DSu2SahjU1z/", "../images/telfar-plastic-bag-restock.jpg"],
+            ["20 Years", "2025", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DOn8btfjkgH/", "../images/telfar-twenty-years.jpg"],
+            ["Thank You For Shopping", "2025", "Wrote", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/reel/DNYKGVZOpzJ/", "../images/telfar-thank-you-for-shopping.jpg"],
+            ["Duffle Saga pt 3", "2025", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/reel/DKzcfvKOzcN/", "../images/telfar-duffle-saga-pt-3.jpg"],
+            ["Duffle Saga pt 2", "2025", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DKw5CXoxp9e/", "../images/telfar-duffle-saga-pt-2.jpg"],
+            ["Duffle Saga pt 1", "2025", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/reel/DKuOoNUOin7/", "../images/telfar-duffle-saga-pt-1.jpg"],
+            ["Hellfire TV: Met Gala", "2025", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DJah0K2uFxF/", "../images/telfar-hellfire-tv-met-gala.jpg"],
+            ["Joseline x Dumping Teaser", "2025", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DGdYT5DO9Px/", "../images/telfar-joseline-dumping-teaser.jpg"],
+            ["Holiday Vendors", "2024", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DDZ11QoOm6c/", "../images/telfar-holiday-vendors.jpg"],
+            ["Shmedium Dream", "2024", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DCzEOYMuYmO/", "../images/telfar-shmedium-dream.jpg"],
+            ["Diary Room London", "2024", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DB1STpJO3OE/", "../images/telfar-diary-room-london.jpg"],
+            ["Cuppa Tea", "2024", "Editor", "Brand: TELFAR. Format: Campaign video.", "https://www.instagram.com/p/DBq6_wMuwQn/", "../images/telfar-cuppa-tea.jpg"]
+          ]
+        },
+        {
+          title: "Television",
+          items: [
+            ["Conner O'Malley's Stand Up Solutions", "2024", "Assistant Editor, DIT", "Platform: Self-released. Format: Special.", "https://www.youtube.com/watch?v=Svual-PcOxE", "https://i.ytimg.com/vi/Svual-PcOxE/hqdefault.jpg"],
+            ["Cole Escola's Our Home Out West", "2023", "Assistant Editor, DIT", "Platform: Self-released. Format: TV special.", "https://www.youtube.com/watch?v=nYkDGvT4tJk", "https://i.ytimg.com/vi/nYkDGvT4tJk/hqdefault.jpg"],
+            ["Random Acts of Flyness", "2022", "Associate Editor", "Network: HBO. Season 2, 6 episodes.", "https://www.youtube.com/watch?v=HAAl3vXHWLs", "https://i.ytimg.com/vi/HAAl3vXHWLs/hqdefault.jpg"],
+            ["Growing Up", "2022", "Editor", "Platform: Disney+. 5 episodes.", "https://www.youtube.com/watch?v=tFMQs50V1g8", "https://i.ytimg.com/vi/tFMQs50V1g8/hqdefault.jpg"],
+            ["Best Walk", "2020", "Editor", "Platform: Topic. 5 episodes.", "https://www.youtube.com/watch?v=x_LJxBOAlXw", "https://i.ytimg.com/vi/x_LJxBOAlXw/hqdefault.jpg"],
+            ["Random Acts of Flyness", "2018", "Lead Assistant Editor", "Network: HBO. Season 1, 6 episodes.", "https://www.youtube.com/watch?v=kIzUwpfAl5k", "https://i.ytimg.com/vi/kIzUwpfAl5k/hqdefault.jpg"],
+            ["Two Dope Queens", "2018", "Assistant Editor", "Network: HBO. Season 1, 4 episodes.", "https://www.youtube.com/watch?v=KlnZyaIyZdw", "https://i.ytimg.com/vi/KlnZyaIyZdw/hqdefault.jpg"]
+          ]
+        },
+        {
+          title: "Film",
+          groups: [
+            {
+              title: "Features",
+              items: [
+                ["Telfar New Models Season One", "2025", "Editor", "Director: Babak Radboy. Platform: TELFAR TV.", "https://www.youtube.com/watch?v=7Dkp41QdFgw", "https://i.ytimg.com/vi/7Dkp41QdFgw/hqdefault.jpg"],
+                ["Seeking Mavis Beacon", "2024", "Assistant Editor", "Director: Jazmin Jones. Distributor: NEON.", "https://en.wikipedia.org/wiki/Seeking_Mavis_Beacon", "../images/SeekingMavisBeacon.jpg"],
+                ["Good One", "2022", "DIT", "Director: India Donaldson. Distributor: Metrograph Pictures.", "https://en.wikipedia.org/wiki/Good_One_(film)", "../images/GoodOne.jpg"]
+              ]
+            },
+            {
+              title: "Shorts",
+              pageSize: 3,
+              items: [
+                ["Seek No Favor", "2025", "Additional Editor, Trailer Editor", "Director: Leilah Weintraub.", "https://www.imdb.com/title/tt32369268/", "../images/SeekNoFavor.webp"],
+                ["Straight Line", "2025", "Assistant Editor", "Director: Jack Bensinger.", "https://www.youtube.com/watch?v=FwankVjcbeQ", "https://i.ytimg.com/vi/FwankVjcbeQ/hqdefault.jpg"],
+                ["Grey Day", "2024", "Editor", "Director: Brian Fiddyment.", "https://www.nobudge.com/videos/grey-day", "../images/GreyDay.webp"],
+                ["Close The Gap", "2023", "Assistant Editor", "Director: Alex Bliss.", "https://www.youtube.com/watch?v=3U9xgN3GsZc", "../images/CloseTheGap.webp"]
+              ]
+            }
+          ]
+        },
+        {
+          title: "Music Video",
+          items: [
+            ["Mackeeper - Amazing Grace (ft. Brat Star)", "2026", "Editor", "", "https://www.youtube.com/watch?v=mirdiTGNd1g", "https://i.ytimg.com/vi/mirdiTGNd1g/hqdefault.jpg"],
+            ["Nick Hakim - The Reason", "2026", "Editor", "Director: Terence Nance.", "https://www.youtube.com/watch?v=mCb6sDfRicY", "https://i.ytimg.com/vi/mCb6sDfRicY/hqdefault.jpg"],
+            ["Nick Hakim - Endlessly Waiting", "2026", "Editor", "Director: Terence Nance.", "https://www.youtube.com/watch?v=FwrjJSVGBKg", "https://i.ytimg.com/vi/FwrjJSVGBKg/hqdefault.jpg"],
+            ["Nick Hakim - I Can See", "2026", "Editor", "Director: Terence Nance.", "https://youtu.be/j5y6Gj_1pho", "https://i.ytimg.com/vi/j5y6Gj_1pho/hqdefault.jpg"],
+            ["Nick Hakim - Live at Lalibela", "2026", "Editor", "Director: Terence Nance. Format: Live series.", "https://www.youtube.com/watch?v=NIBKYrKaQOk&list=PLZEg-VqpzLnb3nP1GzY7TsjCZhGaMoQf0", "https://i.ytimg.com/vi/NIBKYrKaQOk/hqdefault.jpg"],
+            ["Naomi Sharon (LIVE from Telfar)", "2026", "Editor", "Label: OVO. Format: Live performance.", "https://www.youtube.com/watch?v=tvtJ0aaxImQ", "https://i.ytimg.com/vi/tvtJ0aaxImQ/hqdefault.jpg"],
+            ["BIG ONE : SEEN BY HOUSE OF JUICY COUTURE", "2025", "Editor", "Director: Ian Isiah.", "https://www.youtube.com/watch?v=g0tiLW2nPuk", "https://i.ytimg.com/vi/g0tiLW2nPuk/hqdefault.jpg"],
+            ["Ms. Lauryn Hill for S/S 2021", "2021", "Editor", "Director: Naima Ramos-Chapman. Client: Louis Vuitton.", "https://www.youtube.com/watch?v=ehNpmxYYXiQ", "https://i.ytimg.com/vi/ehNpmxYYXiQ/hqdefault.jpg"]
+          ]
+        }
+      ];
+
+      let complimentIndex = 0;
+      const complimentImage = document.getElementById("compliment-image");
+      const complimentCaption = document.getElementById("compliment-caption");
+      const complimentCounter = document.getElementById("compliment-counter");
+      const complimentCarousel = document.getElementById("compliment-carousel");
+      const complimentRow = document.querySelector(".compliment-row");
+      const bioStack = document.querySelector(".bio-stack");
+      const mobileComplimentSlot = document.getElementById("mobile-compliment-slot");
+      const mobileLayoutQuery = window.matchMedia("(max-width: 900px)");
+
+      function updateCompliment(delta) {
+        complimentIndex = (complimentIndex + delta + compliments.length) % compliments.length;
+        const item = compliments[complimentIndex];
+        complimentImage.src = item[0];
+        complimentImage.alt = item[1];
+        complimentCaption.textContent = item[1];
+        complimentCounter.textContent = (complimentIndex + 1) + " / " + compliments.length;
+      }
+
+      document.getElementById("compliment-prev").addEventListener("click", () => updateCompliment(-1));
+      document.getElementById("compliment-next").addEventListener("click", () => updateCompliment(1));
+
+      function placeComplimentCarousel() {
+        if (mobileLayoutQuery.matches) {
+          mobileComplimentSlot.appendChild(complimentCarousel);
+        } else {
+          complimentRow.insertBefore(complimentCarousel, bioStack);
+        }
+      }
+
+      function chunkItems(items, pageSize = 6) {
+        const pages = [];
+        for (let i = 0; i < items.length; i += pageSize) pages.push(items.slice(i, i + pageSize));
+        return pages;
+      }
+
+      function getCarouselPageSize(pageSize = 6) {
+        return window.matchMedia("(max-width: 560px)").matches ? 4 : pageSize;
+      }
+
+      function sectionSlug(title) {
+        return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      }
+
+      function isMobileSectionMode() {
+        return window.matchMedia("(max-width: 900px)").matches;
+      }
+
+      function getCurrentHashSlug() {
+        return decodeURIComponent(window.location.hash || "").replace(/^#/, "");
+      }
+
+      function setSectionCollapsed(section, collapsed) {
+        const toggle = section.querySelector(".collapse-toggle");
+        const body = section.querySelector(".work-section-body");
+        section.classList.toggle("is-collapsed", collapsed);
+        if (toggle) toggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+        if (body) body.hidden = collapsed;
+      }
+
+      function openSectionBySlug(slug, shouldScroll = false, closeOthers = false) {
+        if (!slug) return false;
+        const section = document.getElementById(slug);
+        if (!section || !section.classList.contains("work-section")) return false;
+        if (closeOthers) {
+          document.querySelectorAll(".work-section").forEach((otherSection) => {
+            if (otherSection !== section) setSectionCollapsed(otherSection, true);
+          });
+        }
+        setSectionCollapsed(section, false);
+        if (shouldScroll) {
+          window.requestAnimationFrame(() => section.scrollIntoView({ block: "start" }));
+        }
+        return true;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function getEmbeddableUrl(url) {
+        try {
+          const parsed = new URL(url);
+          const host = parsed.hostname.replace(/^www\./, "");
+          if (host === "youtu.be") {
+            const id = parsed.pathname.replace(/^\//, "");
+            return id ? "https://www.youtube-nocookie.com/embed/" + id : "";
+          }
+          if (host === "youtube.com" || host === "m.youtube.com") {
+            const list = parsed.searchParams.get("list");
+            const id = parsed.searchParams.get("v");
+            if (id) return "https://www.youtube-nocookie.com/embed/" + id + (list ? "?list=" + encodeURIComponent(list) : "");
+            if (list) return "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(list);
+          }
+          if (host === "vimeo.com") {
+            const id = parsed.pathname.split("/").filter(Boolean)[0];
+            return id ? "https://player.vimeo.com/video/" + id : "";
+          }
+          if (host === "player.vimeo.com" && parsed.pathname.startsWith("/video/")) {
+            return url;
+          }
+        } catch (_err) {
+          return "";
+        }
+        return "";
+      }
+
+      function buildModalFacts(details) {
+        const rows = [
+          ["Year", details.year],
+          ["Role", details.role],
+          ["Details", details.notes]
+        ].filter((row) => row[1]);
+        if (!rows.length) return "";
+        return "<dl class=\"modal-facts\">" + rows.map((row) =>
+          "<dt>" + escapeHtml(row[0]) + ":</dt><dd>" + escapeHtml(row[1]) + "</dd>"
+        ).join("") + "</dl>";
+      }
+
+      function openVideoModal(details) {
+        const title = details.title || "Video preview";
+        const href = details.href || "";
+        const embedUrl = getEmbeddableUrl(href);
+        if (!embedUrl) return false;
+        document.getElementById("modal-title").textContent = title;
+        document.getElementById("modal-body").innerHTML =
+          '<iframe src="' + embedUrl + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="' + escapeHtml(title) + '"></iframe>';
+        document.getElementById("modal-footer").innerHTML =
+          buildModalFacts(details) +
+          '<a href="' + escapeHtml(href) + '" target="_blank" rel="noreferrer">Open source link</a>';
+        document.getElementById("video-modal").setAttribute("aria-hidden", "false");
+        return true;
+      }
+
+      function closeVideoModal() {
+        document.getElementById("video-modal").setAttribute("aria-hidden", "true");
+        document.getElementById("modal-body").innerHTML = "";
+        document.getElementById("modal-footer").innerHTML = "";
+      }
+
+      function renderWorkCarousel(container, items, pageSize = 6, headingHtml = "") {
+        const effectivePageSize = getCarouselPageSize(pageSize);
+        const pages = chunkItems(items, effectivePageSize);
+        container.dataset.pageIndex = "0";
+        container.innerHTML =
+          '<div class="section-header">' +
+            (headingHtml || '<div></div>') +
+            '<div class="section-nav">' +
+              '<button type="button" class="prev">Prev</button>' +
+              '<span class="counter">1 / ' + pages.length + '</span>' +
+              '<button type="button" class="next">Next</button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="work-viewport"><div class="work-track"></div></div>';
+
+        const track = container.querySelector(".work-track");
+          pages.forEach((page) => {
+            const pageNode = document.createElement("div");
+            pageNode.className = "work-page" + (effectivePageSize === 3 ? " page-size-3" : "");
+            page.forEach((item) => {
+              const [title, year, role, notes, href, img] = item;
+              const embedUrl = getEmbeddableUrl(href);
+              const linkAttrs = embedUrl
+                ? 'href="#" data-video-source="' + escapeHtml(href) + '" data-video-title="' + escapeHtml(title) + '" data-video-year="' + escapeHtml(year) + '" data-video-role="' + escapeHtml(role) + '" data-video-notes="' + escapeHtml(notes) + '"'
+                : 'href="' + escapeHtml(href) + '" target="_blank" rel="noreferrer"';
+              const linkClass = embedUrl ? "video-link" : "";
+              const card = document.createElement("article");
+              card.className = "work-card";
+              card.innerHTML =
+                '<a class="media-link ' + linkClass + '" ' + linkAttrs + '>' +
+                  '<img src="' + escapeHtml(img) + '" alt="' + escapeHtml(title) + ' still" loading="lazy">' +
+                '</a>' +
+                '<div class="work-meta">' +
+                  '<a class="work-title ' + linkClass + '" ' + linkAttrs + '><i>' + escapeHtml(title) + '</i></a>' +
+                  '<span class="work-year">' + escapeHtml(year) + '</span>' +
+                  '<span class="work-role">' + escapeHtml(role) + '</span>' +
+                  '<span class="work-notes' + (notes ? '' : ' is-empty') + '">' + (notes ? escapeHtml(notes) : '&nbsp;') + '</span>' +
+                '</div>';
+              pageNode.appendChild(card);
+            });
+            track.appendChild(pageNode);
+          });
+
+          const prev = container.querySelector(".prev");
+          const next = container.querySelector(".next");
+          const counter = container.querySelector(".section-nav .counter");
+          function setPage(nextIndex) {
+            const bounded = Math.max(0, Math.min(pages.length - 1, nextIndex));
+            container.dataset.pageIndex = String(bounded);
+            track.style.transform = "translateX(" + (-100 * bounded) + "%)";
+            counter.textContent = (bounded + 1) + " / " + pages.length;
+            prev.disabled = bounded === 0;
+            next.disabled = bounded === pages.length - 1;
+          }
+          prev.addEventListener("click", () => setPage(Number(container.dataset.pageIndex) - 1));
+          next.addEventListener("click", () => setPage(Number(container.dataset.pageIndex) + 1));
+          if (pages.length <= 1) container.querySelector(".section-nav").classList.add("is-hidden");
+          setPage(0);
+      }
+
+      function renderWorkSections() {
+        const root = document.getElementById("work-sections");
+        const isInitialRender = root.children.length === 0;
+        const initialMobileCollapse = isInitialRender && isMobileSectionMode();
+        const currentHashSlug = getCurrentHashSlug();
+        const collapsedSections = new Set(
+          [...root.querySelectorAll(".work-section.is-collapsed")].map((section) => section.id)
+        );
+        root.innerHTML = "";
+        sections.forEach((section) => {
+          const node = document.createElement("section");
+          const slug = sectionSlug(section.title);
+          node.id = slug;
+          node.className = "work-section";
+          if (collapsedSections.has(slug) || (initialMobileCollapse && slug !== currentHashSlug)) {
+            node.classList.add("is-collapsed");
+          }
+          const bodyId = slug + "-body";
+          const isCollapsed = node.classList.contains("is-collapsed");
+          node.innerHTML =
+            '<div class="work-section-head">' +
+              '<button class="collapse-toggle" type="button" aria-expanded="' + (isCollapsed ? "false" : "true") + '" aria-controls="' + bodyId + '">' +
+                '<span class="collapse-icon" aria-hidden="true">›</span>' +
+                '<h2>' + escapeHtml(section.title) + '</h2>' +
+              '</button>' +
+            '</div>' +
+            '<div class="work-section-body" id="' + bodyId + '"' + (isCollapsed ? ' hidden' : '') + '></div>';
+          const body = node.querySelector(".work-section-body");
+
+          if (section.groups) {
+            section.groups.forEach((group) => {
+              const groupNode = document.createElement("div");
+              groupNode.className = "work-subsection";
+              renderWorkCarousel(groupNode, group.items, group.pageSize || 6, '<h3 class="work-subsection-title">' + group.title + '</h3>');
+              body.appendChild(groupNode);
+            });
+          } else {
+            const carousel = document.createElement("div");
+            carousel.className = "work-carousel";
+            renderWorkCarousel(carousel, section.items, 6);
+            body.appendChild(carousel);
+          }
+
+          root.appendChild(node);
+        });
+      }
+
+      renderWorkSections();
+      if (isMobileSectionMode()) {
+        openSectionBySlug(getCurrentHashSlug(), false);
+      }
+      placeComplimentCarousel();
+
+      let lastMobileLayout = window.matchMedia("(max-width: 560px)").matches;
+      window.addEventListener("resize", () => {
+        const nextMobileLayout = window.matchMedia("(max-width: 560px)").matches;
+        placeComplimentCarousel();
+        if (nextMobileLayout === lastMobileLayout) return;
+        lastMobileLayout = nextMobileLayout;
+        renderWorkSections();
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+        const toggle = event.target.closest(".collapse-toggle");
+        if (toggle) {
+          const section = toggle.closest(".work-section");
+          const body = section ? section.querySelector(".work-section-body") : null;
+          if (!section || !body) return;
+          const willCollapse = !section.classList.contains("is-collapsed");
+          setSectionCollapsed(section, willCollapse);
+          return;
+        }
+        const anchor = event.target.closest('a[href^="#"]');
+        if (anchor && isMobileSectionMode()) {
+          const slug = decodeURIComponent(anchor.getAttribute("href") || "").replace(/^#/, "");
+          if (document.getElementById(slug)) {
+            event.preventDefault();
+            history.pushState(null, "", "#" + encodeURIComponent(slug));
+            openSectionBySlug(slug, true, true);
+            return;
+          }
+        }
+        const link = event.target.closest("[data-video-source]");
+        if (!link) return;
+        event.preventDefault();
+        openVideoModal({
+          title: link.dataset.videoTitle || "Video preview",
+          href: link.dataset.videoSource || "",
+          year: link.dataset.videoYear || "",
+          role: link.dataset.videoRole || "",
+          notes: link.dataset.videoNotes || ""
+        });
+      });
+
+      window.addEventListener("hashchange", () => {
+        if (isMobileSectionMode()) {
+          openSectionBySlug(getCurrentHashSlug(), false);
+        }
+      });
+
+      document.getElementById("close-modal").addEventListener("click", closeVideoModal);
+      document.getElementById("video-modal").addEventListener("click", (event) => {
+        if (event.target === event.currentTarget) closeVideoModal();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && document.getElementById("video-modal").getAttribute("aria-hidden") === "false") {
+          closeVideoModal();
+        }
+      });
+    </script>
+  </body>
+</html>

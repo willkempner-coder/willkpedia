@@ -44,6 +44,13 @@
     <meta name="twitter:image" content="https://willkempner.com/images/header-logo.png?v=4" />
     <meta name="twitter:image:alt" content="WillKpedia logo" />
     <style>
+      @font-face {
+        font-family: "WillKpedia Libertine";
+        src: url("fonts/LinLibertine_R.woff") format("woff");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
       :root {
         --wiki-blue: #3366cc;
         --wiki-border: #a2a9b1;
@@ -51,7 +58,7 @@
         --wiki-text: #202122;
         --wiki-font-base: sans-serif;
         --wiki-font-ui: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Inter", "Helvetica", "Arial", sans-serif;
-        --wiki-font-serif: "Linux Libertine", "Georgia", "Times", "Source Serif 4", serif;
+        --wiki-font-serif: "WillKpedia Libertine", "Linux Libertine", "Georgia", "Times", "Source Serif 4", serif;
         --wiki-font-mono: "Menlo", "Consolas", "Liberation Mono", "Fira Code", "Courier New", monospace;
       }
       * {
@@ -324,15 +331,21 @@
         margin: 0;
         flex: 0 1 auto;
         font-family: var(--wiki-font-serif);
-        font-size: clamp(2.8rem, 6.2vw, 5.8rem);
+        font-size: clamp(3.45rem, 7.7vw, 6rem);
         font-weight: 400;
-        letter-spacing: 0.3px;
-        line-height: 1;
+        letter-spacing: 0.006em;
+        line-height: 0.82;
         text-align: left;
         white-space: nowrap;
         cursor: pointer;
         user-select: none;
         touch-action: manipulation;
+      }
+      .site-brand-cap {
+        display: inline-block;
+        font-size: 1.36em;
+        line-height: 0.72;
+        vertical-align: -0.055em;
       }
       .title {
         margin: 0 0 10px;
@@ -1706,11 +1719,11 @@
           margin: 0 0 12px;
         }
         .site-brand-mark {
-          width: 150px;
-          flex-basis: 150px;
+          width: clamp(82px, 22vw, 116px);
+          flex-basis: clamp(82px, 22vw, 116px);
         }
         .site-brand-text {
-          font-size: clamp(2.2rem, 10vw, 3.4rem);
+          font-size: clamp(1.72rem, 8.2vw, 2.15rem);
         }
         .site-brand {
           min-height: 220px;
@@ -2435,7 +2448,7 @@
         </div>
       </div>
       <header class="site-brand" aria-label="WillKpedia header">
-        <h1 class="site-brand-text" id="site-brand-text">WillKpedia</h1>
+        <h1 class="site-brand-text" id="site-brand-text"><span class="site-brand-cap">W</span>ILL<span class="site-brand-cap">K</span>PEDIA</h1>
         <div class="site-brand-mark">
           <img id="globe-logo" src="images/header-logo-transparent-head.png?v=12" alt="WillKpedia globe mark" draggable="false" />
         </div>
@@ -2454,6 +2467,7 @@
           <div class="topic-tabs" aria-label="Topic tabs">
             <button class="topic-tab active" id="topic-article" type="button">Article</button>
             <button class="topic-tab" id="topic-talk" type="button">Talk</button>
+            <a class="topic-tab" href="/normie/">Normie Mode</a>
           </div>
           <div class="page-actions" aria-label="Page actions">
             <button class="page-tab active" id="tab-read" type="button">Read</button>
