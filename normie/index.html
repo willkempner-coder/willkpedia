@@ -692,6 +692,7 @@
         {
           title: "Branded",
           items: [
+            ["Love Rendered | BTS", "2026", "Editor", "For Primordial Soup", "https://www.youtube.com/watch?v=1r7llsecxqw", "https://i.ytimg.com/vi/1r7llsecxqw/hqdefault.jpg"],
             ["Building With Google Gemini", "2026", "Editor", "", "https://www.youtube.com/watch?v=Rnz9mOyxk0k", "https://i.ytimg.com/vi/Rnz9mOyxk0k/hqdefault.jpg"],
             ["Tumi | Bag Campaign", "2026", "Editor", "Client: Tumi. Agency/media: Hearst Media.", "https://youtu.be/K6kg6C1XSwA", "https://i.ytimg.com/vi/K6kg6C1XSwA/hqdefault.jpg"],
             ["Q&A with Juvederm", "2024", "Editor", "Client: Juvederm. Format: branded Q&A.", "https://youtu.be/18FpvGcl_DA?si=tfJpmJLASgr0-3Zw", "https://i.ytimg.com/vi/18FpvGcl_DA/hqdefault.jpg"],
@@ -898,6 +899,10 @@
         return "";
       }
 
+      function formatWorkNotes(notes) {
+        return escapeHtml(notes).replace("Primordial Soup", '<a href="https://www.primordialsoup.ai/" target="_blank" rel="noreferrer">Primordial Soup</a>');
+      }
+
       function buildModalFacts(details) {
         const rows = [
           ["Year", details.year],
@@ -906,7 +911,7 @@
         ].filter((row) => row[1]);
         if (!rows.length) return "";
         return "<dl class=\"modal-facts\">" + rows.map((row) =>
-          "<dt>" + escapeHtml(row[0]) + ":</dt><dd>" + escapeHtml(row[1]) + "</dd>"
+          "<dt>" + escapeHtml(row[0]) + ":</dt><dd>" + (row[0] === "Details" ? formatWorkNotes(row[1]) : escapeHtml(row[1])) + "</dd>"
         ).join("") + "</dl>";
       }
 
@@ -922,6 +927,19 @@
           buildModalFacts(details) +
           '<a href="' + escapeHtml(href) + '" target="_blank" rel="noreferrer">Open source link</a>';
         document.getElementById("video-modal").setAttribute("aria-hidden", "false");
+        if (details.title === "Love Rendered | BTS") {
+          const videos = ["https://www.youtube.com/watch?v=1r7llsecxqw", "https://www.youtube.com/watch?v=w02EajaeU4s"];
+          const current = videos.indexOf(href);
+          const controls = document.createElement("div");
+          controls.className = "carousel-controls";
+          controls.innerHTML = '<button type="button">Prev</button><span>' + (current + 1) + ' / 2</span><button type="button">Next</button>';
+          const buttons = controls.querySelectorAll("button");
+          buttons[0].disabled = current === 0;
+          buttons[1].disabled = current === 1;
+          buttons[0].onclick = () => openVideoModal({ ...details, href: videos[0] });
+          buttons[1].onclick = () => openVideoModal({ ...details, href: videos[1] });
+          document.getElementById("modal-footer").appendChild(controls);
+        }
         return true;
       }
 
@@ -967,7 +985,7 @@
                   '<a class="work-title ' + linkClass + '" ' + linkAttrs + '><i>' + escapeHtml(title) + '</i></a>' +
                   '<span class="work-year">' + escapeHtml(year) + '</span>' +
                   '<span class="work-role">' + escapeHtml(role) + '</span>' +
-                  '<span class="work-notes' + (notes ? '' : ' is-empty') + '">' + (notes ? escapeHtml(notes) : '&nbsp;') + '</span>' +
+                  '<span class="work-notes' + (notes ? '' : ' is-empty') + '">' + (notes ? formatWorkNotes(notes) : '&nbsp;') + '</span>' +
                 '</div>';
               pageNode.appendChild(card);
             });

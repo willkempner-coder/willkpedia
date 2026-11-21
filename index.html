@@ -1495,6 +1495,16 @@
         height: 100%;
         border: 0;
       }
+      .modal-body.has-video-carousel { aspect-ratio: auto; }
+      .modal-body.has-video-carousel iframe { height: min(55vh, 520px); display: block; }
+      .modal-body .carousel-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 10px;
+        background: #f8f9fa;
+        border-top: 1px solid #c8ccd1;
+      }
       .modal-close {
         border: 1px solid #a2a9b1;
         background: #f8f9fa;
@@ -3493,6 +3503,13 @@ Admin scratch notes:
                   <td>Editor</td>
                   <td></td>
                 </tr>
+                <tr>
+                  <td><a href="#" class="video-link filmography-still-link" data-inline-off="true" data-video="https://www.youtube-nocookie.com/embed/1r7llsecxqw" data-video-next="https://www.youtube-nocookie.com/embed/w02EajaeU4s"><img class="filmography-still" src="https://i.ytimg.com/vi/1r7llsecxqw/hqdefault.jpg" alt="Love Rendered BTS still" loading="lazy" /></a></td>
+                  <td><a href="#" class="video-link" data-inline-off="true" data-video="https://www.youtube-nocookie.com/embed/1r7llsecxqw" data-video-next="https://www.youtube-nocookie.com/embed/w02EajaeU4s"><i>Love Rendered | BTS</i></a></td>
+                  <td>2026</td>
+                  <td>Editor</td>
+                  <td>For <a href="https://www.primordialsoup.ai/" target="_blank" rel="noreferrer">Primordial Soup</a></td>
+                </tr>
               </tbody>
             </table>
           </section>
@@ -3512,12 +3529,12 @@ Admin scratch notes:
               <tbody>
                 <tr>
                   <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/pn7tYDdCfuQ" data-inline-off="true" class="video-link filmography-still-link">
+                    <a href="https://www.nobudge.com/videos/serfs-up" target="_blank" rel="noreferrer" class="filmography-still-link">
                       <img class="filmography-still" src="https://i.ytimg.com/vi/pn7tYDdCfuQ/hqdefault.jpg" alt="Serf's Up still" loading="lazy" />
                     </a>
                   </td>
                   <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/pn7tYDdCfuQ" data-inline-off="true" class="video-link"><i>Serf's Up</i></a>
+                    <a href="https://www.nobudge.com/videos/serfs-up" target="_blank" rel="noreferrer"><i>Serf's Up</i></a>
                     <div class="filmography-description">After getting rejected from space camp, Dan is forced to hang out with his “dark energy” cousin.</div>
                   </td>
                   <td>2016</td>
@@ -3525,12 +3542,12 @@ Admin scratch notes:
                 </tr>
                 <tr>
                   <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/WDuSxJ_eAGU" data-inline-off="true" class="video-link filmography-still-link">
+                    <a href="https://www.nobudge.com/videos/the-good-boy" target="_blank" rel="noreferrer" class="filmography-still-link">
                       <img class="filmography-still" src="https://i.ytimg.com/vi/WDuSxJ_eAGU/hqdefault.jpg" alt="The Good Boy still" loading="lazy" />
                     </a>
                   </td>
                   <td>
-                    <a href="#" data-video="https://www.youtube-nocookie.com/embed/WDuSxJ_eAGU" data-inline-off="true" class="video-link"><i>The Good Boy</i></a>
+                    <a href="https://www.nobudge.com/videos/the-good-boy" target="_blank" rel="noreferrer"><i>The Good Boy</i></a>
                     <div class="filmography-description">An automatic hammer threatens to destroy a man’s construction company and his relationship with his son.</div>
                   </td>
                   <td>2018</td>
@@ -4021,6 +4038,12 @@ Admin scratch notes:
                   <td>2024</td>
                   <td>Audio Narrative Comedy Podcast by Matt Schultz. Sound design, mix, engineering, production.</td>
                   <td><a href="https://podcasts.apple.com/us/podcast/the-heartsick-boys/id1765400973" target="_blank" rel="noreferrer">Open on Apple Podcasts</a></td>
+                </tr>
+                <tr>
+                  <td><i>The Brother From Raymond</i></td>
+                  <td>2026</td>
+                  <td>Audio Narrative Comedy Podcast by Matt Schultz. Sound design, mix, engineering, production.</td>
+                  <td><a href="https://podcasts.apple.com/us/podcast/the-brother-from-raymond/id1896908736" target="_blank" rel="noreferrer">Open on Apple Podcasts</a></td>
                 </tr>
               </tbody>
             </table>
@@ -4517,6 +4540,7 @@ __/  o o \___
       }
 
       function openModal(url, sourceLink) {
+        modalBody.classList.toggle("has-video-carousel", Boolean(sourceLink && sourceLink.dataset.videoNext));
         const normalizedUrl = normalizeDriveEmbedUrl(url);
         if (!isSafeUrl(normalizedUrl)) {
           modalBody.textContent = "Blocked unsafe media URL.";
@@ -4550,6 +4574,19 @@ __/  o o \___
           modalBody.innerHTML =
             '<iframe src="' + normalizedUrl + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video preview"></iframe>' +
             footer;
+          if (sourceLink && sourceLink.dataset.videoNext) {
+            const videos = [sourceLink.dataset.video, sourceLink.dataset.videoNext];
+            const current = videos.indexOf(url);
+            const controls = document.createElement("div");
+            controls.className = "carousel-controls";
+            controls.innerHTML = '<button type="button">Prev</button><span>' + (current + 1) + ' / 2</span><button type="button">Next</button>';
+            const buttons = controls.querySelectorAll("button");
+            buttons[0].disabled = current === 0;
+            buttons[1].disabled = current === 1;
+            buttons[0].onclick = () => openModal(videos[0], sourceLink);
+            buttons[1].onclick = () => openModal(videos[1], sourceLink);
+            modalBody.appendChild(controls);
+          }
         } else if (isMp4) {
           modalBody.innerHTML =
             '<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#000;">' +
